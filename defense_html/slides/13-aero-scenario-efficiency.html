@@ -1,4 +1,4 @@
-<section class="slide" data-section="aero" data-label="13 AERO evaluation setup cloud workload prediction">
+<section class="slide" data-section="aero" data-label="13 AERO evaluation setup workload prediction">
   <div class="chrome-top">
     <div class="section-bar"></div>
     <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; setup</span></div>
@@ -8,15 +8,16 @@
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
     <!-- Title strip -->
     <div style="flex:0 0 90px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
-      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Evaluation Setup - Cloud Workload Prediction</h1>
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Evaluation Setup - Workload Prediction</h1>
       <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">dataset &middot; baselines &middot; training server &middot; reported metrics</div>
     </div>
 
-    <!-- Scenario table · 4 columns -->
-    <div style="flex:1; display:grid; grid-template-columns: 1.08fr 1.02fr 1fr 1fr; min-height:0; overflow:hidden;">
+    <!-- Centered setup cards -->
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:28px 44px; overflow:hidden;">
+      <div style="width:min(1320px,100%); display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; align-items:stretch;">
 
       <!-- Column 1 · DATA -->
-      <div style="padding:34px 34px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="padding:30px 28px; border:2px solid var(--ink); border-radius:24px; background:var(--bg); display:flex; flex-direction:column; gap:14px; min-height:0;">
         <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Data</div>
         <div style="font-family:var(--f-display); font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Alibaba 2022 microservices trace</div>
 
@@ -59,7 +60,7 @@
       </div>
 
       <!-- Column 2 · BASELINES -->
-      <div style="padding:34px 28px; border-right:2px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="padding:30px 28px; border:2px solid var(--ink); border-radius:24px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
         <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Benchmarks</div>
         <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Five SOTA baselines + AERO</div>
 
@@ -106,7 +107,7 @@
       </div>
 
       <!-- Column 3 · EXPERIMENTAL SETTINGS -->
-      <div style="padding:34px 28px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="padding:30px 28px; border:2px solid var(--ink); border-radius:24px; background:var(--bg); display:flex; flex-direction:column; gap:14px; min-height:0;">
         <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Experimental settings</div>
         <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Common training server</div>
 
@@ -152,7 +153,7 @@
       </div>
 
       <!-- Column 4 · TUNING + METRICS -->
-      <div style="padding:34px 28px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="padding:30px 28px; border:2px solid var(--ink); border-radius:24px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
         <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Tuning + reporting</div>
         <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Evaluation protocol</div>
 
@@ -198,6 +199,7 @@
             <rect x="202" y="14" width="9" height="50" rx="4" style="fill:var(--c-aero);" />
           </svg>
         </div>
+      </div>
       </div>
     </div>
   </div>
