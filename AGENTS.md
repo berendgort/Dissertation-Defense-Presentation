@@ -92,6 +92,9 @@ cover slides `02` through `56`, plus backup slides `B1` through `B13`.
 - Keep generic infrastructure/framing elements neutral unless a slide is making
   a deliberate contribution-specific point.
 - Prefer small, local edits over broad rewrites when adjusting slide copy/layout.
+- Multiple agents are often editing slides in parallel, so avoid broad automatic
+renumbering or bulk search/replace operations unless they are scoped and
+reconciled first.
 - Verify visual changes in the browser; this repo is presentation-first, so
   manual review matters more than automated testing.
 
@@ -131,7 +134,8 @@ After making changes:
 1. Run `python3 dev.py` from the repo root.
 2. Confirm the target slide rebuilds into `Defense.html`.
 3. Check the slide in-browser for overflow, spacing, and readability.
-4. Make sure slide numbering, ordering, and section color semantics still make sense.
+4. Prefer fast iteration loops: rerun/reload quickly and visually verify each slide change before moving on.
+5. Make sure slide numbering, ordering, and section color semantics still make sense.
 
 ## Known Sources Of Confusion
 

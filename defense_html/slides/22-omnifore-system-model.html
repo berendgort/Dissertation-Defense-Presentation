@@ -1,0 +1,122 @@
+<section class="slide" data-section="omnifore" data-label="22 Where OmniFORE runs">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">OmniFORE &middot; Capability</span></div>
+    <div class="counter"><span class="num">22</span><span class="sep">/</span>55 &nbsp; <span class="section-name">OmniFORE</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Where OmniFORE runs &middot; one model, many services, <em>any</em> layer</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--c-omnifore); letter-spacing:.1em; text-transform:uppercase;">location-agnostic &middot; designed for <em>generalisation</em></div>
+    </div>
+
+    <!-- Content grid -->
+    <div style="flex:1; display:grid; grid-template-columns: 1.4fr 1fr; min-height:0;">
+      <!-- LEFT: schematic · many services feed one OmniFORE head -->
+      <div style="padding:36px 48px 28px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg);">
+        <div style="display:flex; gap:16px; align-items:center;">
+          <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase;">Same decision loop as AERO &rarr;</div>
+          <div class="mono" style="background:var(--c-omnifore); color:#fff; font-size:17px; padding:5px 14px; border-radius:2px; letter-spacing:.06em;">OmniFORE is one shared model for all services</div>
+        </div>
+
+        <svg viewBox="0 0 1000 580" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="mkO23" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+            </marker>
+            <style>
+              .flo23 { stroke-dasharray:14 8; animation: flowO23 3s linear infinite; }
+              @keyframes flowO23 { from{stroke-dashoffset:44} to{stroke-dashoffset:0} }
+            </style>
+          </defs>
+
+          <!-- Outer boundary (generic compute site · no regional tag) -->
+          <rect x="24" y="24" width="952" height="532" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="3" rx="10"/>
+          <text x="48" y="58" font-family="JetBrains Mono" font-size="17" fill="var(--ink-3)" letter-spacing="0.14em">COMPUTE SITE &middot; any tier: far edge, aggregation, cloud</text>
+
+          <!-- Observability input: multi-service traces -->
+          <rect x="60" y="100" width="300" height="360" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5" rx="6"/>
+          <text x="210" y="140" text-anchor="middle" font-family="Inter" font-size="26" font-weight="700" fill="var(--ink)">Observability &middot; N services</text>
+
+          <!-- 4 service mini-traces -->
+          <g font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">
+            <text x="80" y="180">web-frontend</text>
+            <polyline points="220,178 240,172 260,176 280,168 300,174 320,166 340,172" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <text x="80" y="230">batch-worker</text>
+            <polyline points="220,228 240,224 260,226 280,220 300,224 320,218 340,222" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <text x="80" y="280">event-driven</text>
+            <polyline points="220,278 232,272 244,282 256,270 268,286 280,272 292,282 304,270 316,284 328,272 340,278" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <text x="80" y="330">api-gateway</text>
+            <polyline points="220,328 240,332 260,320 280,328 300,318 320,326 340,316" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <text x="80" y="380">ml-inference</text>
+            <polyline points="220,378 240,368 260,382 280,366 300,378 320,368 340,374" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <text x="210" y="430" text-anchor="middle" fill="var(--ink-4)" font-size="16">&vellip;&nbsp;&nbsp;N services, mixed families</text>
+          </g>
+
+          <!-- OmniFORE shared model · single head -->
+          <rect x="560" y="180" width="340" height="170" fill="var(--c-omnifore)" stroke="var(--c-omnifore)" stroke-width="2.5" rx="6"/>
+          <text x="730" y="226" text-anchor="middle" font-family="Inter" font-size="34" font-weight="800" fill="#fff" letter-spacing="-0.01em">OmniFORE</text>
+          <text x="730" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="#fff" opacity="0.92">one shared model</text>
+          <text x="730" y="282" text-anchor="middle" font-family="JetBrains Mono" font-size="16" fill="#fff" opacity="0.88">trained once &middot; serves any service</text>
+          <text x="730" y="312" text-anchor="middle" font-family="JetBrains Mono" font-size="15" fill="#fff" opacity="0.80">generalises zero-shot to unseen services</text>
+
+          <!-- Arrows from observability to OmniFORE -->
+          <line class="flo23" x1="362" y1="180" x2="558" y2="210" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#mkO23)"/>
+          <line class="flo23" x1="362" y1="230" x2="558" y2="240" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#mkO23)"/>
+          <line class="flo23" x1="362" y1="280" x2="558" y2="270" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#mkO23)"/>
+          <line class="flo23" x1="362" y1="330" x2="558" y2="300" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#mkO23)"/>
+          <line class="flo23" x1="362" y1="380" x2="558" y2="330" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#mkO23)"/>
+
+          <!-- Output to decision layer -->
+          <rect x="560" y="400" width="340" height="90" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5" rx="6"/>
+          <text x="730" y="436" text-anchor="middle" font-family="Inter" font-size="24" font-weight="700" fill="var(--ink)">Decision layer (consumer)</text>
+          <text x="730" y="464" text-anchor="middle" font-family="JetBrains Mono" font-size="15" fill="var(--ink-3)">scheduler &middot; orchestrator &middot; any downstream</text>
+
+          <line class="flo23" x1="730" y1="352" x2="730" y2="398" stroke="var(--c-omnifore)" stroke-width="3" marker-end="url(#mkO23)"/>
+          <text x="748" y="380" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-omnifore)">per-service forecast</text>
+        </svg>
+      </div>
+
+      <!-- RIGHT: problem framing -->
+      <div style="border-left:2px solid var(--ink); padding:36px 44px 28px; background:var(--bg-alt); display:flex; flex-direction:column; gap:18px; min-height:0; overflow:hidden;">
+        <div style="border-left:4px solid var(--c-omnifore); padding:12px 18px; background:color-mix(in oklab, var(--c-omnifore) 6%, var(--bg));">
+          <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); margin-bottom:4px;">Problem first, location never</div>
+          <div style="font-size:20px; line-height:1.3; color:var(--ink);">OmniFORE is <strong>designed for generalisation</strong>, <em>not</em> for a particular tier.</div>
+        </div>
+
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; color:var(--ink);">Can be deployed anywhere, because&hellip;</div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:12px;">
+          <div style="display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--ink-4); padding-bottom:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.12em; color:var(--ink-3); min-width:90px;">SERVES</div>
+            <div style="font-size:19px; line-height:1.25; color:var(--ink);">every service at a site with <strong>one</strong> model</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--ink-4); padding-bottom:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.12em; color:var(--ink-3); min-width:90px;">SCALES</div>
+            <div style="font-size:19px; line-height:1.25; color:var(--ink);">no per-service retraining; new services join at inference</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--ink-4); padding-bottom:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.12em; color:var(--ink-3); min-width:90px;">FEEDS</div>
+            <div style="font-size:19px; line-height:1.25; color:var(--ink);">any downstream controller; same contract as AERO</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:14px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.12em; color:var(--ink-3); min-width:90px;">LIVES</div>
+            <div style="font-size:19px; line-height:1.25; color:var(--ink);">far edge, aggregation, or cloud; operator's choice</div>
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+        <div style="border-top:1px solid var(--ink-4); padding-top:14px; font-size:17px; line-height:1.4; color:var(--ink-2);">
+          Large foundation models <em>could</em> generalise, but are <strong style="color:var(--c-sota-red);">too heavy</strong> to deploy close to the service.<br>
+          OmniFORE is built to <em>generalise and stay small</em>.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">OmniFORE &middot; one model, many services &middot; location-agnostic</div>
+    <div class="meta-right">&sect;3 OmniFORE</div>
+  </div>
+</section>

@@ -1,2 +1,140 @@
-<section class="slide" data-section="framing" data-label="04 Zero-touch closed loop"> <div class="chrome-top"> <div class="section-bar"></div> <div class="eyebrow"><span class="eyb-tag">Zero-touch closed loop</span></div> <div class="counter"><span class="num">04</span><span class="sep">/</span>56 &nbsp; <span class="section-name">Framing</span></div> <div></div> </div> <div class="body" style="padding:40px 80px 36px;"> <div style="font-family:var(--f-mono); font-size:20px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px;">The goal</div> <h1 class="h-title" style="font-size:54px; margin-bottom:32px;">Zero-touch: operator sets intent, not actions</h1> <div style="flex:1; display:grid; grid-template-columns:1.6fr 1fr; gap:48px; min-height:0;"> <!-- LEFT: big animated cycle --> <div style="display:flex; align-items:center; justify-content:center;"> <svg viewBox="0 0 640 580" style="width:100%;height:100%;max-height:540px;" xmlns="http://www.w3.org/2000/svg"> <defs> <marker id="lpa04" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="9" markerHeight="9" orient="auto"> <path d="M0,2 L12,6 L0,10 z" fill="var(--ink)"/> </marker> <style>.fl { stroke-dasharray:14 8; animation: flowline 3s linear infinite; }.fl2 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:.75s; }.fl3 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:1.5s; }.fl4 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:2.25s; } @keyframes flowline { from{stroke-dashoffset:44} to{stroke-dashoffset:0} } </style> </defs> <!-- PREDICT top-left --> <rect x="20" y="20" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/> <text x="130" y="98" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Predict</text> <!-- DECIDE top-right --> <rect x="400" y="20" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/> <text x="510" y="98" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Decide</text> <!-- ACT bottom-right --> <rect x="400" y="420" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/> <text x="510" y="498" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Act</text> <!-- OBSERVE bottom-left --> <rect x="20" y="420" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/> <text x="130" y="498" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Observe</text> <!-- ANIMATED flowing arrows --> <!-- Predict → Decide (top) --> <line class="fl" x1="244" y1="90" x2="396" y2="90" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/> <text x="320" y="76" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">forecast</text> <!-- Decide → Act (right) --> <line class="fl2" x1="510" y1="164" x2="510" y2="416" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/> <text x="546" y="295" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)" transform="rotate(90,546,295)">execute</text> <!-- Act → Observe (bottom) --> <line class="fl3" x1="396" y1="490" x2="244" y2="490" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/> <text x="320" y="514" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">new state</text> <!-- Observe → Predict (left) --> <line class="fl4" x1="130" y1="416" x2="130" y2="164" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/> <text x="94" y="295" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)" transform="rotate(-90,94,295)">new traces</text> <!-- Center label --> <rect x="196" y="238" width="248" height="100" fill="none" stroke="var(--ink-4)" stroke-width="2" stroke-dasharray="6,4"/> <text x="320" y="280" text-anchor="middle" font-family="Inter" font-size="32" font-weight="700" fill="var(--ink)">zero-touch</text> <text x="320" y="318" text-anchor="middle" font-family="JetBrains Mono" font-size="20" fill="var(--ink-3)">no human in the loop</text> </svg> </div> <!-- RIGHT: definition + 4 problems mapped to loop stages --> <div style="display:flex; flex-direction:column; gap:22px; justify-content:center;"> <div> <div style="font-size:28px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:8px;">Operator sets <em>intent.</em> The loop does the rest.</div> <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); line-height:1.5;">Goals, SLAs, constraints in · orchestration decisions out. Operator reviews exceptions only.</div> </div> <div style="border-top:2px solid var(--ink); padding-top:14px; display:flex; flex-direction:column; gap:8px;"> <div style="font-family:var(--f-mono); font-size:17px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3);">Why prediction matters</div> <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">Reactive scaling lags the workload <em>twice</em>: first under-provisioned, then over-provisioned.</div> <svg viewBox="0 0 540 360" style="width:100%; height:auto; max-height:300px;" xmlns="http://www.w3.org/2000/svg"> <!-- axes --> <line x1="60" y1="280" x2="520" y2="280" stroke="var(--ink)" stroke-width="1.5"/> <line x1="60" y1="44" x2="60" y2="280" stroke="var(--ink)" stroke-width="1.5"/> <!-- helper grid lines --> <line x1="60" y1="231" x2="520" y2="231" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,4"/> <line x1="60" y1="73" x2="520" y2="73" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,4"/> <!-- y caption --> <text x="54" y="48" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">peak</text> <text x="54" y="235" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">idle</text> <text x="40" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)" transform="rotate(-90,40,160)">load · capacity</text> <!-- x caption --> <text x="520" y="302" text-anchor="end" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">time &rarr;</text> <!-- UNDERPROV shaded region (demand &gt; reactive) --> <path d="M175,231 L221,73 L313,73 L313,109 L253,109 L253,170 L198,170 L198,231 Z" fill="var(--c-sota-red)" fill-opacity="0.22" stroke="none"/> <!-- OVERPROV shaded region (reactive &gt; demand) --> <path d="M313,73 L428,73 L428,134 L474,134 L474,195 L520,195 L520,231 L359,231 Z" fill="var(--c-omnifore)" fill-opacity="0.25" stroke="none"/> <!-- Predictive capacity (tracks demand, slightly ahead) --> <polyline points="60,231 161,231 212,73 299,73 345,231 520,231" fill="none" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="7,5"/> <!-- Demand --> <polyline points="60,231 175,231 221,73 313,73 359,231 520,231" fill="none" stroke="var(--ink)" stroke-width="3"/> <!-- Reactive capacity (staircase, lagged) --> <polyline points="60,231 198,231 198,170 253,170 253,109 313,109 313,73 428,73 428,134 474,134 474,195 520,195 520,231" fill="none" stroke="var(--c-sota-red)" stroke-width="2.5"/> <!-- SLA annotation above plateau --> <text x="230" y="34" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-sota-red)">SLA violations</text> <line x1="230" y1="40" x2="235" y2="128" stroke="var(--c-sota-red)" stroke-width="1" stroke-dasharray="2,3"/> <!-- Energy annotation inside overprov --> <text x="418" y="170" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-omnifore)">wasted energy</text> <text x="418" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-omnifore)">late to scale down</text> <text x="230" y="52" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-sota-red)">late to scale up</text> <!-- Legend row --> <g transform="translate(60, 330)"> <line x1="0" y1="0" x2="22" y2="0" stroke="var(--ink)" stroke-width="3"/> <text x="28" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">demand</text> <line x1="108" y1="0" x2="130" y2="0" stroke="var(--c-sota-red)" stroke-width="2.5"/> <text x="136" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">reactive</text> <line x1="212" y1="0" x2="234" y2="0" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="6,4"/> <text x="240" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">predictive (ahead)</text> </g> </svg> <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">Prediction closes <strong style="color:var(--c-aero);">both</strong> gaps: capacity is already in place when demand arrives, and released as soon as it leaves.</div> </div> </div> </div> </div> <div class="chrome-bot"><div class="meta-left">Zero-touch loop · prediction removes the reactive lag · SLA + energy</div><div class="meta-right">§1 Framing</div></div>
+<section class="slide" data-section="framing" data-label="04 Zero-touch closed loop">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Zero-touch closed loop</span></div>
+    <div class="counter">
+      <span class="num">04</span><span class="sep">/</span>56 &nbsp;
+      <span class="section-name">Framing</span>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="body" style="padding:40px 80px 36px;">
+    <div style="font-family:var(--f-mono); font-size:20px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px;">
+      The goal
+    </div>
+    <h1 class="h-title" style="font-size:54px; margin-bottom:32px;">
+      Zero-touch: operator sets intent, not actions
+    </h1>
+
+    <div style="flex:1; display:grid; grid-template-columns:1.22fr 1.02fr; gap:64px; min-height:0;">
+      <div style="display:flex; flex-direction:column; gap:24px; justify-content:center; min-width:0;">
+        <div style="max-width:640px;">
+          <div style="font-size:28px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:12px;">
+            Operator sets <em>intent.</em> The loop does the rest.
+          </div>
+          <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); line-height:1.55;">
+            Goals, SLAs, constraints in &middot; orchestration decisions out. Operator reviews exceptions only.
+          </div>
+        </div>
+
+        <div style="width:540px; max-width:100%; border-top:2px solid var(--ink);"></div>
+
+        <div style="display:flex; align-items:center; justify-content:center; min-height:0;">
+          <svg viewBox="0 0 640 580" style="width:100%; height:100%; max-height:430px;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="lpa04" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+                <path d="M0,2 L12,6 L0,10 z" fill="var(--ink)"/>
+              </marker>
+              <style>
+                .fl { stroke-dasharray:14 8; animation: flowline 3s linear infinite; }
+                .fl2 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:.75s; }
+                .fl3 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:1.5s; }
+                .fl4 { stroke-dasharray:14 8; animation: flowline 3s linear infinite; animation-delay:2.25s; }
+                @keyframes flowline {
+                  from { stroke-dashoffset:44; }
+                  to { stroke-dashoffset:0; }
+                }
+              </style>
+            </defs>
+
+            <rect x="20" y="20" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/>
+            <text x="130" y="98" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Predict</text>
+
+            <rect x="400" y="20" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/>
+            <text x="510" y="98" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Decide</text>
+
+            <rect x="400" y="420" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/>
+            <text x="510" y="498" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Act</text>
+
+            <rect x="20" y="420" width="220" height="140" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2.5"/>
+            <text x="130" y="498" text-anchor="middle" font-family="Inter" font-size="36" font-weight="700" fill="var(--ink)">Observe</text>
+
+            <line class="fl" x1="244" y1="90" x2="396" y2="90" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/>
+            <text x="320" y="76" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">forecast</text>
+
+            <line class="fl2" x1="510" y1="164" x2="510" y2="416" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/>
+            <text x="546" y="295" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)" transform="rotate(90,546,295)">execute</text>
+
+            <line class="fl3" x1="396" y1="490" x2="244" y2="490" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/>
+            <text x="320" y="514" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">new state</text>
+
+            <line class="fl4" x1="130" y1="416" x2="130" y2="164" stroke="var(--ink)" stroke-width="3" marker-end="url(#lpa04)"/>
+            <text x="94" y="295" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)" transform="rotate(-90,94,295)">new traces</text>
+
+            <rect x="196" y="238" width="248" height="100" fill="none" stroke="var(--ink-4)" stroke-width="2" stroke-dasharray="6,4"/>
+            <text x="320" y="280" text-anchor="middle" font-family="Inter" font-size="32" font-weight="700" fill="var(--ink)">zero-touch</text>
+            <text x="320" y="318" text-anchor="middle" font-family="JetBrains Mono" font-size="20" fill="var(--ink-3)">no human in the loop</text>
+          </svg>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px; justify-content:center; min-width:0; padding-top:20px;">
+        <div style="font-family:var(--f-mono); font-size:17px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3);">
+          Why prediction matters
+        </div>
+        <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25; max-width:560px;">
+          Reactive scaling lags the workload <em>twice</em>: first under-provisioned, then over-provisioned.
+        </div>
+
+        <svg viewBox="0 0 540 390" style="width:108%; max-width:none; height:auto; max-height:390px; margin-left:-16px;" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="302" x2="520" y2="302" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="60" y1="54" x2="60" y2="302" stroke="var(--ink)" stroke-width="1.5"/>
+
+          <line x1="60" y1="248" x2="520" y2="248" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,4"/>
+          <line x1="60" y1="78" x2="520" y2="78" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,4"/>
+
+          <text x="54" y="52" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">peak</text>
+          <text x="54" y="252" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">idle</text>
+          <text x="40" y="178" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)" transform="rotate(-90,40,178)">load &middot; capacity</text>
+          <text x="520" y="324" text-anchor="end" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">time &rarr;</text>
+
+          <path d="M160,210 L212,78 L300,78 L300,120 L245,120 L245,165 L190,165 L190,210 Z" fill="var(--c-sota-red)" fill-opacity="0.22" stroke="none"/>
+          <path d="M300,78 L420,78 L420,132 L468,132 L468,188 L510,188 L510,210 L520,210 L346,210 Z" fill="var(--c-omnifore)" fill-opacity="0.25" stroke="none"/>
+
+          <polyline points="60,210 146,210 198,78 286,78 332,210 520,210" fill="none" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="7,5"/>
+          <polyline points="60,210 160,210 212,78 300,78 346,210 520,210" fill="none" stroke="var(--ink)" stroke-width="3"/>
+          <polyline points="60,210 190,210 190,165 245,165 245,120 318,120 318,78 420,78 420,132 468,132 468,188 510,188 510,210 520,210" fill="none" stroke="var(--c-sota-red)" stroke-width="2.5"/>
+
+          <text x="205" y="18" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-sota-red)">SLA violations</text>
+          <text x="205" y="36" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-sota-red)">late to scale up</text>
+          <line x1="205" y1="42" x2="232" y2="142" stroke="var(--c-sota-red)" stroke-width="1" stroke-dasharray="2,3"/>
+
+          <text x="402" y="18" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-omnifore)">wasted energy</text>
+          <text x="402" y="36" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-omnifore)">late to scale down</text>
+          <line x1="402" y1="42" x2="412" y2="122" stroke="var(--c-omnifore)" stroke-width="1" stroke-dasharray="2,3"/>
+
+          <g transform="translate(60, 356)">
+            <line x1="0" y1="0" x2="22" y2="0" stroke="var(--ink)" stroke-width="3"/>
+            <text x="28" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">demand</text>
+
+            <line x1="108" y1="0" x2="130" y2="0" stroke="var(--c-sota-red)" stroke-width="2.5"/>
+            <text x="136" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">reactive</text>
+
+            <line x1="212" y1="0" x2="234" y2="0" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <text x="240" y="4" font-family="JetBrains Mono" font-size="13" fill="var(--ink)">predictive (ahead)</text>
+          </g>
+        </svg>
+
+        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.45; max-width:560px;">
+          Prediction closes <strong style="color:var(--c-aero);">both</strong> gaps: capacity is already in place when demand arrives, and released as soon as it leaves.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chrome-bot">
+    <div class="meta-left">Zero-touch loop &middot; prediction removes the reactive lag &middot; SLA + energy</div>
+    <div class="meta-right">§1 Framing</div>
+  </div>
 </section>

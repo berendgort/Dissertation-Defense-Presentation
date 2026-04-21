@@ -1,0 +1,135 @@
+<section class="slide" data-section="aero" data-label="10 Where AERO runs">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">AERO &middot; Capability</span></div>
+    <div class="counter"><span class="num">10</span><span class="sep">/</span>55 &nbsp; <span class="section-name">AERO</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Where AERO runs &middot; capability, not constraint</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--c-aero); letter-spacing:.1em; text-transform:uppercase;">the same loop, with AERO slotted in</div>
+    </div>
+
+    <!-- Content grid -->
+    <div style="flex:1; display:grid; grid-template-columns: 1.4fr 1fr; min-height:0;">
+      <!-- LEFT: AERO-slotted schematic -->
+      <div style="padding:36px 48px 28px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg);">
+        <div style="display:flex; gap:16px; align-items:center;">
+          <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase;">Same system model &rarr;</div>
+          <div class="mono" style="background:var(--c-aero); color:#fff; font-size:17px; padding:5px 14px; border-radius:2px; letter-spacing:.06em;">AERO slotted as the ML model</div>
+        </div>
+
+        <svg viewBox="0 0 1000 600" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="mkA11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+            </marker>
+            <style>
+              .fla11 { stroke-dasharray:14 8; animation: flowa11 3s linear infinite; }
+              @keyframes flowa11 { from{stroke-dashoffset:44} to{stroke-dashoffset:0} }
+            </style>
+          </defs>
+
+          <!-- Edge-node boundary -->
+          <rect x="24" y="24" width="952" height="552" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="3" rx="10"/>
+          <text x="48" y="60" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)" letter-spacing="0.14em">EDGE NODE &middot; far-edge class: Raspberry Pi 4, Jetson Nano, 2&ndash;8&nbsp;GB RAM</text>
+
+          <!-- Observability -->
+          <rect x="60" y="110" width="260" height="140" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5" rx="6"/>
+          <text x="190" y="156" text-anchor="middle" font-family="Inter" font-size="30" font-weight="700" fill="var(--ink)">Observability</text>
+          <text x="190" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">cpu &middot; mem &middot; req/s</text>
+          <text x="190" y="212" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">latency &middot; concurrency</text>
+
+          <!-- AERO (replaces dashed placeholder) -->
+          <rect x="680" y="110" width="260" height="140" fill="var(--c-aero)" stroke="var(--c-aero)" stroke-width="2.5" rx="6"/>
+          <text x="810" y="156" text-anchor="middle" font-family="Inter" font-size="34" font-weight="800" fill="#fff" letter-spacing="-0.01em">AERO</text>
+          <text x="810" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="#fff" opacity="0.92">&lt; 1 K params</text>
+          <text x="810" y="212" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="#fff" opacity="0.92">&lt; 50 ms inference</text>
+
+          <!-- Scheduler -->
+          <rect x="250" y="380" width="500" height="130" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5" rx="6"/>
+          <text x="500" y="424" text-anchor="middle" font-family="Inter" font-size="30" font-weight="700" fill="var(--ink)">Local Scheduler</text>
+          <text x="500" y="456" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--ink-3)">deploy &middot; scale &middot; migrate</text>
+          <text x="500" y="482" text-anchor="middle" font-family="JetBrains Mono" font-size="16" fill="var(--ink-4)">consumes AERO's forecast within the cycle</text>
+
+          <!-- Arrows: Obs -> AERO -->
+          <line class="fla11" x1="320" y1="180" x2="678" y2="180" stroke="var(--ink)" stroke-width="3" marker-end="url(#mkA11)"/>
+          <text x="499" y="165" text-anchor="middle" font-family="JetBrains Mono" font-size="16" fill="var(--ink-3)">observed window</text>
+
+          <!-- AERO -> Scheduler -->
+          <line class="fla11" x1="810" y1="254" x2="720" y2="376" stroke="var(--c-aero)" stroke-width="3.2" marker-end="url(#mkA11)"/>
+          <text x="830" y="330" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">forecast</text>
+
+          <!-- Close loop -->
+          <path class="fla11" d="M 250 450 L 130 450 L 130 254" fill="none" stroke="var(--ink)" stroke-width="3" marker-end="url(#mkA11)"/>
+          <text x="100" y="345" font-family="JetBrains Mono" font-size="16" fill="var(--ink-3)" transform="rotate(-90,100,345)">new state</text>
+        </svg>
+      </div>
+
+      <!-- RIGHT: capability wording + tier map + specs -->
+      <div style="border-left:2px solid var(--ink); padding:32px 40px 24px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0; overflow:hidden;">
+        <!-- Capability claim (Godfrey verbatim) -->
+        <div style="border-left:4px solid var(--c-aero); padding:10px 16px; background:color-mix(in oklab, var(--c-aero) 6%, var(--bg));">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-aero); margin-bottom:4px; font-weight:700;">Capability, not constraint</div>
+          <div style="font-size:18px; line-height:1.35; color:var(--ink);">Because of its lightweight nature, AERO has the <strong>capability</strong> to run <em>at every tier</em>: far-edge node, regional scheduler, or container runtime. Where it runs is an operational choice, not a design requirement.</div>
+        </div>
+
+        <!-- Tier map: three placement levels -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Where it can live</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+            <div style="border:1.5px solid var(--c-aero); background:color-mix(in oklab, var(--c-aero) 8%, var(--bg)); padding:8px 10px;">
+              <div style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-aero); letter-spacing:.08em;">FAR-EDGE NODE</div>
+              <div style="font-size:14px; color:var(--ink); line-height:1.3; margin-top:2px;">per-node forecast &middot; 50&nbsp;ms loop</div>
+            </div>
+            <div style="border:1px solid var(--ink-4); background:var(--bg); padding:8px 10px;">
+              <div style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--ink-2); letter-spacing:.08em;">REGIONAL SCHEDULER</div>
+              <div style="font-size:14px; color:var(--ink-2); line-height:1.3; margin-top:2px;">cross-node view &middot; cluster-level</div>
+            </div>
+            <div style="border:1px solid var(--ink-4); background:var(--bg); padding:8px 10px;">
+              <div style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--ink-2); letter-spacing:.08em;">CONTAINER RUNTIME</div>
+              <div style="font-size:14px; color:var(--ink-2); line-height:1.3; margin-top:2px;">per-pod sidecar &middot; in-process</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why local matters: traffic-light motivator -->
+        <div style="padding:8px 14px; background:var(--bg); border:1px dashed var(--c-aero);">
+          <div style="font-family:var(--f-serif); font-size:15px; font-style:italic; color:var(--ink); line-height:1.4;">
+            <strong>Why local matters:</strong> an intersection of traffic-light edge nodes cannot pay a cloud round-trip for every cycle; real-time safety collapses if the forecast lives off-node.
+          </div>
+        </div>
+
+        <!-- Specs (compact) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; padding-top:2px;">
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:11px; letter-spacing:.12em; color:var(--ink-3); font-weight:700;">PARAMS</div>
+            <div style="font-size:20px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">599</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:11px; letter-spacing:.12em; color:var(--ink-3); font-weight:700;">INFERENCE</div>
+            <div style="font-size:20px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">&lt; 50 ms</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:11px; letter-spacing:.12em; color:var(--ink-3); font-weight:700;">LOOKBACK</div>
+            <div style="font-size:20px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums;">&kappa;&nbsp;=&nbsp;96</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:11px; letter-spacing:.12em; color:var(--ink-3); font-weight:700;">HORIZON</div>
+            <div style="font-size:20px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums;">&lambda;&nbsp;=&nbsp;96</div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--ink-4); padding-top:8px; font-size:15px; line-height:1.35; color:var(--ink-2);">
+          Big transformers, even TinyTST, <strong style="color:var(--c-sota-red);">overflow</strong> the 50&nbsp;ms budget and cannot sit here.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">AERO is capability, not constraint &middot; slotted into the generic loop</div>
+    <div class="meta-right">&sect;2 AERO</div>
+  </div>
+</section>

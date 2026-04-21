@@ -1,0 +1,117 @@
+<section class="slide" data-section="aero" data-label="14 AERO scenario efficiency">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; scenario</span></div>
+    <div class="counter"><span class="num">14</span><span class="sep">/</span>55 &nbsp; <span class="section-name">AERO</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 90px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Efficiency benchmark &middot; scenario</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">dataset &middot; hardware &middot; baselines &middot; tuning</div>
+    </div>
+
+    <!-- Scenario table · 4 columns -->
+    <div style="flex:1; display:grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; min-height:0; overflow:hidden;">
+
+      <!-- Column 1 · DATA -->
+      <div style="padding:36px 36px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Data</div>
+        <div style="font-family:var(--f-display); font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Alibaba cluster trace</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRACES</div>
+            <div style="font-size:22px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">4 000</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRAINING</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">2 800 &middot; 70 %</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">HELD-OUT</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">1 200 &middot; 30 %</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">SIGNAL</div>
+            <div style="font-size:18px; color:var(--ink);">CPU &amp; memory utilisation, multivariate</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">WINDOW</div>
+            <div style="font-size:18px; color:var(--ink);">&kappa; = 96, &lambda; = 96 &nbsp;<span style="color:var(--ink-3);">(past &rarr; future)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2 · HARDWARE -->
+      <div style="padding:36px 30px; border-right:2px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Inference hardware</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Commodity edge CPU</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">DEVICE</div>
+            <div style="font-size:18px; color:var(--ink);">laptop-class ARM/x86</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">CORES</div>
+            <div style="font-size:18px; color:var(--ink);">4 &middot; no GPU / no accel</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">RAM</div>
+            <div style="font-size:18px; color:var(--ink);">8 GB &middot; shared with OS</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">TIMING</div>
+            <div style="font-size:18px; color:var(--ink);">mean of 1&thinsp;000 forward passes</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); line-height:1.45;">
+          Intentionally <em>not</em> a data-center GPU; the scenario is deployment, not benchmarking.
+        </div>
+      </div>
+
+      <!-- Column 3 · BASELINES -->
+      <div style="padding:36px 30px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Baselines &middot; 5 prior methods</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Comparable on the same split</div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">Pathformer</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.4 M</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">ModernTCN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">247 K</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">FourierGNN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">228 K</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">WGAN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.9 M</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">SparseTSF</span><span class="mono" style="font-size:13px; color:var(--c-sota-amber);">35</span></div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0;"><span style="font-size:17px; color:var(--ink); font-weight:700;">AERO</span><span class="mono" style="font-size:13px; color:var(--c-sota-green); font-weight:700;">599</span></div>
+        </div>
+
+        <div style="margin-top:auto; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); line-height:1.45;">
+          Same traces, same horizon, same hardware; nothing is per-method.
+        </div>
+      </div>
+
+      <!-- Column 4 · TUNING -->
+      <div style="padding:36px 30px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Tuning procedure</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Bayesian optimisation &middot; per model</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Every baseline tuned on its <strong>own</strong> search space so no method is disadvantaged by grid quirks.</div>
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">100 BayesOpt trials &middot; validation MAE objective.</div>
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Same optimiser (Adam), same early-stopping, same seed sweep.</div>
+        </div>
+
+        <div style="border-left:4px solid var(--c-aero); padding:10px 16px; background:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); margin-top:auto;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-aero); margin-bottom:2px;">Metrics reported</div>
+          <div style="font-size:17px; color:var(--ink); line-height:1.35;">params &middot; inference (ms) &middot; MAE / RMSE &middot; orchestration fit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">AERO &middot; efficiency scenario &middot; Alibaba traces &middot; BayesOpt per model &middot; results &rarr; slide 16</div>
+    <div class="meta-right">&sect;2 AERO</div>
+  </div>
+</section>
