@@ -1,0 +1,542 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Distributed Agentic AI for Edge-Cloud Orchestration}{106}{chapter.5}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:distributed-agentic-ai}{{5}{106}{Distributed Agentic AI for Edge-Cloud Orchestration}{chapter.5}{}}
+\acronymused{6G}
+\acronymused{QoS}
+\acronymused{AgentEdge}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{106}{section.5.1}\protected@file@percent }
+\newlabel{sec:ch5_introduction}{{5.1}{106}{Introduction}{section.5.1}{}}
+\acronymused{6G}
+\acronymused{QoS}
+\acronymused{6G}
+\acronymused{AI}
+\acronymused{ML}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\AC@undonewlabel{acro:NLP}
+\newlabel{acro:NLP}{{5.1}{106}{Introduction}{section*.189}{}}
+\acronymused{NLP}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{6G}
+\acronymused{AI}
+\acronymused{LATS}
+\acronymused{6G}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{AgentEdge}
+\acronymused{AgentEdge}
+\acronymused{6G}
+\acronymused{PARES}
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\acronymused{6G}
+\acronymused{AgentEdge}
+\acronymused{API}
+\acronymused{AgentEdge}
+\acronymused{AgentEdge}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}System Model and Problem Formulation}{108}{section.5.2}\protected@file@percent }
+\newlabel{sec:ch5_system_model}{{5.2}{108}{System Model and Problem Formulation}{section.5.2}{}}
+\acronymused{LLM}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Mathematical notation for infrastructure, services, agents, and optimization}}{109}{table.caption.190}\protected@file@percent }
+\newlabel{tab:ch5_notation}{{5.1}{109}{Mathematical notation for infrastructure, services, agents, and optimization}{table.caption.190}{}}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{LLM}
+\acronymused{API}
+\acronymused{API}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces System model overview. User submits intent $\zeta (t)$ to the Agentic Framework $\mathcal  {A}$, which exchanges prompts $\mathbf  {p}$ and validated outputs $\mathbf  {z}$ with \ac {LLM} validation. The Service Orchestrator $\mathcal  {O}$ mediates between framework and infrastructure, translating agentic commands to K8s \ac {API} calls and returning formatted state $\mathbf  {u}(t)$. Services $s_j$ are placed on nodes $n_i$, and the framework returns response $\rho (t)$ to the user.}}{110}{figure.caption.191}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{API}
+\newlabel{fig:ch5_system_model}{{5.1}{110}{System model overview. User submits intent $\zeta (t)$ to the Agentic Framework $\mathcal {A}$, which exchanges prompts $\mathbf {p}$ and validated outputs $\mathbf {z}$ with \ac {LLM} validation. The Service Orchestrator $\mathcal {O}$ mediates between framework and infrastructure, translating agentic commands to K8s \ac {API} calls and returning formatted state $\mathbf {u}(t)$. Services $s_j$ are placed on nodes $n_i$, and the framework returns response $\rho (t)$ to the user}{figure.caption.191}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Infrastructure Model}{110}{subsection.5.2.1}\protected@file@percent }
+\newlabel{subsec:ch5_infrastructure_model}{{5.2.1}{110}{Infrastructure Model}{subsection.5.2.1}{}}
+\newlabel{eq:ch5_capacity}{{5.1}{111}{Infrastructure Model}{equation.5.2.1}{}}
+\acronymused{CPU}
+\newlabel{eq:ch5_utilization}{{5.2}{111}{Infrastructure Model}{equation.5.2.2}{}}
+\acronymused{CPU}
+\newlabel{eq:ch5_power}{{5.3}{111}{Infrastructure Model}{equation.5.2.3}{}}
+\acronymused{CPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Service Orchestrator}{111}{subsection.5.2.2}\protected@file@percent }
+\newlabel{subsec:ch5_service_orchestrator}{{5.2.2}{111}{Service Orchestrator}{subsection.5.2.2}{}}
+\acronymused{API}
+\acronymused{API}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Service Model}{112}{subsection.5.2.3}\protected@file@percent }
+\newlabel{subsec:ch5_service_model}{{5.2.3}{112}{Service Model}{subsection.5.2.3}{}}
+\newlabel{eq:ch5_demand}{{5.4}{112}{Service Model}{equation.5.2.4}{}}
+\acronymused{CPU}
+\newlabel{eq:ch5_capacity_constraint}{{5.5}{112}{Service Model}{equation.5.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}LLM Calls with Structured Outputs}{112}{subsection.5.2.4}\protected@file@percent }
+\newlabel{subsec:ch5_llm_calls}{{5.2.4}{112}{LLM Calls with Structured Outputs}{subsection.5.2.4}{}}
+\acronymused{LLM}
+\acronymused{LLM}
+\newlabel{eq:ch5_llm_call}{{5.6}{112}{LLM Calls with Structured Outputs}{equation.5.2.6}{}}
+\acronymused{LLM}
+\acronymused{LLM}
+\newlabel{eq:ch5_schema}{{5.7}{113}{LLM Calls with Structured Outputs}{equation.5.2.7}{}}
+\newlabel{eq:ch5_validation}{{5.8}{113}{LLM Calls with Structured Outputs}{equation.5.2.8}{}}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Agentic Framework}{113}{subsection.5.2.5}\protected@file@percent }
+\newlabel{subsec:ch5_agentic_framework}{{5.2.5}{113}{Agentic Framework}{subsection.5.2.5}{}}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsubsection}{The Augmented LLM}{113}{section*.192}\protected@file@percent }
+\acronymused{LLM}
+\newlabel{eq:ch5_agent_update}{{5.9}{114}{The Augmented LLM}{equation.5.2.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Multi-Agent Coordination}{114}{section*.193}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\newlabel{eq:ch5_roles}{{5.10}{114}{Multi-Agent Coordination}{equation.5.2.10}{}}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Problem Formulation}{114}{subsection.5.2.6}\protected@file@percent }
+\newlabel{subsec:ch5_problem_formulation}{{5.2.6}{114}{Problem Formulation}{subsection.5.2.6}{}}
+\acronymused{QoS}
+\acronymused{AgentEdge}
+\acronymused{QoS}
+\newlabel{eq:ch5_objective}{{5.11}{115}{Problem Formulation}{equation.5.2.11}{}}
+\acronymused{QoS}
+\newlabel{eq:ch5_balance}{{5.12}{115}{Problem Formulation}{equation.5.2.12}{}}
+\newlabel{eq:ch5_energy}{{5.13}{115}{Problem Formulation}{equation.5.2.13}{}}
+\acronymused{QoS}
+\newlabel{eq:ch5_qos_constraints}{{5.14}{115}{Problem Formulation}{equation.5.2.14}{}}
+\acronymused{QoS}
+\newlabel{eq:ch5_qos_penalty}{{5.15}{115}{Problem Formulation}{equation.5.2.15}{}}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\acronymused{QoS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.7}Orchestration Challenges}{116}{subsection.5.2.7}\protected@file@percent }
+\newlabel{subsec:ch5_orchestration_challenges}{{5.2.7}{116}{Orchestration Challenges}{subsection.5.2.7}{}}
+\acronymused{QoS}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}AgentEdge Architecture}{116}{section.5.3}\protected@file@percent }
+\newlabel{sec:ch5_proposed_solution}{{5.3}{116}{AgentEdge Architecture}{section.5.3}{}}
+\acronymused{ActSimCrit}
+\acronymused{PARES}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}AgentEdge Multi-Agent Graph of Graphs}{117}{subsection.5.3.1}\protected@file@percent }
+\newlabel{subsec:ch5_multi_agent_graph}{{5.3.1}{117}{AgentEdge Multi-Agent Graph of Graphs}{subsection.5.3.1}{}}
+\acronymused{AgentEdge}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces \ac {AgentEdge} hierarchical graph-of-graphs architecture with top-level orchestrator routing between four specialized agents, each deployed as an independent microservice implementing dedicated subgraph workflows.}}{117}{figure.caption.194}\protected@file@percent }
+\acronymused{AgentEdge}
+\newlabel{fig:ch5_graph_agentedge}{{5.2}{117}{\ac {AgentEdge} hierarchical graph-of-graphs architecture with top-level orchestrator routing between four specialized agents, each deployed as an independent microservice implementing dedicated subgraph workflows}{figure.caption.194}{}}
+\acronymused{ActSimCrit}
+\acronymused{API}
+\acronymused{AgentEdge}
+\acronymused{API}
+\AC@undonewlabel{acro:HTTP}
+\newlabel{acro:HTTP}{{5.3.1}{117}{AgentEdge Multi-Agent Graph of Graphs}{section*.195}{}}
+\acronymused{HTTP}
+\acronymused{API}
+\acronymused{LLM}
+\acronymused{API}
+\acronymused{LLM}
+\acronymused{GPU}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsubsection}{Intent Agent Subgraph}{118}{section*.196}\protected@file@percent }
+\acronymused{API}
+\acronymused{LLM}
+\newlabel{eq:ch5_intent_agent}{{5.17}{118}{Intent Agent Subgraph}{equation.5.3.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Observability Agent Subgraph}{118}{section*.197}\protected@file@percent }
+\acronymused{HTTP}
+\acronymused{API}
+\newlabel{eq:ch5_observe_agent}{{5.18}{119}{Observability Agent Subgraph}{equation.5.3.18}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Planning Agent Subgraph with ActSimCrit}{119}{section*.198}\protected@file@percent }
+\newlabel{subsec:ch5_planning_agent}{{5.3.1}{119}{Planning Agent Subgraph with ActSimCrit}{section*.198}{}}
+\acronymused{ActSimCrit}
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\acronymused{ActSimCrit}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Planning Agent graph structure implementing \ac {ActSimCrit} methodology with three-tier state management, strategic action batching, independent critic \ac {LLM} evaluation, iterative rejection-feedback learning, and deadlock detection with resolution.}}{119}{figure.caption.199}\protected@file@percent }
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\newlabel{fig:ch5_planning_agent_graph}{{5.3}{119}{Planning Agent graph structure implementing \ac {ActSimCrit} methodology with three-tier state management, strategic action batching, independent critic \ac {LLM} evaluation, iterative rejection-feedback learning, and deadlock detection with resolution}{figure.caption.199}{}}
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\newlabel{eq:ch5_digital_twin_validation}{{5.19}{120}{Planning Agent Subgraph with ActSimCrit}{equation.5.3.19}{}}
+\acronymused{LLM}
+\acronymused{ActSimCrit}
+\newlabel{eq:ch5_enhanced_plan_agent}{{5.20}{120}{Planning Agent Subgraph with ActSimCrit}{equation.5.3.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Strategic Action Batching}{120}{section*.200}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\acronymused{LLM}
+\newlabel{eq:ch5_batch_constraint}{{5.21}{121}{Strategic Action Batching}{equation.5.3.21}{}}
+\acronymused{LLM}
+\acronymused{LLM}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {paragraph}{Atomic Three-Tier State Management}{121}{section*.201}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\newlabel{eq:ch5_three_tier_states}{{5.22}{121}{Atomic Three-Tier State Management}{equation.5.3.22}{}}
+\newlabel{eq:ch5_state_simulation}{{5.23}{121}{Atomic Three-Tier State Management}{equation.5.3.23}{}}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {paragraph}{Iterative Rejection-Feedback Learning}{121}{section*.202}\protected@file@percent }
+\acronymused{AgentEdge}
+\acronymused{LLM}
+\acronymused{LLM}
+\newlabel{eq:ch5_violation_check}{{5.24}{122}{Iterative Rejection-Feedback Learning}{equation.5.3.24}{}}
+\newlabel{eq:ch5_rejection_context}{{5.25}{122}{Iterative Rejection-Feedback Learning}{equation.5.3.25}{}}
+\newlabel{eq:ch5_iterative_planning}{{5.26}{122}{Iterative Rejection-Feedback Learning}{equation.5.3.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Deadlock Detection and Resolution}{122}{section*.203}\protected@file@percent }
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {paragraph}{Computational Complexity Analysis}{122}{section*.204}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {paragraph}{Convergence Analysis}{123}{section*.205}\protected@file@percent }
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsubsection}{Infrastructure Action Agent Subgraph}{123}{section*.206}\protected@file@percent }
+\acronymused{API}
+\acronymused{API}
+\newlabel{eq:ch5_act_agent}{{5.27}{123}{Infrastructure Action Agent Subgraph}{equation.5.3.27}{}}
+\acronymused{API}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}AgentEdge Agent Design}{124}{subsection.5.3.2}\protected@file@percent }
+\newlabel{subsec:ch5_pares}{{5.3.2}{124}{AgentEdge Agent Design}{subsection.5.3.2}{}}
+\acronymused{AgentEdge}
+\acronymused{PARES}
+\AC@undonewlabel{acro:BDI}
+\newlabel{acro:BDI}{{5.3.2}{124}{AgentEdge Agent Design}{section*.207}{}}
+\acronymused{BDI}
+\acronymused{PARES}
+\acronymused{AgentEdge}
+\acronymused{ActSimCrit}
+\acronymused{PARES}
+\acronymused{LLM}
+\acronymused{API}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Agentic Spectrum positioning of \ac {AgentEdge}'s four specialized agents based on \ac {PARES} capability sophistication, with Planning Agent exhibiting highest complexity and Infrastructure Action Agent implementing basic capabilities.}}{124}{figure.caption.208}\protected@file@percent }
+\acronymused{AgentEdge}
+\acronymused{PARES}
+\newlabel{fig:ch5_pares_agentic_spectrum}{{5.4}{124}{Agentic Spectrum positioning of \ac {AgentEdge}'s four specialized agents based on \ac {PARES} capability sophistication, with Planning Agent exhibiting highest complexity and Infrastructure Action Agent implementing basic capabilities}{figure.caption.208}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Theoretical Foundations}{124}{subsection.5.3.3}\protected@file@percent }
+\newlabel{subsec:ch5_theoretical_foundations}{{5.3.3}{124}{Theoretical Foundations}{subsection.5.3.3}{}}
+\acronymused{AgentEdge}
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\acronymused{AgentEdge}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Evaluation}{125}{section.5.4}\protected@file@percent }
+\newlabel{sec:ch5_eval}{{5.4}{125}{Evaluation}{section.5.4}{}}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Experimental Setup}{125}{subsection.5.4.1}\protected@file@percent }
+\newlabel{subsec:ch5_setup}{{5.4.1}{125}{Experimental Setup}{subsection.5.4.1}{}}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsubsection}{Orchestration Scenarios}{125}{section*.209}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constraint Resolution Scenarios (1-3)}{125}{section*.210}\protected@file@percent }
+\acronymused{AgentEdge}
+\@writefile{toc}{\contentsline {paragraph}{Energy Optimization Scenarios (4-6)}{126}{section*.211}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Six orchestration evaluation scenarios testing constraint resolution (Full Node, Low-Power Conflict, Compound Constraint) and scalable energy optimization (Small: 8 nodes, Medium: 18 nodes, Large: 35 nodes) with quantitative success metrics}}{126}{table.caption.212}\protected@file@percent }
+\newlabel{tab:ch5_scenarios}{{5.2}{126}{Six orchestration evaluation scenarios testing constraint resolution (Full Node, Low-Power Conflict, Compound Constraint) and scalable energy optimization (Small: 8 nodes, Medium: 18 nodes, Large: 35 nodes) with quantitative success metrics}{table.caption.212}{}}
+\acronymused{API}
+\acronymused{API}
+\acronymused{API}
+\acronymused{API}
+\acronymused{API}
+\acronymused{CPU}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsubsection}{Infrastructure Simulator}{127}{section*.213}\protected@file@percent }
+\acronymused{AI}
+\acronymused{API}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsubsection}{Evaluation Metrics and Reproducibility}{127}{section*.215}\protected@file@percent }
+\newlabel{subsubsec:ch5_evaluation_metrics}{{5.4.1}{127}{Evaluation Metrics and Reproducibility}{section*.215}{}}
+\acronymused{API}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Infrastructure simulator specifications spanning three-tier deployment with heterogeneous resources, stochastic operation timing, power modeling, network latency, and real-time constraint validation}}{128}{table.caption.214}\protected@file@percent }
+\newlabel{tab:ch5_simulator_coverage}{{5.3}{128}{Infrastructure simulator specifications spanning three-tier deployment with heterogeneous resources, stochastic operation timing, power modeling, network latency, and real-time constraint validation}{table.caption.214}{}}
+\acronymused{CPU}
+\acronymused{API}
+\acronymused{API}
+\acronymused{LLM}
+\AC@undonewlabel{acro:LangGraph}
+\newlabel{acro:LangGraph}{{5.4.1}{129}{Evaluation Metrics and Reproducibility}{section*.216}{}}
+\acronymused{LangGraph}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Model Selection}{129}{subsection.5.4.2}\protected@file@percent }
+\newlabel{subsec:ch5_model_selection}{{5.4.2}{129}{Model Selection}{subsection.5.4.2}{}}
+\acronymused{LLM}
+\@writefile{toc}{\contentsline {subsubsection}{Model Overview}{129}{section*.217}\protected@file@percent }
+\acronymused{LLM}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Five open-source \ac {LLM} candidates with parameters ranging from 70B to 1T (32B-235B active), context windows of 128K-1M+ tokens, spanning \ac {MoE} Transformer and Dense Transformer architectures (Q4 2024-Q2 2025 releases), all supporting function calling, mathematical reasoning, and code generation}}{130}{table.caption.218}\protected@file@percent }
+\acronymused{LLM}
+\AC@undonewlabel{acro:MoE}
+\newlabel{acro:MoE}{{5.4}{130}{Five open-source \ac {LLM} candidates with parameters ranging from 70B to 1T (32B-235B active), context windows of 128K-1M+ tokens, spanning \ac {MoE} Transformer and Dense Transformer architectures (Q4 2024-Q2 2025 releases), all supporting function calling, mathematical reasoning, and code generation}{section*.219}{}}
+\acronymused{MoE}
+\newlabel{tab:ch5_model_comparison}{{5.4}{130}{Five open-source \ac {LLM} candidates with parameters ranging from 70B to 1T (32B-235B active), context windows of 128K-1M+ tokens, spanning \ac {MoE} Transformer and Dense Transformer architectures (Q4 2024-Q2 2025 releases), all supporting function calling, mathematical reasoning, and code generation}{table.caption.218}{}}
+\acronymused{MoE}
+\acronymused{MoE}
+\acronymused{MoE}
+\acronymused{MoE}
+\@writefile{toc}{\contentsline {subsubsection}{Speed-Cost-Intelligence Trade-Offs}{130}{section*.220}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Speed-cost-intelligence trade-offs for five candidate \acp {LLM} ranging from 466.1 tokens/s (\texttt  {kimi-k2-1T}) to 2870.6 tokens/s (\texttt  {gpt-oss-120B}) with pricing from \$0.05/M to \$0.727/M tokens, evaluated against standardized intelligence benchmarks.}}{130}{figure.caption.221}\protected@file@percent }
+\acronymused{LLM}
+\newlabel{fig:ch5_phase0_price_vs_speed}{{5.5}{130}{Speed-cost-intelligence trade-offs for five candidate \acp {LLM} ranging from 466.1 tokens/s (\texttt {kimi-k2-1T}) to 2870.6 tokens/s (\texttt {gpt-oss-120B}) with pricing from \$0.05/M to \$0.727/M tokens, evaluated against standardized intelligence benchmarks}{figure.caption.221}{}}
+\@writefile{toc}{\contentsline {subsubsection}{End State Matching}{131}{section*.222}\protected@file@percent }
+\acronymused{LLM}
+\acronymused{NLP}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Orchestration success rates across six scenarios with \texttt  {qwen3-235B} achieving 78.3\% (best), significantly outperforming \texttt  {kimi-k2-1T} (71.7\%), \texttt  {deepseek-r1-70B} (48.3\%), \texttt  {gpt-oss-120B} (40.0\%), and \texttt  {llama-4-109B} (23.3\%) using exact end-state matching validation.}}{131}{figure.caption.223}\protected@file@percent }
+\newlabel{fig:ch5_phase1_raw_success_rate}{{5.6}{131}{Orchestration success rates across six scenarios with \texttt {qwen3-235B} achieving 78.3\% (best), significantly outperforming \texttt {kimi-k2-1T} (71.7\%), \texttt {deepseek-r1-70B} (48.3\%), \texttt {gpt-oss-120B} (40.0\%), and \texttt {llama-4-109B} (23.3\%) using exact end-state matching validation}{figure.caption.223}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Total Agent Runtime}{131}{section*.224}\protected@file@percent }
+\acronymused{LLM}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Total agent runtime showing \texttt  {qwen3-235B} achieving optimal speed-accuracy balance at 45.9s with 78.3\% success, while \texttt  {deepseek-r1-70B} completes fastest (29.2s) but achieves only 48.3\% success, and \texttt  {llama-4-109B} requires 77.4s yet fails 76.7\% of scenarios.}}{132}{figure.caption.225}\protected@file@percent }
+\newlabel{fig:ch5_phase1_raw_response_time}{{5.7}{132}{Total agent runtime showing \texttt {qwen3-235B} achieving optimal speed-accuracy balance at 45.9s with 78.3\% success, while \texttt {deepseek-r1-70B} completes fastest (29.2s) but achieves only 48.3\% success, and \texttt {llama-4-109B} requires 77.4s yet fails 76.7\% of scenarios}{figure.caption.225}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Scenario Complexity}{132}{section*.226}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Single-Agent vs Multi-Agent}{132}{subsection.5.4.3}\protected@file@percent }
+\newlabel{subsec:ch5_baseline_comparison}{{5.4.3}{132}{Single-Agent vs Multi-Agent}{subsection.5.4.3}{}}
+\acronymused{LLM}
+\acronymused{AI}
+\acronymused{ReAct}
+\acronymused{LATS}
+\acronymused{AgentEdge}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Model performance heatmap across constraint resolution scenarios revealing \texttt  {qwen3-235B}'s balanced capability (100\% Full Node, 85\% Low-Power Conflict, 50\% Compound Constraint), while other models exhibit pronounced weaknesses (\texttt  {llama-4-109B}: 0\% compound constraints, \texttt  {deepseek-r1-70B}: inconsistent performance across scenario types).}}{133}{figure.caption.227}\protected@file@percent }
+\newlabel{fig:ch5_phase1_scenario_heatmap}{{5.8}{133}{Model performance heatmap across constraint resolution scenarios revealing \texttt {qwen3-235B}'s balanced capability (100\% Full Node, 85\% Low-Power Conflict, 50\% Compound Constraint), while other models exhibit pronounced weaknesses (\texttt {llama-4-109B}: 0\% compound constraints, \texttt {deepseek-r1-70B}: inconsistent performance across scenario types)}{figure.caption.227}{}}
+\acronymused{AgentEdge}
+\acronymused{LLM}
+\acronymused{ReAct}
+\acronymused{LATS}
+\acronymused{LATS}
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\acronymused{ReAct}
+\acronymused{LATS}
+\acronymused{LLM}
+\acronymused{ReAct}
+\acronymused{LATS}
+\acronymused{AgentEdge}
+\acronymused{ReAct}
+\newlabel{fig:ch5_phase2_success_rate}{{5.9a}{134}{Success Rate Comparison\caption@thelabel }{figure.caption.228}{}}
+\newlabel{sub@fig:ch5_phase2_success_rate}{{a}{134}{Success Rate Comparison\caption@thelabel }{figure.caption.228}{}}
+\newlabel{fig:ch5_phase2_response_time}{{5.9b}{134}{Response Time Comparison\caption@thelabel }{figure.caption.228}{}}
+\newlabel{sub@fig:ch5_phase2_response_time}{{b}{134}{Response Time Comparison\caption@thelabel }{figure.caption.228}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces \ac {AgentEdge} achieves 78.3\% success rate versus \ac {ReAct}'s 28.3\% (2.76× improvement) and \ac {LATS}'s 65.0\% (1.20× improvement) across 60 independent runs per system, with 46s response time demonstrating that multi-agent coordination overhead enables reliable orchestration where faster generic frameworks produce faster failures.}}{134}{figure.caption.228}\protected@file@percent }
+\acronymused{AgentEdge}
+\acronymused{ReAct}
+\acronymused{LATS}
+\newlabel{fig:ch5_phase2_comparison}{{5.9}{134}{\ac {AgentEdge} achieves 78.3\% success rate versus \ac {ReAct}'s 28.3\% (2.76× improvement) and \ac {LATS}'s 65.0\% (1.20× improvement) across 60 independent runs per system, with 46s response time demonstrating that multi-agent coordination overhead enables reliable orchestration where faster generic frameworks produce faster failures}{figure.caption.228}{}}
+\acronymused{ML}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Effectiveness of Digital Twin}{134}{subsection.5.4.4}\protected@file@percent }
+\newlabel{subsec:ch5_digital_twin_effectiveness}{{5.4.4}{134}{Effectiveness of Digital Twin}{subsection.5.4.4}{}}
+\acronymused{AgentEdge}
+\acronymused{ActSimCrit}
+\acronymused{AgentEdge}
+\acronymused{API}
+\newlabel{fig:ch5_phase3_success_rate}{{5.10a}{135}{Success Rate Comparison\caption@thelabel }{figure.caption.229}{}}
+\newlabel{sub@fig:ch5_phase3_success_rate}{{a}{135}{Success Rate Comparison\caption@thelabel }{figure.caption.229}{}}
+\acronymused{API}
+\newlabel{fig:ch5_phase3_api_calls}{{5.10b}{135}{\ac {API} Calls per Run Comparison\caption@thelabel }{figure.caption.229}{}}
+\newlabel{sub@fig:ch5_phase3_api_calls}{{b}{135}{\ac {API} Calls per Run Comparison\caption@thelabel }{figure.caption.229}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Digital twin simulation effectiveness: \ac {ActSimCrit} (+DT) achieves 78.3\% success and stable 10.9±1.1 \ac {API} calls versus 53.3\% success and highly variable 37.7±109.4 \ac {API} calls without simulation (-DT), demonstrating 1.47× success improvement and 10× variance reduction through digital twin validation.}}{135}{figure.caption.229}\protected@file@percent }
+\acronymused{ActSimCrit}
+\acronymused{API}
+\acronymused{API}
+\newlabel{fig:ch5_phase3_comparison}{{5.10}{135}{Digital twin simulation effectiveness: \ac {ActSimCrit} (+DT) achieves 78.3\% success and stable 10.9±1.1 \ac {API} calls versus 53.3\% success and highly variable 37.7±109.4 \ac {API} calls without simulation (-DT), demonstrating 1.47× success improvement and 10× variance reduction through digital twin validation}{figure.caption.229}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Energy Optimization Scalability}{135}{subsection.5.4.5}\protected@file@percent }
+\newlabel{subsec:ch5_energy_scalability}{{5.4.5}{135}{Energy Optimization Scalability}{subsection.5.4.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Infrastructure scaling progression showing Small (8 nodes, 6 services), Medium (18 nodes, 15 services), and Large (35 nodes, 30 services) three-tier edge-cloud deployments with node and service distribution across far-edge, near-edge, and cloud tiers for energy optimization evaluation.}}{135}{figure.caption.230}\protected@file@percent }
+\newlabel{fig:ch5_phase4_infrastructure_scaling}{{5.11}{135}{Infrastructure scaling progression showing Small (8 nodes, 6 services), Medium (18 nodes, 15 services), and Large (35 nodes, 30 services) three-tier edge-cloud deployments with node and service distribution across far-edge, near-edge, and cloud tiers for energy optimization evaluation}{figure.caption.230}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.12}{\ignorespaces Energy optimization achieving power savings of 89W (Small), 300.8W (Medium), and 185.2W (Large) through intelligent service consolidation and low-power mode transitions, with response times of 223.7s, 171.0s, and 687.6s respectively across small to large-scale deployments.}}{136}{figure.caption.231}\protected@file@percent }
+\newlabel{fig:ch5_phase4_power_consumption_api_progression}{{5.12}{136}{Energy optimization achieving power savings of 89W (Small), 300.8W (Medium), and 185.2W (Large) through intelligent service consolidation and low-power mode transitions, with response times of 223.7s, 171.0s, and 687.6s respectively across small to large-scale deployments}{figure.caption.231}{}}
+\acronymused{AgentEdge}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.6}Discussion}{136}{subsection.5.4.6}\protected@file@percent }
+\newlabel{subsec:ch5_discussion}{{5.4.6}{136}{Discussion}{subsection.5.4.6}{}}
+\acronymused{ActSimCrit}
+\acronymused{LLM}
+\acronymused{AgentEdge}
+\acronymused{QoS}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Conclusion}{137}{section.5.5}\protected@file@percent }
+\newlabel{sec:ch5_conclusion}{{5.5}{137}{Conclusion}{section.5.5}{}}
+\acronymused{AgentEdge}
+\acronymused{6G}
+\acronymused{AI}
+\acronymused{PARES}
+\acronymused{ActSimCrit}
+\acronymused{AgentEdge}
+\acronymused{ReAct}
+\acronymused{LATS}
+\acronymused{API}
+\acronymused{ActSimCrit}
+\@setckpt{sections/chapter5/chapter5}{
+\setcounter{page}{139}
+\setcounter{equation}{27}
+\setcounter{enumi}{5}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{1}
+\setcounter{mpfootnote}{0}
+\setcounter{g__tag_MCID_abs_int}{0}
+\setcounter{g__tag_struct_abs_int}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{5}
+\setcounter{section}{5}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{12}
+\setcounter{table}{4}
+\setcounter{parentequation}{0}
+\setcounter{caption@flags}{2}
+\setcounter{continuedfloat}{0}
+\setcounter{subfigure}{0}
+\setcounter{subtable}{0}
+\setcounter{section@level}{1}
+\setcounter{Item}{16}
+\setcounter{Hfootnote}{2}
+\setcounter{authorcnt}{1}
+\setcounter{authorno}{1}
+\setcounter{autcrcnt}{1}
+\setcounter{degcnt}{1}
+\setcounter{depflag}{0}
+\setcounter{degno}{1}
+\setcounter{depno}{1}
+\setcounter{supcnt}{1}
+\setcounter{supno}{1}
+\setcounter{cosupcnt}{1}
+\setcounter{cosupno}{1}
+\setcounter{lstnumber}{1}
+\setcounter{float@type}{16}
+\setcounter{algorithm}{1}
+\setcounter{ALG@line}{18}
+\setcounter{ALG@rem}{0}
+\setcounter{ALG@nested}{0}
+\setcounter{ALG@Lnr}{2}
+\setcounter{ALG@blocknr}{10}
+\setcounter{ALG@storecount}{0}
+\setcounter{ALG@tmpcounter}{0}
+\setcounter{LT@tables}{0}
+\setcounter{LT@chunks}{0}
+\setcounter{tabx@nest}{0}
+\setcounter{listtotal}{0}
+\setcounter{listcount}{0}
+\setcounter{liststart}{0}
+\setcounter{liststop}{0}
+\setcounter{citecount}{0}
+\setcounter{citetotal}{0}
+\setcounter{multicitecount}{0}
+\setcounter{multicitetotal}{0}
+\setcounter{instcount}{0}
+\setcounter{maxnames}{3}
+\setcounter{minnames}{1}
+\setcounter{maxitems}{3}
+\setcounter{minitems}{1}
+\setcounter{citecounter}{0}
+\setcounter{maxcitecounter}{0}
+\setcounter{savedcitecounter}{0}
+\setcounter{uniquelist}{0}
+\setcounter{uniquename}{0}
+\setcounter{refsection}{0}
+\setcounter{refsegment}{0}
+\setcounter{maxextratitle}{0}
+\setcounter{maxextratitleyear}{0}
+\setcounter{maxextraname}{0}
+\setcounter{maxextradate}{0}
+\setcounter{maxextraalpha}{0}
+\setcounter{abbrvpenalty}{50}
+\setcounter{highnamepenalty}{50}
+\setcounter{lownamepenalty}{25}
+\setcounter{maxparens}{3}
+\setcounter{parenlevel}{0}
+\setcounter{blx@maxsection}{0}
+\setcounter{mincomprange}{10}
+\setcounter{maxcomprange}{100000}
+\setcounter{mincompwidth}{1}
+\setcounter{afterword}{0}
+\setcounter{savedafterword}{0}
+\setcounter{annotator}{0}
+\setcounter{savedannotator}{0}
+\setcounter{author}{0}
+\setcounter{savedauthor}{0}
+\setcounter{bookauthor}{0}
+\setcounter{savedbookauthor}{0}
+\setcounter{commentator}{0}
+\setcounter{savedcommentator}{0}
+\setcounter{editor}{0}
+\setcounter{savededitor}{0}
+\setcounter{editora}{0}
+\setcounter{savededitora}{0}
+\setcounter{editorb}{0}
+\setcounter{savededitorb}{0}
+\setcounter{editorc}{0}
+\setcounter{savededitorc}{0}
+\setcounter{foreword}{0}
+\setcounter{savedforeword}{0}
+\setcounter{holder}{0}
+\setcounter{savedholder}{0}
+\setcounter{introduction}{0}
+\setcounter{savedintroduction}{0}
+\setcounter{namea}{0}
+\setcounter{savednamea}{0}
+\setcounter{nameb}{0}
+\setcounter{savednameb}{0}
+\setcounter{namec}{0}
+\setcounter{savednamec}{0}
+\setcounter{translator}{0}
+\setcounter{savedtranslator}{0}
+\setcounter{shortauthor}{0}
+\setcounter{savedshortauthor}{0}
+\setcounter{shorteditor}{0}
+\setcounter{savedshorteditor}{0}
+\setcounter{labelname}{0}
+\setcounter{savedlabelname}{0}
+\setcounter{institution}{0}
+\setcounter{savedinstitution}{0}
+\setcounter{lista}{0}
+\setcounter{savedlista}{0}
+\setcounter{listb}{0}
+\setcounter{savedlistb}{0}
+\setcounter{listc}{0}
+\setcounter{savedlistc}{0}
+\setcounter{listd}{0}
+\setcounter{savedlistd}{0}
+\setcounter{liste}{0}
+\setcounter{savedliste}{0}
+\setcounter{listf}{0}
+\setcounter{savedlistf}{0}
+\setcounter{location}{0}
+\setcounter{savedlocation}{0}
+\setcounter{organization}{0}
+\setcounter{savedorganization}{0}
+\setcounter{origlocation}{0}
+\setcounter{savedoriglocation}{0}
+\setcounter{origpublisher}{0}
+\setcounter{savedorigpublisher}{0}
+\setcounter{publisher}{0}
+\setcounter{savedpublisher}{0}
+\setcounter{language}{0}
+\setcounter{savedlanguage}{0}
+\setcounter{origlanguage}{0}
+\setcounter{savedoriglanguage}{0}
+\setcounter{pageref}{0}
+\setcounter{savedpageref}{0}
+\setcounter{textcitecount}{0}
+\setcounter{textcitetotal}{0}
+\setcounter{textcitemaxnames}{0}
+\setcounter{biburlbigbreakpenalty}{100}
+\setcounter{biburlbreakpenalty}{200}
+\setcounter{biburlnumpenalty}{0}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{smartand}{1}
+\setcounter{bbx:relatedcount}{0}
+\setcounter{bbx:relatedtotal}{0}
+\setcounter{cbx@tempcnta}{0}
+\setcounter{cbx@tempcntb}{0}
+\setcounter{cbx@tempcntc}{0}
+\setcounter{cbx@tempcntd}{0}
+\setcounter{lstlisting}{0}
+}

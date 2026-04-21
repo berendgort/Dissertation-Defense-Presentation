@@ -1,0 +1,24 @@
+\subsection{Deployment in a Real Edge-Cloud Environment}
+\label{sec:ch3_live_deployment}
+
+We have deployed \ac{AERO} and \ac{SparseTSF} as microservices within our edge-cloud testbed, featuring an Intel i9-9900K \ac{CPU}, 46\,GB \ac{RAM}, and an NVIDIA RTX 2060 \ac{GPU} running Ubuntu 24.04.1 LTS. Docker Compose was used to define and manage the multi-container deployment, providing a realistic environment.
+
+Using this infrastructure, we maintained the same experimental setup and hyperparameter optimization as described in Section~\ref{sec:ch3_evaluation}. Both models were trained and tested on the Google Cluster Workload Traces~\cite{GoogleTrace}. The dataset has four features per 5-minute interval: average \ac{CPU} cores used, average memory usage, maximum \ac{CPU} cores used, and maximum memory usage. We have selected a random trace from the dataset, containing $T = 8,\!930$ data points for training purposes. On a hold-out test set derived from the training data, both models exhibited similar performance, achieving \ac{RMSE} values of 0.020 and \ac{MAE} of 0.007, indicating comparable predictive capabilities under controlled conditions.
+
+For live deployment, another random trace generated the workload for a real microservice application. In this setting, \ac{AERO} outperformed \ac{SparseTSF}, achieving a normalized \ac{RMSE} of 0.079 and \ac{MAE} of 0.051 (Fig.~\ref{fig:live_performance}), compared to \ac{SparseTSF}'s \ac{RMSE} of 0.430 and \ac{MAE} of 0.411. Fig.~\ref{fig:cpu_predictions} shows that \ac{AERO} closely tracks true usage patterns, while \ac{SparseTSF} deviates considerably. These results demonstrate \ac{AERO}'s adaptability to dynamic workloads in a live setting, consistent with Section V.C. The comparable performance on the hold-out test set contrasts with the significant difference in live deployment, highlighting the importance of evaluating models under zero-shot and real-world conditions.
+
+The mean inference time for \ac{AERO} was 2.653\,ms, versus 1.117\,ms for \ac{SparseTSF}. Despite longer inference time due to its adaptive features, \ac{AERO}'s latency remains well below the 50\,ms threshold for real-time applications~\cite{8334540}. The increased computational overhead is justified by significant improvements in prediction accuracy. As demonstrated in simulations (Section V.B), better predictions lead to reductions of 15\% in average application response time and 12\% in total energy consumption. These results confirm \ac{AERO}'s effectiveness in real-world deployments, enhancing resource allocation efficiency.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.627\textwidth]{sections/chapter3/img/live_performance.pdf}
+    \caption{Performance comparison between \ac{AERO} and \ac{SparseTSF} in a real-world deployment.}
+    \label{fig:live_performance}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.544\textwidth]{sections/chapter3/img/avg_cpu_cores_over_time.pdf}
+    \caption{\ac{CPU} core usage predictions of \ac{AERO} and \ac{SparseTSF} compared to true values in the live deployment. \ac{AERO} closely follows the true usage patterns, while \ac{SparseTSF} shows significant deviations.}
+    \label{fig:cpu_predictions}
+\end{figure}

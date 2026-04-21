@@ -1,0 +1,452 @@
+---
+description: Chapter 1 Introduction guidelines - structure, content, and writing style
+globs: ["sections/chapter1/**/*.tex"]
+alwaysApply: false
+---
+
+# Chapter 1: Introduction - Guidelines
+
+## Chapter Overview
+This is the Introduction chapter (Chapter 1) of the dissertation. It establishes the research motivation, objectives, thesis structure, and contributions. The chapter introduces the reader to the context through its sections. First, the motivation and main topic are described. Then, the main objectives and specific objectives regarding different elements studied in following chapters are presented. Finally, the thesis structure is laid out.
+
+The chapter introduces the three core challenges addressed by the dissertation: resource efficiency, operational scalability, and autonomous management in 6G edge-cloud orchestration.
+
+## Chapter Structure
+
+### Standard UPC PhD Thesis Introduction Structure
+Based on UPC dissertation examples, Chapter 1 typically follows this organization:
+
+**Section 1.1: Motivation**
+- Context and evolution of the field
+- Current challenges and their importance
+- Why existing solutions are insufficient
+- Main problems this thesis addresses
+- Specific research focus and scope
+
+**Section 1.2: Objectives**
+- Main objective (overarching goal)
+- Technical objectives (specific, measurable tasks)
+- Expected contributions and outcomes
+
+**Section 1.3: Thesis Structure**
+- Brief description of each chapter
+- Logical flow between chapters
+- How chapters contribute to overall objectives
+
+**Optional Section 1.4: Research Contributions** (if not in separate chapter)
+- List of publications (journals, conferences)
+- Chapter-to-publication mapping
+- Awards, patents, projects, collaborations
+- Professional activities
+
+### Files and Sections (Current Thesis)
+- `chapter1.tex` - Main chapter file that includes all sections
+- `1_motivation.tex` - Section 1.1: Research motivation and problem statement
+- `1.5_objectives.tex` - Section 1.2: Research objectives and scope
+- `2_thesis_structure.tex` - Section 1.3: Thesis organization and chapter overview
+- `3_research_contributions.tex` - Section 1.4: Research contributions and publications
+
+### Section Dependencies
+1. **Motivation** (1.1) establishes context, challenges, and the three interdependent dimensions
+2. **Objectives** (1.2) defines main objective and specific technical objectives for each dimension
+3. **Thesis Structure** (1.3) maps chapters to objectives and shows logical flow
+4. **Research Contributions** (1.4) lists publications and demonstrates impact
+
+## Key Themes
+
+The introduction chapter establishes three core challenges:
+
+1. **Resource Efficiency**: Orchestration decisions at edge devices with limited computational resources
+   - Problem: Existing forecasting approaches are computationally intensive
+   - Solution: Lightweight models using domain-specific patterns (Chapter 2/AERO)
+
+2. **Operational Scalability**: Serving diverse applications without per-service customization
+   - Problem: Current approaches require per-application training
+   - Solution: Pattern discovery and attention-based learning (Chapter 4/OmniFORE)
+
+3. **Autonomous Management**: Systems that reason over complex constraints without human intervention
+   - Problem: Trial-and-error exploration poses risks in production
+   - Solution: Multi-agent systems with simulation-based validation (Chapter 5/AgentEdge)
+
+### Integration Narrative
+The chapter emphasizes that these three dimensions are **interdependent**, not independent:
+- Edge prediction enables proactivity but requires generalization for scalability
+- Generalization enables scalability but predictions alone don't execute actions
+- Autonomous coordination closes the loop by executing validated strategies
+
+## Content Guidelines
+
+### Motivation Section Structure (1_motivation.tex)
+
+**Purpose**: Establish context, explain why the research is needed, and define the specific problem space.
+
+**Effective Motivation Patterns** (from UPC examples):
+
+1. **Evolution and Context Pattern**:
+   - Start with field evolution and current state
+   - Show growth trends, statistics, importance
+   - Connect to real-world impact (business, society, technology)
+   
+   Example: "The evolution of network communications is in constant discussion... the number of users has increased together with services offered..."
+
+2. **Problem Escalation Pattern**:
+   - Start with known issues
+   - Show how new requirements exacerbate them
+   - Explain why simple solutions (e.g., "add more resources") won't work
+   - Present efficiency/sustainability as core concern
+   
+   Example: "Despite growth of infrastructures, new vertical sectors will demand much higher requirements... keeping increasing resources would lead towards waste..."
+
+3. **Technology Solution Pattern**:
+   - Introduce enabling technologies (SDN, NFV, Network Slicing)
+   - Explain how they address base problems
+   - Show benefits AND new challenges they create
+   - Set up why further research is needed
+
+4. **Specific Research Focus**:
+   - Narrow from broad field to specific thesis contribution
+   - Clearly state what gap exists
+   - Define boundaries of your research
+
+**Current Thesis Paragraph Flow**:
+1. The orchestration challenge (scale, complexity, requirements with citations)
+2. Traditional approaches insufficient (three fundamental limitations)
+3. What intelligent orchestration requires (three capabilities)
+4. Why ML/AI are necessary (pattern recognition, generalization, reasoning)
+5. Three interdependent dimensions (introduction to framework)
+6. Resource efficiency dimension (deep dive with problem, tension, solution approach)
+7. Operational scalability dimension (deep dive with heterogeneity, overhead, solution)
+8. Autonomous management dimension (deep dive with complexity, risks, solution)
+9. Dissertation approach (three integrated frameworks)
+10. Integration and interdependence (complete pipeline view)
+
+**Key Writing Principles for Motivation**:
+- Build from general (field context) to specific (your contribution)
+- Use concrete numbers/statistics with citations
+- Show WHY existing approaches fail (not just THAT they fail)
+- Connect technical problems to real-world concerns (cost, energy, scalability)
+- Make the research necessity clear, not just interesting
+
+### Objectives Section Structure (1.5_objectives.tex)
+
+**Purpose**: Define clear, measurable objectives that guide the research and evaluation.
+
+**Two-Level Objective Structure** (UPC pattern):
+
+**1. Main Objective**:
+- Single overarching goal of the thesis
+- Broad enough to encompass all contributions
+- Specific enough to be measurable
+- Often includes multiple viewpoints or aspects
+
+Example format:
+```latex
+The main objective of this PhD thesis is to [contribute to/develop/investigate] [specific area] from [number] different points of view:
+\begin{itemize}
+\item [First viewpoint]: [what will be achieved]
+\item [Second viewpoint]: [what will be achieved]
+\item [Third viewpoint]: [what will be achieved]
+\end{itemize}
+```
+
+**2. Technical Objectives**:
+- Specific, actionable tasks
+- Can be assessed individually
+- Map to specific chapters or contributions
+- Include both research and skill development
+
+Common technical objective categories:
+- Knowledge acquisition (understand existing systems)
+- Architecture/system design (propose new approaches)
+- Implementation/validation (demonstrate feasibility)
+- Evaluation/analysis (measure performance, compare to baselines)
+- Dissemination (publish results, contribute to standards)
+
+**Writing Requirements**:
+- Use active, measurable verbs: "design", "implement", "evaluate", "demonstrate", "analyze"
+- Avoid vague terms: "investigate" alone is weak; "investigate how X affects Y through controlled experiments" is stronger
+- Connect each technical objective to expected outcomes
+- Ensure objectives are achievable within PhD scope
+
+**Expected Structure for Current Thesis**:
+```latex
+\subsection{Main Objective}
+[Single paragraph describing overarching contribution to intelligent orchestration in 6G]
+
+\subsection{Technical Objectives}
+To achieve the main objective, the following technical objectives were defined:
+\begin{itemize}
+\item Design lightweight forecasting models for edge deployment...
+\item Develop pattern discovery methods for cross-application generalization...
+\item Create autonomous multi-agent coordination frameworks...
+\item Validate proposed approaches through [experimental method]...
+\item Compare performance to state-of-the-art baselines...
+\end{itemize}
+```
+
+### Thesis Structure Section (2_thesis_structure.tex)
+
+**Purpose**: Provide roadmap for readers, show logical flow, help readers find relevant content.
+
+**Effective Structure Descriptions** (UPC pattern):
+
+**Format 1: Bullet list with brief descriptions**
+```latex
+This PhD thesis is structured in:
+\begin{itemize}
+\item Chapter 2 presents the state of the art related to [topics].
+\item Chapter 3 [describes main contribution 1].
+\item Chapter 4 [describes main contribution 2].
+\item Chapter 5 [describes main contribution 3].
+\item Chapter 6 concludes and proposes future research.
+\end{itemize}
+```
+
+**Format 2: Narrative with chapter groupings**
+```latex
+The thesis consists of [X] chapters addressing [main theme]:
+
+\textbf{Chapter 2 - Background:} Provides necessary background on...
+
+\textbf{Part I - [Theme] (Chapters 3-4):}
+
+\textbf{Chapter 3:} [Specific contribution]...
+
+\textbf{Chapter 4:} [Specific contribution]...
+```
+
+**Key Principles**:
+- Keep chapter descriptions concise (2-4 sentences each)
+- Focus on WHAT each chapter contributes, not exhaustive details
+- Show connections between chapters where relevant
+- Use consistent tense (typically present tense: "Chapter 3 presents...")
+- Include background/related work chapter
+- Include conclusions/future work chapter
+
+**Optional Elements**:
+- Part/section groupings for thematically related chapters
+- Forward references in narrative style
+- Chapter dependency information
+
+### Cross-References
+
+**Label Conventions**: All labels in Chapter 1 use the `ch1_` prefix:
+- Sections: `\label{sec:ch1_motivation}`, `\label{sec:ch1_objectives}`
+- Subsections: `\label{subsec:ch1_main_objective}`, `\label{subsec:ch1_technical_objectives}`
+- Figures: `\label{fig:ch1_architecture}` (if any)
+- Tables: `\label{tab:ch1_contributions}` (if any)
+
+**Expected Cross-References**:
+The motivation and thesis structure sections should reference:
+- `Chapter~\ref{ch:background}` or `Chapter~\ref{ch:related_work}` (Background/Related Work)
+- `Chapter~\ref{ch:adaptive-orchestration}` (AERO/Chapter 2 or 3)
+- `Chapter~\ref{ch:attention-driven-prediction}` (OmniFORE/Chapter 4 or 5)
+- `Chapter~\ref{ch:distributed-agentic-ai}` (AgentEdge/Chapter 5 or 6)
+- `Chapter~\ref{ch:conclusions}` (Conclusions/Future Work)
+
+## Writing Style Requirements
+
+Follow dissertation-wide writing guidelines with these chapter-specific notes:
+
+### Example Good Writing
+```latex
+The resource efficiency dimension addresses a fundamental constraint. Orchestration decisions must occur at edge devices with limited computational resources. Existing learning-based forecasting approaches are computationally intensive. They require substantial memory and processing capacity that exceed typical edge device constraints.
+```
+
+### Example Bad Writing (avoid)
+```latex
+The resource efficiency dimension addresses a fundamental constraint—orchestration decisions must occur at edge devices with limited computational resources, and existing approaches are too intensive.
+```
+(Uses em-dash, combines too many ideas in one sentence)
+
+### In-Text Enumerations
+Use (i), (ii), (iii) for enumerations within prose:
+```latex
+Traditional orchestration approaches fail through three fundamental limitations: (i) they operate reactively rather than predictively; (ii) manual policies cannot adapt to diverse workload patterns; and (iii) centralized decision-making introduces communication delays.
+```
+
+### Research Contributions Section (3_research_contributions.tex)
+
+**Purpose**: Demonstrate research impact through publications, projects, and professional activities.
+
+**Standard Structure** (UPC pattern):
+
+**1. Publications**:
+List all research outputs organized by type:
+
+```latex
+\subsection{Journal Publications}
+\begin{itemize}
+\item [J1] Author(s), "Title," \textit{Journal Name}, vol.X, no.Y, pp.Z-W, Month Year.
+\item [J2] Author(s), "Title," \textit{Journal Name}, status if not published yet.
+\end{itemize}
+
+\subsection{Conference Publications}
+\begin{itemize}
+\item [C1] Author(s), "Title," \textit{Conference Acronym}, Date, Location.
+\item [C2] Author(s), "Title," \textit{Conference Acronym}, Date, Location.
+\end{itemize}
+```
+
+**2. Chapter-to-Publication Mapping**:
+Explicitly connect thesis chapters to published work:
+
+```latex
+\subsection{Chapter-Publication Mapping}
+\begin{itemize}
+\item Chapter 3: Based on journal publication [J1]
+\item Chapter 4: Based on journal publication [J2] and conference [C3]
+\item Chapter 5: Based on conference publications [C4] and [C5]
+\end{itemize}
+```
+
+**3. Additional Contributions** (optional subsection):
+- Collaborations on related work
+- Publications not directly in thesis body but influential
+- Patents or technical reports
+- Contributions to standards or open-source projects
+
+**4. Awards and Recognition**:
+```latex
+\subsection{Awards}
+\begin{itemize}
+\item [Award Name] - [Year] - [Brief description or paper title]
+\end{itemize}
+```
+
+**5. Research Projects**:
+List funded projects where student participated:
+```latex
+\subsection{International and National R\&D Projects}
+\begin{itemize}
+\item \textbf{Project Acronym} - [Full project title]. [Brief 1-2 sentence description]. [Dates]. [Funding program].
+\end{itemize}
+```
+
+**6. Professional Activities**:
+- Conference organization or program committee service
+- Workshop organization
+- Invited talks or keynotes
+- Technology transfer or industry collaboration
+
+**Citation Format Notes**:
+- Use consistent citation style (typically IEEE for engineering)
+- Include DOI when available
+- For submitted/under review papers, state status clearly
+- Order by type (journals first, then conferences) and chronologically
+- Use [J#] and [C#] notation for easy reference
+
+## Common Patterns
+
+### Problem Statement Pattern
+```latex
+[State the challenge] → [Explain why it matters] → [Current approaches] → [Why they fail] → [What's needed]
+```
+
+Example from UPC2:
+"Despite growth of infrastructures, new vertical sectors will demand much higher requirements... The easiest option would be to keep increasing resources but, in a long-term context, their management would lead towards waste of resources."
+
+### Contribution Statement Pattern
+```latex
+This dissertation addresses [problem] through [approach]:
+1. [Contribution 1]: [What it does] enables [outcome] by [method]
+2. [Contribution 2]: [What it does] enables [outcome] by [method]
+3. [Contribution 3]: [What it does] enables [outcome] by [method]
+```
+
+### Integration Pattern
+```latex
+These three contributions form an integrated pipeline where [C1] enables [outcome], [C2] builds on [C1] to achieve [outcome], and [C3] closes the loop by [action].
+```
+
+### Technology Evolution Pattern (for motivation)
+```latex
+[Field context] → [First enabling technology + benefits] → [Second enabling technology + benefits] → [Combining technologies creates new possibilities] → [But also creates new challenges] → [Your research addresses these challenges]
+```
+
+Example from UPC2:
+"SDN allows to configure generic hardware... NFV brings virtualization benefits... Joining SDN and NFV enables Network Slicing... But this creates trust-related risks and security challenges..."
+
+## Common Mistakes to Avoid
+
+### Content Mistakes
+- ❌ Treating dimensions as independent (they're interdependent)
+- ❌ Missing deep-dive explanations for each dimension
+- ❌ Weak integration narrative (failing to show how contributions connect)
+- ❌ Generic motivation (not specific to 6G orchestration)
+- ❌ Unsupported claims about resource utilization or performance
+
+### Writing Mistakes
+- ❌ Using em-dashes (---) anywhere
+- ❌ Combining multiple ideas in single sentences
+- ❌ Starting sentences with disconnected thoughts
+- ❌ Using "leverage", "facilitate", "utilize" instead of simple verbs
+- ❌ Vague terms like "significant", "various", "substantial" without numbers
+
+### Citation Mistakes
+- ❌ Adding citations without verification
+- ❌ Placing citations in wrong location (middle of claim)
+- ❌ Using one citation for multiple unrelated claims
+- ❌ Missing citations for background claims (6G requirements, production data)
+
+## Quality Checklist
+
+Before considering Chapter 1 complete, verify:
+
+### Content Completeness
+- [ ] **Motivation Section**:
+  - [ ] Field evolution and context established with statistics/trends
+  - [ ] Current challenges clearly identified and justified
+  - [ ] Why existing solutions are insufficient is explained
+  - [ ] Specific research focus is clearly defined
+  - [ ] All three core challenges have deep-dive explanations
+  - [ ] Integration narrative shows interdependence, not just listing
+
+- [ ] **Objectives Section**:
+  - [ ] Main objective is clearly stated (single overarching goal)
+  - [ ] Technical objectives are specific and measurable
+  - [ ] Each objective can be assessed individually
+  - [ ] Objectives map to specific chapters/contributions
+  - [ ] Balance between research and validation objectives
+
+- [ ] **Thesis Structure Section**:
+  - [ ] All chapters are described (including background and conclusions)
+  - [ ] Each description focuses on contribution, not exhaustive details
+  - [ ] Logical flow between chapters is apparent
+  - [ ] Chapter groupings (if used) are clear and justified
+
+- [ ] **Research Contributions Section** (if included):
+  - [ ] All publications listed with complete citations
+  - [ ] Publications organized by type (journals, conferences)
+  - [ ] Chapter-to-publication mapping is explicit
+  - [ ] Awards, projects, and activities included
+  - [ ] Citation format is consistent
+
+### Writing Quality
+- [ ] Every sentence has clear subject and verb
+- [ ] Logical flow between consecutive sentences within paragraphs
+- [ ] Paragraphs flow logically from one to the next
+- [ ] No em-dashes (---) anywhere
+- [ ] Simple, clear vocabulary (no "leverage", "facilitate", "utilize")
+- [ ] Specific numbers replace vague terms ("significant", "various", "substantial")
+- [ ] In-text lists use (i), (ii), (iii) format for prose enumerations
+- [ ] Bullet lists use `\begin{itemize}...\end{itemize}` for structured lists
+- [ ] Present tense for describing thesis structure ("Chapter 3 presents...")
+- [ ] Past or present tense for motivation/context as appropriate
+
+### Technical Accuracy
+- [ ] All claims are cited or justified
+- [ ] Citations appear at end of claims they support (not in middle)
+- [ ] Statistics and numbers have proper citations
+- [ ] Cross-references use correct chapter labels
+- [ ] Label conventions followed (ch1_ prefix)
+- [ ] No forward references to content not yet introduced
+- [ ] Technical terminology used consistently
+
+### UPC Dissertation Standards
+- [ ] Chapter opens with brief overview/abstract of its content
+- [ ] Section numbering follows: 1.1, 1.2, 1.3 (subsections: 1.2.1, 1.2.2)
+- [ ] Objectives divided into Main + Technical objectives
+- [ ] Thesis structure describes ALL chapters (not just contribution chapters)
+- [ ] Professional tone maintained throughout
+- [ ] Appropriate academic formality (not too casual, not overly complex)

@@ -35,11 +35,12 @@ import threading
 import time
 from pathlib import Path
 
-HERE = Path(__file__).parent.resolve()
-SLIDES_DIR = HERE / "slides"
+ROOT_DIR = Path(__file__).parent.resolve()
+DEFENSE_HTML_DIR = ROOT_DIR / "defense_html"
+SLIDES_DIR = DEFENSE_HTML_DIR / "slides"
 ARCHIVE_DIR = SLIDES_DIR / "_archive"
-OUTPUT = HERE / "Defense.html"
-TEMPLATE = HERE / "_template.html"
+OUTPUT = DEFENSE_HTML_DIR / "Defense.html"
+TEMPLATE = DEFENSE_HTML_DIR / "_template.html"
 
 SLIDES_PLACEHOLDER = "<!--SLIDES-->"
 
@@ -264,7 +265,7 @@ def main() -> None:
     ap.add_argument("--no-open", action="store_true", help="skip initial build")
     args = ap.parse_args()
 
-    os.chdir(HERE)
+    os.chdir(DEFENSE_HTML_DIR)
     ensure_template()
 
     if not args.no_open:

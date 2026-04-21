@@ -1,0 +1,36 @@
+\chapter{Background}
+\label{ch:background}
+
+This chapter establishes the theoretical foundation for the dissertation. It is organized into two main parts. Part I provides the conceptual background on machine learning, workload prediction, and intelligent systems. Part II reviews the specific state-of-the-art literature and identifies the research gaps addressed in Chapters~\ref{ch:adaptive-orchestration} through \ref{ch:distributed-agentic-ai}.
+
+A unifying thread connects these foundations: the attention mechanism. Originally developed for sequence-to-sequence tasks, attention has become the architectural core of transformer-based models used in time-series forecasting (Chapter~\ref{ch:attention-driven-prediction}) and the dominant \acp{LLM} that power autonomous agents (Chapter~\ref{ch:distributed-agentic-ai}). By establishing attention fundamentals in the context of workload prediction, this chapter provides the conceptual basis for understanding both the prediction and autonomy components of this dissertation.
+
+% Part I: Foundational Concepts
+\section{Part I: Foundational Concepts}
+\label{sec:ch2_part1}
+
+This section introduces the core technical concepts required to understand the proposed solutions: workload prediction, generalization mechanisms, and intelligent orchestration architectures.
+
+\input{sections/chapter2/1_workload_prediction}
+\input{sections/chapter2/2_generalization}
+\input{sections/chapter2/3_intelligent_orchestration_systems}
+
+% Part II: State of the Art
+\section{Part II: State of the Art}
+\label{sec:ch2_part2}
+
+Building on the foundational concepts established in Part I, this section reviews the state of the art in edge prediction, generalization approaches, and autonomous orchestration systems. Each review identifies specific gaps that motivate this dissertation's contributions.
+
+\input{sections/chapter2/4_sota_edge_deployable}
+\input{sections/chapter2/5_sota_generalization}
+\input{sections/chapter2/6_sota_autonomous}
+
+% Summary
+\section{Summary: From Gaps to Contributions}
+\label{sec:ch2_summary}
+
+The foundational concepts and state-of-the-art analysis presented in this chapter reveal three distinct research gaps that prevent autonomous edge-cloud orchestration.
+
+First, existing prediction models achieve high accuracy through large architectures unsuitable for edge deployment, leaving a gap between prediction capability and edge constraints (Section~\ref{sec:ch2_sota_aero}). Second, current approaches require per-application training, creating unsustainable operational overhead when managing heterogeneous microservices at scale (Section~\ref{sec:ch2_sota_omni}). Third, autonomous orchestration systems either lack safety guarantees or sacrifice flexibility for reliability, leaving the safety-autonomy paradox unresolved (Section~\ref{sec:ch2_sota_agent}).
+
+The following three chapters address these gaps directly. Chapter~\ref{ch:adaptive-orchestration} introduces \ac{AERO}, a model with fewer than 1,000 parameters that achieves edge-deployable prediction through adaptive period detection. Chapter~\ref{ch:attention-driven-prediction} presents \ac{OmniFORE}, which enables cross-application generalization through temporal clustering and attention mechanisms. Chapter~\ref{ch:distributed-agentic-ai} develops \ac{AgentEdge}, a multi-agent framework that achieves validated autonomy through simulation-first decision-making. Together, these contributions form a complementary pipeline from lightweight prediction through scalable generalization to autonomous orchestration.

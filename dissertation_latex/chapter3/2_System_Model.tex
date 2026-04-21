@@ -1,0 +1,36 @@
+\section{System Model}
+\label{sec:ch3_system_model}
+
+Building on the workload prediction foundations established in Section~\ref{sec:ch2_workload_prediction}, this section formalizes our cloud workload prediction framework through four key components: workload representation, workload prediction model, objective function, and edge-cloud network architecture. This formalization provides the mathematical foundation for comparing different architectural approaches.
+
+\subsection{Workload Representation}
+
+Let $\mathbf{W}_t = [W_t^{(1)},\, W_t^{(2)},\, \ldots,\, W_t^{(f)}]^\top \in \mathbb{R}^f$ represent the workload vector \cite{zhou2021informer} at discrete time step $t$, where $W_t^{(i)}$ denotes the $i$-th resource utilization feature (e.g., \ac{CPU}, memory usage), $f$ is the number of features, and $t \in \{1, 2, \ldots, T\}$, with $T$ being the total number of time steps in the trace. The complete workload trace forms a multivariate time-series:
+\begin{equation}
+\mathbf{W} = [\mathbf{W}_1,\, \mathbf{W}_2,\, \ldots,\, \mathbf{W}_T]^\top \in \mathbb{R}^{T \times f}.
+\end{equation}
+
+\subsection{Workload Prediction Model}
+
+Our objective is to forecast future workload vectors based on historical observations. We define a prediction function $\Psi_{\boldsymbol{\phi}}: \mathbb{R}^{\kappa \times f} \rightarrow \mathbb{R}^{\lambda \times f}$, parameterized by $\boldsymbol{\phi} \in \mathbb{R}^p$, which represents the trainable parameters of the prediction model (e.g., weights and biases of a neural network). The function $\Psi_{\boldsymbol{\phi}}$ estimates the workload over a prediction horizon of length $\lambda$, where $\lambda \in \mathbb{N}$ and $\lambda \geq 1$:
+\begin{equation}
+\label{eq:forecast_workload}
+\hat{\mathbf{W}}_{t+1:t+\lambda} = \Psi_{\boldsymbol{\phi}}\left( \mathbf{W}_{t-\kappa+1:t} \right),
+\end{equation}
+where $\kappa \in \mathbb{N}$, $\kappa \geq 1$, is the length of the historical context window, and $\mathbf{W}_{t-\kappa+1:t} \in \mathbb{R}^{\kappa \times f}$ denotes the sequence of past workload vectors used for prediction. The model architecture and training process are determined by hyperparameters $\boldsymbol{\theta} \in \Theta$, where $\Theta$ defines the search space of valid configurations \cite{hyperparamsdatasets}.
+
+\subsection{Objective Function}
+
+To learn the model parameters $\boldsymbol{\phi}$, we minimize a loss function that measures the prediction error between the forecasted workload $\hat{\mathbf{W}}_{t+1:t+\lambda}$ and the ground truth workload $\mathbf{W}_{t+1:t+\lambda}$ across all resource dimensions. We employ the \ac{MSE} as our optimization objective, which penalizes larger prediction errors quadratically: 
+\begin{equation}
+\mathcal{L}(\boldsymbol{\phi}) = \frac{1}{\lambda} \sum_{i=1}^{\lambda} \left\| \mathbf{W}_{t+i} - \hat{\mathbf{W}}_{t+i} \right\|_2^2,
+\end{equation}
+where $\left\| \cdot \right\|_2$ denotes the Euclidean norm in $\mathbb{R}^f$ and $t \in \{1, 2, \ldots, T-\lambda\}$. This loss function computes the average squared distance between predicted and actual resource utilization vectors across the prediction horizon $\lambda$.
+
+\subsection{Edge-cloud Network Architecture}
+
+Our simulations use a heterogeneous edge-cloud network comprising edge devices, fog nodes, and cloud servers \cite{tuli2021cosco}. Let $\mathcal{H} = \{h_1, h_2, ..., h_N\}$ be the set of computational nodes. Each node $h_i \in \mathcal{H}$ possesses specific resource capacities defined as a vector $\mathbf{c}_i = [c_i^{\text{cpu}}, c_i^{\text{memory}}, c_i^{\text{disk}}, c_i^{\text{network}}]^\top$, where $c_i^{\text{cpu}}$ represents \ac{CPU} capacity in \ac{MHz}, $c_i^{\text{memory}}$ represents memory capacity in KB, $c_i^{\text{disk}}$ represents storage capacity with read/write speeds in KB/s, and $c_i^{\text{network}}$ represents network bandwidth in Gb/s.
+
+Let $\mathcal{C}$ denote the set of containers, where each container is decomposed into a set of tasks $\mathcal{J}_c$ for container $c \in \mathcal{C}$. Each task $j \in \mathcal{J}_c$ has resource requirements $\mathbf{r}_j = [r_j^{\text{cpu}}, r_j^{\text{memory}}, r_j^{\text{disk}}, r_j^{\text{network}}]^\top$ and arrival time $a_j$, with measurements collected at regular intervals.
+
+Container-level workload predictions inform task scheduling across nodes to optimize resource utilization and meet \ac{QoS} requirements \cite{tuli2021cosco}. The scheduler uses these predictions to make proactive allocation decisions \cite{farhad2023ai}, aiming to minimize metrics such as energy consumption and \ac{SLA} violations \cite{raith2024opportunistic}. This architecture supports evaluating container workload prediction models like \ac{AERO} on orchestration performance, as detailed in Section~\ref{sec:ch3_simulations}.

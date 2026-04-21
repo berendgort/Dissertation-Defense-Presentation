@@ -1,0 +1,201 @@
+\section{AERO Architecture}
+\label{sec:ch3_proposed_solution}
+
+We introduce \ac{AERO}, a lightweight forecasting model designed for adaptive workload prediction. AERO builds upon the \ac{SparseTSF} model~\cite{sparseTSF}, enhancing it with adaptive period detection and dynamic layer caching to efficiently handle varying periodicities in multivariate time-series data. The goal is to develop an efficient and accurate forecasting model for resource orchestration in edge-cloud environments, where workloads exhibit varying periodic patterns~\cite{ouyang2023dynamic}.
+
+The \ac{AERO} model operates on the historical workload data $\mathbf{W}_{t-\kappa+1:t} \in \mathbb{R}^{\kappa \times f}$, where $\kappa$ is the context window length and $f$ is the number of features, as defined in Section~\ref{sec:ch3_system_model}. The model serves as the prediction function $\Psi_{\boldsymbol{\phi}}$ parameterized by $\boldsymbol{\phi} \in \mathbb{R}^p$, mapping historical workloads to future predictions over a horizon $\lambda$:
+
+\begin{equation}
+\label{eq:aero_prediction_function}
+\hat{\mathbf{W}}_{t+1:t+\lambda} = \Psi_{\boldsymbol{\phi}}\left( \mathbf{W}_{t-\kappa+1:t} \right).
+\end{equation}
+
+The model consists of three main components:
+
+\begin{itemize}
+    \item \texttt{Adaptive Period Detection Module}: Identifies and adapts to the dominant period $\tau$ within the historical workload data by analyzing temporal patterns.
+
+    \item \texttt{Adaptive Forecasting Module}: Adjusts the detected period and performs forecasting using the \ac{SparseTSF} model~\cite{sparseTSF}. This module handles the core prediction task, leveraging the strengths of \ac{SparseTSF} for efficient time-series forecasting.
+
+    \item \texttt{Adaptive Layer Caching}: Maintains a cache of neural network layers optimized for different periodicities. When similar workload patterns recur, the model reuses these cached layers instead of recomputing them, reducing computational overhead.
+\end{itemize}
+
+This architecture allows the model to adapt to varying periodicities in the data, ensuring accurate forecasting with minimal computational overhead. In the subsequent sections, we discuss the major steps in the execution of the \ac{AERO} algorithm. The detailed workflow of this algorithm is shown in Algorithm~\ref{alg:aero_impl}.
+
+\subsection{Adaptive Period Detection Module}
+\label{sec:ch3_adaptive_period_detection}
+
+The \texttt{Adaptive Period Detection Module} aims to identify the dominant period $\tau$ within the historical workload data sequence $\mathbf{W}_{t-\kappa+1:t}$. First, we compute the average across the feature dimension to obtain a univariate time-series $\bar{\mathbf{W}}_{t-\kappa+1:t} \in \mathbb{R}^\kappa$:
+
+\begin{equation}
+\label{eq:feature_avg}
+\bar{\mathbf{W}}_{t-\kappa+1:t} = \frac{1}{f} \sum_{i=1}^{f} \mathbf{W}_{t-\kappa+1:t}^{(i)},
+\end{equation}
+where $\mathbf{W}_{t-\kappa+1:t}^{(i)}$ denotes the $i$-th feature of the workload data sequence $\mathbf{W}_{t-\kappa+1:t}$.
+
+Next, we subtract the mean to focus on the periodic components, yielding the mean-centered series $\tilde{\mathbf{W}}_{t-\kappa+1:t}$:
+
+\begin{equation}
+\label{eq:mean_removal}
+\tilde{\mathbf{W}}_{t-\kappa+1:t} = \bar{\mathbf{W}}_{t-\kappa+1:t} - \boldsymbol{\mu}_{t-\kappa+1:t},
+\end{equation}
+where $\boldsymbol{\mu}_{t-\kappa+1:t} = \frac{1}{\kappa} \sum_{s=t-\kappa+1}^{t} \bar{\mathbf{W}}_s$ is the mean of the averaged workload sequence.
+
+The autocorrelation function of the mean-removed workload sequence $\text{ACF}(\ell)$ is then computed using convolution~\cite{zhang2020autocorrelation}:
+
+\begin{equation}
+\label{eq:acf}
+\text{ACF}(\ell) = \frac{(\tilde{\mathbf{W}}_{t-\kappa+1:t} \ast \tilde{\mathbf{W}}^{\text{rev}}_{t-\kappa+1:t})[\ell]}{\text{ACF}(0) + \epsilon}, \quad \epsilon = 10^{-8},
+\end{equation}
+where $\ell \in \{0, 1, 2, \ldots, \kappa-1\}$ is the lag or time shift, $\tilde{\mathbf{W}}^{\text{rev}}_{t-\kappa+1:t}$ is the time-reversed version of $\tilde{\mathbf{W}}_{t-\kappa+1:t}$, $\ast$ denotes the convolution operation, and $\text{ACF}(0)$ is the variance of $\tilde{\mathbf{W}}_{t-\kappa+1:t}$. This step computes the autocorrelation to detect periodicity in the mean-removed workload sequence.
+
+Peaks are points where the autocorrelation is higher than its immediate neighbors:
+
+\begin{equation}
+\label{eq:peak_detection}
+\text{peaks} = \left\{ \ell \,\middle|\, \text{ACF}(\ell-1) < \text{ACF}(\ell) > \text{ACF}(\ell+1) \right\}.
+\end{equation}
+
+Candidate periods $\mathcal{K}$ are selected from the peaks within the desired range $[\tau_{\min}, \tau_{\max}]$ (model hyperparameters):
+
+\begin{equation}
+\label{eq:candidate_periods}
+\mathcal{K} = \left\{ \ell \in \text{peaks} \,\middle|\, \tau_{\min} \leq \ell \leq \tau_{\max} \right\}.
+\end{equation}
+
+Finally, the dominant period $\tau$ is assigned based on the candidate periods:
+
+\begin{equation}
+\label{eq:period_assignment}
+\tau = \begin{cases}
+    \left\lfloor \dfrac{\tau_{\max}}{2} \right\rfloor, & \text{if } \mathcal{K} = \emptyset, \\[2ex]
+    \displaystyle\arg\max_{\ell \in \mathcal{K}} \text{ACF}(\ell), & \text{otherwise}.
+\end{cases}
+\end{equation}
+
+If no suitable candidate periods are found, we default to half of the maximum period.
+
+\subsection{Adaptive Forecasting Module}
+\label{sec:ch3_adaptive_forecasting}
+
+After detecting the dominant period $\tau$ from the historical data, the \texttt{Adaptive Forecasting Module} adjusts this period to ensure compatibility with the model architecture and proceeds to predict future workloads $\hat{\mathbf{W}}_{t+1:t+\lambda} \in \mathbb{R}^{\lambda \times f}$, where $\lambda$ is the prediction horizon.
+
+We first clamp the detected period $\tau$ to a valid range and make it even to satisfy the model's requirements:
+
+\begin{equation}
+\label{eq:tau_clamp}
+\tau^\prime = \text{clamp}\left( \tau,\, 2,\, \left\lfloor \dfrac{\kappa}{2} \right\rfloor \right), \quad \tau^\prime = \tau^\prime + (\tau^\prime \bmod 2).
+\end{equation}
+
+Clamping $\tau$ ensures that the period is within a feasible range based on the context window length $\kappa$, and making it even simplifies subsequent segmentation and reshaping operations.
+
+Next, we adjust the clamped period $\tau^\prime$ to the closest common divisor of $\kappa$ and $\lambda$:
+
+\begin{equation}
+\label{eq:tau_adjust}
+\tau^{\ast} = \arg\min_{d \in D} \left| d - \tau^\prime \right|,
+\end{equation}
+where $D$ is the set of common divisors of $\kappa$ and $\lambda$. Adjusting $\tau^\prime$ to $\tau^{\ast}$ ensures that both the input sequence and the prediction horizon can be evenly divided into segments of length $\tau^{\ast}$, facilitating efficient downsampling and upsampling in the model.
+
+After this point, the forecasting process follows the standard \ac{SparseTSF} model~\cite{sparseTSF}. For completeness, we outline their forecasting process below.
+
+First, the input data is normalized by subtracting the mean vector:
+
+\begin{equation}
+\label{eq:normalization}
+\tilde{\mathbf{W}}_{t-\kappa+1:t} = \mathbf{W}_{t-\kappa+1:t} - \mathbf{1} \boldsymbol{\mu}_{t-\kappa+1:t}^\top \in \mathbb{R}^{\kappa \times f},
+\end{equation}
+where $\mathbf{1} \in \mathbb{R}^{\kappa}$ is a column vector of ones, and $\boldsymbol{\mu}_{t-\kappa+1:t} = \frac{1}{\kappa} \sum_{s=t-\kappa+1}^{t} \mathbf{W}_{s} \in \mathbb{R}^{1 \times f}$.
+
+The normalized data is then transposed to align dimensions for convolution:
+
+\begin{equation}
+\label{eq:permutation}
+\tilde{\mathbf{W}} = \tilde{\mathbf{W}}^\top \in \mathbb{R}^{f \times \kappa}.
+\end{equation}
+
+A one-dimensional convolution is applied with residual connection:
+
+\begin{equation}
+\label{eq:convolution}
+\mathbf{Z} = \text{Conv1D}\left( \tilde{\mathbf{W}}; k,\, p \right) + \tilde{\mathbf{W}} \in \mathbb{R}^{f \times \kappa},
+\end{equation}
+where the kernel size $k = 1 + 2(\tau^{\ast}/2)$ and padding $p = \tau^{\ast}/2$.
+
+The data is then downsampled through reshaping:
+
+\begin{equation}
+\label{eq:downsampling}
+\mathbf{Z} = \text{reshape}\left( \mathbf{Z},\, \left[ f \cdot \tau^{\ast},\, n_x \right] \right) \in \mathbb{R}^{(f \cdot \tau^{\ast}) \times n_x},
+\end{equation}
+where $n_x = \kappa / \tau^{\ast}$ represents the number of segments in the input sequence.
+
+A linear transformation maps the downsampled segments to prediction segments:
+
+\begin{equation}
+\label{eq:linear_mapping}
+\mathbf{Y} = \text{Linear}\left( \mathbf{Z} \right) \in \mathbb{R}^{(f \cdot \tau^{\ast}) \times n_y},
+\end{equation}
+where $n_y = \lambda / \tau^{\ast}$ represents the number of segments in the prediction sequence.
+
+The predictions are then upsampled through reshaping:
+
+\begin{equation}
+\label{eq:upsampling}
+\mathbf{Y} = \text{reshape}\left( \mathbf{Y},\, \left[ f,\, \lambda \right] \right) \in \mathbb{R}^{f \times \lambda}.
+\end{equation}
+
+Finally, the predictions are denormalized:
+
+\begin{equation}
+\label{eq:denormalization}
+\hat{\mathbf{W}}_{t+1:t+\lambda} = \mathbf{Y}^\top + \mathbf{1} \boldsymbol{\mu}^\top \in \mathbb{R}^{\lambda \times f}.
+\end{equation}
+
+This sequence of operations efficiently processes the time-series data while maintaining its periodic structure. In our implementation, we use this architecture with our adaptively detected period $\tau^{\ast}$.
+
+
+\subsection{Adaptive Layer Caching}
+\label{sec:ch3_adaptive_layer_caching}
+
+To optimize computational efficiency, \ac{AERO} introduces an \texttt{Adaptive Layer Caching} mechanism that caches convolutional and linear layers for different periods $\tau^{\ast}$. By reusing these layers for inputs with the same adjusted period, we reduce redundant computations and improve the model's responsiveness to varying periodicities without incurring additional overhead.
+
+
+\begin{algorithm}
+\caption{\ac{AERO} Model Implementation}
+\label{alg:aero_impl}
+\footnotesize
+\renewcommand{\baselinestretch}{0.9}
+\begin{algorithmic}[1]
+\Require
+    \Statex \hspace{-1em}\textbf{Input:}
+    \State Historical workload data $\mathbf{W}_{t-\kappa+1:t} \in \mathbb{R}^{\kappa \times f}$
+    \State Prediction horizon $\lambda$
+    \State Context window length $\kappa$
+    \State Period range $[\tau_{\min}, \tau_{\max}]$
+\Ensure
+    \Statex \hspace{-1em}\textbf{Output:}
+    \State Forecasted workloads $\hat{\mathbf{W}}_{t+1:t+\lambda} \in \mathbb{R}^{\lambda \times f}$
+\Statex
+\Part{1}{Adaptive Period Detection}
+    \State Compute $\bar{\mathbf{W}}_{t-\kappa+1:t}$ using Eq.~\eqref{eq:feature_avg}
+    \State Subtract mean to get $\tilde{\mathbf{W}}_{t-\kappa+1:t}$ \hfill {\small(Eq.~\eqref{eq:mean_removal})}
+    \State Compute $\text{ACF}(\ell)$ using convolution \hfill {\small(Eq.~\eqref{eq:acf})}
+    \State Detect peaks and select $\tau$ \hfill {\small(Eqs.~\eqref{eq:peak_detection}--\eqref{eq:period_assignment})}
+\Statex
+\Part{2}{Period Adjustment}
+    \State Adjust $\tau$ to $\tau^{\ast}$ \hfill {\small(Eqs.~\eqref{eq:tau_clamp} and \eqref{eq:tau_adjust})}
+\Statex
+\Part{3}{Adaptive Forecasting (\ac{SparseTSF})}
+    \State Normalize data \hfill {\small(Eq.~\eqref{eq:normalization})}
+    \State Reshape for convolution \hfill {\small(Eq.~\eqref{eq:permutation})}
+    \State Apply convolution with residual connection \hfill {\small(Eq.~\eqref{eq:convolution})}
+    \State Downsample data \hfill {\small(Eq.~\eqref{eq:downsampling})}
+    \State Perform linear mapping \hfill {\small(Eq.~\eqref{eq:linear_mapping})}
+    \State Upsample predictions \hfill {\small(Eq.~\eqref{eq:upsampling})}
+    \State Denormalize outputs \hfill {\small(Eq.~\eqref{eq:denormalization})}
+\Statex
+\Part{4}{Output}
+    \State \Return $\hat{\mathbf{W}}_{t+1:t+\lambda}$
+\end{algorithmic}
+\end{algorithm}

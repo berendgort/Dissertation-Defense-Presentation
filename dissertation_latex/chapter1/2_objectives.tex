@@ -1,0 +1,31 @@
+% 1.5_objectives.tex
+\section{Objectives}
+\label{sec:ch1_objectives}
+
+This section defines the research objectives guiding this dissertation.
+
+% Main objective
+\subsection{Main Objective}
+\label{subsec:ch1_main_objective}
+
+The main objective of this dissertation is to develop complementary intelligent orchestration frameworks enabling autonomous edge-cloud service management for \ac{6G} networks through machine learning and agentic artificial intelligence. These frameworks must achieve three simultaneous requirements: (i) lightweight deployment on resource-constrained edge devices with sub-millisecond latency, (ii) cross-application generalization serving heterogeneous microservices without per-service customization, and (iii) zero-touch autonomous orchestration that operates without human intervention. This objective addresses the fundamental limitation that existing approaches optimize these requirements independently, forcing significant trade-offs between deployability, generalizability, and autonomous operation.
+
+% Technical objectives
+\subsection{Technical Objectives}
+\label{subsec:ch1_technical_objectives}
+
+To achieve the main objective, the following technical objectives are defined. Objectives 1--3 directly address the three simultaneous requirements stated above, while Objective 4 ensures empirical validation:
+
+\begin{itemize}
+    \item \textbf{Objective 1 - Edge-Deployable Workload Prediction:} Design lightweight forecasting models deployable on resource-constrained edge devices (less than 1,000 parameters) while maintaining prediction accuracy sufficient for proactive resource management, significantly reducing the computational intensity of state-of-the-art approaches that require 500K+ parameters.
+    
+    \item \textbf{Objective 2 - Cross-Application Generalization:} Develop generalization frameworks enabling single models to serve diverse application types without per-application customization or continuous retraining, avoiding substantial operational overhead of maintaining hundreds of specialized models.
+    
+    \item \textbf{Objective 3 - Zero-Touch Autonomous Orchestration:} Create autonomous orchestration agents capable of interpreting high-level intentions, planning multi-step strategies, and executing coordinated actions without human intervention, achieving success rates exceeding 75\% across diverse orchestration scenarios.
+    
+    \item \textbf{Objective 4 - Integrated System Validation:} Beyond development, validate frameworks through real-world datasets from production systems (Google Borg, Alibaba) and simulation experiments demonstrating quantifiable improvements in energy efficiency, response times, and service-level agreement compliance.
+\end{itemize}
+
+These technical objectives are measurable and verifiable. Chapter~\ref{ch:conclusions} provides explicit assessment of whether each was achieved, with quantitative metrics demonstrating fulfillment.
+
+

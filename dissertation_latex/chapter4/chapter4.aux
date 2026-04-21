@@ -1,0 +1,621 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Attention-driven workload prediction and generalization}{70}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:attention-driven-prediction}{{4}{70}{Attention-driven workload prediction and generalization}{chapter.4}{}}
+\acronymused{AERO}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Introduction}{70}{section.4.1}\protected@file@percent }
+\newlabel{sec:ch4_introduction}{{4.1}{70}{Introduction}{section.4.1}{}}
+\acronymused{RNN}
+\acronymused{CNN}
+\acronymused{ModernTCN}
+\acronymused{CNN}
+\acronymused{RNN}
+\acronymused{GNN}
+\acronymused{GAN}
+\acronymused{RNN}
+\acronymused{RNN}
+\acronymused{CNN}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}System Model}{72}{section.4.2}\protected@file@percent }
+\newlabel{sec:ch4_system_model}{{4.2}{72}{System Model}{section.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Traces}{72}{subsection.4.2.1}\protected@file@percent }
+\acronymused{CPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Workload Forecasting}{73}{subsection.4.2.2}\protected@file@percent }
+\acronymused{MAE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Heterogeneity of Traces}{74}{subsection.4.2.3}\protected@file@percent }
+\newlabel{sec:ch4_container_trace_heterogeneity}{{4.2.3}{74}{Heterogeneity of Traces}{subsection.4.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}OmniFORE: Framework for Optimization of Resource Forecasts in Edge-Cloud Networks}{74}{section.4.3}\protected@file@percent }
+\newlabel{sec:ch4_proposed_solution}{{4.3}{74}{OmniFORE: Framework for Optimization of Resource Forecasts in Edge-Cloud Networks}{section.4.3}{}}
+\acronymused{OmniFORE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the OMNIFORE pipeline. S$_1$: Spatio-temporal feature extraction (latent space). S$_2$: Latent space clustering. S$_3$: Labelled original time-series. S$_4$: Training trace selection. S$_5$: Data split and scaling. S$_6$: Attention mechanism. S$_7$: Hyperparameter optimization for generalization.}}{75}{figure.caption.126}\protected@file@percent }
+\newlabel{fig:proposed_solution_trace_selection}{{4.1}{75}{Overview of the OMNIFORE pipeline. S$_1$: Spatio-temporal feature extraction (latent space). S$_2$: Latent space clustering. S$_3$: Labelled original time-series. S$_4$: Training trace selection. S$_5$: Data split and scaling. S$_6$: Attention mechanism. S$_7$: Hyperparameter optimization for generalization}{figure.caption.126}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}S\textsubscript  {1}--S\textsubscript  {5}: Trace Sampling, Clustering, Selection, and Scaling}{76}{subsection.4.3.1}\protected@file@percent }
+\newlabel{sec:ch4_trace_sampling_pipeline}{{4.3.1}{76}{\texorpdfstring {S\textsubscript {1}--S\textsubscript {5}: Trace Sampling, Clustering, Selection, and Scaling}{S1--S5: Trace Sampling, Clustering, Selection, and Scaling}}{subsection.4.3.1}{}}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{Spatio-temporal Feature Extraction (Latent Space)}{76}{section*.127}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{Latent Space Clustering}{77}{section*.128}\protected@file@percent }
+\acronymused{CNN}
+\acronymused{OmniFORE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Overview of the latent space extractor. The input $\mathcal  {T}(t)$ is encoded into latent space $\mathcal  {Z}(z)$ by $f_{\text  {encoder}}$ and then decoded by $f_{\text  {decoder}}$ to reconstruct $\mathcal  {R}(t) \approx \mathcal  {T}(t)$.}}{77}{figure.caption.129}\protected@file@percent }
+\newlabel{fig:latent_space_creation}{{4.2}{77}{Overview of the latent space extractor. The input $\mathcal {T}(t)$ is encoded into latent space $\mathcal {Z}(z)$ by $f_{\text {encoder}}$ and then decoded by $f_{\text {decoder}}$ to reconstruct $\mathcal {R}(t) \approx \mathcal {T}(t)$}{figure.caption.129}{}}
+\newlabel{eq:reconstruction_loss}{{4.9}{78}{Latent Space Clustering}{equation.4.3.9}{}}
+\acronymused{CNN}
+\@writefile{toc}{\contentsline {subsubsection}{Labelled Original Time-series}{79}{section*.130}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Training Trace Selection}{79}{section*.131}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Data Split and Scaling}{80}{section*.132}\protected@file@percent }
+\newlabel{sec:ch4_data_split_scaling}{{4.3.1}{80}{Data Split and Scaling}{section*.132}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}S\textsubscript  {6}: Attention Mechanism}{81}{subsection.4.3.2}\protected@file@percent }
+\newlabel{sec:ch4_attention_mechanism}{{4.3.2}{81}{\texorpdfstring {S\textsubscript {6}: Attention Mechanism}{S6: Attention Mechanism}}{subsection.4.3.2}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{Time-series Embedding}{81}{section*.134}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces High-level overview of the transformer architecture}}{82}{figure.caption.133}\protected@file@percent }
+\newlabel{fig:Transformer_Architecture}{{4.3}{82}{High-level overview of the transformer architecture}{figure.caption.133}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Traditional Attention Mechanism}{82}{section*.135}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Efficient Attention Mechanism}{82}{section*.136}\protected@file@percent }
+\acronymused{OmniFORE}
+\AC@undonewlabel{acro:ELU}
+\newlabel{acro:ELU}{{4.3.2}{83}{$\text {Informer}^{+2}$: Memory Saving with Attention Distilling}{section*.139}{}}
+\acronymused{ELU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}S\textsubscript  {7}: Bayesian Optimization with Generalization Objective}{83}{subsection.4.3.3}\protected@file@percent }
+\newlabel{sec:ch4_bayesian_optimization}{{4.3.3}{83}{\texorpdfstring {S\textsubscript {7}: Bayesian Optimization with Generalization Objective}{S7: Bayesian Optimization with Generalization Objective}}{subsection.4.3.3}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Bayesian optimization toy example. The star indicates the next value to try ($d_y = 5$). The target signifies the goal of minimizing the objective function.}}{84}{figure.caption.141}\protected@file@percent }
+\newlabel{fig:gp_toy_example}{{4.4}{84}{Bayesian optimization toy example. The star indicates the next value to try ($d_y = 5$). The target signifies the goal of minimizing the objective function}{figure.caption.141}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Performance Evaluation}{85}{section.4.4}\protected@file@percent }
+\newlabel{sec:ch4_evaluation}{{4.4}{85}{Performance Evaluation}{section.4.4}{}}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Experimental Setup}{85}{subsection.4.4.1}\protected@file@percent }
+\newlabel{sec:ch4_datasets}{{4.4.1}{85}{Experimental Setup}{subsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Benchmark Schemes}{85}{section*.142}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{CNN}
+\acronymused{RNN}
+\@writefile{toc}{\contentsline {paragraph}{ModernTCN: Temporal Convolutional Networks for Time-Series Forecasting~\blx@tocontentsinit {0}\cite {ModernTCN}}{85}{section*.143}\protected@file@percent }
+\acronymused{ModernTCN}
+\AC@undonewlabel{acro:LSTNet}
+\newlabel{acro:LSTNet}{{4.4.1}{85}{LSTNet: Modeling Long- and Short-Term Temporal Patterns with Deep Neural Networks~\cite {lai2018modelinglongshorttermtemporal}}{section*.145}{}}
+\@writefile{toc}{\contentsline {paragraph}{LSTNet: Modeling Long- and Short-Term Temporal Patterns with Deep Neural Networks~\blx@tocontentsinit {0}\cite {lai2018modelinglongshorttermtemporal}}{85}{section*.144}\protected@file@percent }
+\acronymused{LSTNet}
+\acronymused{CNN}
+\acronymused{RNN}
+\@writefile{toc}{\contentsline {paragraph}{AGCRN: Adaptive Graph Convolutional Recurrent Network for Traffic Forecasting~\blx@tocontentsinit {0}\cite {AGCRN}}{86}{section*.146}\protected@file@percent }
+\acronymused{AGCRN}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Dataset}}{86}{section*.147}\protected@file@percent }
+\newlabel{subsubsec:ch4_dataset_details}{{4.4.1}{86}{\textbf {Dataset}}{section*.147}{}}
+\acronymused{CPU}
+\acronymused{CPU}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Hyperparameters}}{87}{section*.148}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{LSTNet}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Hardware and Software Environment}}{87}{section*.149}\protected@file@percent }
+\acronymused{GPU}
+\acronymused{GB}
+\acronymused{CPU}
+\acronymused{GiB}
+\acronymused{RAM}
+\acronymused{GiB}
+\acronymused{SSD}
+\acronymused{LSTNet}
+\acronymused{AGCRN}
+\acronymused{PyTorch}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Evaluation Metrics}}{87}{section*.151}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MAE}{87}{section*.152}\protected@file@percent }
+\acronymused{MAE}
+\@writefile{toc}{\contentsline {paragraph}{RMSE}{87}{section*.153}\protected@file@percent }
+\acronymused{RMSE}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Hyperparameter Ranges for Bayesian Optimization Per Model}}{88}{table.caption.150}\protected@file@percent }
+\newlabel{table:hyperparameters}{{4.1}{88}{Hyperparameter Ranges for Bayesian Optimization Per Model}{table.caption.150}{}}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{RNN}
+\acronymused{LSTNet}
+\acronymused{CNN}
+\acronymused{RNN}
+\acronymused{CNN}
+\@writefile{toc}{\contentsline {paragraph}{SMAPE}{89}{section*.154}\protected@file@percent }
+\AC@undonewlabel{acro:SMAPE}
+\newlabel{acro:SMAPE}{{4.4.1}{89}{SMAPE}{section*.155}{}}
+\acronymused{SMAPE}
+\@writefile{toc}{\contentsline {paragraph}{Inference Time}{89}{section*.156}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Convergence Speed}{89}{section*.157}\protected@file@percent }
+\acronymused{RMSE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Results}{89}{subsection.4.4.2}\protected@file@percent }
+\newlabel{sec:ch4_results}{{4.4.2}{89}{Results}{subsection.4.4.2}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Isolating the Effect of the Suggested Scaling Strategy}}{89}{section*.158}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Impact of scaling strategy: Individual (per-trace) scaling yields substantially lower \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} compared to global scaling, highlighting the importance of handling heterogeneous trace statistics.}}{90}{figure.caption.159}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\newlabel{fig:individual_vs_global_scaling_metrics}{{4.5}{90}{Impact of scaling strategy: Individual (per-trace) scaling yields substantially lower \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} compared to global scaling, highlighting the importance of handling heterogeneous trace statistics}{figure.caption.159}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Hyperparameter Sensitivity and Optimization Effectiveness}}{90}{section*.160}\protected@file@percent }
+\acronymused{RMSE}
+\acronymused{RMSE}
+\acronymused{RMSE}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{RMSE}
+\acronymused{ModernTCN}
+\acronymused{RMSE}
+\acronymused{AGCRN}
+\acronymused{RMSE}
+\acronymused{LSTNet}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{RMSE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Distribution of test \ac {RMSE} values for different hyperparameter configurations showing model performance and consistency.}}{91}{figure.caption.161}\protected@file@percent }
+\acronymused{RMSE}
+\newlabel{fig:rmse_distribution_with_means}{{4.6}{91}{Distribution of test \ac {RMSE} values for different hyperparameter configurations showing model performance and consistency}{figure.caption.161}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Generalization Performance}}{91}{section*.162}\protected@file@percent }
+\newlabel{sec:ch4_evaluation_generalization}{{4.4.2}{91}{\textbf {Generalization Performance}}{section*.162}{}}
+\@writefile{toc}{\contentsline {paragraph}{Regular Training}{91}{section*.163}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{ModernTCN}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{AGCRN}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{LSTNet}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\acronymused{RMSE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\acronymused{OmniFORE}
+\acronymused{SMAPE}
+\acronymused{MAE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{CNN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\acronymused{OmniFORE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Generalization performance comparison of \ac {MAE}, \ac {RMSE} and \ac {SMAPE} for each model for the \textbf  {regular training} traces.}}{92}{figure.caption.164}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\newlabel{fig:container_google_is_metrics}{{4.7}{92}{Generalization performance comparison of \ac {MAE}, \ac {RMSE} and \ac {SMAPE} for each model for the \textbf {regular training} traces}{figure.caption.164}{}}
+\newlabel{sec:ch4_zero_shot_performance}{{4.4.2}{92}{Zero-Shot Performance}{section*.165}{}}
+\@writefile{toc}{\contentsline {paragraph}{Zero-Shot Performance}{92}{section*.165}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{ModernTCN}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{AGCRN}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{LSTNet}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{MAE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Generalization performance comparison of \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} for each model on the \textbf  {zero-shot} traces.}}{93}{figure.caption.166}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\newlabel{fig:container_google_oos_metrics}{{4.8}{93}{Generalization performance comparison of \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} for each model on the \textbf {zero-shot} traces}{figure.caption.166}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Dataset Generalization}{93}{section*.167}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Impact of Prediction Length on Inference Time}}{93}{section*.169}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Generalization performance comparison of \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} for each model on the \textbf  {cross-dataset} Alibaba traces.}}{94}{figure.caption.168}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\newlabel{fig:container_alibaba_metrics}{{4.9}{94}{Generalization performance comparison of \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} for each model on the \textbf {cross-dataset} Alibaba traces}{figure.caption.168}{}}
+\acronymused{RMSE}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{ModernTCN}
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{RMSE}
+\acronymused{AGCRN}
+\acronymused{RMSE}
+\acronymused{ModernTCN}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Impact of prediction length on inference time and \ac {RMSE} for \ac {OmniFORE}, \ac {AGCRN}, \ac {LSTNet}, and \ac {ModernTCN}.}}{95}{figure.caption.170}\protected@file@percent }
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\newlabel{fig:pred_vs_inf}{{4.10}{95}{Impact of prediction length on inference time and \ac {RMSE} for \ac {OmniFORE}, \ac {AGCRN}, \ac {LSTNet}, and \ac {ModernTCN}}{figure.caption.170}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Periodic Dynamic Workload Changes with Long-term Dependencies}}{95}{section*.171}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{RMSE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{LSTNet}
+\acronymused{CNN}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Variance-based Performance Analysis}}{96}{section*.173}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{CPU}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Comparison of true and predicted values for \ac {OmniFORE}, \ac {AGCRN}, and \ac {LSTNet} under dynamic workload changes.}}{97}{figure.caption.172}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\newlabel{fig:dynamic_workload_changes}{{4.11}{97}{Comparison of true and predicted values for \ac {OmniFORE}, \ac {AGCRN}, and \ac {LSTNet} under dynamic workload changes}{figure.caption.172}{}}
+\acronymused{OmniFORE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Comparison of true and \textbf  {zero-shot} predicted values for \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} on a regular training dataset.}}{97}{figure.caption.174}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\newlabel{fig:low_high_variance_trace_samples}{{4.12}{97}{Comparison of true and \textbf {zero-shot} predicted values for \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} on a regular training dataset}{figure.caption.174}{}}
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{ModernTCN}
+\acronymused{MAE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{MAE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{MAE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces Trace variance vs. \ac {MAE} and \ac {RMSE} for \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} models, with fitted linear lines.}}{98}{figure.caption.175}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\newlabel{fig:variance_vs_metrics_fitted}{{4.13}{98}{Trace variance vs. \ac {MAE} and \ac {RMSE} for \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} models, with fitted linear lines}{figure.caption.175}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Convergence}}{98}{section*.176}\protected@file@percent }
+\acronymused{RMSE}
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\acronymused{OmniFORE}
+\acronymused{RMSE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces Convergence of \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} models over epochs.}}{99}{figure.caption.177}\protected@file@percent }
+\acronymused{OmniFORE}
+\acronymused{ModernTCN}
+\acronymused{AGCRN}
+\acronymused{LSTNet}
+\newlabel{fig:test_rmse_convergence_comparison}{{4.14}{99}{Convergence of \ac {OmniFORE}, \ac {ModernTCN}, \ac {AGCRN}, and \ac {LSTNet} models over epochs}{figure.caption.177}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\textbf  {Temporal Workload Clustering Analysis}}{99}{section*.178}\protected@file@percent }
+\newlabel{sec:ch4_temporal_clustering}{{4.4.2}{99}{\textbf {Temporal Workload Clustering Analysis}}{section*.178}{}}
+\acronymused{OmniFORE}
+\acronymused{CNN}
+\newlabel{sec:ch4_clustering_metrics}{{4.4.2}{99}{Clustering Metrics}{section*.179}{}}
+\@writefile{toc}{\contentsline {paragraph}{Clustering Metrics}{99}{section*.179}\protected@file@percent }
+\AC@undonewlabel{acro:NMI}
+\newlabel{acro:NMI}{{4.4.2}{100}{Clustering Metrics}{section*.180}{}}
+\acronymused{NMI}
+\newlabel{sec:ch4_cnn_hyperparameter}{{4.4.2}{100}{CNN Hyperparameter Impact on Clustering Quality}{section*.181}{}}
+\@writefile{toc}{\contentsline {paragraph}{CNN Hyperparameter Impact on Clustering Quality}{100}{section*.181}\protected@file@percent }
+\acronymused{CNN}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.15}{\ignorespaces \ac {CNN} hyperparameter effects on clustering quality showing silhouette scores across different configurations, with the optimal configuration (kernel=7, filters=128) achieving a score of 0.553.}}{101}{figure.caption.182}\protected@file@percent }
+\acronymused{CNN}
+\newlabel{fig:parameter_influence}{{4.15}{101}{\ac {CNN} hyperparameter effects on clustering quality showing silhouette scores across different configurations, with the optimal configuration (kernel=7, filters=128) achieving a score of 0.553}{figure.caption.182}{}}
+\newlabel{sec:ch4_latent_space_visualization}{{4.4.2}{102}{Latent Space Effectiveness via t-SNE Visualization}{section*.183}{}}
+\@writefile{toc}{\contentsline {paragraph}{Latent Space Effectiveness via t-SNE Visualization}{102}{section*.183}\protected@file@percent }
+\AC@undonewlabel{acro:tSNE}
+\newlabel{acro:tSNE}{{4.4.2}{102}{Latent Space Effectiveness via t-SNE Visualization}{section*.184}{}}
+\acronymused{tSNE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.16}{\ignorespaces \ac {tSNE} visualization: original time-series (left) versus latent representation (right), showing improved cluster separation (131.8\% higher silhouette score).}}{102}{figure.caption.185}\protected@file@percent }
+\acronymused{tSNE}
+\newlabel{fig:tsne_comparison}{{4.16}{102}{\ac {tSNE} visualization: original time-series (left) versus latent representation (right), showing improved cluster separation (131.8\% higher silhouette score)}{figure.caption.185}{}}
+\newlabel{sec:ch4_cluster_stability}{{4.4.2}{102}{Cluster Stability and Optimal Cluster Count}{section*.186}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cluster Stability and Optimal Cluster Count}{102}{section*.186}\protected@file@percent }
+\acronymused{NMI}
+\@writefile{toc}{\contentsline {paragraph}{Impact of Clustering vs Random Sampling on Prediction Generalization}{102}{section*.187}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.17}{\ignorespaces Generalization benefit of clustering-based trace selection over random sampling: clustering yields substantially lower \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} on zero-shot workloads.}}{103}{figure.caption.188}\protected@file@percent }
+\acronymused{MAE}
+\acronymused{RMSE}
+\acronymused{SMAPE}
+\newlabel{fig:clustering_vs_random}{{4.17}{103}{Generalization benefit of clustering-based trace selection over random sampling: clustering yields substantially lower \ac {MAE}, \ac {RMSE}, and \ac {SMAPE} on zero-shot workloads}{figure.caption.188}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Deployment Considerations}{103}{subsection.4.4.3}\protected@file@percent }
+\newlabel{sec:ch4_deployment_considerations}{{4.4.3}{103}{Deployment Considerations}{subsection.4.4.3}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{API}
+\acronymused{OmniFORE}
+\acronymused{API}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Conclusion}{104}{section.4.5}\protected@file@percent }
+\newlabel{sec:ch4_conclusion}{{4.5}{104}{Conclusion}{section.4.5}{}}
+\acronymused{OmniFORE}
+\acronymused{OmniFORE}
+\acronymused{AERO}
+\acronymused{OmniFORE}
+\@setckpt{sections/chapter4/chapter4}{
+\setcounter{page}{106}
+\setcounter{equation}{32}
+\setcounter{enumi}{6}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{1}
+\setcounter{mpfootnote}{0}
+\setcounter{g__tag_MCID_abs_int}{0}
+\setcounter{g__tag_struct_abs_int}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{section}{5}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{17}
+\setcounter{table}{1}
+\setcounter{parentequation}{0}
+\setcounter{caption@flags}{2}
+\setcounter{continuedfloat}{0}
+\setcounter{subfigure}{0}
+\setcounter{subtable}{0}
+\setcounter{section@level}{1}
+\setcounter{Item}{11}
+\setcounter{Hfootnote}{1}
+\setcounter{authorcnt}{1}
+\setcounter{authorno}{1}
+\setcounter{autcrcnt}{1}
+\setcounter{degcnt}{1}
+\setcounter{depflag}{0}
+\setcounter{degno}{1}
+\setcounter{depno}{1}
+\setcounter{supcnt}{1}
+\setcounter{supno}{1}
+\setcounter{cosupcnt}{1}
+\setcounter{cosupno}{1}
+\setcounter{lstnumber}{1}
+\setcounter{float@type}{16}
+\setcounter{algorithm}{1}
+\setcounter{ALG@line}{18}
+\setcounter{ALG@rem}{0}
+\setcounter{ALG@nested}{0}
+\setcounter{ALG@Lnr}{2}
+\setcounter{ALG@blocknr}{10}
+\setcounter{ALG@storecount}{0}
+\setcounter{ALG@tmpcounter}{0}
+\setcounter{LT@tables}{0}
+\setcounter{LT@chunks}{0}
+\setcounter{tabx@nest}{0}
+\setcounter{listtotal}{0}
+\setcounter{listcount}{0}
+\setcounter{liststart}{0}
+\setcounter{liststop}{0}
+\setcounter{citecount}{0}
+\setcounter{citetotal}{0}
+\setcounter{multicitecount}{0}
+\setcounter{multicitetotal}{0}
+\setcounter{instcount}{0}
+\setcounter{maxnames}{3}
+\setcounter{minnames}{1}
+\setcounter{maxitems}{3}
+\setcounter{minitems}{1}
+\setcounter{citecounter}{0}
+\setcounter{maxcitecounter}{0}
+\setcounter{savedcitecounter}{0}
+\setcounter{uniquelist}{0}
+\setcounter{uniquename}{0}
+\setcounter{refsection}{0}
+\setcounter{refsegment}{0}
+\setcounter{maxextratitle}{0}
+\setcounter{maxextratitleyear}{0}
+\setcounter{maxextraname}{0}
+\setcounter{maxextradate}{0}
+\setcounter{maxextraalpha}{0}
+\setcounter{abbrvpenalty}{50}
+\setcounter{highnamepenalty}{50}
+\setcounter{lownamepenalty}{25}
+\setcounter{maxparens}{3}
+\setcounter{parenlevel}{0}
+\setcounter{blx@maxsection}{0}
+\setcounter{mincomprange}{10}
+\setcounter{maxcomprange}{100000}
+\setcounter{mincompwidth}{1}
+\setcounter{afterword}{0}
+\setcounter{savedafterword}{0}
+\setcounter{annotator}{0}
+\setcounter{savedannotator}{0}
+\setcounter{author}{0}
+\setcounter{savedauthor}{0}
+\setcounter{bookauthor}{0}
+\setcounter{savedbookauthor}{0}
+\setcounter{commentator}{0}
+\setcounter{savedcommentator}{0}
+\setcounter{editor}{0}
+\setcounter{savededitor}{0}
+\setcounter{editora}{0}
+\setcounter{savededitora}{0}
+\setcounter{editorb}{0}
+\setcounter{savededitorb}{0}
+\setcounter{editorc}{0}
+\setcounter{savededitorc}{0}
+\setcounter{foreword}{0}
+\setcounter{savedforeword}{0}
+\setcounter{holder}{0}
+\setcounter{savedholder}{0}
+\setcounter{introduction}{0}
+\setcounter{savedintroduction}{0}
+\setcounter{namea}{0}
+\setcounter{savednamea}{0}
+\setcounter{nameb}{0}
+\setcounter{savednameb}{0}
+\setcounter{namec}{0}
+\setcounter{savednamec}{0}
+\setcounter{translator}{0}
+\setcounter{savedtranslator}{0}
+\setcounter{shortauthor}{0}
+\setcounter{savedshortauthor}{0}
+\setcounter{shorteditor}{0}
+\setcounter{savedshorteditor}{0}
+\setcounter{labelname}{0}
+\setcounter{savedlabelname}{0}
+\setcounter{institution}{0}
+\setcounter{savedinstitution}{0}
+\setcounter{lista}{0}
+\setcounter{savedlista}{0}
+\setcounter{listb}{0}
+\setcounter{savedlistb}{0}
+\setcounter{listc}{0}
+\setcounter{savedlistc}{0}
+\setcounter{listd}{0}
+\setcounter{savedlistd}{0}
+\setcounter{liste}{0}
+\setcounter{savedliste}{0}
+\setcounter{listf}{0}
+\setcounter{savedlistf}{0}
+\setcounter{location}{0}
+\setcounter{savedlocation}{0}
+\setcounter{organization}{0}
+\setcounter{savedorganization}{0}
+\setcounter{origlocation}{0}
+\setcounter{savedoriglocation}{0}
+\setcounter{origpublisher}{0}
+\setcounter{savedorigpublisher}{0}
+\setcounter{publisher}{0}
+\setcounter{savedpublisher}{0}
+\setcounter{language}{0}
+\setcounter{savedlanguage}{0}
+\setcounter{origlanguage}{0}
+\setcounter{savedoriglanguage}{0}
+\setcounter{pageref}{0}
+\setcounter{savedpageref}{0}
+\setcounter{textcitecount}{0}
+\setcounter{textcitetotal}{0}
+\setcounter{textcitemaxnames}{0}
+\setcounter{biburlbigbreakpenalty}{100}
+\setcounter{biburlbreakpenalty}{200}
+\setcounter{biburlnumpenalty}{0}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{smartand}{1}
+\setcounter{bbx:relatedcount}{0}
+\setcounter{bbx:relatedtotal}{0}
+\setcounter{cbx@tempcnta}{0}
+\setcounter{cbx@tempcntb}{0}
+\setcounter{cbx@tempcntc}{0}
+\setcounter{cbx@tempcntd}{0}
+\setcounter{lstlisting}{0}
+}

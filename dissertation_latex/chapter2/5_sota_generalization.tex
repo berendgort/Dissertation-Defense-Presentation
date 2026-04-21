@@ -1,0 +1,45 @@
+% 2.5 Cross-Application Generalization (State of the Art)
+\subsection{Cross-Application Generalization}  
+\label{sec:ch2_sota_omni}
+
+Section~\ref{subsec:ch2_generalization_challenge} formalized the cross-dataset generalization gap and its operational consequences, while Section~\ref{subsec:ch2_attention_mechanism} introduced attention mechanisms as a potential solution for learning transferable temporal patterns. This section evaluates how existing approaches address these challenges, reviewing three categories of cross-application generalization approaches: (i) transfer learning and domain adaptation techniques, (ii) attention-based models, and (iii) specialized architectures and ensemble methods. Each category is analyzed for its fundamental limitations, concluding with how \ac{OmniFORE} addresses these gaps.
+
+\subsubsection{Transfer Learning and Domain Adaptation}
+
+Transfer learning approaches for cross-domain workload prediction include feature-based methods and domain-adaptive techniques that combine transfer learning with adversarial training.
+
+\textit{Feature-Based Transfer Learning:} Transfer learning frameworks~\cite{wang2019transfer} use domain adaptation to learn shared and domain-specific features, enabling knowledge transfer across related distributions. These methods identify common patterns across domains while preserving domain-specific characteristics.
+
+\textit{Domain-Adaptive Approaches:} Domain-adaptive methods combine transfer learning with adversarial training to extract domain-invariant features for effective zero-shot scenarios. These approaches learn representations that remain stable across different workload distributions.
+
+However, these methods show critical limitations: (i) they struggle to determine which features to transfer when source and target distributions differ widely, (ii) they need extensive offline training with paired domain data, and (iii) they lack mechanisms for rapid adaptation to emerging workload types, limiting their applicability in dynamic edge-cloud environments. These fundamental constraints motivate exploring attention mechanisms as an alternative paradigm for addressing cross-application generalization.
+
+\subsubsection{Attention-Based Models}
+
+While transfer learning focuses on adapting features across domains, attention mechanisms offer an alternative approach by dynamically weighting temporal segments to capture complex dependencies across heterogeneous workload traces.
+
+\textit{Attention-Enhanced Neural Networks:} These networks~\cite{zhang2022attention} integrate multi-head attention with recurrent layers to focus on critical patterns, selectively emphasizing informative temporal segments while suppressing noise.
+
+\textit{Attention-Based Transfer Learning:} This approach~\cite{li2022robust} combines pre-trained feature extractors with domain-adaptive attention to highlight salient features, allowing models to identify transferable patterns across workload domains.
+
+Despite these capabilities, attention-based approaches face three main drawbacks: (i) standard implementations rely on \ac{RNN} components with inherent "forgetting" properties for long sequences~\cite{zhou2021informer}, (ii) attention matrices scale quadratically with sequence length, creating significant computational bottlenecks for edge devices, and (iii) without proper guidance, attention may focus on random correlations rather than fundamental patterns that allow true generalization. These single-paradigm limitations have led researchers to explore whether combining multiple approaches might overcome the individual weaknesses of both transfer learning and attention mechanisms.
+
+\subsubsection{Specialized Architectures and Ensemble Methods}
+
+Beyond these single-paradigm methods, researchers have developed hybrid architectures and ensemble frameworks that combine multiple model types for improved generalization.
+
+\textit{Hybrid \ac{CNN}-\ac{RNN} Architectures:} \ac{CNN}-\ac{RNN} hybrids~\cite{lai2018modelinglongshorttermtemporal} integrate convolutional layers for local dependency patterns with recurrent components for long-term temporal dependencies. These models use complementary strengths of different neural architectures.
+
+\textit{Adaptive Ensemble Frameworks:} Adaptive ensemble frameworks~\cite{kim2024ensemble} dynamically adjust the contribution of multiple models based on real-time performance. These systems adapt model weights to changing workload characteristics.
+
+\textit{Modern Convolutional Approaches:} Recent work has introduced ModernTCN~\cite{ModernTCN}, a pure convolution-based approach that updates traditional \acp{TCN} with larger kernel sizes and specialized convolution blocks. By decoupling temporal and feature processing, ModernTCN performs well across diverse time-series tasks while maintaining lower computational costs than attention-based methods. Its linear complexity makes it suitable for environments with limited resources. However, ModernTCN was designed for general time-series forecasting; its effectiveness on highly variable container workloads in edge-cloud networks has not been extensively evaluated in the original work.
+
+\textit{Graph, Generative, and Emerging Methods:} More recent approaches incorporate Graph Neural Networks~\cite{li2024evogwp} for capturing service dependencies, \acp{GAN} \cite{esteban2017real} for data augmentation, and even Quantum Neural Networks~\cite{10531701}. While these methods explore novel computational paradigms, they continue to face limitations from their underlying \ac{RNN} and \ac{CNN} components, particularly in resource-constrained edge environments.
+
+The fundamental limitations of these approaches include: (i) high computational requirements that exceed edge device capabilities, (ii) the treatment of workload traces as individual entities instead of finding generic patterns, and (iii) the overhead of maintaining multiple models or complex architectures that often outweighs generalization benefits in resource-constrained settings. These limitations create a fundamental scalability bottleneck: deploying generalized prediction typically requires training separate models for each microservice or workload type, resulting in an unsustainable "n-models for n-services" paradigm. The following subsubsection examines how \ac{OmniFORE} addresses these limitations through a different approach to workload pattern recognition.
+
+\subsubsection{Addressing the Limitations with OmniFORE}
+
+\ac{OmniFORE} overcomes the three generalization barriers identified above, namely feature transfer ambiguity, attention scalability, and architectural complexity. The approach moves beyond the feature-matching paradigm of transfer learning to identify fundamental behavioral patterns. By introducing temporal clustering as a precursor to attention mechanisms, it categorizes disparate workload traces into a finite set of universal behaviors. This allows the model to learn from representative archetypes rather than overfitting to individual traces, substantially mitigating the "n-models for n-services" scalability challenge. Chapter~\ref{ch:attention-driven-prediction} details how this pattern-based approach enables generalization across heterogeneous microservices without per-service retraining.
+
+With edge-deployable prediction (\ac{AERO}) and cross-application generalization (\ac{OmniFORE}) established, the remaining challenge is translating these predictions into autonomous orchestration actions. The following section examines how existing systems attempt to bridge this gap between prediction and action.

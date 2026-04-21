@@ -1,0 +1,16 @@
+\chapter*{Abstract}
+
+\ac{6G} networks demand orchestration systems capable of managing thousands of distributed microservices under sub-millisecond latency constraints. Traditional centralized approaches introduce unacceptable delays, create single points of failure in heterogeneous edge-cloud infrastructures, and require constant attention from human operators. This dissertation addresses three critical challenges: (1) computational constraints that prevent the deployment of predictive models on edge devices, (2) lack of generalization of models across diverse types of applications, and (3) lack of validated autonomous orchestration without human intervention.
+
+To address these challenges, this dissertation develops three complementary frameworks that combine lightweight machine learning, attention-based deep learning, and agentic artificial intelligence for zero-touch service management in distributed 6G edge-cloud environments.
+
+The first contribution, \acf{AERO}, addresses the challenge of running predictions on resource-constrained edge devices. Current transformer models require millions of parameters (e.g., Pathformer: 2.4M), making them impractical for edge deployment. \ac{AERO} achieves competitive accuracy with only 599 parameters, making edge deployment feasible and reducing reliance on cloud round-trips when local inference is preferred. Evaluations demonstrate sub-millisecond inference (0.38ms), 13\% energy savings, and 99\% fewer \ac{SLA} violations compared to reactive scheduling, which allocates resources only after demand changes occur.
+
+The second contribution, \acf{OmniFORE}, addresses the operational challenge of maintaining separate models per application. A single \ac{OmniFORE} model generalizes across heterogeneous workloads without retraining, replacing the need for dedicated per-application models. Cross-dataset evaluation on industry-standard benchmarks (Google and Alibaba production traces) demonstrates 30\% better accuracy than \ac{ModernTCN} while maintaining 15$\times$ faster inference than \ac{AGCRN}.
+
+The third contribution, \acf{AgentEdge}, addresses the challenge of agentic orchestration in distributed edge-cloud environments. Existing agent frameworks target generic domains or centralized cloud infrastructures, leaving distributed 6G environments without autonomous management solutions. \ac{AgentEdge} introduces multi-agent orchestration to this domain, translating natural language intent (e.g., ``deploy with low latency'') into validated orchestration actions across heterogeneous infrastructure. Evaluations demonstrate 78.3\% success rate (2.76$\times$ higher than single-agent baselines), 10$\times$ reduction in API call variability, and power savings up to 300.8W across deployments scaling from 8 to 35 nodes.
+
+The research has produced 5 journal publications, 3 international conference papers in \ac{IEEE} venues, and 1 Elsevier book chapter.
+
+\vspace{1em}
+\noindent\textbf{Keywords:} Agentic AI, Multi-Agent Systems, 6G Networks, Edge-Cloud Orchestration, Microservices, Workload Prediction, Deep Learning, Attention Mechanism, Digital Twin, Zero-Touch Automation

@@ -1,0 +1,185 @@
+\section{Evaluation}
+
+In this section, we present the evaluation of our proposed \ac{AERO} model through three evaluation scenarios. First, we conduct a performance evaluation of machine learning models (Section~\ref{sec:ch3_evaluation}), benchmarking \ac{AERO} against five state-of-the-art approaches using metrics including prediction accuracy, computational efficiency, and model complexity. Second, we perform an orchestration performance evaluation via simulation (Section~\ref{sec:ch3_simulations}) to assess metrics such as energy consumption, response time, resource utilization, and \ac{SLA} violations. Third, we validate the framework in a live edge-cloud deployment (Section~\ref{sec:ch3_live_deployment}) to demonstrate real-world applicability.
+
+\subsection{Performance Evaluation of Machine Learning Models}
+\label{sec:ch3_evaluation}
+
+In this section, we conduct a detailed machine learning evaluation to assess model performance across multiple dimensions: prediction accuracy, computational efficiency, and adaptability to dynamic workload patterns.
+
+\subsubsection{Dataset}
+
+We use the Alibaba 2022 microservices trace dataset~\cite{luo2022Prediction}, focusing on pod \texttt{MS\_11349}. The dataset provides $T = 18,\!720$ samples collected at 1-minute intervals over 13 days. Each workload vector $\mathbf{W}_t \in \mathbb{R}^{f}$ consists of $f = 2$ features: normalized \ac{CPU} utilization ($W_t^{(1)}$) and memory utilization ($W_t^{(2)}$), aligning with the workload representation in Section~\ref{sec:ch3_system_model}. This forms a workload trace $\mathbf{W} \in \mathbb{R}^{T \times f}$ exhibiting both deterministic trends $\boldsymbol{\mu}_t$ (e.g., daily patterns) and stochastic fluctuations $\boldsymbol{\epsilon}_t$ (e.g., demand spikes), making it ideal for evaluating prediction models with different historical context windows $\kappa$ and forecast horizons $\lambda$.
+
+\subsubsection{Benchmarks}
+
+We compare \ac{AERO} with five state-of-the-art models, each representing a distinct architecture:
+
+\begin{itemize}
+    \item \textbf{FourierGNN}~\cite{yi2024fouriergnn} combines Graph Neural Networks (GNNs) with Fourier transforms to capture complex spatio-temporal dependencies.
+    \item \textbf{ModernTCN}~\cite{donghao2024moderntcn} employs Temporal Convolutional Networks (TCNs) with advanced dilation to model long-range dependencies efficiently.
+    \item \textbf{WGAN}~\cite{arbat2022wassersteinadversarialtransformercloud} is a transformer-based model utilizing a generative adversarial approach, representing the state-of-the-art in cloud-native workload prediction.
+    \item \textbf{Pathformer}~\cite{pathformer2024}, designed by Alibaba Group, optimizes the Transformer architecture with efficient attention mechanisms.
+    \item \textbf{SparseTSF}~\cite{sparseTSF} is a lightweight framework based on sparse \acp{MLP}, designed for fast inference and minimal resource consumption.
+\end{itemize}
+
+\subsubsection{Experimental Settings}
+
+Experiments were conducted on a server with an NVIDIA A100 \ac{GPU} (40\,GB), 30 \ac{CPU} cores, 200\,\ac{GiB} \ac{RAM}, and 512\,\ac{GiB} \ac{SSD}, running Ubuntu 20.04.2 LTS. All models were implemented in Python using \ac{PyTorch}. Hyperparameters were tuned using Bayesian optimization~\cite{frazier2018tutorial, gridsearchvsbayesian}, involving 20 initial random evaluations followed by 30 refinement iterations. The hyperparameter ranges are summarized in Table~\ref{tab:hyperparameter_ranges}.
+
+We assess model performance using \ac{MAE} and \ac{RMSE}, the two most commonly used metrics in time-series forecasting \cite{acmtimeseriesreview2024}:
+
+\begin{equation}
+\label{eq:mae}
+\text{MAE} = \frac{1}{\lambda} \sum_{i=1}^{\lambda} \left\| \mathbf{W}_{t+i} - \hat{\mathbf{W}}_{t+i} \right\|_1,
+\end{equation}
+
+\begin{equation}
+\label{eq:rmse}
+\text{RMSE} = \sqrt{ \frac{1}{\lambda} \sum_{i=1}^{\lambda} \left\| \mathbf{W}_{t+i} - \hat{\mathbf{W}}_{t+i} \right\|_2^2 },
+\end{equation}
+
+where $\left\| \cdot \right\|_1$ and $\left\| \cdot \right\|_2$ denote the $\ell_1$ and Euclidean norms, respectively. In addition to prediction accuracy, we evaluate practical deployment considerations including inference time, convergence speed, parameter count, and memory usage.
+
+\begin{table*}[t]
+\centering
+\caption{Hyperparameter Ranges for Bayesian Optimization Per Model}
+\label{tab:hyperparameter_ranges}
+\resizebox{0.900\textwidth}{!}{%
+\begin{tabular}{llcccccc}
+\hline
+\textbf{Hyperparameter} & \textbf{Symbol} & \textbf{FourierGNN} & \textbf{WGAN-GP} & \textbf{ModernTCN} & \textbf{Pathformer} & \textbf{SparseTSF} & \textbf{AERO (ours)} \\
+\hline
+Sequence length & $L_s$ & (48, 256) & (12, 48) & (48, 336) & (48, 96) & (48, 128) & (48, 128) \\
+Prediction length & $L_p$ & (12, 96) & (1, 24) & (12, 96) & (12, 96) & (12, 24) & (12, 24) \\
+Batch size & $B$ & (16, 128) & (16, 128) & (32, 512) & (128, 512) & (128, 512) & (128, 512) \\
+Learning rate & $\eta$ & (1e-4, 1e-2) & - & (1e-4, 1e-2) & - & (1e-3, 3e-2) & (1e-3, 3e-2) \\
+Model dimension & $d_m$ & - & (16, 128) & (32, 512) & (4, 16) & (64, 512) & (64, 512) \\
+Number of heads & $N_h$ & - & (2, 8) & (1, 8) & - & (4, 8) & - \\
+Encoder layers & $L_e$ & - & (1, 4) & (1, 4) & (1, 3) & (1, 3) & (1, 3) \\
+Decoder layers & $L_d$ & - & (1, 4) & - & - & - & - \\
+Dropout & $p_d$ & (0.0, 0.5) & (0.0, 0.5) & (0.0, 0.5) & (0.1, 0.2) & (0.1, 0.4) & (0.1, 0.4) \\
+Feed-forward dim. & $d_f$ & - & - & - & (32, 64) & (64, 512) & (64, 512) \\
+Embed size & $d_e$ & (32, 256) & - & - & - & - & - \\
+Hidden size & $d_h$ & (64, 512) & - & - & - & - & - \\
+Period length & $L_{\text{per}}$ & - & - & - & - & (4, 60) & (2, 60) \\
+Number of experts & $N_{\text{exp}}$ & - & - & - & (4, 4) & - & - \\
+$k$ & $k$ & - & - & - & (2, 3) & - & - \\
+Weight decay & $\lambda_w$ & - & (1e-6, 1e-2) & - & - & - & - \\
+Lambda GP & $\lambda_{\text{GP}}$ & - & (1, 20) & - & - & - & - \\
+\hline
+\end{tabular}%
+}
+\end{table*}
+
+\subsubsection{Experimental Results}
+
+Our evaluation results are summarized in Table~\ref{tab:comprehensive_results}. We analyze the performance of each model across the defined metrics, highlighting key trade-offs relevant to cloud-native scenarios.
+
+\begin{table*}
+\centering
+\caption{Performance Comparison of Workload Prediction Models. Best and second-best performances among models 1--5 are highlighted per column. Red highlights limitation in handling multi-periodic signals.}
+\label{tab:comprehensive_results}
+\resizebox{1.000\textwidth}{!}{%
+\begin{tabular}{lcccccccccc}
+\hline
+Model & \multicolumn{2}{c}{Memory} & \multicolumn{2}{c}{\ac{CPU}} & Inference & Convergence & \# Parameters & Max Memory & Multi- \\
+& \ac{RMSE} & \ac{MAE} & \ac{RMSE} & \ac{MAE} & Time (\SI{}{\milli\second}) & (epochs) & (number) & Usage (bytes) & Periodicity \\
+\hline
+\textbf{AERO (ours)} & $3.78\mathrm{e}{-4}$ & $2.85\mathrm{e}{-4}$ & $2.88\mathrm{e}{-3}$ & $2.28\mathrm{e}{-3}$ & $3.84\mathrm{e}{-1}$ & 16 & 599 & $2,\!236$ & Yes \\
+\hline
+1. Pathformer & \textcolor{magenta}{\textbf{$2.23\mathrm{e}{-4}$}} & \textcolor{magenta}{\textbf{$1.57\mathrm{e}{-4}$}} & \textcolor{magenta}{\textbf{$2.81\mathrm{e}{-3}$}} & \textcolor{magenta}{\textbf{$2.22\mathrm{e}{-3}$}} & $5.21\mathrm{e}{-1}$ & $24$ & $2,\!429,\!278$ & $9,\!717,\!112$ & Yes \\
+2. \ac{ModernTCN} & \textcolor{cyan}{\textbf{$3.58\mathrm{e}{-4}$}} & \textcolor{cyan}{\textbf{$2.75\mathrm{e}{-4}$}} & $2.88\mathrm{e}{-3}$ & $2.26\mathrm{e}{-3}$ & \textcolor{cyan}{\textbf{$7.15\mathrm{e}{-3}$}} & \textcolor{magenta}{\textbf{$10$}} & $247,\!091$ & $988,\!364$ & Yes \\
+3. \ac{SparseTSF} & $3.99\mathrm{e}{-4}$ & $2.95\mathrm{e}{-4}$ & \textcolor{cyan}{\textbf{$2.85\mathrm{e}{-3}$}} & \textcolor{cyan}{\textbf{$2.24\mathrm{e}{-3}$}} & \textcolor{magenta}{\textbf{$1.84\mathrm{e}{-3}$}} & \textcolor{magenta}{\textbf{$10$}} & \textcolor{magenta}{\textbf{$35$}} & \textcolor{magenta}{\textbf{$140$}} & \textcolor{red}{No} \\
+4. \ac{WGAN} & $2.13\mathrm{e}{-3}$ & $1.79\mathrm{e}{-3}$ & $4.46\mathrm{e}{-3}$ & $3.61\mathrm{e}{-3}$ & $3.23$ & $43$ & $2,\!889,\!815$ & $11,\!559,\!260$ & Yes \\
+5. \ac{FourierGNN} & $8.54\mathrm{e}{-3}$ & $8.51\mathrm{e}{-3}$ & $6.00\mathrm{e}{-3}$ & $5.18\mathrm{e}{-3}$ & $3.47\mathrm{e}{-2}$ & \textcolor{magenta}{\textbf{$10$}} & \textcolor{cyan}{\textbf{$228,\!680$}} & \textcolor{cyan}{\textbf{$914,\!720$}} & Yes \\
+\hline
+\textbf{AERO} vs Best & $+$69.5\% & $+$81.5\% & $+$2.5\% & $+$2.7\% & $+$20,772\% & $+$60\% & $+$1,497\% & $+$1,497\% & - \\
+\textbf{AERO} vs $2^{\text{nd}}$ Best & $+$5.6\% & $+$3.6\% & $+$0.0\% & $+$0.9\% & $+$5,273\% & $+$60\% & $-99.8\%$ & $-99.8\%$ & - \\
+\hline
+\end{tabular}%
+}
+\end{table*}
+
+
+\paragraph*{Prediction Accuracy}
+\label{sec:ch3_prediction_accuracy}
+
+Accurate workload prediction is essential for efficient resource allocation and maintaining Quality of Service in cloud-native scenarios. All models demonstrate strong predictive capabilities, but key differences emerge (see Fig.~\ref{fig:multivariate_prediction}).
+
+For memory utilization, Pathformer achieves the best predictive performance with an \ac{RMSE} of $2.23 \times 10^{-4}$. \ac{ModernTCN}, \ac{AERO}, and \ac{SparseTSF} exhibit competitive performance with \ac{RMSE} values of $3.58 \times 10^{-4}$, $3.78 \times 10^{-4}$, and $3.99 \times 10^{-4}$, respectively. This clustering suggests these architectures effectively capture the underlying patterns in memory usage. \ac{FourierGNN} and \ac{WGAN} perform worse, with higher \ac{RMSE} values.
+
+In \ac{CPU} utilization prediction, we observe similar performance across all models. The \ac{RMSE} values cluster tightly around $2.8 \times 10^{-3}$, indicating that \ac{CPU} patterns may be more challenging to predict precisely due to their stochastic nature.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.411\textwidth]{sections/chapter3/img/multivariate_prediction.pdf}
+\caption{Predicted vs.\ true values for memory (top) and \ac{CPU} (bottom) utilization. Solid gray lines represent true values, and dashed lines show model predictions (\ac{AERO} in green).}
+\label{fig:multivariate_prediction}
+\end{figure}
+
+\paragraph*{Dynamic Periodicity Adaptation in \ac{AERO}}
+\label{sec:ch3_dynamic_periodicity}
+
+To evaluate \ac{AERO}'s adaptive capabilities, we compared it with \ac{SparseTSF}~\cite{sparseTSF} on a synthetic dataset (5000 time steps, minute-level granularity) featuring dynamic periodic shifts in \ac{CPU} and memory utilization. The trace incorporates periods of 6, 24, 48, and 96 time steps to simulate varying workload phases. While \ac{SparseTSF} operates under a fixed periodicity assumption, \ac{AERO} dynamically detects and adapts to the dominant periodicity.
+
+As shown in Fig.~\ref{fig:aero_vs_sparsetsf_predictions_mem}, \ac{SparseTSF} fails to capture both high- and low-frequency patterns due to its static periodicity assumption. In contrast, \ac{AERO} successfully adapts to shifting periodicities, achieving better performance (\ac{RMSE}: 0.180, \ac{MAE}: 0.122) compared to \ac{SparseTSF} (\ac{RMSE}: 0.315, \ac{MAE}: 0.273).
+
+\ac{AERO} requires approximately two periods ($2 \times \tau_{\text{new}}$) to adjust to periodicity changes, as observed in Fig.~\ref{fig:aero_vs_sparsetsf_predictions_mem}. This adaptation window stems from \ac{AERO}'s \ac{ACF} mechanism (Equation~\ref{eq:acf}, Section~\ref{sec:ch3_proposed_solution}), which needs sufficient data to detect new periodic patterns through Equation~\ref{eq:period_assignment}. As more data from the period $\tau_{\text{new}}$ is collected, the \ac{ACF} at lag $\tau_{\text{new}}$ increases. After about two full cycles of $\tau_{\text{new}}$, the repeated patterns are sufficient for the \ac{ACF} to detect $\tau_{\text{new}}$ as the new dominant period. The Adaptive Forecasting Module then segments the data based on the detected period $\tau$. Having at least two complete periods ensures that the segmentation captures the new periodic pattern effectively, improving prediction accuracy.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.573\textwidth]{sections/chapter3/img/aero_vs_sparsetsf_predictions_mem.pdf}
+\caption{Memory utilization predictions over time. \ac{AERO} dynamically adapts to changing periodicities, while \ac{SparseTSF} fails to capture both high- and low-frequency patterns effectively.}
+\label{fig:aero_vs_sparsetsf_predictions_mem}
+\end{figure}
+
+\paragraph*{Model Complexity and Size}
+\label{sec:ch3_model_complexity}
+
+Fig.~\ref{fig:model_params_and_memory_comparison} presents a logarithmic comparison of model complexity, highlighting the lightweight nature of \ac{AERO} relative to more complex architectures.
+
+Resource efficiency is critical in cloud-native deployments, particularly at the edge~\cite{waleffe2023mariusgnn}. \ac{SparseTSF} stands out with only 35 parameters and minimal memory usage (140 bytes), ideal for resource-constrained devices. \ac{AERO} has 599 parameters and a memory footprint of 2,236 bytes, balancing lightweight design with enhanced functionality. While larger than \ac{SparseTSF}, \ac{AERO} maintains fewer than 1,000 parameters while offering adaptability to varying periodicities.
+
+\ac{ModernTCN} and \ac{FourierGNN} offer a balance between complexity and performance, suitable for environments with moderate resources. Pathformer and \ac{WGAN}, with millions of parameters and higher memory requirements, are more appropriate for powerful edge nodes or cloud servers.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.613\textwidth]{sections/chapter3/img/model_params_and_memory_comparison.pdf}
+\caption{Logarithmic comparison of model complexity: number of parameters and maximum memory usage.}
+\label{fig:model_params_and_memory_comparison}
+\end{figure}
+
+\paragraph*{Inference Time}
+
+Fig.~\ref{fig:inference_times} shows the inference times for all models, highlighting the trade-off between complexity and latency.
+
+Inference time was measured per batch over 1000 batches and averaged. Low inference latency is critical for real-time decision-making in cloud-native environments. \ac{SparseTSF} demonstrates the fastest inference time ($1.84\,\mu$s), while \ac{AERO} has an inference time of $0.38$\,ms. Since both models operate well below the \SI{50}{\milli\second} latency threshold required for real-time applications \cite{8334540}, their performance difference is not significant for practical deployments. \ac{AERO} balances this latency increase with adaptive capabilities (Fig.~\ref{fig:aero_vs_sparsetsf_predictions_mem}), making it suitable for scenarios where adaptability to varying periodicities is essential.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.613\textwidth]{sections/chapter3/img/inference_times_comparison.pdf}
+\caption{Inference times for all models}
+\label{fig:inference_times}
+\end{figure}
+
+\paragraph*{Convergence Behavior}
+
+Fig.~\ref{fig:normalized_convergence_comparison} illustrates the normalized training loss convergence across models. \ac{AERO} demonstrates stable convergence, with a slight delay compared to the fastest models. Models with very low training loss may be susceptible to overfitting.
+
+Fast convergence is essential for models requiring frequent retraining in dynamic cloud-native workloads~\cite{gudepu2023adaptive}. \ac{SparseTSF}, \ac{ModernTCN}, and \ac{FourierGNN} converge rapidly within 10 epochs, facilitating quick adaptation to new data. \ac{AERO} converges in 16 epochs, reflecting the additional complexity from its adaptive period detection module. This slight increase in training time is offset by improved adaptability to varying workload patterns. \ac{WGAN} requires 43 epochs to converge and exhibits higher variability during training, likely due to instability from its adversarial training process.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.495\textwidth]{sections/chapter3/img/normalized_convergence_comparison.pdf}
+\caption{Normalized \ac{MSE} training loss convergence across models.}
+\label{fig:normalized_convergence_comparison}
+\end{figure}
+
+\paragraph*{Observations and Discussion}
+
+Our experimental results reveal key performance characteristics across models. For memory prediction, Pathformer achieves the highest accuracy (\ac{RMSE}: $2.23 \times 10^{-4}$), while \ac{ModernTCN}, \ac{AERO}, and \ac{SparseTSF} show competitive performance (\ac{RMSE}: $3.58$-$3.99 \times 10^{-4}$). \ac{CPU} prediction yields similar performance across all models (\ac{RMSE} approximately $2.8 \times 10^{-3}$), suggesting inherent challenges in predicting stochastic \ac{CPU} patterns.
+
+\ac{AERO} extends \ac{SparseTSF}'s capabilities by incorporating adaptive period detection while maintaining computational efficiency (Section~\ref{sec:ch3_dynamic_periodicity}). The models span a wide resource spectrum: \ac{SparseTSF} is extremely lightweight (35 parameters), Pathformer is resource-intensive (2M+ parameters), and \ac{AERO} offers a balanced middle ground with fewer than 1,000 parameters.
+
+Based on these findings, we select Pathformer, \ac{SparseTSF}, and \ac{AERO} for further simulation analysis, as they represent distinct approaches to the prediction problem and enable evaluation of accuracy-efficiency trade-offs in cloud workload prediction.

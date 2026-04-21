@@ -1,0 +1,77 @@
+\section{Summary of Contributions}
+\label{sec:ch6_summary}
+
+As established in Chapter~\ref{ch:introduction}, \ac{6G} orchestration faces three interdependent challenges. \textit{Resource efficiency} requires deploying prediction models at edge devices, yet existing approaches demand computational resources that exceed typical edge constraints. \textit{Operational scalability} requires serving heterogeneous workloads without per-application customization, yet lightweight models typically learn application-specific patterns that fail to generalize. \textit{Autonomous management} requires coordinating orchestration actions without human intervention, yet manual decision-making cannot scale to the complexity of thousands of interdependent services.
+
+This dissertation addresses these three dimensions through complementary frameworks for lightweight prediction, cross-application generalization, and validated agentic orchestration.
+
+\subsection{Technical Contributions and Objective Assessment}
+\label{subsec:ch6_technical_summary}
+
+The following paragraphs summarize each contribution, with Table~\ref{tab:contribution_summary} consolidating the key results.
+
+\paragraph{Chapter~\ref{ch:adaptive-orchestration}: Edge-Deployable Prediction}
+\ac{AERO} addresses the computational barrier preventing edge deployment of workload prediction. The adaptive period detection mechanism dynamically identifies dominant periodicities in multivariate workload data, enabling accurate forecasting with only 599 parameters. This represents a 99.98\% reduction compared to the best-performing transformer baseline (Pathformer) while achieving comparable accuracy on Alibaba production traces. Integration into orchestration workflows through the extended \ac{COSCO} framework demonstrated 13\% energy savings and 99\% fewer \ac{SLA} violations compared to reactive scheduling. Live deployment validation confirmed sub-millisecond inference (0.38ms) suitable for real-time edge orchestration.
+
+\paragraph{Chapter~\ref{ch:attention-driven-prediction}: Cross-Application Generalization}
+\ac{OmniFORE} addresses the operational scalability challenge where maintaining separate models per application becomes unsustainable. Temporal clustering identifies fundamental workload patterns that transcend application-specific implementations. Multi-scale attention mechanisms then learn which patterns apply to each service. This enables a single model to generalize across heterogeneous workloads without retraining. Cross-dataset evaluation demonstrated 30\% better \ac{MAE} than \ac{ModernTCN} when trained on Google Borg traces and evaluated on Alibaba data, with inference speeds 15$\times$ faster than \ac{AGCRN}.
+
+\paragraph{Chapter~\ref{ch:distributed-agentic-ai}: Autonomous Orchestration}
+\ac{AgentEdge} extends the intelligent orchestration pipeline by enabling autonomous action on predictions. The \ac{ActSimCrit} methodology validates orchestration strategies in digital twin environments before production execution, significantly reducing trial-and-error risks. Four specialized agents coordinate through structured workflows covering intent processing, infrastructure monitoring, strategic planning, and action execution. Systematic evaluation demonstrated 78.3\% success rate (2.76$\times$ higher than \ac{ReAct} baselines) with 10$\times$ more consistent \ac{API} interactions. Energy optimization scenarios achieved power savings up to 300.8W across infrastructure scales from 8 to 35 nodes.
+
+\begin{table}[!htbp]
+\centering
+\caption{Summary of Technical Contributions and Objective Achievement}
+\label{tab:contribution_summary}
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{@{}p{2.2cm}p{2.5cm}p{3.2cm}p{7cm}@{}}
+\toprule
+\textbf{Framework} & \textbf{Objective} & \textbf{Solution} & \textbf{Key Results} \\
+\midrule
+\textbf{AERO} (Ch.~\ref{ch:adaptive-orchestration}) & 
+O1: Edge-deployable prediction & 
+Sub-1K parameter model with adaptive period detection & 
+599 params (99.98\% vs Pathformer); 0.38ms inference; 13\% energy savings; 99\% fewer \ac{SLA} violations vs reactive \\
+\addlinespace
+\textbf{OmniFORE} (Ch.~\ref{ch:attention-driven-prediction}) & 
+O2: Cross-application generalization & 
+Temporal clustering + multi-scale attention & 
+Single model generalizes without retraining; 30\% better cross-dataset \ac{MAE} vs \ac{ModernTCN} (Google$\rightarrow$Alibaba); 15$\times$ faster than \ac{AGCRN} \\
+\addlinespace
+\textbf{AgentEdge} (Ch.~\ref{ch:distributed-agentic-ai}) & 
+O3: Zero-touch orchestration & 
+Multi-agent framework with \ac{ActSimCrit} validation & 
+78.3\% success (2.76$\times$ vs. \ac{ReAct}); 10$\times$ more consistent; 300.8W power savings \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{O4: Integrated Validation}} & \multicolumn{2}{p{10.2cm}}{Google Borg \& Alibaba traces; Nearby Computing S.L. collaboration; Kubernetes/Docker integration} \\
+\addlinespace
+\multicolumn{2}{@{}l}{\textbf{O5: Dissemination}} & \multicolumn{2}{p{10.2cm}}{5 journal publications + 3 conference papers + 1 book chapter (see Section~\ref{sec:ch1_research_contributions})} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\noindent The four technical objectives stated in Section~\ref{subsec:ch1_technical_objectives} have been achieved. Objective~1 required edge-deployable prediction with fewer than 1,000 parameters, and \ac{AERO} delivers 599 parameters with sub-millisecond inference. Objective~2 required cross-application generalization without per-service customization, and \ac{OmniFORE} serves heterogeneous workloads with a single model. Objective~3 required autonomous orchestration exceeding 75\% success, and \ac{AgentEdge} achieves 78.3\%. Objective~4 required validation on production datasets, and all frameworks were evaluated on Google Borg and Alibaba traces with industrial collaboration from Nearby Computing S.L.
+
+\subsection{Fundamental Insights}
+\label{subsec:ch6_fundamental_insights}
+
+\paragraph{Efficiency via Domain-Specific Design}
+Edge deployment benefits from designing lightweight architectures from the start rather than compressing large models. \ac{AERO} demonstrates that building in domain knowledge (periodicity detection) allows models with fewer than 1,000 parameters to achieve competitive performance compared to 500K+ parameter transformers.
+
+\paragraph{Universality of Workload Patterns}
+Diverse applications share fundamental behaviors when analyzed abstractly. \ac{OmniFORE} demonstrates that apparent service diversity conceals underlying structural similarities, allowing a single attention-based model to serve heterogeneous microservices effectively.
+
+\paragraph{Autonomous Operation through Validation}
+Zero-touch orchestration requires minimizing human oversight without sacrificing reliability. \ac{AgentEdge} demonstrates that a simulation-first approach (\ac{ActSimCrit}) enables validated autonomous decision-making. By validating strategies in digital twin environments before production execution, this approach substantially reduces the need for manual verification or trial-and-error exploration.
+
+\paragraph{Specialization over Monoliths}
+Distributed reasoning outperforms monolithic intelligence in orchestration. Decomposing complex management tasks into specialized roles (Intent, Observability, Planning, Action) improves consistency by 10$\times$ compared to generic single-agent frameworks.
+
+\paragraph{Interdependent Capabilities}
+Intelligent orchestration benefits from three interconnected pillars: prediction, generalization, and autonomy. Accurate prediction has limited value without edge deployability. Deployability faces scalability challenges without generalization. Generalization struggles to achieve zero-touch operation without validated autonomy.
+
+\vspace{0.5em}
+\noindent\textit{Impact.} These insights suggest orchestration practice is evolving from manual intervention to automated management. Adopting \ac{AERO}, \ac{OmniFORE}, and \ac{AgentEdge} provides operators with tools to move toward autonomous management, with the potential to reduce operational overhead while improving service quality.

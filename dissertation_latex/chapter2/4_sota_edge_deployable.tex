@@ -1,0 +1,43 @@
+% 2.4 Edge-Deployable Workload Prediction (State of the Art)
+\subsection{Edge-Deployable Workload Prediction}
+\label{sec:ch2_sota_aero}
+
+Section~\ref{sec:ch2_ml_workload} introduced the machine learning architectures used for workload prediction and identified critical edge deployment constraints: model size below 1\ac{GB}, inference latency under 50ms, and sufficient accuracy for proactive orchestration. This section evaluates how existing approaches meet these requirements, reviewing: (i) recurrent and convolutional architectures for sequential modeling, (ii) graph-based and transformer approaches for complex dependencies, (iii) large language models and lightweight alternatives, and (iv) fundamental limitations that motivate the \ac{AERO} framework, detailed in Chapter~\ref{ch:adaptive-orchestration}.
+
+\subsubsection{Recurrent and Convolutional Architectures}
+
+Traditional time-series forecasting has relied on architectures designed to capture sequential patterns and local temporal features.
+
+\textit{Recurrent Neural Networks:} \acp{RNN}~\cite{lai2018modelinglongshorttermtemporal, Jhin_2024, li2023learningpolarrepresentationextremeadaptive} have been important in time-series forecasting due to their ability to model sequential data. Recent works have proposed novel \ac{RNN} architectures and training strategies to tackle challenges like long-term dependencies and interpretability. Some models integrate autoregressive recurrent networks with probabilistic forecasting, while others combine \acp{CNN} and \acp{RNN} for improved multivariate prediction~\cite{li2024evogwp}.
+
+\textit{Convolutional Neural Networks:} \acp{CNN}~\cite{wang2023micn} have been adapted for time-series forecasting by capturing local temporal patterns and hierarchical features. Research in this area focuses on specialized \ac{CNN} architectures for time-series data, multi-scale convolutional operations, and hybrid models combining \acp{CNN} with other techniques for improved performance. Approaches include deep architectures with residual links and fully-connected layers~\cite{donghao2024moderntcn}. However, \acp{CNN} struggle to capture long-range dependencies in time-series data due to their limited receptive field size~\cite{wu2023timesnettemporal2dvariationmodeling}. They also lack the ability to model sequential dependencies inherent in time-series, as they treat each input window independently. These sequential modeling limitations motivate the exploration of architectures that can capture more complex temporal and spatial dependencies.
+
+\subsubsection{Graph-Based and Transformer Approaches}
+
+Beyond recurrent and convolutional methods, advanced architectures use graph structures and attention mechanisms to capture complex temporal and spatial dependencies.
+
+\textit{Graph Neural Networks:} For multivariate and spatio-temporal forecasting tasks, \acp{GNN}~\cite{yi2024fouriergnn, zhang2024irregular} model dependencies between different time-series as graphs. Building on this representation, recent studies combine temporal and spatial information to improve forecasting accuracy. These methods integrate \acp{GNN} with other deep learning techniques to capture complex dependencies. However, \acp{GNN} can be computationally expensive, especially for large-scale problems with complex dependency structures~\cite{jin2024survey}.
+
+\textit{Transformer Architectures:} Transformer architectures~\cite{wu2023timesnettemporal2dvariationmodeling} have achieved success in time-series forecasting, particularly for long-term predictions~\cite{vaswani2017attention}. Recent works aim to improve the efficiency and effectiveness of Transformers by addressing temporal dependencies, capturing multi-scale patterns, and handling non-stationarity. Some models introduce methods to capture periodic patterns at different scales, while others focus on adapting to changing data distributions~\cite{jia2024witran}. However, Transformer models typically have a large number of parameters, often in the millions, leading to high computational requirements~\cite{liu2023nonstationary}. The computational demands of both \acp{GNN} and Transformers have prompted research into both larger foundation models and more efficient lightweight alternatives.
+
+\subsubsection{Large Language Models and Lightweight Alternatives}
+
+Recent trends explore both large-scale foundation models and efficient lightweight architectures for time-series forecasting.
+
+\textit{\ac{LLM}-Based Forecasting:} An emerging trend uses \acp{LLM}~\cite{tang2023one, liu2023large} for time-series forecasting, taking advantage of their rich representations and transfer learning capabilities. However, due to the billions of parameters in \acp{LLM}, these approaches often need high computational resources~\cite{rasul2023forecasting}, making them less suitable for resource-constrained environments like edge-cloud systems.
+
+\textit{\ac{MLP}-Based Models:} In contrast to parameter-heavy \acp{LLM}, \ac{MLP}-based models~\cite{zeng2023koopa, wu2023timemlp, liu2023fits} have gained attention due to their simplicity and computational efficiency. Recent research explores novel \ac{MLP} architectures that can capture temporal dynamics without complex attention mechanisms. Strategies include using mathematical theories and frequency domain representations to model temporal dependencies~\cite{zhou2023patchTST}. However, \ac{MLP} models such as \ac{SparseTSF}~\cite{sparseTSF} assume a fixed periodicity, limiting their ability to adapt to changing workload patterns. Both large-scale and lightweight approaches thus face distinct barriers to edge deployment that warrant systematic examination.
+
+\subsubsection{Fundamental Limitations and Gaps}
+
+The architectures reviewed above share fundamental limitations for edge deployment. Despite advances in \ac{RNN}, \ac{CNN}, \ac{GNN}, Transformer, \ac{LLM}, and \ac{MLP}-based forecasting, most approaches encounter critical constraints when deployed in resource-constrained environments~\cite{acmtimeseriesreview2024}.
+
+The fundamental limitations across these architectures for edge deployment include: (i) high computational requirements that exceed edge device capabilities, (ii) inability to adapt to dynamic workload patterns without retraining, (iii) lack of specialized mechanisms for resource-constrained edge-cloud environments where low latency and energy efficiency are critical, and (iv) reliance on fixed periodicity assumptions in lightweight models (like \ac{SparseTSF}), which struggle to capture the variable patterns inherent in microservice workloads~\cite{10202641}. Addressing these constraints requires a different approach to model design.
+
+\subsubsection{Addressing the Limitations with AERO}
+
+\ac{AERO} directly addresses these limitations by rethinking model architecture for the edge. Instead of compressing general-purpose models, it introduces a purpose-built lightweight architecture with \textit{adaptive} period detection that dynamically identifies and exploits the inherent periodicity of microservice workloads, rather than assuming fixed periodic patterns. By combining adaptive period detection with sparse neural networks, \ac{AERO} achieves competitive accuracy while maintaining a computational footprint suitable for edge deployment. This enables the real-time, energy-efficient, and adaptive forecasting required for \ac{6G} edge-cloud orchestration, as detailed in Chapter~\ref{ch:adaptive-orchestration}.
+
+While \ac{AERO} addresses edge deployment constraints for individual workloads, production environments require models that generalize across diverse application types without per-workload retraining. The following section examines this cross-application generalization challenge.
+
+

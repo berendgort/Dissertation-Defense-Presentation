@@ -1,0 +1,119 @@
+% 2.2 Generalization
+\subsection{Generalization}
+\label{sec:ch2_generalization}
+
+The container-level prediction challenges identified in Section~\ref{sec:ch2_workload_prediction}, particularly the sparse training data and high workload variability, are compounded when models must generalize across different application types. This section introduces the challenge of model generalization in edge-cloud environments, explains the attention mechanism for capturing temporal dependencies, and presents temporal clustering as a method for handling workload heterogeneity. These concepts establish the theoretical basis for the \ac{OmniFORE} framework presented in Chapter~\ref{ch:attention-driven-prediction}.
+
+\subsubsection{The Cross-Dataset Generalization Challenge}
+\label{subsec:ch2_generalization_challenge}
+
+Models trained on one workload dataset often show degraded performance when deployed on different workload types, even within the same infrastructure~\cite{zou2024generalization}. This occurs because edge-cloud workloads show fundamental heterogeneity across two dimensions. The first dimension is \textit{workload diversity}: web services, databases, batch processing, and streaming applications generate distinct resource consumption patterns. These patterns also vary across edge, fog, and cloud tiers due to hardware and network differences. The second dimension is \textit{temporal variability}. Resource usage at time $t$ can be modeled as
+\[
+T_i(t) = \hat{T}_i(t) + \epsilon,
+\]
+where $\hat{T}_i(t)$ captures the predictable component and $\epsilon$ represents stochastic variations from user demand fluctuations, scheduled tasks, and time-of-day effects. This heterogeneity violates the i.i.d. assumption of traditional machine learning.
+
+Formally, consider a model $f_\theta$ trained on source dataset $\mathcal{D}_{\text{source}}$ and evaluated on target dataset $\mathcal{D}_{\text{target}}$. The generalization gap is:
+\begin{equation}
+\Delta = \mathcal{L}(f_\theta; \mathcal{D}_{\text{target}}) - \mathcal{L}(f_\theta; \mathcal{D}_{\text{source}}),
+\end{equation}
+where $\mathcal{L}$ is the prediction loss. Large positive $\Delta$ indicates poor generalization, requiring retraining or adaptation for each new deployment.
+
+This generalization gap creates operational challenges. Consider a production edge-cloud network serving diverse application types: web frontends, \ac{API} gateways, databases, caches, batch processors, and stream processors. Without generalization, practitioners must maintain separate models for each application category. Each model requires independent training, separate monitoring configurations, and coordinated updates to prevent version conflicts. When a new application type deploys, operators face a choice: deploy without prediction (reverting to reactive orchestration with its associated over-provisioning costs), or delay deployment until sufficient training data accumulates and a new model trains. This operational overhead makes prediction-based orchestration more challenging at scale.
+
+Addressing this generalization gap requires prediction approaches that capture common temporal patterns across diverse workloads rather than memorizing dataset-specific characteristics. Recent advancements in machine learning for time-series forecasting have introduced techniques that can identify complex dependencies across different timescales. Attention mechanisms have shown effectiveness in generalization across diverse time-series patterns~\cite{vaswani2017attention, wen2022transformers}. Notably, the same attention architecture that enables workload generalization also powers dominant \acp{LLM}~\cite{vaswani2017attention}, creating a conceptual bridge between the prediction techniques in this dissertation and the autonomous orchestration systems that consume these predictions. Attention-enhanced neural networks and attention-based transfer learning have shown particular promise for workload prediction, selectively focusing on critical temporal patterns while filtering out noise. Understanding how attention mechanisms achieve this selective focus requires examining their mathematical foundations.
+
+\subsubsection{Introduction to Attention Mechanism}
+\label{subsec:ch2_attention_mechanism}
+
+The attention mechanism, introduced by Vaswani et al.~\cite{vaswani2017attention}, represents a foundational advance in sequence modeling. Beyond its role in time-series forecasting, attention is the architectural core of dominant \acp{LLM}, including the GPT family, that power the autonomous agents discussed in Chapter~\ref{ch:distributed-agentic-ai}. This connection arises from a shared abstraction: both time-series data and natural language are sequences of vectors. A workload trace $\mathbf{W}_{t-\kappa:t}$ and a text prompt are both ordered collections of embeddings that attention processes using the same underlying mechanism. By establishing attention fundamentals in the time-series context, this section provides the conceptual foundation for understanding both workload prediction (Chapter~\ref{ch:attention-driven-prediction}) and \ac{LLM}-based orchestration (Chapter~\ref{ch:distributed-agentic-ai}).
+
+The attention mechanism addresses the generalization challenge by learning which temporal patterns are relevant for prediction rather than relying on fixed feature extractors. This data-driven relevance weighting enables models to identify similar patterns across diverse workloads, even when those workloads differ in absolute magnitude or baseline characteristics.
+
+Before attention can operate, raw input must be converted into embeddings. For a time-series, each time step's feature vector $\mathbf{x}_t \in \mathbb{R}^{d_f}$ (e.g., CPU and memory utilization) is projected into a higher-dimensional embedding space via a learned linear transformation: $\mathbf{E}_t = \mathbf{x}_t \mathbf{W}_E + \mathbf{p}_t$, where $\mathbf{W}_E \in \mathbb{R}^{d_f \times d_{\text{embed}}}$ is a weight matrix and $\mathbf{p}_t \in \mathbb{R}^{d_{\text{embed}}}$ is a positional encoding that preserves temporal order~\cite{vaswani2017attention}. For text sequences, the process is analogous: each token is mapped to a vector through an embedding lookup table, then combined with positional information. In both cases, the result is a sequence of embeddings $\mathbf{E} \in \mathbb{R}^{d_x \times d_{\text{embed}}}$ that serves as input to the attention mechanism.
+
+Starting with these initial embeddings, where $d_x$ is the input sequence length and $d_{\text{embed}}$ is the embedding dimension, the attention mechanism (denoted as $\mathcal{A}$) refines them into a new set, $\mathbf{E}'$~\cite{vaswani2017attention}. This mechanism allows the model to selectively focus on specific time steps, similar to human attention. For instance, when predicting future workload at a peak, both the model and a human analyst would focus on the pattern surrounding the current peak and compare it to similar peaks in the past. The attention weights determine how much each original embedding $\mathbf{E}_i \in \mathbb{R}^{d_{\text{embed}}}$ contributes to its corresponding refined embedding $\mathbf{E}_i'$. As shown in Figure~\ref{fig:attention_goal}, thicker lines indicate stronger influence. The refined embeddings $\mathbf{E}'$ effectively combine underlying data patterns with temporal relationships, improving the model's ability to capture complex dependencies across the sequence~\cite{dai2019transformer}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.866\textwidth]{sections/chapter2/img/attention_goal.pdf}
+\caption{Attention mechanism refining time-series embeddings $\mathbf{E}_i$ to $\mathbf{E}_i'$, with arrow thickness indicating the strength of influence.}
+\label{fig:attention_goal}
+\end{figure}
+
+To construct the refined embeddings, the attention mechanism uses three key components: queries, keys, and values~\cite{vaswani2017attention}, as illustrated in Figure~\ref{fig:attention_workings}. For each row $\mathbf{E}_i \in \mathbb{R}^{d_{\text{embed}}}$ of the embedding matrix $\mathbf{E}$ (corresponding to time step $i$), the model computes three vectors:
+
+\begin{equation}
+    \begin{aligned}
+        \text{Query vector:} \quad \mathbf{Q}_i &= \mathbf{E}_i \mathbf{W_Q}, \\
+        \text{Key vector:} \quad \mathbf{K}_i &= \mathbf{E}_i \mathbf{W_K}, \\
+        \text{Value vector:} \quad \mathbf{V}_i &= \mathbf{E}_i \mathbf{W_V},
+    \end{aligned}
+\end{equation}
+where $\mathbf{W_Q}, \mathbf{W_K}, \mathbf{W_V} \in \mathbb{R}^{d_{\text{embed}} \times d_{\text{embed}}}$ are learned weight matrices. Conceptually, a query vector encodes the information need at the current time step, key vectors help identify relevant past information, and value vectors contain the actual content to be aggregated~\cite{bahdanau2014neural}. In the context of workload prediction, when analyzing a peak, the query vector would encode features of the current peak, key vectors would help identify similar historical peaks, and value vectors would contain the associated historical workload patterns.
+
+The model evaluates temporal relationships by computing scaled dot products between query and key vectors:
+
+\begin{equation}
+    \text{Score}(\mathbf{Q}_i, \mathbf{K}_j) = \frac{\mathbf{Q}_i \mathbf{K}_j^T}{\sqrt{d_{\text{embed}}}}.
+\end{equation}
+
+A high score indicates that the corresponding time step contains critical information for the current prediction, as the vectors align in high-dimensional space~\cite{luong2015effective}. The scaling factor $\sqrt{d_{\text{embed}}}$ ensures training stability by preventing excessively large values that could lead to sharp, unbalanced distributions post-softmax~\cite{xu2015show}. After scaling, the softmax function normalizes these scores into a probability distribution, effectively assigning weights to each timestep's embedding vector. These weights, summing to one, determine the relative importance of each timestep, guiding the attention mechanism to focus on the most relevant parts of the sequence.
+
+To capture diverse temporal dependencies, the model uses \textit{multi-headed attention}~\cite{michel2019sixteen} with $H$ parallel attention mechanisms, or "heads" (Fig.~\ref{fig:attention_workings}). Each head $h \in \{1, ..., H\}$ operates independently on the same input embeddings, but with its own set of learnable weight matrices $\mathbf{W}_Q^h, \mathbf{W}_K^h, \mathbf{W}_V^h \in \mathbb{R}^{d_{\text{embed}} \times d_{\text{head}}}$, where $d_{\text{head}} = d_{\text{embed}} / H$. These matrices are initialized differently, leading to distinct evolutionary trajectories during training and convergence to different local optima~\cite{zhang2019improving}. This architectural design allows the model to simultaneously project the input into multiple subspaces and attend to diverse aspects of the sequence, such as short-term fluctuations and long-term trends. This effectively increases the model's representational capacity without a proportional increase in computational complexity~\cite{vaswani2017attention}.
+
+For each head $h$, the attention output is computed as
+
+\begin{equation}
+    \mathbf{A}_i^h = \mathcal{A}(\mathbf{E}_i\mathbf{W}_Q^h, \mathbf{E}_i\mathbf{W}_K^h, \mathbf{E}_i\mathbf{W}_V^h).
+\end{equation}
+
+The outputs from all heads are concatenated and linearly transformed to produce the \ac{MHA} output
+
+\begin{equation}
+    \mathbf{MHA}_i = \operatorname{Concat}(\mathbf{A}_i^{(1)}, \mathbf{A}_i^{(2)}, \ldots, \mathbf{A}_i^{(H)}) \mathbf{W}^O,
+\end{equation}
+where $\mathbf{W}^O \in \mathbb{R}^{d_{\text{embed}} \times d_{\text{embed}}}$ is a learned output projection matrix. Since each head outputs a vector of dimension $d_{\text{head}} = d_{\text{embed}}/H$, concatenating all $H$ heads yields a vector of dimension $H \times d_{\text{head}} = d_{\text{embed}}$, which is then projected back to $d_{\text{embed}}$.
+
+The final refined embedding for each time step incorporates a residual connection~\cite{he2016deep} and layer normalization~\cite{lei2016layer}:
+
+\begin{equation}
+    \mathbf{E}_i' = \text{LayerNorm}(\mathbf{E}_i + \mathbf{MHA}_i),
+\end{equation}
+where \ac{LayerNorm} denotes layer normalization. This is followed by a position-wise feed-forward network ($d_{ff}$) with another residual connection and layer normalization:
+
+\begin{equation}
+    \mathbf{E}_i'' = \text{LayerNorm}(\mathbf{E}_i' + d_{ff}(\mathbf{E}_i')).
+\end{equation}
+
+This entire process, comprising multi-headed attention, residual connections, layer normalizations, and the feed-forward network, constitutes one layer of the transformer encoder. It is repeated across multiple stacked layers ($N_e$). Each layer operates on the output of the previous one, allowing for iterative refinement of embeddings and progressively developing detailed representations needed for accurate predictions in complex time-series tasks.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.595\textwidth]{sections/chapter4/img/attention_workings.pdf}
+\caption{Multi-Headed Attention: Input embeddings ($\mathbf{E}_i$) are transformed into query ($\mathbf{Q}$), key ($\mathbf{K}$), and value ($\mathbf{V}$) vectors. Multiple heads ($H$) capture different temporal aspects. Larger circles indicate stronger attention scores.}
+\label{fig:attention_workings}
+\end{figure}
+
+The attention mechanism provides the mathematical framework for capturing temporal dependencies across sequences. Applying this framework effectively to the diverse workloads characterized in Section~\ref{subsec:ch2_generalization_challenge} requires a method for organizing training data that covers this heterogeneity.
+
+\subsubsection{Temporal Clustering for Workload Heterogeneity}
+\label{subsec:ch2_temporal_clustering}
+
+Attention mechanisms enable models to learn relevant temporal patterns, but training such models still requires diverse workload examples. Rather than requiring exhaustive data from every possible workload type, temporal clustering can identify representative workload categories. This reduces training requirements while maintaining coverage of diverse patterns.
+
+However, direct clustering of high-dimensional time-series data is computationally expensive and often struggles to capture meaningful patterns. For a set of container traces $\mathbf{T}(t) = \{T_1, T_2, \ldots, T_{N_{\text{all}}}\}$ where each trace $T_i(t) \in \mathbb{R}^{d_f \times d_t}$, the raw dimensionality $d_f \times d_t$ makes direct clustering inefficient. Latent space transformation addresses this challenge by projecting traces into lower-dimensional representations that preserve essential temporal patterns:
+\[
+\mathcal{Z}(z) = f_{\text{encoder}}(\mathcal{T}(t)), \quad \text{where } z \ll d_f \times d_t.
+\]
+
+The encoder function $f_{\text{encoder}}$ compresses the high-dimensional time-series into a dense latent representation $\mathcal{Z}$, enabling efficient clustering into $K$ distinct groups:
+\[
+\{C_1, C_2, \ldots, C_K\} = \text{Cluster}(\mathcal{Z}(z)).
+\]
+
+Each cluster $C_k$ groups container traces with similar spatio-temporal patterns, addressing workload heterogeneity by identifying fundamental pattern categories that generalize across applications. This approach allows models to learn from representative samples of each cluster rather than needing exhaustive training on all individual traces, improving computational efficiency while maintaining generalization capability.
+
+This clustering-based approach directly addresses the cross-dataset generalization challenge identified in Section~\ref{subsec:ch2_generalization_challenge}. By grouping workloads into representative clusters and training attention-based models on diverse samples from each cluster, systems can generalize across applications without requiring exhaustive per-application training. Chapter~\ref{ch:attention-driven-prediction} implements these principles through the \ac{OmniFORE} framework, combining temporal clustering with attention mechanisms for cross-application workload prediction.
+
+With workload prediction (Section~\ref{sec:ch2_workload_prediction}) and generalization mechanisms established, the remaining foundational challenge is translating predictions into orchestration actions that satisfy operator intent.

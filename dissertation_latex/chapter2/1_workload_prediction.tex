@@ -1,0 +1,78 @@
+% 2.1 Workload Prediction and Resource Management
+\subsection{Workload Prediction and Resource Management}
+\label{sec:ch2_workload_prediction}
+
+This section examines workload prediction and resource management in edge-cloud environments, first examining how workload predictions drive resource management decisions, then distinguishing between \ac{VM}-level and container-level prediction requirements. Throughout, we identify specific limitations that motivate the contributions in Chapters~\ref{ch:adaptive-orchestration} and \ref{ch:attention-driven-prediction}.
+
+\subsubsection{Resource Management and Orchestration}
+\label{sec:ch2_resource_mgmt}
+
+Workload predictions drive proactive resource management decisions across the edge-cloud continuum.
+
+Predicted workload increases trigger three orchestration actions: horizontal scaling (adding container replicas), vertical scaling (increasing resource allocations), or migration (relocating containers). Horizontal scaling deploys additional container replicas when:
+
+\begin{equation}
+\hat{\mathbf{u}}_i(t+\delta) > \tau_s \cdot \mathbf{r}_i,
+\end{equation}
+
+where $\mathbf{r}_i$ is node capacity, $\hat{\mathbf{u}}_i(t+\delta)$ is predicted utilization, and $\tau_s$ is the scale-out threshold. Production clusters typically maintain machine utilization below 80\% to preserve scheduling headroom~\cite{tirmazi2020borg}. Vertical scaling increases \ac{CPU}/memory allocations when average utilization exceeds thresholds, avoiding container restarts when possible. Migration relocates containers to balance load or consolidate resources for energy efficiency, with typical migration time $t_m \in [8, 30]$ seconds~\cite{eskandani2024criu}. These orchestration actions can be triggered either reactively or proactively.
+
+Reactive orchestration~\cite{8258257} responds to current metrics, often triggering after \ac{QoS} violations occur. Proactive orchestration~\cite{farhad2023ai} uses predictions to make decisions before violations occur:
+
+\begin{equation}
+t_d = t_c + \delta - t_a,
+\end{equation}
+
+where $t_d$ is the decision time, $t_c$ is current time, $\delta$ is the prediction horizon, and $t_a$ is the action execution time. Accurate prediction with horizon $\delta \geq t_a$ enables zero-downtime elasticity.
+
+While proactive orchestration enables timely decisions, these decisions must also balance competing objectives. Resource management involves critical trade-offs quantified by the cost function:
+
+\begin{equation}
+J_{total} = \lambda J_{qos} + \mu E(\pi, t) + \gamma R(\pi, t),
+\end{equation}
+
+where $J_{qos}$ represents \ac{QoS} penalty, $E(\pi, t)$ is energy cost, $R(\pi, t)$ is load balancing cost, and $\lambda$, $\mu$, $\gamma$ are trade-off weights. Conservative predictions minimize \ac{SLA} violations but increase over-provisioning costs (industry studies show 30-50\% rates~\cite{raith2024opportunistic}). Aggressive predictions reduce over-provisioning but risk expensive \ac{SLA} violations. Effective resource management requires balancing prediction accuracy and computational efficiency for real-time edge decisions. These requirements manifest differently depending on whether workload forecasting operates at the \ac{VM} or container level.
+
+\subsubsection{Container-Level vs. \acs{VM}-Level Prediction}
+\label{sec:ch2_container_prediction}
+
+Traditional cloud computing relies on \ac{VM} abstraction, while modern edge-cloud systems use containerized microservices. This architectural shift introduces unique prediction challenges.
+
+\ac{VM}-level characteristics~\cite{tirmazi2020borg} include: (i) long-lived instances (hours to weeks), (ii) coarse-grained resource allocation (whole \ac{CPU} cores, \ac{GB} memory), (iii) lower deployment density (tens per physical host), (iv) rich historical data for training, and (v) relatively stable resource consumption patterns. In contrast, container-level characteristics~\cite{10202641, 10417087, 10029931} include: (i) short-lived instances (minutes to hours), (ii) fine-grained resource sharing (fractional \ac{CPU}, \ac{MB} memory), (iii) high deployment density (hundreds per host), (iv) sparse historical data per container, and (v) highly variable patterns due to microservice dependencies.
+
+This data scarcity can be quantified as:
+
+\begin{equation}
+N_c = \frac{L_c}{s} \ll \frac{L_{vm}}{s} = N_{vm},
+\end{equation}
+
+where $L_c$ and $L_{vm}$ are container and \ac{VM} lifetimes, $s$ is the sampling interval, and $N_c$, $N_{vm}$ are available training samples. Container lifetimes are substantially shorter than \acp{VM}~\cite{nadgowda2017voyager}, providing insufficient training data for traditional deep learning models.
+
+Container-level prediction requires models that: (i) can learn effectively from limited data, (ii) generalize across diverse container types, (iii) handle high-frequency sampling rates (seconds vs. minutes), and (iv) account for inter-container dependencies in microservice architectures. Traditional \ac{VM}-level predictors struggle in container environments because they assume data abundance and pattern stability.
+
+Chapters~\ref{ch:adaptive-orchestration} and \ref{ch:attention-driven-prediction} specifically target container-level workload prediction, developing lightweight models capable of learning from sparse traces and generalizing across heterogeneous container deployments through architectural innovations rather than increased data requirements. These innovations build upon machine learning architectures suited to time-series forecasting under resource constraints.
+
+\subsubsection{Machine Learning for Workload Prediction}
+\label{sec:ch2_ml_workload}
+
+Traditional rule-based orchestration systems struggle with dynamic edge-cloud networks where workload patterns evolve continuously~\cite{chen2018auto}. Machine learning addresses these limitations by learning patterns from historical data, enabling predictive and autonomous decision-making without manual feature engineering.
+
+For workload prediction, let $\mathbf{W}_t = [W_t^{(1)}, W_t^{(2)}, \ldots, W_t^{(f)}]^\top \in \mathbb{R}^f$ represent the workload vector at time step $t$, where $W_t^{(i)}$ denotes the $i$-th resource feature (\ac{CPU}, memory usage). The goal is to predict future workload vectors based on historical observations using a prediction function:
+
+\begin{equation}
+\hat{\mathbf{W}}_{t+1:t+\lambda} = \Psi_{\boldsymbol{\phi}}\left( \mathbf{W}_{t-\kappa+1:t} \right),
+\end{equation}
+
+where $\kappa$ is the lookback window, $\lambda$ is the prediction horizon, and $\boldsymbol{\phi}$ represents learnable model parameters.
+
+Modern machine learning architectures address this through different approaches. \textit{Sequential models} (\acp{RNN}, \ac{LSTM}) maintain hidden states across time steps but suffer from parallelization limitations~\cite{hochreiter1998vanishing}. \textit{Convolutional models} (\acp{TCN}) apply learned filters across time windows with efficient parallel computation but limited receptive fields~\cite{donghao2024moderntcn}. \textit{Attention-based models} (Transformers) dynamically focus on relevant portions of input sequences but introduce quadratic complexity~\cite{vaswani2017attention}. \textit{Feed-forward models} (\acp{MLP}) offer minimal computational overhead suitable for edge deployment but assume fixed periodicities~\cite{sparseTSF}.
+
+Models are trained by minimizing prediction loss, typically Mean Squared Error:
+
+\begin{equation}
+\mathcal{L}(\boldsymbol{\phi}) = \frac{1}{\lambda} \sum_{i=1}^{\lambda} \left\| \mathbf{W}_{t+i} - \hat{\mathbf{W}}_{t+i} \right\|_2^2,
+\end{equation}
+
+Training uses gradient-based optimizers to minimize this loss. However, standard deep learning approaches conflict with edge requirements. For edge deployment, critical constraints include model size (typically <1\ac{GB} memory), inference latency (<50ms for real-time orchestration~\cite{8334540, 9500858}), and accuracy sufficient for proactive resource management. These constraints exclude most deep learning architectures from edge consideration, motivating the lightweight adaptive approaches developed in Chapters~\ref{ch:adaptive-orchestration} and \ref{ch:attention-driven-prediction}.
+
+Beyond computational constraints, production deployments face an additional challenge: models trained on one workload type often fail when applied to different applications, creating a generalization barrier that compounds the data scarcity problem identified in Section~\ref{sec:ch2_container_prediction}.

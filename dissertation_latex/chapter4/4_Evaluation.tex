@@ -1,0 +1,396 @@
+\section{Performance Evaluation}
+\label{sec:ch4_evaluation}
+
+This section evaluates \ac{OmniFORE}'s performance through experimental setup, comparative results on prediction accuracy and generalization, and practical deployment considerations for edge-cloud environments.
+
+\subsection{Experimental Setup}
+\label{sec:ch4_datasets}
+
+The experimental setup describes the benchmark schemes, datasets, hyperparameter optimization, hardware and software environment, and evaluation metrics used in our experiments.
+
+\subsubsection{Benchmark Schemes}
+
+The proposed model is evaluated against several high-performance algorithms specifically designed to address the challenges of generalization, scalability, and complex temporal or spatial dependencies in multivariate time-series data. These models represent current leading approaches in time-series forecasting and are known for strong performance across diverse datasets and application domains. We selected these benchmarks because they are designed to generalize well across a variety of time-series scenarios, making them convincing and competitive baselines for evaluating \ac{OmniFORE}. Each method incorporates architectural innovations, such as dilated convolutions, hybrid \ac{CNN}-\ac{RNN} structures, or adaptive graph learning, that enable them to capture both short- and long-term dependencies, as well as spatial relationships, in complex data. Their proven effectiveness on a wide range of datasets ensures that our comparative evaluation is relevant:
+\paragraph{ModernTCN: Temporal Convolutional Networks for Time-Series Forecasting~\cite{ModernTCN}}
+\ac{ModernTCN} employs advanced temporal convolutional architectures with dilated causal convolutions to efficiently model long-range dependencies while maintaining computational efficiency.
+
+\paragraph{LSTNet: Modeling Long- and Short-Term Temporal Patterns with Deep Neural Networks~\cite{lai2018modelinglongshorttermtemporal}}
+\ac{LSTNet} integrates \acp{CNN} and \acp{RNN} to capture both long-term and short-term patterns. It features a recurrent-skip component for modeling long-term dependencies and an autoregressive component to manage scale insensitivity.
+
+\paragraph{AGCRN: Adaptive Graph Convolutional Recurrent Network for Traffic Forecasting~\cite{AGCRN}}
+\ac{AGCRN} employs GCNs with trace-specific parameter learning and data-adaptive graph generation. This model dynamically adapts to specific patterns, excelling in various time-series forecasting tasks without requiring pre-defined graphs.
+
+\subsubsection{\textbf{Dataset}}
+\label{subsubsec:ch4_dataset_details}
+
+The Google-Trace dataset~\cite{google2019cluster} offers \ac{CPU} and memory usage records from eight super cells (A-H) for May 2019, sampled every 5 minutes. Each cell contains 10,000 machines running thousands of containers, capturing diverse usage patterns critical for edge-cloud modeling and forecasting.
+
+To evaluate our model's generalization capabilities, we partition the Google traces into two distinct sets: the \textbf{regular set} and the \textbf{zero-shot set (ZS)}. The zero-shot set includes entirely new, previously unseen data, ensuring that the model has no prior exposure during training. This methodology prevents data leakage from the training set into the test set, providing a more accurate assessment of the model's generalization performance. Specifically, the model is trained on the regular set and then evaluated on the zero-shot set. Consequently, the results obtained from the zero-shot set more accurately represent the model's ability to generalize to novel, unseen data.
+
+The regular set, composed of the \textbf{cells A-F}, is used for regular training, validation, and testing. In contrast, the zero-shot set, composed of the \textbf{cells G and H}, is reserved exclusively for zero-shot testing.
+
+We selected 100 traces for each set to balance computational feasibility with the available hardware for training the models. This choice allows us to evaluate model performance accurately without overwhelming computational resources. The time dimension $d_t$ of the dataset was then split into training ($d_\text{train} = 0.6$), validation ($d_\text{val} = 0.2$), and test sets ($d_\text{test} = 0.2$). For a visual representation of the trace selection process, refer to Figure~\ref{fig:proposed_solution_trace_selection}.
+
+Additionally, to evaluate extreme generalization capabilities, we conduct a cross-dataset experiment using the Alibaba 2022 microservices trace dataset~\cite{8258257}. We use pod \texttt{MS\_11349} with $T = 18,\!720$ samples collected at 1-minute intervals over 13 days, utilizing only 20\% of these samples. We downsample this trace from 1-minute to 5-minute intervals to match the Google trace's sampling rate. Each workload vector contains only normalized \ac{CPU} utilization, presenting a significantly different distribution from the training data and providing a test of transfer learning capabilities across heterogeneous cloud environments.
+
+\subsubsection{\textbf{Hyperparameters}}
+We employ the Bayesian optimization technique described in Section~\ref{sec:ch4_bayesian_optimization} to fine-tune the hyperparameters for the different models. Table~\ref{table:hyperparameters} presents the hyperparameter ranges and optimized values for \ac{OmniFORE}, \ac{ModernTCN}, AGCRN, and \ac{LSTNet} models. These ranges, based on the original authors' recommendations~\cite{AGCRN, lai2018modelinglongshorttermtemporal, ModernTCN}, strike a balance between exploration and practicality to achieve optimal generalization across diverse datasets. The Bayesian optimization process began with 20 initial training runs, followed by 30 iterations to refine the hyperparameters. The optimal hyperparameter values for the different models are listed in the result column of Table~\ref{table:hyperparameters}.
+
+\subsubsection{\textbf{Hardware and Software Environment}}
+All experiments are conducted on a server equipped with 1x NVIDIA A100 SXM \ac{GPU} (40 \ac{GB} memory), 30 \ac{CPU} cores, 200 \ac{GiB} \ac{RAM}, and 512 \ac{GiB} \ac{SSD}. The server uses an Intel Xeon processor and runs Ubuntu 20.04.2 LTS with the GNU/Linux 5.4.0-70-generic x86\_64 kernel. All methods are implemented in Python. The \ac{LSTNet} and \ac{AGCRN} models, provided by their authors, have been re-implemented using \ac{PyTorch} 3.2.1.
+
+
+
+\begin{table*}[htbp]
+\centering
+\caption{Hyperparameter Ranges for Bayesian Optimization Per Model}
+\label{table:hyperparameters}
+\small
+\renewcommand{\arraystretch}{0.95}
+\resizebox{0.760\textwidth}{!}{%
+\begin{tabular}{|c|l|c|c|c|}
+\hline
+\textbf{} & \textbf{Hyperparameter}       & \textbf{Symbol} & \textbf{Range}  & \textbf{Result} \\
+\hline
+\multirow{10}{*}{\rotatebox{90}{\ac{OmniFORE}}} 
+ & Model dimension           & $d_{embed}$   & (64, 512)  & 194 \\
+ & Sequence length           & $d_x$        & (24, 256)  & 98  \\
+ & Prediction length         & $d_y$        & (12, 64)   & 14  \\
+ & Dropout rate              & $h_{1}$      & (0.15, 0.4) & 0.161 \\
+ & Feedforward dim.          & $h_{2}$      & (128, 512) & 356 \\
+ & Encoder layers            & $h_{3}$      & (1, 4)     & 2   \\
+ & Decoder layers            & $h_{4}$      & (1, 3)     & 1   \\
+ & Attention heads           & $h_{5}$      & (4, 16)    & 6   \\
+ & Label length              & $h_{6}$      & (32, 64)   & 48  \\
+ & Batch size                & $h_{7}$     & (16, 64)   & 47  \\
+\hline
+\multirow{8}{*}{\rotatebox{90}{\ac{ModernTCN}}} 
+ & Sequence length           & $d_x$        & (48, 336)  & 124 \\
+ & Prediction length         & $d_y$        & (12, 96)   & 24  \\
+ & Batch size                & $h_{8}$     & (32, 512)  & 128 \\
+ & Learning rate             & $h_{9}$     & (1e-4, 1e-2) & 0.002 \\
+ & Model dimension           & $d_{embed}$  & (32, 512)  & 256 \\
+ & Number of heads           & $h_{10}$     & (1, 8)     & 4   \\
+ & Encoder layers            & $h_{11}$     & (1, 4)     & 2   \\
+ & Dropout rate              & $h_{12}$     & (0.0, 0.5) & 0.25 \\
+\hline
+\multirow{7}{*}{\rotatebox{90}{\ac{AGCRN}}} 
+ & Embedding  dim.       & $d_{embed}$  & (2, 30)    & 3   \\
+ & Sequence length           & $d_x$        & (12, 72)   & 48  \\
+ & Prediction length         & $d_y$        & (12, 72)   & 22  \\
+ & \ac{RNN} units             & $h_{13}$     & (50, 200)  & 76  \\
+ & Number of layers          & $h_{14}$     & (1, 3)     & 1   \\
+ & Chebyshev order           & $h_{15}$    & (1, 3)     & 1   \\
+ & Batch size                & $h_{16}$     & (16, 64)   & 25  \\
+\hline
+\multirow{10}{*}{\rotatebox{90}{\ac{LSTNet}}} 
+ & Sequence length           & $d_x$        & (144, 192) & 161 \\
+ & Prediction length         & $d_y$        & (6, 12)    & 11  \\
+ & Dropout rate              & $h_{17}$     & (0.1, 0.2) & 0.13 \\
+ & \ac{CNN} hidden units      & $h_{18}$     & (20, 143)  & 50  \\
+ & \ac{RNN} hidden units      & $h_{19}$     & (20, 143)  & 107 \\
+ & \ac{CNN} kernel size       & $h_{20}$     & (6, 18)    & 14  \\
+ & Highway window size       & $h_{21}$     & (24, 168)  & 93  \\
+ & Batch size                & $h_{22}$     & (16, 64)   & 33  \\
+ & Skip length               & $h_{23}$     & (24, 24)   & 24  \\
+ & Skip hidden units         & $h_{24}$     & (20, 100)  & 77  \\
+\hline
+\end{tabular}%
+}
+\end{table*}
+
+\subsubsection{\textbf{Evaluation Metrics}}
+The performance of all schemes is evaluated considering the following metrics.
+
+\paragraph{MAE}
+This metric measures the average magnitude of errors without considering their direction, making it useful for assessing overall accuracy. The \ac{MAE} is calculated as
+\begin{equation}
+  \text{MAE} = \frac{1}{N_{\text{test}} \times d_y} \sum_{i=1}^{N_{\text{test}}} \sum_{t=1}^{d_y} \left| \hat{T}_i(t) - T_i(t) \right|.
+\end{equation}
+
+\paragraph{RMSE}
+This metric highlights larger errors, making it particularly effective for datasets with significant fluctuations. The \ac{RMSE} is given by
+\begin{equation}
+  \text{RMSE} = \sqrt{\frac{1}{N_{\text{test}} \times d_y} \sum_{i=1}^{N_{\text{test}}} \sum_{t=1}^{d_y} \left( \hat{T}_i(t) - T_i(t) \right)^2}.
+\end{equation}
+
+\paragraph{SMAPE}
+This percentage-based metric is useful for comparing accuracy across different scales. The \ac{SMAPE} is defined as
+\begin{equation}
+  \text{SMAPE} = 2 \cdot \frac{100\%}{N_{\text{test}} \times d_y} \sum_{i=1}^{N_{\text{test}}} \sum_{t=1}^{d_y} \frac{\left| \hat{T}_i(t) - T_i(t) \right|}{\left( \left| \hat{T}_i(t) \right| + \left| T_i(t) \right| \right)}.
+\end{equation}
+
+\paragraph{Inference Time}
+Inference time refers to the average duration the model requires to process its inputs and generate an output. This metric is crucial for applications demanding real-time predictions.
+
+\paragraph{Convergence Speed}
+Convergence speed evaluates how quickly a model's training process stabilizes. A patience parameter of three is employed, ceasing training if the validation loss does not improve over three epochs. Performance is assessed using the test set \ac{RMSE} after convergence to ensure generalization to unseen data. Lower metric values indicate better performance, providing a detailed evaluation of prediction accuracy and reliability.
+
+\subsection{Results}
+\label{sec:ch4_results}
+In this section, we present our evaluation results, demonstrating that the proposed model outperforms existing algorithms in prediction accuracy and generalization. \ac{OmniFORE} achieves lower error rates and better generalization on new data. It is minimally impacted by dynamic workload changes and effectively handles trace variance, maintaining lower errors in diverse scenarios. Additionally, \ac{OmniFORE} converges faster than current algorithms.
+
+\subsubsection{\textbf{Isolating the Effect of the Suggested Scaling Strategy}}
+
+We evaluated the impact of scaling strategies (see Section~\ref{sec:ch4_data_split_scaling}) by comparing individual (per-trace) scaling to global scaling. In global scaling, all traces use a common normalization factor, while individual scaling normalizes each trace by its own statistics.
+
+This matters because both datasets contain many traces with very small amplitudes. With global scaling, these traces are scaled down even further relative to high-amplitude traces, so their values become very close to zero. As a result, the gradients associated with these traces during training are also much smaller, meaning their contribution to weight updates is minimal. This makes it harder for the model to learn from low-amplitude traces, as their influence on the model parameters is effectively suppressed. In contrast, individual scaling ensures that all traces, regardless of their original amplitude, produce gradients of similar magnitude, allowing the model to learn equally from every sample and supporting better generalization.
+
+Switching from individual to global scaling led to much worse prediction accuracy: \ac{MAE} increased by 87.16\%, \ac{RMSE} by 77.72\%, and \ac{SMAPE} by 107.23\%. As shown in Figure~\ref{fig:individual_vs_global_scaling_metrics}, this demonstrates that individualized scaling is essential for generalization in heterogeneous workloads.
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.621\textwidth]{sections/chapter4/img/individual_vs_global_scaling_metrics.pdf}
+\caption{Impact of scaling strategy: Individual (per-trace) scaling yields substantially lower \ac{MAE}, \ac{RMSE}, and \ac{SMAPE} compared to global scaling, highlighting the importance of handling heterogeneous trace statistics.}
+\label{fig:individual_vs_global_scaling_metrics}
+\end{figure}
+
+
+\subsubsection{\textbf{Hyperparameter Sensitivity and Optimization Effectiveness}}
+
+We evaluate the sensitivity of the models to hyperparameters to gauge the effectiveness of our optimization approach from Section~\ref{sec:ch4_bayesian_optimization}. Using the hyperparameter ranges $h_i$ specified in Table~\ref{table:hyperparameters}, we measure performance. Figure~\ref{fig:rmse_distribution_with_means} shows kernel density estimations~\cite{silverman2018density} depicting the distribution of test \ac{RMSE} values across different hyperparameter configurations for each model. Each curve represents the probability density of achieving specific \ac{RMSE} performance levels, with narrower distributions indicating greater stability across hyperparameter variations. Dashed lines mark the mean \ac{RMSE} values. Figure~\ref{fig:rmse_distribution_with_means} depicts the effect of hyperparameter tuning on test \ac{RMSE} for \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} models.
+
+\ac{OmniFORE} achieves a mean test \ac{RMSE} of $9.79 \times 10^{-3}$ with a standard deviation of $6.61 \times 10^{-4}$, and the ratio of maximum to minimum of 31\%. \ac{ModernTCN} records a mean test \ac{RMSE} of $1.11 \times 10^{-2}$ with a standard deviation of $1.22 \times 10^{-3}$ and a the ratio of maximum to minimum of 39\%. \ac{AGCRN} records a mean test \ac{RMSE} of $1.34 \times 10^{-2}$ with a standard deviation of $6.89 \times 10^{-4}$. \ac{LSTNet} reports a mean test \ac{RMSE} of $1.15 \times 10^{-2}$ and a standard deviation of $5.59 \times 10^{-4}$.
+
+\ac{OmniFORE} exhibits the lowest mean test \ac{RMSE} and standard deviation, suggesting better performance and reduced sensitivity to hyperparameters. The ratio of maximum to minimum of 18-39\% across models demonstrate the substantial impact of precise hyperparameter tuning, highlighting the importance of our custom Bayesian optimization for generalization.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.667\textwidth]{sections/chapter4/img/rmse_distribution_with_means.pdf}
+\caption{Distribution of test \ac{RMSE} values for different hyperparameter configurations showing model performance and consistency.}
+\label{fig:rmse_distribution_with_means}
+\end{figure}
+
+\subsubsection{\textbf{Generalization Performance}}
+\label{sec:ch4_evaluation_generalization}
+
+This section evaluates regular, zero-shot, and cross-dataset generalization performance of the models.
+
+\paragraph{Regular Training}
+Figure~\ref{fig:container_google_is_metrics} displays the prediction performance of various models on test data from Google Cells A-F after regular training. \ac{OmniFORE} outperforms \ac{ModernTCN}, \ac{AGCRN} and \ac{LSTNet} across all evaluation metrics\footnote{ Figures~\ref{fig:container_google_is_metrics},~\ref{fig:container_google_oos_metrics}, and~\ref{fig:container_alibaba_metrics} use identical y-axis limits to visualize performance degradation across datasets. A secondary axis (with lower opacity) shows regular \ac{MAE} axis scaling.}.
+
+\ac{OmniFORE} achieves an \ac{MAE} of $8.38 \times 10^{-4}$, \ac{RMSE} of $3.36 \times 10^{-3}$, and \ac{SMAPE} of 4.17\%. \ac{ModernTCN} shows strong performance with an \ac{MAE} of $8.90 \times 10^{-4}$, \ac{RMSE} of $3.75 \times 10^{-3}$, and \ac{SMAPE} of 4.26\%. In contrast, \ac{AGCRN} records an \ac{MAE} of $1.22 \times 10^{-3}$, \ac{RMSE} of $4.00 \times 10^{-3}$, and \ac{SMAPE} of 17.87\%. \ac{LSTNet} reports an \ac{MAE} of $1.51 \times 10^{-3}$, \ac{RMSE} of $4.75 \times 10^{-3}$, and \ac{SMAPE} of 8.14\%. 
+
+\ac{OmniFORE}'s \ac{MAE} is 31.31\% lower than \ac{AGCRN} and 44.55\% lower than \ac{LSTNet} and 5.84\% lower than \ac{ModernTCN}. Its \ac{RMSE} is 16.00\% lower than \ac{AGCRN}, 29.24\% lower than \ac{LSTNet} and 10.29\% lower than \ac{ModernTCN}. \ac{OmniFORE}'s \ac{SMAPE} is 76.66\% lower than \ac{AGCRN}, 48.77\% lower than \ac{LSTNet} and 2.00\% lower than \ac{ModernTCN}. This improvement results from \ac{OmniFORE}'s attention mechanism, which captures both long-term and short-term correlations among workloads.
+
+Furthermore, \ac{OmniFORE} achieves these results with an average inference time of \SI{8.70}{\milli\second}, while \ac{ModernTCN} requires only \SI{0.016}{\milli\second}, owing to \ac{CNN}'s linear computation complexity and highly parallelizable operations~\cite{ModernTCN}, compared to the complexity of our attention mechanism. This $540\times$ speed difference highlights the fundamental trade-off between computational efficiency and modeling capacity, compared to \SI{131}{\milli\second} for \ac{AGCRN} and \SI{10.6}{\milli\second} for \ac{LSTNet}. \ac{ModernTCN}'s fast inference speed is well-suited for ultra-low-latency applications, while \ac{OmniFORE}'s efficiency highlights its suitability for real-time applications where optimal performance is required with minimal resource overhead~\cite{9500858, 8334540}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.621\textwidth]{sections/chapter4/img/container_google_is_metrics.pdf}
+\caption{Generalization performance comparison of \ac{MAE}, \ac{RMSE} and \ac{SMAPE} for each model for the \textbf{regular training} traces.}
+\label{fig:container_google_is_metrics}
+\end{figure}
+
+\paragraph{Zero-Shot Performance}
+\label{sec:ch4_zero_shot_performance}
+Figure~\ref{fig:container_google_oos_metrics} illustrates the prediction performance using zero-shot test data from Google Cells G and H. \ac{OmniFORE} achieves an \ac{MAE} of $1.22 \times 10^{-3}$, \ac{RMSE} of $6.74 \times 10^{-3}$, and \ac{SMAPE} of 4.28\%. \ac{ModernTCN} follows closely with an \ac{MAE} of $1.51 \times 10^{-3}$, \ac{RMSE} of $7.53 \times 10^{-3}$, and \ac{SMAPE} of 4.37\%. In comparison, \ac{AGCRN} records an \ac{MAE} of $1.59 \times 10^{-2}$, \ac{RMSE} of $3.19 \times 10^{-2}$, and \ac{SMAPE} of 111.07\%, while \ac{LSTNet} shows an \ac{MAE} of $5.17 \times 10^{-3}$, \ac{RMSE} of $1.34 \times 10^{-2}$, and \ac{SMAPE} of 28.37\%.
+
+\ac{OmniFORE}'s strong zero-shot performance demonstrates its generalization capabilities, outperforming \ac{ModernTCN} by 19.35\%, \ac{AGCRN} by 92.32\%, and \ac{LSTNet} by 76.44\% in \ac{MAE}. In contrast, \ac{AGCRN} and \ac{LSTNet} perform worse on zero-shot data, indicating potential benefits from information leakage between training and test sets. Additionally, data variability and the exact nature of loaded traces can influence performance outcomes.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.619\textwidth]{sections/chapter4/img/container_google_oos_metrics.pdf}
+\caption{Generalization performance comparison of \ac{MAE}, \ac{RMSE}, and \ac{SMAPE} for each model on the \textbf{zero-shot} traces.}
+\label{fig:container_google_oos_metrics}
+\end{figure}
+
+\paragraph{Cross-Dataset Generalization}
+To evaluate transferability across heterogeneous cloud environments, we test models on the Alibaba 2022 microservices trace dataset~\cite{8258257} without retraining. This represents an extreme generalization scenario where models must adapt to significantly different workload distributions. We process pod \texttt{MS\_11349} data by downsampling from 1-minute to 5-minute intervals to match the Google traces' sampling rate.
+
+As shown in Figure~\ref{fig:container_alibaba_metrics}, \ac{OmniFORE} shows good transfer learning capabilities with an \ac{MAE} of $7.27 \times 10^{-3}$, outperforming \ac{ModernTCN} by 30.41\%, \ac{AGCRN} by 74.67\%, and \ac{LSTNet} by 84.70\%. This significant performance gap highlights \ac{OmniFORE}'s ability to extract fundamental workload patterns that transcend dataset-specific characteristics, making it particularly valuable for deployment across diverse cloud environments.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.619\textwidth]{sections/chapter4/img/container_alibaba_metrics.pdf}
+\caption{Generalization performance comparison of \ac{MAE}, \ac{RMSE}, and \ac{SMAPE} for each model on the \textbf{cross-dataset} Alibaba traces.}
+\label{fig:container_alibaba_metrics}
+\end{figure}
+
+\subsubsection{\textbf{Impact of Prediction Length on Inference Time}}
+
+In the millisecond regime, longer prediction lengths are particularly advantageous~\cite{9500858}. Short-term predictions require frequent adjustments, leading to higher computational overhead and inefficiencies. In contrast, longer-term predictions enhance stability and responsiveness, allowing for smoother and more strategic resource management. This reduces the need for constant real-time recalibration and optimizes overall performance in edge-cloud environments.
+
+As shown in Figure~\ref{fig:pred_vs_inf}, we study the inference time (left subplot) and the performance in terms of \ac{RMSE} (right subplot) over different prediction lengths. The inference time subplot reveals that \ac{LSTNet}'s computation time significantly increases with prediction length, reaching \SI{240}{\milli\second} for a length of 300, making it unsuitable for real-time applications that require latency within the \SI{50}{\milli\second} limit~\cite{8334540}. In contrast, \ac{OmniFORE} maintains low inference times, from \SI{12.7}{\milli\second} for a length of 5 to \SI{34}{\milli\second} for 300, thanks to efficient attention mechanisms and fast decoding. \ac{AGCRN}'s inference time also rises with longer predictions, reaching \SI{56}{\milli\second} for 300, which exceeds the real-time requirement, but remains higher than \ac{OmniFORE}. \ac{ModernTCN} demonstrates very low inference times in the microsecond range (approximately \SI{6}{\micro\second} across all prediction lengths), which is orders of magnitude faster than the other models. This speed is achieved through \ac{ModernTCN}'s pure convolution-based architecture with linear complexity, avoiding the computational overhead of attention mechanisms used in transformer-based models. Overall, \ac{OmniFORE} is approximately twice as fast as \ac{AGCRN} across all prediction lengths while maintaining performance, as evidenced by the \ac{RMSE} results in the right subplot.
+
+\ac{OmniFORE} outperforms \ac{AGCRN} and \ac{LSTNet} in \ac{RMSE}, achieving higher accuracy. \ac{AGCRN}'s \ac{RMSE} is generally low performant. While \ac{ModernTCN} delivers exceptional computational efficiency, its \ac{RMSE} values show lower prediction accuracy than \ac{OmniFORE}. This accuracy trade-off highlights that \ac{ModernTCN}'s simpler architecture, while faster, captures fewer complex temporal dependencies. \ac{OmniFORE}'s combination of low inference time and high accuracy makes it ideal for real-time, dynamic applications, outperforming both \ac{AGCRN} and \ac{LSTNet} while offering a better balance between speed and accuracy than \ac{ModernTCN}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.723\textwidth]{sections/chapter4/img/pred_vs_inf.pdf}
+\caption{Impact of prediction length on inference time and \ac{RMSE} for \ac{OmniFORE}, \ac{AGCRN}, \ac{LSTNet}, and \ac{ModernTCN}.}
+\label{fig:pred_vs_inf}
+\end{figure}
+
+\subsubsection{\textbf{Periodic Dynamic Workload Changes with Long-term Dependencies}}
+
+To rigorously test \ac{OmniFORE}'s attention mechanism and its capacity to capture long-range dependencies, we design a signal with frequent, highly dynamic changes based on the workload diversity described in Section~\ref{sec:ch4_system_model} (Figure~\ref{fig:dynamic_workload_changes}). The signal's periodic nature, alternating between low and high usage over extended cycles, challenges the model to recognize and utilize information from distant time steps, rigorously evaluating its long-term pattern recognition capabilities.
+
+The workload components are defined as 
+\begin{equation}
+T(t) = \mu \left( \sin(2\pi f t) \cdot \mathbf{1}_{\{t \% (1/f) < 0.5\}} + \mathcal{N}(0, \sigma) \right),
+\end{equation}
+where $\mu$ represents the mean value for the workload, $f$ is the frequency, and $\sigma$ is the standard deviation. The indicator function $\mathbf{1}_{\{t \% (1/f) < 0.5\}}$ ensures that the sine wave is active for half of its period. $\mathcal{N}(0, \sigma)$ represents Gaussian noise with a mean of 0 and standard deviation $\sigma$. The overall workload signal is generated by combining a low and high workload component:
+\begin{equation}
+T(t) = \begin{cases} 
+T_{\text{low}}(t), & \text{if } t < \text{pattern\_length} / 2 \\
+T_{\text{high}}(t), & \text{otherwise}
+\end{cases}
+\end{equation}
+where pattern\_length = 48, representing a 2-hour cycle with 5-minute intervals.
+For the low workload component, $\mu_{\text{low}} = 0.01$, $f_{\text{low}} = 0.5$, and $\sigma_{\text{low}} = 0.002$. For the high workload component, $\mu_{\text{high}} = 0.08$, $f_{\text{high}} = 1.0$, and $\sigma_{\text{high}} = 0.01$. The final workload is then adjusted to ensure positive values:
+
+\begin{equation}
+T_{\text{final}}(t) = T(t) + \mu_{\text{low}}.
+\end{equation}
+
+The connection between these equations and the input sequence lengths ($d_x$) lies in the periodic nature of the generated data. Each data point represents a 5-minute interval, making the input sequence lengths adequate to capture the recurring patterns of the workload cycles (see Table~\ref{table:hyperparameters}): \ac{OmniFORE} (98 intervals), \ac{ModernTCN} (184 intervals), \ac{AGCRN} (48 intervals), and \ac{LSTNet} (161 intervals) to capture the recurring patterns of the workload cycles.
+
+Analysis of \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} reveals that \ac{OmniFORE} consistently outperforms the other models. \ac{OmniFORE} achieves an \ac{RMSE} of 0.0322, \ac{ModernTCN} achieves 0.0350, \ac{AGCRN} achieves 0.0380, and \ac{LSTNet} achieves 0.0806. The lower \ac{RMSE} indicates that \ac{OmniFORE}'s predictions have smaller average deviations from the true values, demonstrating its accuracy in capturing dynamic workload patterns.
+
+\ac{OmniFORE}'s attention mechanism captures long-term dependencies effectively, enabling it to accurately predict dynamic changes in the workload. This capability is evident in its precise anticipation of transitions between low and high workload periods. In contrast, \ac{ModernTCN}, \ac{AGCRN} and \ac{LSTNet} exhibit limitations in capturing these long-range patterns, resulting in greater deviations from the true values, particularly during workload transitions. \ac{LSTNet}'s performance is hindered by its inability to effectively model dependencies beyond approximately 40 data points, a consequence of the vanishing gradient problem~\cite{zhou2021informer}. Similarly, the \ac{CNN}-based approach employed by \ac{ModernTCN} and \ac{AGCRN} struggles with long-range dependencies~\cite{acmtimeseriesreview2024, hochreiter1998vanishing}, impeding its ability to accurately capture and predict extended periodic patterns in the workload signal.
+
+Even in the low workload regions of the signal, \ac{OmniFORE} demonstrates an understanding of the existence of minor peaks, showing its ability to capture fine-grained patterns in the data.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.645\textwidth]{sections/chapter4/img/dynamic_workload_changes.pdf}
+\caption{Comparison of true and predicted values for \ac{OmniFORE}, \ac{AGCRN}, and \ac{LSTNet} under dynamic workload changes.}
+\label{fig:dynamic_workload_changes}
+\end{figure}
+
+\subsubsection{\textbf{Variance-based Performance Analysis}}
+
+We compare \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} models on both the regular \ac{CPU} cores dataset and the zero-shot dataset introduced in Section~\ref{sec:ch4_evaluation_generalization} to assess their capacity to handle data with heterogeneous variance levels (Figure~\ref{fig:low_high_variance_trace_samples}). \ac{OmniFORE} captures both low and high variance patterns more accurately, evidenced by its closer alignment with true values across diverse trace volatilities. This advantage is particularly pronounced in highly fluctuating traces, where \ac{OmniFORE} maintains accuracy while \ac{ModernTCN}, \ac{AGCRN} and \ac{LSTNet} show increased deviations. The consistent performance of \ac{OmniFORE} across both datasets demonstrates its generalization capabilities, effectively adapting to previously unseen patterns in the zero-shot scenario. 
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.611\textwidth]{sections/chapter4/img/low_high_variance_trace_samples.pdf}
+\caption{Comparison of true and \textbf{zero-shot} predicted values for \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} on a regular training dataset.}
+\label{fig:low_high_variance_trace_samples}
+\end{figure}
+
+To further investigate, we measured the variance of each individual test trace $T_{\text{val}, i}$ and computed the performance metrics (\ac{MAE} and \ac{RMSE}) for these traces. Figure~\ref{fig:variance_vs_metrics_fitted} shows the relationship between trace variance and performance metrics, with linear trend lines fitted to highlight trends.
+
+In Figure~\ref{fig:variance_vs_metrics_fitted}, slopes indicate error increase rates with rising input variance. \ac{OmniFORE} exhibits the lowest slopes (regular: $1.51 \times 10^1$, zero-shot: $1.58 \times 10^0$), outperforming \ac{ModernTCN} (regular: $1.73 \times 10^1$, zero-shot: $1.96 \times 10^0$), \ac{AGCRN} (regular: $1.76 \times 10^1$, zero-shot: $-2.22 \times 10^1$) and \ac{LSTNet} (regular: $2.45 \times 10^1$, zero-shot: $8.80 \times 10^0$). This demonstrates \ac{OmniFORE}'s resilience to high-variance data, particularly in zero-shot scenarios.
+
+We evaluate \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} on low and high variance traces in both regular and zero-shot scenarios. For the five lowest variance traces, \ac{OmniFORE}-regular achieves an \ac{MAE} of $1.34 \times 10^{-6}$, outperforming \ac{AGCRN}-regular ($5.27 \times 10^{-5}$) and \ac{LSTNet}-regular ($1.79 \times 10^{-6}$) by 97.5\% and 25.1\% respectively. \ac{ModernTCN}-regular achieves an \ac{MAE} of $1.20 \times 10^{-6}$, performing slightly better than \ac{OmniFORE}. On high variance traces, \ac{OmniFORE}-regular (\ac{MAE}: $7.73 \times 10^{-3}$) surpasses \ac{ModernTCN}-regular ($8.69 \times 10^{-3}$) by 11.0\%, \ac{AGCRN}-regular ($8.98 \times 10^{-3}$) by 13.9\% and \ac{LSTNet}-regular ($1.18 \times 10^{-2}$) by 34.5\%. In the zero-shot scenario with high variance traces, OmniFORE (\ac{MAE}: $2.05 \times 10^{-3}$) outperforms \ac{ModernTCN} ($2.56 \times 10^{-3}$) by 19.9\%, \ac{AGCRN} ($4.12 \times 10^{-3}$) and \ac{LSTNet} ($1.16 \times 10^{-2}$) by 50.2\% and 82.3\% respectively. These results show OmniFORE outperforms baselines across diverse variance levels and generalization scenarios.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.672\textwidth]{sections/chapter4/img/variance_vs_metrics_fitted.pdf}
+\caption{Trace variance vs. \ac{MAE} and \ac{RMSE} for \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} models, with fitted linear lines.}
+\label{fig:variance_vs_metrics_fitted}
+\end{figure}
+
+\subsubsection{\textbf{Convergence}}
+
+Quick model convergence reduces the need for extensive training, which aids in deploying updates and maintaining overall system performance. Additionally, models that converge faster are less prone to overfitting, as they achieve their optimal state in fewer epochs.
+
+Figure~\ref{fig:test_rmse_convergence_comparison} depicts the test \ac{RMSE} convergence of \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} models over multiple epochs, with early stopping applied.
+
+\ac{OmniFORE} converges fastest, achieving the lowest \ac{RMSE} of $3.29 \times 10^{-3}$ by the 7th epoch. \ac{ModernTCN} follows with $3.81 \times 10^{-3}$ by the 13th epoch. \ac{AGCRN} exhibits slower convergence, reaching $4.61 \times 10^{-3}$ by the 15th epoch. \ac{LSTNet} converges more quickly but with higher error, reaching $4.75 \times 10^{-3}$ by the 5th epoch.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.603\textwidth]{sections/chapter4/img/test_rmse_convergence_comparison.pdf}
+\caption{Convergence of \ac{OmniFORE}, \ac{ModernTCN}, \ac{AGCRN}, and \ac{LSTNet} models over epochs.}
+\label{fig:test_rmse_convergence_comparison}
+\end{figure}
+
+\subsubsection{\textbf{Temporal Workload Clustering Analysis}}
+\label{sec:ch4_temporal_clustering}
+
+This section examines our temporal clustering approach, a key component of \ac{OmniFORE}'s generalization capabilities. We introduce metrics for quantifying clustering quality, analyze \ac{CNN} hyperparameter effects on pattern recognition, demonstrate latent space effectiveness through visualization, and validate cluster stability. These analyses confirm that our method extracts meaningful workload patterns that improve forecasting.
+
+\paragraph{Clustering Metrics}
+\label{sec:ch4_clustering_metrics}
+
+We evaluate clustering quality using four complementary metrics:
+
+\begin{itemize}
+\item \textbf{Silhouette Score}~\cite{rousseeuw1987silhouettes}: Measures cluster cohesion and separation (-1 to 1, higher is better):
+\begin{equation}
+s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
+\end{equation}
+where $s(i)$ is the silhouette coefficient for the $i$-th data point, $a(i)$ is the mean distance between the $i$-th point and all other points in the same cluster, and $b(i)$ is the mean distance between the $i$-th point and all points in the nearest neighboring cluster. The overall silhouette score is the average of $s(i)$ over all data points.
+
+\item \textbf{Davies-Bouldin Index}~\cite{davies1979cluster}: Evaluates cluster separation (lower is better):
+\begin{equation}
+\text{DB} = \frac{1}{K}\sum_{i=1}^{K}\max_{j \neq i}\left(\frac{\sigma_i + \sigma_j}{d(c_i, c_j)}\right)
+\end{equation}
+where $K$ is the number of clusters, $\sigma_i$ is the average distance of all points in cluster $i$ to the cluster centroid $c_i$, and $d(c_i, c_j)$ is the distance between centroids of clusters $i$ and $j$.
+
+\item \textbf{Calinski-Harabasz Index}~\cite{calinski1974dendrite}: Measures the ratio of between-cluster to within-cluster variance (higher is better):
+\begin{equation}
+\text{CH} = \frac{\text{SS}_B}{\text{SS}_W} \times \frac{N_{\text{cluster}}-K}{K-1}
+\end{equation}
+where $\text{SS}_B$ is the between-cluster variance (sum of squares), $\text{SS}_W$ is the within-cluster variance, $N_{\text{cluster}}$ is the total number of data points in the clustering analysis, and $K$ is the number of clusters. Note that $N_{\text{cluster}}$ represents the number of temporal segments extracted from the original traces $\{T_i\}_{i=1}^{N_{\text{all}}}$.
+
+\item \textbf{\ac{NMI}}~\cite{strehl2002cluster}: Measures clustering consistency (0 to 1):
+\begin{equation}
+\text{NMI}(U,V) = \frac{2 \times I(U,V)}{H(U) + H(V)}
+\end{equation}
+where $U$ and $V$ represent two different cluster assignments (e.g., from different runs or algorithms), $I(U,V)$ is the mutual information between these assignments, and $H(U)$ and $H(V)$ are the entropies of the respective cluster assignments. This metric evaluates the stability of clustering results across different runs.
+\end{itemize}
+
+\paragraph{CNN Hyperparameter Impact on Clustering Quality}
+\label{sec:ch4_cnn_hyperparameter}
+
+We study how \ac{CNN} hyperparameters affect clustering performance using a parameter grid of kernel sizes (3-9) and filter counts (16-128). Figure~\ref{fig:parameter_influence} shows the silhouette score results.
+
+Our analysis reveals three important findings. First, optimal parameter selection improves clustering quality by 33.2\%. Second, filter count influences clustering quality 2.5$\times$ more than kernel size. Third, the parameters interact in a non-linear manner. The optimal configuration (kernel=7, filters=128) significantly improves zero-shot generalization by capturing meaningful temporal patterns.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{sections/chapter4/img/cnn_parameter_influence.pdf}
+\caption{\ac{CNN} hyperparameter effects on clustering quality showing silhouette scores across different configurations, with the optimal configuration (kernel=7, filters=128) achieving a score of 0.553.}
+\label{fig:parameter_influence}
+\end{figure}
+
+\paragraph{Latent Space Effectiveness via t-SNE Visualization}
+\label{sec:ch4_latent_space_visualization}
+
+Figure~\ref{fig:tsne_comparison} compares \ac{tSNE} visualizations of raw time-series versus our learned latent representations. The latent space improves silhouette score by 131.8\% (0.178 to 0.413) and inter-cluster distance by 50.3\%, while reducing dimensionality by 98.6\%. This visualization confirms our model transforms complex temporal patterns into well-separated clusters without requiring prior pattern knowledge.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.697\textwidth]{sections/chapter4/img/tsne_comparison.pdf}
+\caption{\ac{tSNE} visualization: original time-series (left) versus latent representation (right), showing improved cluster separation (131.8\% higher silhouette score).}
+\label{fig:tsne_comparison}
+\end{figure}
+
+\paragraph{Cluster Stability and Optimal Cluster Count}
+\label{sec:ch4_cluster_stability}
+
+To address the sensitivity of the initialization of K-means, we performed 100 clustering runs with different random seeds. The results show exceptional stability: mean \ac{NMI} of 0.960, minimal variation of the silhouette score (0.562 $\pm$ 0.003), and 98.9\% of points that maintain consistent cluster assignments across runs. This stability analysis confirms that our clusters represent genuine workload patterns, rather than initialization artifacts. We determined the optimal cluster count (k=11) using a consensus of four metrics: Elbow Method, Silhouette Score, Davies-Bouldin Index, and Calinski-Harabasz Index. 
+
+
+\paragraph{Impact of Clustering vs Random Sampling on Prediction Generalization}
+
+To directly isolate the effect of our clustering-based trace selection (see Section IV., S$_1$--S$_5$ and Figure~\ref{fig:clustering_vs_random}), we compared two approaches for selecting training data: training on 100 clustered traces versus 100 randomly sampled traces (five runs averaged), using the regular set (Google Cells A--F) for training and the zero-shot set (Cells G and H, see Section~\ref{sec:ch4_datasets} and Section~\ref{sec:ch4_zero_shot_performance}) for evaluation. Specifically, we trained one informer model using the 100 traces selected by our clustering method, and five separate informer models using five different random subsets of 100 traces each. For each random subset, a new Informer model was independently trained, so that all models are of the same architecture and only differ in their training data. The random selection is repeated five times to obtain average performance and ensure reliable results.
+
+Clustering-based selection led to much better generalization: compared to random sampling, \ac{MAE} was reduced by 20.66\%, \ac{RMSE} by 24.63\%, and \ac{SMAPE} by 32.71\%. Figure~\ref{fig:clustering_vs_random} compares these metrics for both methods, demonstrating that clustering results in more representative training sets and improved zero-shot performance.
+
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.621\textwidth]{sections/chapter4/img/clustering_vs_random.pdf}
+  \caption{Generalization benefit of clustering-based trace selection over random sampling: clustering yields substantially lower \ac{MAE}, \ac{RMSE}, and \ac{SMAPE} on zero-shot workloads.}
+  \label{fig:clustering_vs_random}
+\end{figure}
+
+\subsection{Deployment Considerations}
+\label{sec:ch4_deployment_considerations}
+
+While our evaluation demonstrates \ac{OmniFORE}'s forecasting capabilities in controlled environments, practical deployment in edge-cloud systems requires additional considerations. \ac{OmniFORE}'s flexible architecture supports both centralized and distributed deployment strategies, allowing practitioners to select the approach that best fits their application needs. Centralized deployment maximizes generalization by enabling a single model to serve diverse workloads, reducing the overhead of managing multiple models, but may increase communication delays. In contrast, distributed deployment places models closer to the edge, minimizing latency but requiring multiple models and potentially reducing generalization. The choice of deployment thus depends on the desired balance between generalization capability and communication efficiency~\cite{realtimecommunicationoverhead}. For empirical measurements of edge, fog, and cloud \ac{API} response times, we refer readers to existing literature. Based on the performance characteristics observed in Section~\ref{sec:ch4_results}, we propose potential deployment approaches for real-world implementations.
+
+One strategy involves adopting a centralized "master model" architecture, where \ac{OmniFORE} operates primarily on cloud infrastructure and serves predictions to edge devices through lightweight \ac{API} calls~\cite{chen2022edgeml, 8334540}. This approach would use \ac{OmniFORE}'s efficient inference capabilities while addressing the resource constraints typical of edge environments~\cite{10417087}. The master model could collect workload data from multiple edge nodes, potentially improving forecast quality through more general pattern recognition across the network~\cite{gort2024forecasting}.
+
+The low inference times demonstrated by \ac{OmniFORE} in our evaluation suggest that it could theoretically support multiple concurrent edge devices with timely predictions. The minimal processing overhead of \ac{OmniFORE} is particularly crucial in a centralized deployment architecture, as it helps offset the inherent network delays associated with remote model access, thus keeping the total response latency within acceptable limits for resource allocation decisions. However, actual deployment would need to address several practical challenges, including intermittent connectivity in edge environments~\cite{10417087}, consistent versioning of the model across heterogeneous infrastructure, and adaptation to diverse hardware capabilities at different network levels.
+
+Integration with existing container orchestration frameworks represents another potential implementation pathway~\cite{10052731}. Orchestration systems could potentially use \ac{OmniFORE}'s predictions to proactively allocate resources based on anticipated workload changes~\cite{10646623}. The model's demonstrated ability to handle high-variance workloads suggests that it might be particularly valuable for managing dynamic resource requirements in containerized environments~\cite{10417087, 10646623}.
+
+Future work should include real-world deployment studies to validate these approaches in production environments, measure actual system performance improvements, and identify practical implementation challenges beyond those observed in our controlled evaluation environment~\cite{gort2024forecasting, 10417087}.
+

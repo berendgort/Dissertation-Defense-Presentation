@@ -1,0 +1,32 @@
+% 1_Introduction.tex
+\section{Introduction}
+\label{sec:ch5_introduction}
+
+Modern \ac{6G} networks demand orchestration systems capable of managing many distributed nodes under strict latency and \ac{QoS} requirements~\cite{6g_roaming, intent_driven_ran2021}. Cloud-native architectures have reshaped the deployment of services throughout the compute continuum, requiring coordination of thousands of microservices distributed over far-edge devices, near-edge nodes, and cloud data centers. Traditional centralized orchestration platforms do not meet these demands. They introduce unacceptable delays through sequential decision-making bottlenecks and create single points of failure that cascade across distributed \ac{6G} infrastructures \cite{6g_struggles_orchestration2025}.\par
+
+To address these limitations, \ac{AI} approaches have evolved from classical \ac{ML} methods to \acp{LLM}. \acp{LLM} demonstrate the ability to interpret complex user requirements and reason about multi-constraint optimization scenarios~\cite{kim2025kubeteus, netllm2024}. Autonomous agents built on \ac{LLM} foundations combine \ac{NLP} with goal-directed behavior for specialized orchestration tasks~\cite{yao2023react}. Multi-agent systems extend this by distributing intelligence among collaborative specialists, each maintaining domain expertise in specific orchestration areas~\cite{6g_roaming, intent_6g2024}, enabling parallel decision-making and domain-specific task handling.
+
+Recent research has explored both \ac{LLM}-based and agent-based orchestration approaches. \ac{LLM}-based systems focus on intent processing and automated configuration management~\cite{intent_driven_ran2021, LLMIntentServiceConfig2024, EnhancingNetworkManagementMSR2023}. Agent-based approaches target domain-specific applications including wireless network management~\cite{WirelessAgentLLM2025, LLMAgentsProactiveFaultTolerant2024}, multi-agent coordination frameworks~\cite{HermesLLMFramework2024, MaestroLLMCollaborative2024, xiao2025agentnet}, and infrastructure orchestration~\cite{DataConnectorAgentFramework2024, service_orch_2025}. However, existing systems are still designed for generic domains or centralized cloud infrastructures. They do not address the specific requirements of distributed edge-cloud service orchestration~\cite{RadioMapAgentsNetworkPlanning2025}. A key challenge remains: operators express requirements in natural language, yet orchestration systems need precise specifications to act upon. This represents a fundamental gap in 6G edge-cloud orchestration. For a detailed review of related work on generative AI for orchestration, see Section~\ref{sec:ch2_sota_agent}.
+
+Specifically, such orchestration must address challenges unique to the \ac{6G} environment \cite{struggle_with_real_time_adaptation2025, NISA2025}: (i) heterogeneous computational resources that span resource-constrained edge devices to powerful cloud data centers, (ii) dynamic network topologies with fluctuating connectivity and variable latencies, (iii) sub-millisecond latency constraints for real-time applications, (iv) intermittent connectivity that requires autonomous decision-making capabilities, (v) energy optimization across distributed nodes with varying power consumption profiles, and (vi) geographic distribution necessitating coordinated control across the compute continuum. \par
+
+Agentic \ac{AI} approaches originally designed for other domains are characterized by trial-and-error learning and direct experimentation~\cite{yao2023react, LATS}. Such exploratory methods, including \ac{LATS}, raise reliability concerns for \ac{6G} deployments where services have strict \ac{QoS} requirements and failures cascade across distributed infrastructure. Any \ac{QoS} violation may lead to severe consequences, making these approaches unacceptable for edge-cloud orchestration.
+
+To address these fundamental limitations, this chapter introduces \ac{AgentEdge}\footnote{A high-level approach of our framework with preliminary proof-of-concept results has been presented in~\cite{gort2025agentedge}.}, a novel multi-agent orchestration framework that represents a transition from centralized to distributed intelligence approaches for edge-cloud environments. \ac{AgentEdge} enables operators to express intent naturally (e.g., ``deploy with low latency'') and translates these requests into validated orchestration actions.
+
+The main contributions of this chapter are summarized as follows:
+\begin{itemize}
+    \item We provide a detailed presentation of a novel multi-agent system for \ac{6G} edge-cloud service orchestration, translating natural language intent into validated actions through structured workflows across heterogeneous infrastructure.
+
+    \item We introduce the \ac{PARES} framework, which defines minimum agent capabilities for quantitative agentic behavior characterization.
+
+    \item We establish the \ac{ActSimCrit} methodology that integrates digital twin simulation into agent decision-making, enabling risk-free validation of orchestration strategies before real-world execution.
+
+    \item We systematically evaluate five leading open-source \acp{LLM} for \ac{6G} orchestration tasks using non-fine-tuned foundation models for fair off-the-shelf comparison.
+
+    \item We compare \ac{AgentEdge} against baseline agentic AI frameworks widely adopted in other domains, demonstrating 2.76× higher success rates and 10× reduction in \ac{API} call variability through specialized multi-agent coordination.
+    
+    \item We validate \ac{AgentEdge} scalability through energy optimization scenarios across infrastructure sizes from 8 to 35 nodes, maintaining orchestration quality while achieving power savings at large-scale edge deployments.
+\end{itemize}
+
+The remainder of this chapter is organized as follows: Section~\ref{sec:ch5_system_model} presents the system model and problem formulation. Section~\ref{sec:ch5_proposed_solution} introduces our proposed framework (\ac{AgentEdge}). Section~\ref{sec:ch5_eval} provides a detailed experimental evaluation. Section~\ref{sec:ch5_conclusion} concludes the chapter.

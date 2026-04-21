@@ -1,0 +1,190 @@
+% 4_Proposed_Solution.tex
+\section{AgentEdge Architecture}
+\label{sec:ch5_proposed_solution}
+
+This section presents: (i) the multi-agent architecture with four specialized agents and \ac{ActSimCrit} validation, (ii) the \ac{PARES} capability framework defining agent capability requirements, (iii) dynamic structured outputs constraining decision spaces, and (iv) distributed reasoning decomposition for coordination efficiency.
+
+\subsection{AgentEdge Multi-Agent Graph of Graphs}
+\label{subsec:ch5_multi_agent_graph}
+
+Orchestration requires solving complex multi-step problems involving intent parsing, state analysis, constraint checking, and action planning. Forcing a single agent to handle all these heterogeneous tasks simultaneously degrades performance, as the agent must context-switch between fundamentally different reasoning patterns. Distributing reasoning across specialized agents improves accuracy by allowing each agent to maintain consistent focus within a specific orchestration domain. \ac{AgentEdge} implements this through a hierarchical graph-of-graph architecture (Fig.~\ref{fig:ch5_graph_agentedge}) formalized as $\mathcal{G}_{AgentEdge} = (G_{orch},\, \{G_i\}_{i=1}^{4})$. The top-level orchestrator $G_{orch}$ routes requests between four specialized agents. Each agent implements a dedicated subgraph $G_i = (V_i,\, E_i,\, \Psi_i)$ following validation protocols from Eq.~\ref{eq:ch5_validation}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.602\textwidth]{sections/chapter5/img/graphs/graph_agent_edge_graph.png}
+    \caption{\ac{AgentEdge} hierarchical graph-of-graphs architecture with top-level orchestrator routing between four specialized agents, each deployed as an independent microservice implementing dedicated subgraph workflows.}
+    \label{fig:ch5_graph_agentedge}
+\end{figure}
+
+The architecture distributes reasoning across four specialized components. The \textit{Intent Agent} transforms natural language requests into structured goals. The \textit{Observability Agent} monitors system state. The \textit{Planning Agent} employs \ac{ActSimCrit} methodology for constraint-aware planning through digital twin simulation. The \textit{Infrastructure Action Agent} executes validated plans through \ac{API} operations. In the following sections, we provide a detailed analysis for each agent.
+
+\ac{AgentEdge} agents are implemented as independent Flask \ac{API} servers, with inter-agent communication via standard \ac{HTTP} requests. Placement commands are transmitted to a container orchestration platform (e.g., Kubernetes, Docker Swarm) rather than directly to computing nodes. The platform handles node-level dispatching and returns execution confirmation. The Service Orchestrator $\mathcal{O}$ is exposed as an \ac{MCP} server, providing agents with context for correct \ac{API} parameter derivation. Agent programs are lightweight since heavy computation (\ac{LLM} inference) is offloaded via \ac{API} calls to external services, whether cloud-hosted \ac{LLM} endpoints or on-premises \ac{GPU} infrastructure. This separation enables flexible deployment: agentic code runs on minimal hardware with network connectivity, while \ac{LLM} backend location becomes a deployment-time configuration choice.
+
+\subsubsection{Intent Agent Subgraph}
+
+Autonomous orchestration systems face a semantic gap between natural language operator intentions and structured computational representations. Traditional approaches require manual translation of high-level requirements into explicit \ac{API} calls. The Intent Agent converts natural language requests into structured orchestration goals through \ac{LLM}-based semantic parsing, identifying services, resources, constraints, and requirements, categorizing requests among orchestration patterns with confidence scoring, and extracting operational specifications.
+
+Formally, the intent extraction process follows the agent framework from Eq.~\ref{eq:ch5_agent_update}:
+\begin{equation}
+\mathbf{o}_{i_{\text{intent}}}(t) = f_{i_{\text{intent}}}(\mathsf{req}(t), \mathcal{V}_{i_{\text{intent}}}(t)),
+\label{eq:ch5_intent_agent}
+\end{equation}
+where $\mathsf{req}(t)$ is the user request (Table~\ref{tab:ch5_notation}). The schema $\mathcal{V}_{i_{\text{intent}}}(t)$ is the validation schema from Eq.~\ref{eq:ch5_schema} for the intent agent role. The output $\mathbf{o}_{i_{\text{intent}}}(t)$ contains a structured intention specification that includes service requirements and placement constraints.
+
+\subsubsection{Observability Agent Subgraph}
+
+Orchestration decisions require understanding current infrastructure state, yet raw metrics alone provide insufficient context for intelligent decision-making. Agents need to detect emerging constraint violations and optimization opportunities before they impact service quality. The Observability Agent addresses this by monitoring system state $\mathbf{u}(t)$ from Eq.~\ref{eq:ch5_utilization} and transforming raw metrics into actionable intelligence that identifies constraint violations and recommends preventive actions.
+
+The workflow collects metrics through \ac{HTTP} \ac{API} calls retrieving system-wide and service-specific data, routes between general system analysis and focused service health assessment, and generates structured observations.
+
+Mathematically, the monitoring process follows the agent framework. For the observe agent with index $i_{\text{observe}}$ where $\text{role}_{i_{\text{observe}}} = \text{observe}$:
+\begin{equation}
+\mathbf{o}_{i_{\text{observe}}}(t) = f_{i_{\text{observe}}}(\mathbf{u}(t), \mathcal{V}_{i_{\text{observe}}}(t)),
+\label{eq:ch5_observe_agent}
+\end{equation}
+where $\mathbf{u}(t) = [\mathbf{u}_1(t),\, \ldots,\, \mathbf{u}_m(t)]$ contains all node utilizations. The schema $\mathcal{V}_{i_{\text{observe}}}(t)$ is the validation schema from Eq.~\ref{eq:ch5_schema} for the observe agent role. The output $\mathbf{o}_{i_{\text{observe}}}(t)$ provides alerts and recommended actions based on detected patterns and constraint violations.
+
+\subsubsection{Planning Agent Subgraph with ActSimCrit}
+\label{subsec:ch5_planning_agent}
+
+The Planning Agent generates feasible multi-step orchestration plans using \ac{ActSimCrit} methodology. The Planning Agent operates as a coordinator rather than a monolithic optimizer. It can invoke external tools, including mathematical solvers or heuristics, as optimization backends when formal optimization is beneficial. The agent's role is to translate intent into actionable plans, select appropriate solution methods based on problem characteristics, and validate outputs through \ac{ActSimCrit} before execution. This design enables dynamic tool selection: formal solvers for tractable problems, heuristics for large-scale deployments, or \ac{LLM} reasoning for novel scenarios requiring zero-shot generalization.
+
+\ac{ActSimCrit} preserves orchestration action quality by replacing trial-and-error experimentation with safe digital twin validation. The methodology maintains a synchronized digital replica of the infrastructure state $\mathcal{G}$ from Section~\ref{sec:ch5_system_model}, including computational nodes $\mathcal{N}$ and network links $\mathcal{E}$, enabling what-if analysis before real orchestration actions.
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{sections/chapter5/img/graphs/graph_planning_agent_graph.png}
+    \caption{Planning Agent graph structure implementing \ac{ActSimCrit} methodology with three-tier state management, strategic action batching, independent critic \ac{LLM} evaluation, iterative rejection-feedback learning, and deadlock detection with resolution.}
+    \label{fig:ch5_planning_agent_graph}
+\end{figure*}
+
+\ac{ActSimCrit} operates as a structured graph $G_{planning} = (V,\, E,\, \Psi)$ where $V$, $E$, and $\Psi$ represent processing functions, valid transitions, and function mappings (Fig.~\ref{fig:ch5_planning_agent_graph}). Specialized \ac{LLM} reasoning nodes handle complex orchestration decisions, with an independent critic \ac{LLM} (no memory sharing) ensuring unbiased evaluation. The methodology operates through five distinct phases:
+
+\begin{enumerate}
+    \item \textbf{Strategic Planning}: \ac{LLM} generates high-level orchestration strategies by processing natural language objectives and infrastructure constraints to establish end-goal states and constraint hierarchies.
+
+    \item \textbf{State Analysis}: \ac{LLM} analyzes structured infrastructure data to identify constraints and optimization opportunities through mathematical constraint validation.
+
+    \item \textbf{Strategic Action Selection}: \ac{LLM} selects action batches from options filtered by constraints. It uses the rejection context $\mathcal{X}^{(\tau)}$ to avoid previously failed combinations.
+
+    \item \textbf{Digital twin simulation}: Deterministic simulation validates \ac{LLM}-generated action batches using $\mathbf{S}_{simulated}$. The independent critic \ac{LLM} provides objective evaluation:
+    \begin{equation}
+    \mathbf{S}_{valid} = \{\mathbf{s} : \text{constraints}(\mathbf{s}) \land \text{feasible}(\mathbf{s})\},
+    \label{eq:ch5_digital_twin_validation}
+    \end{equation}
+    where constraints include capacity limits from Eq.~\ref{eq:ch5_capacity_constraint} and power consumption from Eq.~\ref{eq:ch5_power}.
+
+    \item \textbf{Intent Satisfaction Evaluation}: \ac{LLM} evaluates progress toward orchestration objectives.
+\end{enumerate}
+
+Four core mechanisms enable \ac{ActSimCrit}'s effectiveness: (i) strategic action batching for efficient resource coordination, (ii) three-tier state management preventing corruption during multi-step planning, (iii) rejection-feedback learning transforming failures into actionable constraints, and (iv) deadlock detection with resolution for infeasible intents. The Planning Agent with index $i_{\text{plan}}$ where $\text{role}_{i_{\text{plan}}} = \text{plan}$ generates placement decisions through iterative cycles:
+\begin{equation}
+\pi^{(\tau)} = f_{i_{\text{plan}}}(\mathbf{u}, \mathbf{o}_{i_{\text{intent}}}, \mathcal{X}^{(\tau)}),
+\label{eq:ch5_enhanced_plan_agent}
+\end{equation}
+where $\tau$ denotes the planning iteration number and $\mathcal{X}^{(\tau)}$ represents the accumulated rejection context from previous planning iterations. The digital twin simulation validates the candidate placements against Eq.~\ref{eq:ch5_capacity_constraint}.
+
+
+\paragraph{Strategic Action Batching}
+
+Without batching, agents generate orchestration actions one at a time, introducing unnecessary planning overhead for logically connected action sequences. For example, when only one service remains on a node, the natural sequence is migrate-then-low-power, yet single-action planning requires multiple \ac{LLM} calls and iterations to discover this straightforward pattern. This overhead reduces the efficiency of the planning cycle. \ac{AgentEdge} addresses this through strategic action batching in which \ac{LLM} reasoning generates action sequences $\mathbf{B}^{(\tau)} = [\mathbf{act}_1,\, \mathbf{act}_2,\, \ldots,\, \mathbf{act}_k]$ during planning iteration $\tau$. 
+
+For a target node for the batch $n_\ell$, constraint validation ensures:
+\begin{equation}
+\mathbf{u}_\ell + \sum_{\mathbf{act} \in \mathbf{B}^{(\tau)}} \frac{\mathbf{d}_{\mathbf{act}}}{\mathbf{r}_\ell} \leq \mathbf{1},
+\label{eq:ch5_batch_constraint}
+\end{equation}
+where $\mathbf{d}_{\mathbf{act}}$ is the service demand vector from Eq.~\ref{eq:ch5_demand} for the service targeted by action $\mathbf{act}$.
+
+The \ac{LLM} determines adaptive batch size $k^{(\tau)}$ based on the logical coherence of the action sequence during strategic reasoning. When the \ac{LLM} identifies strongly connected action dependencies (e.g., migrate-then-low-power for the final service on a node), it generates larger batches $k^{(\tau)} \to k_{max}$. Conversely, for independent actions or uncertain logical connections, the \ac{LLM} selects conservative single-action batches $k^{(\tau)} = 1$.
+
+\paragraph{Atomic Three-Tier State Management}
+
+During multi-step planning cycles, \acp{LLM} struggle to properly identify which specific actions caused constraint violations and adjust subsequent planning to avoid repeating the same mistakes. This degrades decision quality between iterations. \ac{AgentEdge} addresses this through explicit state management that maintains three concurrent state snapshots, providing clear context that improves planning step quality:
+\begin{equation}
+\mathcal{T} = \{\mathbf{S}_{baseline},\, \mathbf{S}_{accepted},\, \mathbf{S}_{simulated}\},
+\label{eq:ch5_three_tier_states}
+\end{equation}
+where $\mathbf{S}_{baseline}$ is the immutable initial state before planning, $\mathbf{S}_{accepted}$ contains validated actions, and $\mathbf{S}_{simulated}$ represents the tentative state for evaluation. 
+
+State transitions follow atomic semantics during each planning iteration:
+\begin{equation}
+\mathbf{S}_{simulated}^{(\tau)} = f_{simulate}(\mathbf{S}_{accepted}, \mathbf{B}^{(\tau)}).
+\label{eq:ch5_state_simulation}
+\end{equation}
+
+\ac{LLM} reasoning operates exclusively on $\mathbf{S}_{accepted}$ for input consistency, while action batches undergo validation through $\mathbf{S}_{simulated}^{(\tau)}$. Upon validation, successful batches promote $\mathbf{S}_{accepted} \leftarrow \mathbf{S}_{simulated}^{(\tau)}$, while failed batches are discarded and added to $\mathcal{X}^{(\tau+1)}$, eliminating state corruption while enabling iterative convergence to valid solutions.
+
+\paragraph{Iterative Rejection-Feedback Learning}
+
+When action batches violate constraints during simulation, the Planning Agent needs to understand why the rejection occurred to avoid repeating the same mistake. \ac{AgentEdge} captures this by having the \ac{LLM} generate structured rejection reasoning explaining which specific constraints were violated. The next planning iteration then uses the pre-simulation state combined with this rejection feedback, enabling the agent to adjust its strategy. This feedback mechanism enables learning across iterations. During the planning iteration $\tau$, when the action batch $\mathbf{B}^{(\tau)}$ violates capacity constraints in $\mathbf{S}_{\text{simulated}}$, the schema $\mathcal{V}_{i_{\text{plan}}}^{(\tau)}$ forces the \ac{LLM} to generate structured rejection reasoning:
+\begin{equation}
+\text{Reject}^{(\tau)} = \mathbf{u}_\ell + \sum_{\mathbf{act} \in \mathbf{B}^{(\tau)}} \frac{\mathbf{d}_{\mathbf{act}}}{\mathbf{r}_\ell} > \mathbf{1}.
+\label{eq:ch5_violation_check}
+\end{equation}
+
+The rejection context accumulates failed batches with structured reasoning:
+\begin{equation}
+\mathcal{X}^{(\tau+1)} = \mathcal{X}^{(\tau)} \cup \{\mathbf{B}^{(\tau)},\, \text{reason}^{(\tau)}\}.
+\label{eq:ch5_rejection_context}
+\end{equation}
+
+The next planning iteration uses this context to avoid previous failures:
+\begin{equation}
+\mathbf{B}^{(\tau+1)} = f_{i_{\text{plan}}}(\mathcal{X}^{(\tau+1)}, \mathcal{V}_{i_{\text{plan}}}^{(\tau+1)}).
+\label{eq:ch5_iterative_planning}
+\end{equation}
+This creates a convergent planning cycle in which each iteration learns from the violations of structured constraints.
+
+\paragraph{Deadlock Detection and Resolution}
+
+User requests may be infeasible when demanded resources exceed available infrastructure capacity or when conflicting constraints create impossible scenarios. Consider a scenario in which the service $s_j$ is deployed on node $n_A$, while node $n_B$ has only 1.0 core of the remaining capacity. A user request to \textit{``scale service $s_j$ to 2.0 cores and move it to node $n_B$''} creates an unsatisfiable constraint since $d_j^c = 2.0$ exceeds the available capacity at $n_B$. 
+
+As a failsafe, the Planning Agent detects deadlock when no valid solution exists despite extensive planning iterations. Since checking all possible placements is computationally prohibitive, detection relies on iteration thresholds: deadlock is declared when both $\tau \geq \theta_{\text{iter}}$ (iteration threshold) and $|\mathcal{X}^{(\tau)}| \geq \theta_{\text{reject}}$ (rejection count) are exceeded. These thresholds scale with infrastructure size $(m, |\mathcal{S}|)$ to balance detection sensitivity with computational cost.
+
+When deadlock occurs, an \ac{LLM} analyzes accumulated failures in $\mathcal{X}^{(\tau)}$ to propose an alternative request $\mathsf{req}'(t)$ that may be achievable. The planning cycle resets and attempts this alternative. Future work could add human verification before accepting modified requests~\cite{human_loop_2025}.
+
+\paragraph{Computational Complexity Analysis}
+The Planning Agent dominates computational cost through iterative reasoning. Each \ac{LLM} call incurs $\mathcal{O}(L^2)$ operations where $L$ is the context length, due to the quadratic scaling of transformer attention~\cite{vaswani2017attention, deepseekai2025deepseekv32pushingfrontieropen}. Context length $L$ scales linearly with problem size: $L = \mathcal{O}(N)$ where $N = m + |\mathcal{S}|$ (nodes plus services), since prompts encode node utilizations ($\mathcal{O}(m)$ tokens), service configurations ($\mathcal{O}(|\mathcal{S}|)$ tokens), and bounded execution history. Therefore, each \ac{LLM} call costs $\mathcal{O}(L^2) = \mathcal{O}(N^2)$, and across $\tau$ iterations, total complexity is $\mathcal{O}(\tau \cdot N^2)$. This polynomial scaling vastly outperforms brute-force placement enumeration ($m^{|\mathcal{S}|}$ candidates).
+
+\paragraph{Convergence Analysis}
+\ac{ActSimCrit} is an iterative plan-validation loop. In this context, ``convergence'' means termination to either (i) a validated plan yielding a feasible placement, or (ii) an explicit deadlock report for infeasible requests.
+
+Termination is enforced through dynamic structured outputs: at each iteration, the schema constrains the \ac{LLM} to select only from placements satisfying current constraints, while rejected placements are excluded from the selection set $\Omega_{valid}(t)$. Since the placement space is finite and each failure removes options, the algorithm must eventually succeed or trigger explicit stopping criteria. This guarantee rests on three properties:
+
+\textit{Property 1: Finite Placement Space.} With $m$ nodes and $|\mathcal{S}|$ services, the set of all possible placements $\Pi = \{\pi: \mathcal{S} \to \mathcal{N}\}$ is finite with $|\Pi| = m^{|\mathcal{S}|}$.
+
+\textit{Property 2: Monotonic Rejection Accumulation.} The rejection context $\mathcal{X}^{(\tau)}$ grows monotonically: $|\mathcal{X}^{(\tau+1)}| \geq |\mathcal{X}^{(\tau)}|$. Each rejected placement is added to the context and excluded from future selection via schema constraints.
+
+\textit{Property 3: Explicit Stopping Criteria.} Deadlock thresholds $\theta_{\text{iter}}$ and $\theta_{\text{reject}}$ halt the loop when both $\tau \geq \theta_{\text{iter}}$ and $|\mathcal{X}^{(\tau)}| \geq \theta_{\text{reject}}$, triggering deadlock resolution instead of indefinite retrying.
+
+\subsubsection{Infrastructure Action Agent Subgraph}
+
+The Infrastructure Action Agent executes the orchestration plan delivered by the Planning Agent through sequential \ac{API} calls to the infrastructure. The agent operates as a script executor that translates the validated placement $\pi^*$ into concrete \ac{API} operations (deployment, migration, scaling, power management):
+\begin{equation}
+\text{Execute}(\pi^*) = f_{i_{\text{act}}}(\pi^*, \mathcal{V}_{i_{\text{act}}}),
+\label{eq:ch5_act_agent}
+\end{equation}
+where $\mathcal{V}_{i_{\text{act}}}$ is the validation schema from Eq.~\ref{eq:ch5_schema} containing valid \ac{API} operations for the current infrastructure state.
+
+If an \ac{API} call fails during execution, the Infrastructure Action Agent transitions from script executor to single-agent problem solver, autonomously diagnosing the failure and attempting recovery actions.
+
+\subsection{AgentEdge Agent Design}
+\label{subsec:ch5_pares}
+
+\ac{AgentEdge} implements the \ac{PARES} capability framework introduced in Section~\ref{sec:ch2_intelligent_orchestration}. The four agent roles (Intent, Observe, Plan, Act) derive from the sense-plan-act paradigm augmented with intent interpretation. The ordering Intent $\to$ Observe $\to$ Plan $\to$ Act is grounded in the \ac{BDI} architecture~\cite{georgeff1991modeling}: intentions must precede action because they bound rational reasoning and prevent resource-limited agents from reasoning indefinitely. Multi-agent coordination research~\cite{kim2021communication} further demonstrates that sharing intentions (future plans) outperforms sharing observations for coordination, because intent captures future behavior enabling proactive rather than reactive coordination.
+
+The Agentic Spectrum provides a qualitative framework for positioning agents based on their \ac{PARES} implementation sophistication. Fig.~\ref{fig:ch5_pares_agentic_spectrum} shows how \ac{AgentEdge}'s four agents span this spectrum. The Planning Agent exhibits the highest sophistication through \ac{ActSimCrit} methodology, requiring extensive reasoning, multi-step memory, complex tool coordination, and comprehensive state perception. In contrast, the Infrastructure Action Agent implements basic \ac{PARES} capabilities with minimal \ac{LLM} interactions for direct \ac{API} execution. The Intent and Observability Agents occupy intermediate positions, balancing specialized processing with moderate reasoning requirements. 
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{sections/chapter5/img/pares_agentic_spectrum.pdf}
+    \caption{Agentic Spectrum positioning of \ac{AgentEdge}'s four specialized agents based on \ac{PARES} capability sophistication, with Planning Agent exhibiting highest complexity and Infrastructure Action Agent implementing basic capabilities.}
+    \label{fig:ch5_pares_agentic_spectrum}
+\end{figure}
+
+
+\subsection{Theoretical Foundations}
+\label{subsec:ch5_theoretical_foundations}
+
+\ac{AgentEdge}'s design is grounded in two theoretical principles established in Section~\ref{sec:ch2_intelligent_orchestration}. First, \textit{structured output error reduction}: by constraining \ac{LLM} outputs to dynamically generated validation schemas, \ac{AgentEdge} eliminates infeasible actions from the decision space, significantly reducing orchestration failures compared to unconstrained generation. Second, \textit{distributed reasoning benefits}: decomposing complex orchestration reasoning across specialized agents maintains higher accuracy than monolithic single-agent approaches, with improvement growing superexponentially with task complexity. These foundations justify \ac{AgentEdge}'s multi-agent architecture with role-specific validation schemas.

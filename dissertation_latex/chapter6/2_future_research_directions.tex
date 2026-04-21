@@ -1,0 +1,102 @@
+\section{Future Research Directions}
+\label{sec:ch6_future_research}
+
+This dissertation developed three complementary frameworks. \ac{AERO} enables edge-deployable prediction, \ac{OmniFORE} provides cross-application generalization, and \ac{AgentEdge} delivers autonomous orchestration. Of these, the prediction frameworks address challenges with established machine learning methodologies. Lightweight architectures and attention mechanisms build on decades of time-series research. The agentic layer, however, represents a newer research direction with more open questions.
+
+The reason is architectural. Agents do not merely consume predictions, they coordinate them. An autonomous orchestration system can decide which prediction model to invoke for each situation, how to combine forecasts with real-time observations, when predictions warrant action versus continued monitoring, and how to balance competing objectives that no single model optimizes. \ac{AERO} and \ac{OmniFORE} become tools that agents select and coordinate, similar to how a human operator chooses between monitoring dashboards. This positions the agentic layer as the component that connects prediction capabilities into coherent orchestration strategies.
+
+This architectural role explains why future research emphasizes agentic \ac{AI}. Production deployment requires addressing open problems that differ from traditional prediction pipelines. The following subsections identify eight research directions organized across three thematic areas. These areas reflect the progression from research prototype to production system. Reliability and trust must be established before operators will accept autonomous agents. Technical infrastructure must meet real-time constraints. System architectures must support evolution and scaling.
+
+\subsection{Reliability and Trust}
+\label{subsec:ch6_reliability_trust}
+
+Operators will not deploy autonomous agents without trusting their decisions. The following directions address evaluation methodologies, decision explainability, and security guarantees.
+
+\subsubsection{Evaluation Engineering and Benchmarking}
+\label{subsubsec:ch6_evaluation_engineering}
+
+The scientific community lacks benchmark datasets for evaluating orchestration agents. Current evaluations rely on hyperscaler workloads that may not generalize to telecommunications, industrial \ac{IoT}, or autonomous vehicle deployments. Production deployment requires evaluation across diverse scenarios spanning infrastructure scales, workload types, and operational objectives. Each scenario must include initial infrastructure state, orchestration intent, and multiple acceptable outcome trajectories. Unlike traditional benchmarks with single ground-truth labels, orchestration tasks admit multiple correct solutions that balance competing objectives across energy, latency, and reliability.
+
+This benchmark gap creates a development bottleneck. Traditional software changes have predictable effects. Modifying a function produces consistent behavior that developers can verify through unit tests. Agentic systems behave differently. Changing a prompt, adjusting agent roles, or modifying tool descriptions produces effects that vary across runs due to \ac{LLM} non-determinism. A change that improves performance on one scenario may degrade performance on another. Developers cannot know whether a modification helps or hurts without running the agent against a benchmark suite repeatedly. Yet those benchmarks do not exist. This forces practitioners to build evaluation infrastructure before they can systematically improve their agents. Future research must develop evaluation methodologies that include confidence intervals on success rates, repeated trials across scenario variants, and deterministic subcomponents that isolate where non-determinism originates.
+
+Beyond evaluation, large-scale benchmarks enable supervised fine-tuning of domain-specific orchestration models. Current general-purpose \acp{LLM} lack expertise in Kubernetes \acp{API}, container networking, and resource allocation trade-offs. Datasets with expert-labeled orchestration actions would support fine-tuning specialized models that outperform generic foundation models at lower computational cost. Such datasets could also enable orchestration world models that learn to predict how infrastructure state evolves in response to actions~\cite{huang2026vjepa}. An agent equipped with a world model could simulate the consequences of orchestration decisions internally before committing to them, reducing reliance on external digital twin environments.
+
+\subsubsection{Explainability and Guardrails}
+\label{subsubsec:ch6_explainability}
+
+Operators hesitate to deploy autonomous agents without understanding decision rationale. Future agents must generate reasoning traces that show not only the chosen path but also the alternatives that were rejected and why they would have failed. Showing the paths that lead to constraint violations or performance degradation builds trust by demonstrating that the agent explored the decision space before committing. Standardized trace formats would enable automated verification and operator review, addressing the opacity of current multi-step reasoning chains.
+
+Explanations address operator understanding, but trust also requires safety assurance. Guardrails must enforce constraints regardless of what the \ac{LLM} proposes. One approach is constraint-clamping functions that intercept infeasible values, clamp them to valid ranges, and return natural language explanations to the \ac{LLM} describing why the original proposal violated constraints. This feedback loop allows the agent to adjust its reasoning rather than simply failing. The separation between flexible \ac{LLM} planning and rigid constraint verification enables adaptive orchestration while preventing dangerous decisions.
+
+Beyond guardrails, critic mechanisms provide another verification layer. In \ac{AgentEdge}, the \ac{ActSimCrit} methodology uses a separate \ac{LLM} invocation to evaluate decisions made by earlier agents. This pattern of one model checking another's output represents one of many possible reasoning flow architectures. Future research should explore alternative verification topologies, including multi-critic consensus, hierarchical review chains, and adversarial critic-generator dynamics. The design space for \ac{LLM}-to-\ac{LLM} verification remains largely unexplored.
+
+\subsubsection{Security and Adversarial Robustness}
+\label{subsubsec:ch6_security}
+
+Autonomous orchestration agents introduce security considerations that differ from traditional software. The primary concern is not external attackers injecting prompts, since orchestration agents typically operate within protected infrastructure where only authorized operators have access. The concern is what happens when agents malfunction or optimize for incorrect objectives. An agent with access to Kubernetes \acp{API} and service orchestration interfaces could delete pods, misconfigure services, or cause cascading failures if its context is incomplete or its optimization targets are misspecified. Future research must develop containment strategies that limit blast radius when agents make mistakes.
+
+A practical security concern for current deployments is data locality. Orchestration agents require detailed infrastructure state, including resource utilization, service configurations, and operational metrics. Sending this data to external \ac{LLM} inference providers raises privacy and compliance concerns. Future research should explore local deployment of orchestration-specific models, federated approaches where sensitive data never leaves the infrastructure, and hybrid architectures that route only non-sensitive queries to external providers.
+
+Defense-in-depth architectures provide multiple verification layers. \ac{AgentEdge} separates planning from execution, where the Planning Agent reasons about strategies and a separate execution path validates and batches actions before committing them. This separation ensures that reasoning errors do not directly translate to infrastructure changes. Future systems could extend this pattern with multi-agent consensus requiring agreement before sensitive operations, rate limiting on destructive actions, and anomaly detection monitoring agent behavior for deviations from expected patterns.
+
+\subsection{Technical Infrastructure}
+\label{subsec:ch6_technical_infrastructure}
+
+Production viability requires meeting real-time performance constraints. The following directions address context management, inference latency, and tool selection.
+
+\subsubsection{Context Engineering for Infrastructure State}
+\label{subsubsec:ch6_context_engineering}
+
+Effective orchestration requires infrastructure awareness, including cluster state, resource utilization, and service configurations. \ac{AgentEdge} retrieves this information through \ac{MCP} servers that expose Kubernetes and monitoring interfaces. The challenge is that these servers return comprehensive data by default. A Prometheus query returns metrics for all pods, not just the relevant subset. When multiple \ac{MCP} servers are attached, their combined output can fill the entire context window, leaving no room for reasoning.
+
+Infrastructure state changes continuously, but \ac{LLM} inference takes seconds to tens of seconds. The state observed when the agent begins reasoning may differ from the state when it commits actions. Current systems largely ignore this staleness problem. Future research should explore mechanisms that detect and handle state drift between observation and action. One approach is re-validation before commit, where the agent checks whether its assumptions still hold before executing. Another is delta-aware reasoning, where the agent explicitly models how state might change during its deliberation and plans accordingly.
+
+\subsubsection{Inference Efficiency and Call Reduction}
+\label{subsubsec:ch6_inference_efficiency}
+
+Agent-based orchestration suffers from sequential \ac{LLM} invocation overhead. The number of calls depends on infrastructure complexity and problem difficulty, but even simple orchestration tasks can require many iterations in the planning loop. Latencies accumulate to tens of seconds per orchestration. Token costs compound this problem at scale, where reducing inference expenses becomes economically necessary.
+
+One approach to call reduction is multi-step prompting, where the agent performs several reasoning steps within a single \ac{LLM} invocation. However, current general-purpose \acp{LLM} have limits on how much sequential reasoning they can perform reliably in a single context. Combining too many steps in one call degrades the quality of subsequent steps.
+
+The path to lower latency likely requires specialized models. General-purpose \acp{LLM} with hundreds of billions of parameters are slow because they were not designed for orchestration. Fine-tuning smaller models on orchestration-specific datasets, as discussed in Section~\ref{subsubsec:ch6_evaluation_engineering}, could yield agents that reason faster while maintaining decision quality. This creates a virtuous cycle where better benchmarks enable better fine-tuning, which enables faster inference, which makes real-time orchestration more feasible.
+
+\subsubsection{Tool Discovery and Semantic Search}
+\label{subsubsec:ch6_tool_discovery}
+
+Tool selection degrades as catalogs grow. \ac{AgentEdge} used three \ac{MCP} servers exposing approximately 40 tools. Selection accuracy dropped noticeably beyond 30 tools, with the agent frequently invoking incorrect tools. Counterintuitively, removing an \ac{MCP} server sometimes improved overall success rates because the reduced context helped the agent reason more clearly about the remaining options. This suggests that current \acp{LLM} struggle with tool selection at scales that production environments require.
+
+Future research should develop semantic tool discovery that retrieves relevant subsets before \ac{LLM} invocation. Vector embeddings of the user's intent could be matched against pre-computed tool embeddings, enabling logarithmic-time similarity search across large catalogs. Hierarchical organization offers an alternative, where agents navigate from broad categories through intermediate levels to specific actions. Both approaches aim to present the agent with a focused toolset rather than overwhelming it with options.
+
+Beyond selection, agents should discover tools autonomously rather than relying on fixed catalogs. An orchestration agent encountering an unfamiliar infrastructure component should be able to explore available interfaces, understand their capabilities, and incorporate them into its planning. Read-only discovery modes could enable safe exploration without execution risk. This capability would allow agents to adapt to infrastructure changes without manual reconfiguration of their tool catalogs.
+
+\subsection{System Architecture}
+\label{subsec:ch6_system_architecture}
+
+Production systems must adapt as models evolve and infrastructure scales. The following directions address model-agnostic design and multi-agent coordination.
+
+\subsubsection{Model-Agnostic Agent Design}
+\label{subsubsec:ch6_model_agnostic}
+
+Model-agnosticism presented persistent challenges during \ac{AgentEdge} development. Using routing services like OpenRouter enabled switching between models, but each model and provider combination introduced subtle differences in response formats, tool calling conventions, and output structure. Python packages like Pydantic and Instructor helped abstract some differences, but issues persisted. The same prompt produced different results across models, requiring model-specific tuning that undermined portability.
+
+The fragmentation extends beyond models to providers. Different inference providers return the same model's outputs in different formats, forcing additional abstraction layers. Future research should develop standardized tool calling protocols that eliminate provider-specific integration code. Universal tool specifications similar to \ac{OpenAPI} would allow any \ac{LLM} to invoke orchestration interfaces regardless of provider. This standardization would enable practitioners to select models based on deployment constraints (cost, latency, privacy) rather than compatibility limitations.
+
+Model-agnostic evaluation frameworks must assess orchestration quality independently of the underlying \ac{LLM}. Success rate, energy efficiency, and latency metrics should remain comparable across model choices. Without such frameworks, practitioners cannot determine whether performance differences stem from the agent architecture or the underlying model.
+
+\subsubsection{Multi-Agent Coordination and Communication}
+\label{subsubsec:ch6_multiagent_coordination}
+
+\ac{AgentEdge} uses four agents in a sequential workflow, where coordination is implicit in the workflow structure rather than negotiated at runtime. Scaling beyond this requires a different approach. Adding more agents to a sequential workflow increases latency proportionally, since each agent adds \ac{LLM} invocations. The path to scaling is not adding agents but parallelizing existing agent architectures, running multiple instances of the same workflow across different infrastructure regions or orchestration domains.
+
+When multiple \ac{AgentEdge} instances operate on shared infrastructure, coordination becomes necessary. Independent instances may propose conflicting actions, such as one instance consolidating services onto a node while another tries to power it down. Future research should develop coordination protocols where distributed agent instances communicate through structured \ac{HTTP}/\ac{JSON} interfaces to negotiate shared resources, detect conflicts, and reach consensus before committing actions. The protocol design must balance coordination overhead against the latency costs of additional communication rounds.
+
+These coordination challenges raise open research questions. How do distributed agent instances detect when their plans conflict? What communication patterns minimize coordination overhead while preventing destructive interference? How should systems prioritize when multiple instances propose incompatible actions? Addressing these questions will determine whether agentic orchestration can scale from single-instance demonstrations to distributed deployments managing large infrastructure.
+
+\subsection{Toward Zero-Touch Orchestration}
+\label{subsec:ch6_toward_zero_touch}
+
+The eight research directions above form a progression toward autonomous infrastructure. Reliability and trust (evaluation, explainability, security) are prerequisites for operator acceptance. Technical infrastructure (context engineering, inference efficiency, tool discovery) removes performance barriers blocking real-time operation. System architecture (model-agnostic design, multi-agent coordination) enables long-term evolution and scaling.
+
+Some directions offer near-term impact. Benchmark development and semantic tool discovery address immediate deployment barriers with existing techniques. Others require longer-term research. Model-agnostic architectures depend on standardization efforts across the industry, and distributed multi-agent coordination remains an open systems challenge. Progress across these directions will determine how quickly agentic orchestration moves from research demonstrations to production infrastructure.
+
+The predictive frameworks (\ac{AERO}, \ac{OmniFORE}) and agentic architecture (\ac{AgentEdge}) developed in this dissertation provide starting points for these investigations. As agents mature, they will increasingly select and coordinate prediction models based on operational context, transforming orchestration from operator-assisted management toward zero-touch autonomous operation.

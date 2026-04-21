@@ -1,0 +1,327 @@
+% 5_Evaluation.tex
+\section{Evaluation}
+\label{sec:ch5_eval}
+
+This section presents: (i) the experimental setup with scenarios and simulation, (ii) model selection benchmarking five \acp{LLM}, (iii) baseline comparison against generic agentic frameworks, (iv) digital twin effectiveness through ablation studies, and (v) energy optimization scalability across infrastructure sizes. 
+
+\subsection{Experimental Setup}
+\label{subsec:ch5_setup}
+
+The experimental setup consists of three components. First, we design six representative orchestration scenarios that test reasoning under resource conflicts and energy optimization at scale. Second, we develop a custom edge-cloud simulator implementing the infrastructure model from Section~\ref{sec:ch5_system_model} to create reproducible test conditions. Third, we establish evaluation metrics measuring success rate, response time, \ac{API} efficiency, and energy reduction.
+
+
+\subsubsection{Orchestration Scenarios}
+
+Production orchestration must handle three challenges simultaneously, as failure in any one causes system-wide degradation \cite{6g_struggles_orchestration2025}. First, resource conflicts occur when new deployments exceed available capacity. Second, conflicting requirements arise where optimization objectives contradict each other. Third, scalability challenges emerge across heterogeneous infrastructure tiers. We designed six scenarios that systematically test these challenges, exposing critical failure modes of traditional orchestration approaches.
+
+\paragraph{Constraint Resolution Scenarios (1-3)}
+These scenarios test multi-step reasoning under resource conflicts that cannot be resolved through simple greedy allocation.
+
+\noindent\emph{Scenario 1: Full Node.} This scenario evaluates basic constraint handling. Deploying a 2-core service on a fully-utilized 4-core node requires migrating existing services first. This tests fundamental planning capabilities and service migration coordination.
+
+\noindent\emph{Scenario 2: Low-Power Conflict.} This scenario introduces conflicting objectives. The user requests to simultaneously put edge-1 in low-power mode while scaling APIService (currently hosted on edge-1) to 1.4 cores. Since services cannot run on low-power nodes, the agent must migrate APIService to edge-0 before executing the power transition. This tests dependency detection and coordinated migration-scaling-power management across multiple nodes.
+
+\noindent\emph{Scenario 3: Compound Constraint.} This scenario creates an intentional deadlock to test \ac{AgentEdge}'s deadlock detection and resolution mechanism from Section~\ref{sec:ch5_proposed_solution}. The user requests to put edge-1 in low-power mode while scaling APIService to 2.4 cores. However, migrating both services from edge-1 to edge-0 would exceed edge-0's available capacity, creating an unsatisfiable constraint.
+
+\paragraph{Energy Optimization Scenarios (4-6)}
+These scenarios evaluate scalability across infrastructure sizes that span typical edge deployments (8 nodes), mid-sized installations (18 nodes), and large-scale edge deployments (35 nodes). All scenarios start from energy-inefficient configurations with underutilized services spread across nodes, leaving idle nodes consuming baseline power. 
+
+Agents must consolidate services onto fewer nodes and transition idle nodes to low-power mode. This progression tests whether multi-agent coordination maintains effectiveness as infrastructure complexity increases and whether planning overhead causes performance degradation at scale.
+
+\begin{table*}[!htbp]
+    \centering
+    \caption{Six orchestration evaluation scenarios testing constraint resolution (Full Node, Low-Power Conflict, Compound Constraint) and scalable energy optimization (Small: 8 nodes, Medium: 18 nodes, Large: 35 nodes) with quantitative success metrics}
+    \label{tab:ch5_scenarios}
+    \scriptsize
+    \renewcommand{\arraystretch}{1.0}
+    \begin{tabularx}{\textwidth}{c|l|l|>{\raggedright\arraybackslash}X|l}
+        \toprule
+        \# & Scenario & Infrastructure State & Orchestration Challenge & Success Metric \\
+        \midrule
+        \rowcolor{gray!20} 1 & Full Node & 
+        \parbox[t]{2.8cm}{\scriptsize \texttt{edge-0}: 100\% util. (WA+DB+\ac{API})\\\texttt{edge-1}: 0\% util. (idle)} &
+        Deploy service on full node: must migrate existing services first &
+        $\geq$2.0 cores freed \\
+        \midrule
+        2 & Low-Power Conflict & 
+        \parbox[t]{2.8cm}{\scriptsize \texttt{edge-0}: 24\% util. (MWA+Mon)\\\texttt{edge-1}: 10\% util. (DB+\ac{API})} &
+        Scale \ac{API} to 1.4 cores while putting edge-1 in low-power mode &
+        Migration-first execution \\
+        \midrule
+        \rowcolor{gray!20} 3 & Compound Constraint & 
+        \parbox[t]{2.8cm}{\scriptsize \texttt{edge-0}: 48\% util. (MWA+Mon)\\\texttt{edge-1}: 10\% util. (DB+\ac{API})} &
+        Scale \ac{API} to 2.4 cores while powering down edge-1: creates 0.52-core deficit &
+        Creative redistribution \\
+        \midrule
+        4 & Energy: Small & 
+        \parbox[t]{2.8cm}{\scriptsize 6 services, 8 nodes, 2 idle} &
+        Consolidate services, power down idle nodes &
+        Energy reduction $>$\SI{0}{\watt} \\
+        \midrule
+        \rowcolor{gray!20} 5 & Energy: Medium & 
+        \parbox[t]{2.8cm}{\scriptsize 15 services, 18 nodes, 3 idle} &
+        Consolidate services, power down idle nodes &
+        Energy reduction $>$\SI{0}{\watt} \\
+        \midrule
+        6 & Energy: Large & 
+        \parbox[t]{2.8cm}{\scriptsize 30 services, 35 nodes, 6 idle} &
+        Consolidate services, power down idle nodes &
+        Energy reduction $>$\SI{0}{\watt} \\
+        \bottomrule
+    \end{tabularx}
+    \vspace{2pt}
+    {\scriptsize\textbf{Note:} Infrastructure State reflects \ac{CPU} utilization percentages. Service Abbreviations: MWA=MainWebApp, Mon=Monitoring, DB=DatabaseService, \ac{API}=APIService, WA=WebApp.}
+\end{table*}
+
+\subsubsection{Infrastructure Simulator}
+
+Evaluating agent reasoning quality requires deterministic ground truth for decision correctness. Simulation provides this by isolating agent decision-making as the independent variable while maintaining realistic resource constraints~\cite{yao2023react,kolve2017ai2}. This methodology aligns with established practice in agentic \ac{AI} research, where interaction in physical environments is expensive and sometimes infeasible. A more commonly adopted approach is to develop agent skillsets and behavioral policies in virtual worlds before deploying in physical environments~\cite{xiao2025agentnet}. The digital twin simulator serves this purpose: it provides a controlled environment where agent reasoning can be validated without risking production infrastructure, enabling systematic evaluation of constraint satisfaction, energy optimization, and multi-step planning.
+
+The simulator employs Flask-based \ac{API} architecture, implementing the heterogeneous infrastructure model $\mathcal{G} = (\mathcal{N},\, \mathcal{E})$ from Section~\ref{sec:ch5_system_model} with detailed resource management and energy tracking per Eq.~\ref{eq:ch5_power}. The implementation includes 12 distinct \ac{API} endpoints, continuous power monitoring at \SI{5}{\second} intervals, 60\% low-power mode energy reduction, and stochastic operation timing reflecting real-world constraints. Table~\ref{tab:ch5_simulator_coverage} details the technical specifications covering three-tier hierarchical infrastructure, differentiated service types with resource requirements $\mathbf{d}_j$, network communication patterns, energy consumption models per Eq.~\ref{eq:ch5_power}, and stochastic operation timing.
+
+
+\begin{table*}
+    \centering
+    \caption{Infrastructure simulator specifications spanning three-tier deployment with heterogeneous resources, stochastic operation timing, power modeling, network latency, and real-time constraint validation}
+    \label{tab:ch5_simulator_coverage}
+    \small
+    \renewcommand{\arraystretch}{1.0}
+    \begin{tabular}{l|c|c|c}
+        \toprule
+        Infrastructure Component & Far Edge Tier & Near Edge Tier & Cloud Tier \\
+        \midrule
+        \rowcolor{gray!20} Node Count & 2--24 & 0--10 & 0--1 \\
+        \ac{CPU} Cores & 4.0 & 16.0 & 64.0 \\
+        \rowcolor{gray!20} Memory (\si{\giga\byte}) & 8.0 & 32.0 & 256.0 \\
+        \midrule
+        Far Edge-to-Near Edge Latency & \SIrange{10}{25}{\milli\second} & --- & --- \\
+        \rowcolor{gray!20} Near Edge-to-Cloud Latency & --- & \SIrange{25}{60}{\milli\second} & --- \\
+        \midrule
+        Power Consumption (\si{\watt}) & 10--35 & 40--120 & 180--450 \\
+        \rowcolor{gray!20} Low-Power Mode Reduction & 60\% & 60\% & 60\% \\
+        \midrule
+        Web Service Resources & \multicolumn{3}{c}{0.25 cores, \SI{0.128}{\giga\byte} memory} \\
+        \rowcolor{gray!20} Database Resources & \multicolumn{3}{c}{0.5 cores, \SI{0.256}{\giga\byte} memory} \\
+        \ac{API} Service Resources & \multicolumn{3}{c}{0.25 cores, \SI{0.128}{\giga\byte} memory} \\
+        \midrule
+        \rowcolor{gray!20} Deployment Timing & \multicolumn{3}{c}{\SIrange{15}{45}{\second} web/api, \SIrange{45}{120}{\second} database} \\
+        Migration Timing & \multicolumn{3}{c}{\SIrange{8}{30}{\second} base + data transfer} \\
+        \rowcolor{gray!20} Scaling Timing & \multicolumn{3}{c}{Up: \SIrange{6}{54}{\second}, Down: \SIrange{5}{32}{\second}} \\
+        \midrule
+        Stochastic Timing Variance & \multicolumn{3}{c}{Deploy: $\pm$25\%, Migrate: $\pm$20\%, Scale: $\pm$15\%, Status: $\pm$10\%} \\
+        \rowcolor{gray!20} Network Latency Fluctuations & \multicolumn{3}{c}{$\pm$\SIrange{1}{2}{\milli\second} random variations per \SI{5}{\second} interval} \\
+        Service Metrics Variations & \multicolumn{3}{c}{Latency: $\pm$\SI{5}{\milli\second}, Throughput: $\pm$10RPS, Error: 0--5\%} \\
+        \rowcolor{gray!20} Failure Rate Modeling & \multicolumn{3}{c}{Probabilistic distributions: 0.1--2.0\% operation failure} \\
+        Power Sampling & \multicolumn{3}{c}{\SI{5}{\second} intervals with utilization-based fluctuations} \\
+        \rowcolor{gray!20} Energy Model & \multicolumn{3}{c}{Utilization-based (60\% cores, 30\% memory, 10\% storage)} \\
+        Resource Validation & \multicolumn{3}{c}{Real-time constraint checking} \\
+        \bottomrule
+    \end{tabular}
+    
+
+\end{table*}
+
+\subsubsection{Evaluation Metrics and Reproducibility}
+\label{subsubsec:ch5_evaluation_metrics}
+
+We employ four primary metrics: success rate $S = n_{success}/n_{runs}$ measuring task completion through exact end-state matching, response time $T_{response}$ quantifying total orchestration latency, \ac{API} efficiency $A_{calls}$ tracking infrastructure queries per run, and energy reduction $E_{reduction}$ measuring power consumption savings.
+
+The success determination follows an end-state matching protocol. Each scenario pre-defines multiple valid target placements $\Pi_{\text{target}} = \{\pi_1^*, \ldots, \pi_\nu^*\}$. Each $\pi_\kappa^*: \mathcal{S} \to \mathcal{N}$ represents an acceptable orchestration outcome conforming to capacity constraints from Eq.~\ref{eq:ch5_capacity_constraint}. The evaluation requires the final agent-generated placement $\pi_{\text{final}}$ to match exactly at least one target: $\pi_{\text{final}} \in \Pi_{\text{target}}$. 
+
+Statistical analysis of binary success rates employs the Wilson score method~\cite{wilson1927probable}, which provides superior confidence interval properties compared to normal approximation and prevents intervals from exceeding [0,1] bounds for extreme success rate proportions.
+
+For experimental rigor, we execute 60 runs per model/system (20 per scenario) for model selection and baseline comparison, 60 per condition for digital twin ablation studies, and 10 per scenario for energy optimization, totaling 630 runs across all phases. Deterministic seeding follows $\text{SHA256}(\text{phase}, \text{model}, \text{scenario}, \text{iteration})$ to ensure consistent randomness across all evaluations. 
+
+All experiments run on a Linux host with Python 3.13+ and fixed \ac{API} timeouts to ensure consistent evaluation conditions. \ac{LLM} inference was accessed through a hosted provider. The agentic orchestration framework utilizes \ac{LangGraph} for workflow management, with structured output extraction handled by Instructor and Pydantic for type-safe validation. With the experimental foundation established, we proceed to systematic model selection.
+
+\subsection{Model Selection}
+\label{subsec:ch5_model_selection}
+
+Model selection directly determines whether multi-agent orchestration succeeds or fails in production. Orchestration demands simultaneous capabilities in tool coordination, mathematical reasoning for resource constraints, and multi-step planning under real-time requirements. This evaluation determines which foundation model enables reliable autonomous service management.
+
+We benchmark five leading open-source \acp{LLM}: \texttt{kimi-k2-1T}~\cite{team2025kimi}, \texttt{qwen3-235B}~\cite{yang2025qwen3}, \texttt{deepseek-r1-70B}~\cite{guo2025deepseek}, \texttt{llama-4-109B}~\cite{singh2025llama4}, and \texttt{gpt-oss-120B}~\cite{agarwal2025gpt} across all six orchestration scenarios. The evaluation identifies which model best balances reasoning capability, execution speed, and cost-efficiency for autonomous service management.
+
+\subsubsection{Model Overview}
+
+Table~\ref{tab:ch5_model_comparison} presents a detailed comparison of the evaluated models across key architectural and performance metrics. The model selection process implements systematic prefiltering from the broader \ac{LLM} marketplace, ensuring compliance with essential requirements: open-source availability, function calling capabilities, mathematical reasoning proficiency, and programming competence.
+
+The selected models offer diverse capabilities including agent-centric design with tool integration (\texttt{kimi-k2-1T}), mathematical reasoning with dual thinking modes (\texttt{qwen3-235B}), systematic algorithmic reasoning (\texttt{deepseek-r1-70B}), long-context multimodal processing (\texttt{llama-4-109B}), and production-scale agentic capabilities (\texttt{gpt-oss-120B}), ensuring thorough evaluation across key dimensions required for effective orchestration: tool coordination, logical reasoning, systematic planning, and complex scenario analysis.
+
+\begin{table*}
+    \centering
+    \caption{Five open-source \ac{LLM} candidates with parameters ranging from 70B to 1T (32B-235B active), context windows of 128K-1M+ tokens, spanning \ac{MoE} Transformer and Dense Transformer architectures (Q4 2024-Q2 2025 releases), all supporting function calling, mathematical reasoning, and code generation}
+    \label{tab:ch5_model_comparison}
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \resizebox{0.95\textwidth}{!}{%
+    \begin{tabular}{c|l|c|c|l|c|c|c|c|c}
+        \toprule
+        \# & Model & Params & Context & Architecture & Release & Open-source & Tools & Math & Code \\
+        \midrule
+        \rowcolor{gray!20} 1 & \texttt{kimi-k2-1T} & 1T/32B & 128K & \ac{MoE} Transformer & Q4 2024 & \checkmark & \checkmark & \checkmark & \checkmark \\
+        \midrule
+        2 & \texttt{qwen3-235B} & 235B/22B & 128K & \ac{MoE} Transformer & Q1 2025 & \checkmark & \checkmark & \checkmark & \checkmark \\
+        \midrule
+        \rowcolor{gray!20} 3 & \texttt{deepseek-r1-70B} & 70B & 131K & Dense Transformer & Q1 2025 & \checkmark & \checkmark & \checkmark & \checkmark \\
+        \midrule
+        4 & \texttt{llama-4-109B} & 109B/17B & 1M+ & \ac{MoE} Multimodal & Q2 2025 & \checkmark & \checkmark & \checkmark & \checkmark \\
+        \midrule
+        \rowcolor{gray!20} 5 & \texttt{gpt-oss-120B} & 117B/5.1B & 131K & \ac{MoE} Transformer & Q1 2025 & \checkmark & \checkmark & \checkmark & \checkmark \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table*}
+
+
+\subsubsection{Speed-Cost-Intelligence Trade-Offs}
+
+Fig.~\ref{fig:ch5_phase0_price_vs_speed} illustrates the speed-cost-intelligence trade-offs. The analysis shows theoretical inference speeds as reported by providers~\cite{artificialanalysis_leaderboard} and associated costs. Models include \texttt{deepseek-r1-70B} (\SI{1501.0}{tokens\per\second}, \$0.05/M tokens), \texttt{gpt-oss-120B} (\SI{2870.6}{tokens\per\second}), \texttt{llama-4-109B} (\SI{2724.6}{tokens\per\second}), \texttt{qwen3-235B} (\SI{1509.8}{tokens\per\second}, \$0.247/M tokens), and \texttt{kimi-k2-1T} (\SI{466.1}{tokens\per\second}, \$0.727/M tokens). These models exhibit varying intelligence indices as measured by standardized benchmarks~\cite{artificialanalysis_leaderboard}. This three-dimensional optimization necessitates thorough orchestration performance evaluation to identify the optimal model.
+
+% Third figure: phase4_api_endpoint_complexity_patterns
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{sections/chapter5/img/eval/phase0_price_vs_speed.pdf}
+    \caption{Speed-cost-intelligence trade-offs for five candidate \acp{LLM} ranging from 466.1 tokens/s (\texttt{kimi-k2-1T}) to 2870.6 tokens/s (\texttt{gpt-oss-120B}) with pricing from \$0.05/M to \$0.727/M tokens, evaluated against standardized intelligence benchmarks.}
+    \label{fig:ch5_phase0_price_vs_speed}
+\end{figure}
+
+\subsubsection{End State Matching}
+
+Orchestration success requires achieving correct infrastructure end states that satisfy all constraints. Unlike creative tasks, orchestration has objectively correct and incorrect outcomes.
+
+\texttt{Qwen3-235B} achieves 78.3\% success rate, significantly outperforming \texttt{kimi-k2-1T} (71.7\%), \texttt{deepseek-r1-70B} (48.3\%), \texttt{gpt-oss-120B} (40.0\%), and \texttt{llama-4-109B} (23.3\%) (Fig.~\ref{fig:ch5_phase1_raw_success_rate}). More than half of leading \acp{LLM} fail in over 50\% of orchestration scenarios despite strong performance on traditional \ac{NLP} benchmarks, demonstrating that benchmark performance does not predict service orchestration capability and necessitating domain-specific evaluation.
+
+% First figure: phase1_raw_success_rate
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{sections/chapter5/img/eval/phase1_raw_success_rate.pdf}
+    \caption{Orchestration success rates across six scenarios with \texttt{qwen3-235B} achieving 78.3\% (best), significantly outperforming \texttt{kimi-k2-1T} (71.7\%), \texttt{deepseek-r1-70B} (48.3\%), \texttt{gpt-oss-120B} (40.0\%), and \texttt{llama-4-109B} (23.3\%) using exact end-state matching validation.}
+    \label{fig:ch5_phase1_raw_success_rate}
+\end{figure}
+
+
+\subsubsection{Total Agent Runtime}
+
+Production orchestration must respond within acceptable latency bounds to handle dynamic infrastructure changes. The question is whether reasoning quality comes at prohibitive time costs.
+
+\texttt{Qwen3-235B} achieves \SI{45.9}{\second} response time while maintaining 78.3\% success (Fig.~\ref{fig:ch5_phase1_raw_response_time}). In contrast, \texttt{deepseek-r1-70B} completes fastest (\SI{29.2}{\second}) but achieves only 48.3\% success. Meanwhile, \texttt{llama-4-109B} requires \SI{77.4}{\second} yet fails 76.7\% of scenarios. Orchestration latency correlates more with reasoning quality than raw inference speed. Failed attempts and retry loops dominate total runtime, not \ac{LLM} token generation.
+
+% Second figure: phase1_raw_response_time
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{sections/chapter5/img/eval/phase1_raw_response_time.pdf}
+    \caption{Total agent runtime showing \texttt{qwen3-235B} achieving optimal speed-accuracy balance at 45.9s with 78.3\% success, while \texttt{deepseek-r1-70B} completes fastest (29.2s) but achieves only 48.3\% success, and \texttt{llama-4-109B} requires 77.4s yet fails 76.7\% of scenarios.}
+    \label{fig:ch5_phase1_raw_response_time}
+\end{figure}
+
+Beyond aggregate metrics, we examine model performance across individual scenario types to identify capability gaps.
+
+\subsubsection{Scenario Complexity}
+
+Aggregate success rates may hide critical weaknesses in specific scenario types. The three constraint resolution scenarios test progressively complex reasoning: basic resource conflict (Full Node), dependency coordination (Low-Power Conflict), and deadlock resolution (Compound Constraint).
+
+\texttt{Qwen3-235B} achieves balanced performance across all constraint types (100\% on Full Node, 95\% on Low-Power Conflict, 40\% on Compound Constraint) (Fig.~\ref{fig:ch5_phase1_scenario_heatmap}). Other models exhibit pronounced weaknesses. \texttt{llama-4-109B} fails completely on compound constraints (0\%). \texttt{deepseek-r1-70B} shows inconsistent performance despite reasonable success on simpler scenarios. Orchestration requires robust general reasoning, not specialized optimization for particular scenario types. We select \texttt{qwen3-235B} for all subsequent experiments based on its consistent cross-scenario performance.
+
+% Third figure: phase1_scenario_heatmap
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{sections/chapter5/img/eval/phase1_scenario_heatmap.pdf}
+    \caption{Model performance heatmap across constraint resolution scenarios revealing \texttt{qwen3-235B}'s balanced capability (100\% Full Node, 95\% Low-Power Conflict, 40\% Compound Constraint), while other models exhibit pronounced weaknesses (\texttt{llama-4-109B}: 0\% compound constraints, \texttt{deepseek-r1-70B}: inconsistent performance across scenario types).}
+    \label{fig:ch5_phase1_scenario_heatmap}
+\end{figure}
+
+\subsection{Single-Agent vs Multi-Agent}
+\label{subsec:ch5_baseline_comparison}
+
+With the optimal \ac{LLM} identified, we examine whether multi-agent specialization is necessary or generic single-agent frameworks can succeed in orchestration. Prior agentic frameworks excel in other domains but have never been evaluated for service orchestration, making this comparison critical to determine whether service orchestration demands specialized multi-agent coordination. 
+
+We compare against agentic \ac{AI} frameworks (\ac{ReAct}, \ac{LATS}) that, like \ac{AgentEdge}, interpret natural language intent and coordinate multi-step actions. Traditional optimization algorithms solve formally specified mathematical programs rather than translating intent into executable plans. As discussed in Section~\ref{subsec:ch5_multi_agent_graph}, such solvers can be invoked by the Planning Agent as optimization backends when beneficial.
+
+We compare \ac{AgentEdge} against two baseline agentic frameworks through 60 independent runs per system across constraint resolution scenarios (1-3) from Table~\ref{tab:ch5_scenarios}. All systems use identical evaluation conditions with \texttt{qwen3-235B} as the base \ac{LLM} and exact end-state matching for success measurement.
+
+\textbf{\ac{ReAct}~\cite{yao2023react}} synergizes reasoning and acting in language models through interleaved thought-action sequences. It increases the action space $A$ with the language space $L$ to create $\hat{A} = A \cup L$. The framework employs few-shot prompting with human-annotated trajectories.
+
+\textbf{\ac{LATS}~\cite{LATS}} represents the most advanced single-agent approach. It unifies reasoning, acting, and planning through Monte Carlo Tree Search. The framework implements six-operation cycles: selection, expansion, evaluation, simulation, backpropagation, and reflection. \ac{LATS} uses \acp{LLM} as agents, value functions, and optimizers simultaneously to improve decision-making.
+
+\ac{AgentEdge} achieves 78.3\% success rate compared to \ac{ReAct}'s 28.3\% and \ac{LATS}'s 65.0\% (Fig.~\ref{fig:ch5_phase2_comparison}), representing 2.76× and 1.20× improvements respectively. Generic frameworks fail not due to \ac{LLM} limitations (all use \texttt{qwen3-235B}), but due to architectural mismatch with infrastructure constraints. \ac{ReAct}'s sequential reasoning lacks systematic planning for multi-step coordination required by orchestration scenarios. \ac{LATS}'s tree search assumes state reversibility that does not exist in infrastructure, where deployed services cannot be "undeployed" to backtrack through decision trees. \ac{AgentEdge} requires 46 seconds versus \ac{ReAct}'s 9 seconds, yet this coordination overhead enables success where faster execution produces only faster failures. These empirical results align with the distributed reasoning decomposition analysis from Section~\ref{sec:ch5_proposed_solution}, which suggests performance gains when decomposing complex reasoning across specialized agents.
+
+\begin{figure}[!htbp]
+\centering
+\subfloat[Success Rate Comparison]{\includegraphics[width=0.25\textwidth]{sections/chapter5/img/eval/phase2_success_rate_comparison.pdf}%
+\label{fig:ch5_phase2_success_rate}}
+\hfil
+\subfloat[Response Time Comparison]{\includegraphics[width=0.25\textwidth]{sections/chapter5/img/eval/phase2_response_time_comparison.pdf}%
+\label{fig:ch5_phase2_response_time}}
+\caption{\ac{AgentEdge} achieves 78.3\% success rate versus \ac{ReAct}'s 28.3\% (2.76× improvement) and \ac{LATS}'s 65.0\% (1.20× improvement) across 60 independent runs per system, with 46s response time demonstrating that multi-agent coordination overhead enables reliable orchestration where faster generic frameworks produce faster failures.}
+\label{fig:ch5_phase2_comparison}
+\end{figure}
+
+The 2.76× improvement over existing agentic frameworks establishes that orchestration requires specialized architectural design, not merely applying existing \ac{ML} frameworks to infrastructure domains.
+
+\subsection{Effectiveness of Digital Twin}
+\label{subsec:ch5_digital_twin_effectiveness}
+
+\ac{AgentEdge}'s core innovation is \ac{ActSimCrit}'s digital twin simulation, which validates orchestration plans before real execution. Through ablation comparing \ac{AgentEdge} with (+DT) and without (-DT) simulation while keeping all other components identical, we demonstrate that simulation prevents catastrophic planning failures.
+
+Without simulation, agents exhibit extreme variability with 8 to 517 \ac{API} calls per run (standard deviation 109.4) (Fig.~\ref{fig:ch5_phase3_comparison}), while simulation enables stable performance with 10.9±1.1 calls. This 10× reduction in variance prevents agents from entering infinite retry loops where they repeatedly propose invalid plans, query infrastructure for feedback, receive rejection, and retry without learning. The digital twin breaks this cycle by validating strategies before execution, enabling safe exploration of solution spaces.
+
+\begin{figure}[!htbp]
+\centering
+\subfloat[Success Rate Comparison]{\includegraphics[width=0.25\textwidth]{sections/chapter5/img/eval/phase3_success_rate_comparison.pdf}%
+\label{fig:ch5_phase3_success_rate}}
+\hfil
+\subfloat[\ac{API} Calls per Run Comparison]{\includegraphics[width=0.25\textwidth]{sections/chapter5/img/eval/phase3_api_calls_comparison.pdf}%
+\label{fig:ch5_phase3_api_calls}}
+\caption{Digital twin simulation effectiveness: \ac{ActSimCrit} (+DT) achieves 78.3\% success and stable 10.9±1.1 \ac{API} calls versus 53.3\% success and highly variable 37.7±109.4 \ac{API} calls without simulation (-DT), demonstrating 1.47× success improvement and 10× variance reduction through digital twin validation.}
+\label{fig:ch5_phase3_comparison}
+\end{figure}
+
+Beyond stability, digital twin provides 1.47× success improvement (78.3\% vs 53.3\%).
+
+\subsection{Energy Optimization Scalability}
+\label{subsec:ch5_energy_scalability}
+
+
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+
+% First figure: phase4_infrastructure_node_service_scaling
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{sections/chapter5/img/eval/phase4_infrastructure_node_service_scaling.pdf}
+    \caption{Infrastructure scaling progression showing Small (8 nodes, 6 services), Medium (18 nodes, 15 services), and Large (35 nodes, 30 services) three-tier edge-cloud deployments with node and service distribution across far-edge, near-edge, and cloud tiers for energy optimization evaluation.}
+    \label{fig:ch5_phase4_infrastructure_scaling}
+\end{figure}
+
+% Second figure: phase4_power_consumption_api_progression
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{sections/chapter5/img/eval/phase4_power_consumption_api_progression.pdf}
+    \caption{Energy optimization achieving power savings of 89W (Small), 300.8W (Medium), and 185.2W (Large) through intelligent service consolidation and low-power mode transitions, with response times of 223.7s, 171.0s, and 687.6s respectively across small to large-scale deployments.}
+    \label{fig:ch5_phase4_power_consumption_api_progression}
+\end{figure*}
+
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+%%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS %%%% ENERGY FIGS
+
+Production edge-cloud deployments span from small installations (8 nodes) to large-scale edge deployments (35 nodes), where multi-agent coordination must maintain effectiveness as infrastructure complexity grows. We evaluate energy optimization across three infrastructure scales: Small (8 nodes, 6 services), Medium (18 nodes, 15 services), and Large (35 nodes, 30 services) (Fig.~\ref{fig:ch5_phase4_infrastructure_scaling}).
+
+\ac{AgentEdge} achieves power savings of \SI{89}{\watt} (Small), \SI{300.8}{\watt} (Medium), and \SI{185.2}{\watt} (Large) (Fig.~\ref{fig:ch5_phase4_power_consumption_api_progression}), demonstrating that multi-agent coordination scales to large-scale edge deployments. Response times grow non-linearly (\SI{223.7}{\second}, \SI{171.0}{\second}, \SI{687.6}{\second}), with medium scale showing optimal efficiency due to favorable complexity-to-opportunity ratio. Large-scale edge deployments require longer planning time yet consistently achieve energy optimization objectives.
+
+
+Digital twins span multiple timescales, including real-time control (milliseconds), operational planning (minutes to hours), and strategic optimization (hours to days)~\cite{fuller2020digital, wu2021digital}. In networking and cloud systems, digital twins predominantly support planning, validation, and optimization rather than fast control loops. Strategic orchestration tasks such as energy consolidation, capacity planning, and workload rebalancing typically execute during maintenance windows. The \SI{687}{\second} planning time is acceptable when decisions persist continuously until the next cycle.
+
+\subsection{Discussion}
+\label{subsec:ch5_discussion}
+
+The current evaluation assumes reliable network connectivity. Four deployment considerations merit discussion.
+
+\textit{Cost considerations.} The Planning Agent dominates token usage (99\%+) due to iterative \ac{ActSimCrit} reasoning. Each orchestration request averages 1.2M input and 0.24M output tokens, scaling with infrastructure size: 1.1M tokens for small-scale (8 nodes) to 2.6M for large-scale edge (35 nodes). At \texttt{qwen3-235B} pricing (\$0.13/M input, \$0.60/M output), each request costs \$0.30, yielding \$11K annually at 100 requests/day. \ac{LLM} inference prices have dropped 9--900$\times$ per year~\cite{epoch2025llminferencepricetrends}, improving cost viability. For cost-sensitive deployments, local hosting eliminates per-token costs, with the hardware investment recovering within 4--34 months depending on usage~\cite{pan2025localllm}.
+
+\textit{Scalability.} \ac{AgentEdge}'s graph-of-graphs architecture supports hierarchical partitioning for larger deployments. Regional orchestrators manage local clusters while a global coordinator handles cross-region decisions. Since planning dominates latency, regional orchestrators can operate in parallel.
+
+\textit{Privacy requirements.} The dynamic schema generation (Eq.~\ref{eq:ch5_schema}) provides a natural extension point for privacy constraints. Differential privacy mechanisms~\cite{chen2025federatedprivacy} could protect placement decisions in multi-tenant environments by adding calibrated noise to orchestration outputs.
+
+\textit{Bandwidth constraints.} The \ac{QoS} penalty function (Eq.~\ref{eq:ch5_objective}) captures latency $\ell(n_i, n_j)$. Extending to bandwidth-constrained environments would add an explicit term penalizing cross-node data movement. Recent work on clustered federated learning~\cite{chen2025federatedprivacy} demonstrates complementary multi-agent coordination techniques under bandwidth limits.

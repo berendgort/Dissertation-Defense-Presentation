@@ -1,0 +1,223 @@
+% 3_System_Model.tex
+\section{System Model and Problem Formulation}
+\label{sec:ch5_system_model}
+
+Building on the intelligent orchestration foundations established in Section~\ref{sec:ch2_intelligent_orchestration}, this section presents: (i) the infrastructure model characterizing nodes and network topology, (ii) the service orchestrator interface, (iii) the service model with resource requirements and placement constraints, (iv) \ac{LLM} calls with dynamic structured outputs for validation, (v) the agentic framework, (vi) the problem formulation as optimization under constraints, and (vii) orchestration challenges motivating our approach. The notation used throughout the chapter is presented in Table~\ref{tab:ch5_notation}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Mathematical notation for infrastructure, services, agents, and optimization}
+\label{tab:ch5_notation}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l l | l l}
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Symbol} & \textbf{Description} \\
+\midrule
+\rowcolor{gray!20} $\mathcal{G}$ & Infrastructure graph & $\mathcal{N}$ & Set of nodes \\
+$\mathcal{E}$ & Edge set & $n_i$ & Node $i$ \\
+\rowcolor{gray!20} $m$ & Number of nodes & $t$ & Time \\
+$\mathbf{r}_i$ & Resource capacity & $\mathbf{u}_i$ & Resource utilization \\
+\rowcolor{gray!20} $\ell(n_i,n_j)$ & Latency & $p_i$ & Power consumption \\
+$\mathcal{O}$ & Service orchestrator & $\zeta(t)$ & User intent \\
+\rowcolor{gray!20} $\rho(t)$ & User response & $\mathsf{req}(t)$ & User request \\
+\midrule
+$\mathcal{S}$ & Set of services & $s_j$ & Service $j$ \\
+\rowcolor{gray!20} $\mathbf{d}_j$ & Resource demand & $\pi$ & Service placement \\
+\midrule
+$\mathcal{A}$ & Set of agents & $a_i$ & Agent $i$ \\
+\rowcolor{gray!20} $\mathcal{R}$ & Set of roles & $f_i$ & Agent function \\
+$\mathbf{T}_i$ & Agent tools & $\mathbf{o}_i$ & Observations \\
+\rowcolor{gray!20} $\mathbf{s}_i$ & Internal state & $\mathbf{m}_i$ & Agent memory \\
+$\mathbf{p}_i$ & \ac{LLM} prompt & $\mathbf{y}_i$ & \ac{LLM} response \\
+\rowcolor{gray!20} $\mathcal{V}_i$ & Validation schema & $\mathbf{z}$ & Structured output \\
+\midrule
+\rowcolor{gray!20} $\mathcal{M}$ & \ac{QoS} metrics set & $h$ & \ac{QoS} metric index \\
+$Q_h$ & Realized \ac{QoS} & $\bar{q}_h$ & Target \ac{QoS} \\
+\rowcolor{gray!20} $J_{qos}$ & \ac{QoS} penalty & $\gamma_h$ & \ac{QoS} weight \\
+$\lambda,\mu$ & Trade-off weights & $R,E$ & Load/energy costs \\
+\rowcolor{gray!20} $\mathbf{B}^{(\tau)}$ & Action batch & $\mathcal{T}$ & State snapshots \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fig.~\ref{fig:ch5_system_model} illustrates the system model components and their interactions. A user submits natural-language intent $\zeta(t)$ to the Agentic Framework $\mathcal{A}$, which coordinates four agent roles (Intent $\to$ Observe $\to$ Plan $\to$ Act). The framework exchanges prompts $\mathbf{p}$ and validated outputs $\mathbf{z}$ with the \ac{LLM} validation module, where dynamic schema $\mathcal{V}(t)$ constrains agent outputs. The Service Orchestrator $\mathcal{O}$ mediates between the framework and infrastructure: it receives agentic commands, translates them to Kubernetes \ac{API} calls, and returns formatted state $\mathbf{u}(t)$ from \ac{API} responses. Services $s_j \in \mathcal{S}$ with demands $\mathbf{d}_j$ are placed on infrastructure nodes $n_i \in \mathcal{N}$ connected by network links with latency $\ell(n_i, n_j)$. Upon completion, the framework returns a natural-language response $\rho(t)$ to the user.
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=0.82\textwidth]{sections/chapter5/img/system_model_diagram.pdf}
+    \caption{System model overview. User submits intent $\zeta(t)$ to the Agentic Framework $\mathcal{A}$, which exchanges prompts $\mathbf{p}$ and validated outputs $\mathbf{z}$ with \ac{LLM} validation. The Service Orchestrator $\mathcal{O}$ mediates between framework and infrastructure, translating agentic commands to K8s \ac{API} calls and returning formatted state $\mathbf{u}(t)$. Services $s_j$ are placed on nodes $n_i$, and the framework returns response $\rho(t)$ to the user.}
+    \label{fig:ch5_system_model}
+\end{figure*}
+
+\subsection{Infrastructure Model}
+\label{subsec:ch5_infrastructure_model}
+
+We model the edge-cloud infrastructure as a network of computational nodes with heterogeneous capabilities spanning from resource-constrained edge devices to powerful cloud data centers.
+
+Formally, the infrastructure topology is represented as a graph $\mathcal{G} = (\mathcal{N},\, \mathcal{E})$ where:
+\begin{itemize}
+\item $\mathcal{N} = \{n_1,\, n_2,\, \ldots,\, n_m\}$ is the set of $m$ computational nodes
+\item $\mathcal{E} \subseteq \mathcal{N} \times \mathcal{N}$ represents network connectivity between nodes
+\end{itemize}
+
+Each node $n_i \in \mathcal{N}$ has finite resource capacity characterized by a two-dimensional vector:
+\begin{equation}
+\mathbf{r}_i = (r_i^c,\, r_i^m) \in \mathbb{R}_+^2,
+\label{eq:ch5_capacity}
+\end{equation}
+where $r_i^c$ denotes \ac{CPU} cores and $r_i^m$ is memory in bytes.
+
+Resource utilization is expressed as normalized fractions, where current utilization observed at time $t$ is:
+\begin{equation}
+\mathbf{u}_i(t) = (u_i^c(t),\, u_i^m(t)) \in [0,1]^2,
+\label{eq:ch5_utilization}
+\end{equation}
+where each component represents the fraction of capacity consumed for the corresponding resource type (\ac{CPU} or memory), enabling unified constraint checking and optimization across heterogeneous resource dimensions.
+
+The communication latency between nodes $n_i$ and $n_j$ is denoted $\ell(n_i, n_j) \in \mathbb{R}_+$ in seconds, representing the network delay for data transmission between nodes.
+
+Additionally, power consumption at node $n_i$ follows a linear utilization-dependent model:
+\begin{equation}
+p_i(t) = p_i^0 + \alpha_i (w_c \cdot u_i^c(t) + w_m \cdot u_i^m(t)),
+\label{eq:ch5_power}
+\end{equation}
+where $p_i^0 \geq 0$ is the idle power consumption in watts. The parameter $\alpha_i > 0$ is the dynamic power coefficient in watts that represents the maximum additional power draw with full utilization. The weights $w_c,\, w_m > 0$ are dimensionless \ac{CPU} and memory utilization weights, respectively. This linear model is established for datacenter power modeling and achieves less than 1\% error when validated against measured power~\cite{fan2007power}.
+
+\subsection{Service Orchestrator}
+\label{subsec:ch5_service_orchestrator}
+
+The agentic framework $\mathcal{A}$ does not interact with infrastructure nodes directly. Instead, a service orchestrator $\mathcal{O}$ mediates between the framework and the underlying container orchestration platform (e.g., Kubernetes). Communication follows a bidirectional flow: the framework issues high-level agentic commands (e.g., ``deploy service $s_j$ to node $n_i$''), which the orchestrator translates into platform-specific \ac{API} calls (e.g., Kubernetes pod scheduling). The orchestrator executes these calls against the container runtime and receives \ac{API} responses indicating success, failure, or resource status. These responses are then converted back into a structured format the agents can interpret, providing updated utilization state $\mathbf{u}(t)$. This architectural separation enables agents to reason about placement decisions $\pi^*$ without requiring knowledge of low-level infrastructure commands, while ensuring that all infrastructure interactions occur through validated \ac{API} interfaces.
+
+\subsection{Service Model}
+\label{subsec:ch5_service_model}
+
+Building upon the infrastructure model, the system manages a collection of services that must be placed on the infrastructure nodes while satisfying resource requirements. Services are defined as $\mathcal{S} = \{s_1,\, s_2,\, \ldots,\, s_{|\mathcal{S}|}\}$, where each service $s_j \in \mathcal{S}$ has resource demands:
+\begin{equation}
+\mathbf{d}_j = (d_j^c,\, d_j^m) \in \mathbb{R}_+^2,
+\label{eq:ch5_demand}
+\end{equation}
+where $d_j^c$ denotes the \ac{CPU} cores required and $d_j^m$ the memory required in bytes.
+
+Based on these service requirements, a placement is a function $\pi: \mathcal{S} \to \mathcal{N}$ that assigns each service to exactly one node. We consider placement-dependent utilization $\mathbf{u}_i(\pi, t)$ representing the utilization resulting from the implementation of placement $\pi$. For placement $\pi$ to be feasible, it must satisfy capacity constraints:
+\begin{equation}
+\sum_{j: \pi(s_j) = n_i} \frac{\mathbf{d}_j}{\mathbf{r}_i} \leq \mathbf{1}, \quad \forall n_i \in \mathcal{N}.
+\label{eq:ch5_capacity_constraint}
+\end{equation}
+This ensures that the total normalized resource demands of all services placed on node $n_i$ do not exceed unity. Vector division $\mathbf{d}_j/\mathbf{r}_i$ is performed element-wise.
+
+\subsection{LLM Calls with Structured Outputs}
+\label{subsec:ch5_llm_calls}
+
+To enable intelligent orchestration decisions, agents use \acp{LLM} to process natural language input and generate orchestration decisions. Consider an agent indexed by $i$ where the \ac{LLM} interaction follows a standard input-output pattern in which the agent submits a prompt $\mathbf{p}_i(t)$ and receives a response $\mathbf{y}_i(t)$:
+\begin{equation}
+\mathbf{y}_i(t) = \text{LLM}(\mathbf{p}_i(t)),
+\label{eq:ch5_llm_call}
+\end{equation}
+where $\mathbf{p}_i(t)$ contains the state of the system, agent observations, and task-specific instructions. The output $\mathbf{y}_i(t)$ represents the unstructured natural language response of the \ac{LLM}.
+
+However, unstructured \ac{LLM} output is insufficient for reliable orchestration decisions that must satisfy strict infrastructure constraints. Therefore, our framework employs structured outputs that conform to dynamically generated schemas, enabling automatic validation and processing.
+
+To ensure safe and constraint-sensitive operation, structured agent output is validated through dynamic schemas that adapt to the current infrastructure state and agent role. A validation schema is generated for agent $i$ at time $t$:
+\begin{equation}
+\mathcal{V}_i(t) = \text{Schema}(\mathbf{u}(t), \text{role}_i),
+\label{eq:ch5_schema}
+\end{equation}
+where $\mathbf{u}(t) = [\mathbf{u}_1(t),\, \ldots,\, \mathbf{u}_m(t)]$ is the utilization state of the system. The parameter $\text{role}_i$ specifies the agent's designated role (e.g. intent, observe, plan, act). The schema $\mathcal{V}_i(t)$ defines the set of valid structured outputs for agent $i$ given current conditions.
+
+The validation of a structured agent output $\mathbf{z}$ against schema $\mathcal{V}_i(t)$ follows:
+\begin{equation}
+\text{Valid}(\mathbf{z}, \mathcal{V}_i(t)) = \begin{cases}
+1, & \text{if } \mathbf{z} \in \mathcal{V}_i(t) \\
+0, & \text{otherwise}
+\end{cases},
+\label{eq:ch5_validation}
+\end{equation}
+where the structured output $\mathbf{z}$ is accepted only if it conforms to the dynamically generated constraints. For example, consider when node $n_i$ approaches capacity such that $\mathbf{u}_i(t) + \mathbf{d}_j/\mathbf{r}_i > \mathbf{1}$ for normalized service demand. The schema $\mathcal{V}_k(t)$ for the Planning Agent $k$ (where $\text{role}_k = \text{plan}$) dynamically removes "deploy to $n_i$" from the valid action set. This prevents capacity constraint violations while preserving other actions such as migration or scaling.
+
+The variable dependencies form a three-stage pipeline: (i) infrastructure state $\mathbf{u}(t)$ determines the validation schema $\mathcal{V}_i(t)$ via Eq.~\ref{eq:ch5_schema}, constraining which actions are feasible, (ii) the \ac{LLM} generates response $\mathbf{y}_i(t)$ from prompt $\mathbf{p}_i(t)$ via Eq.~\ref{eq:ch5_llm_call}, proposing actions based on the task, and (iii) structured output $\mathbf{z}$ is extracted from $\mathbf{y}_i(t)$ and validated against $\mathcal{V}_i(t)$. The dependency chain is $\mathbf{u}(t) \to \mathcal{V}_i(t) \to \text{constrains } \mathbf{z} \leftarrow \mathbf{y}_i(t)$, where $\mathbf{z}$ represents the validated intersection of proposed and feasible actions.
+
+\subsection{Agentic Framework}
+\label{subsec:ch5_agentic_framework}
+
+We now define our agentic orchestration approach, introducing the augmented \ac{LLM} and multi-agent coordination mechanisms.
+
+\subsubsection{The Augmented LLM}
+
+The basic building block of our agentic system is an augmented \ac{LLM} enhanced with retrieval capabilities, tools, and memory. This enables five core functions: (i) \textit{Perceive} the state of the environment through observations $\mathbf{o}_i(t)$, (ii) \textit{Act} through available tools $\mathbf{T}_i$, (iii) \textit{Reason} through internal state $\mathbf{s}_i$, (iv) \textit{Evaluate} through memory $\mathbf{m}_i$, and (v) \textit{Sustain} operation over time through persistent function $f_i$. 
+
+Mathematically, an agent $i$ that implements these capabilities is formulated as follows:
+\begin{equation}
+\mathbf{output}_i = f_i(\mathbf{o}_i(t), \mathbf{s}_i, \mathbf{m}_i, \mathbf{T}_i),
+\label{eq:ch5_agent_update}
+\end{equation}
+where the agent actively generates search queries, selects appropriate tools, and determines information retention based on orchestration requirements.
+
+\subsubsection{Multi-Agent Coordination}
+
+Extending beyond single-agent capabilities, the orchestration system employs multiple \ac{LLM}-augmented agents that collaboratively manage service placement through specialized roles and coordinated decision-making based on task complexity and domain expertise.
+
+Formally, the set of agents is $\mathcal{A} = \{a_1,\, a_2,\, \ldots,\, a_{|\mathcal{A}|}\}$, where each agent $a_i$ has a designated role $\text{role}_i \in \mathcal{R}$. In our \ac{AgentEdge} framework, we use the role set:
+\begin{equation}
+\mathcal{R} = \{\text{intent},\, \text{observe},\, \text{plan},\, \text{act}\},
+\label{eq:ch5_roles}
+\end{equation}
+representing intent processing, infrastructure monitoring, placement planning, and action execution, respectively.
+
+Inter-agent communication follows structured message exchange, where agent $a_i$ sends message $\mathbf{msg}_{ij}$ to agent $a_j$ through standardized \acp{API}. 
+
+This four-agent-type decomposition enables specialized processing while maintaining coordinated orchestration through inter-agent routing protocols.
+
+\subsection{Problem Formulation}
+\label{subsec:ch5_problem_formulation}
+
+With the infrastructure, service, and agentic models established, we formulate the orchestration problem. Orchestration begins when a user expresses intent in natural language, such as ``deploy service A with low latency'' or ``reduce energy consumption while maintaining \ac{QoS}.'' At time $t$, this trigger $\zeta(t) \in \{\text{user request},\, \text{infrastructure change}\}$ arrives as $\mathsf{req}(t)$, and the framework observes infrastructure state $\mathbf{u}(t)$.
+
+The practical orchestration problem has three stages: (i)~interpret the natural language request to determine which services and/or infrastructure are involved, what constraints apply, and what objective the user prioritizes, (ii)~find a placement satisfying these derived constraints given current infrastructure state, and (iii)~monitor the system for unexpected events or deviations from user intents. Traditional optimization methods address only stage~(ii), assuming the objective function and constraints are already formalized. \ac{AgentEdge} addresses all three stages through agentic reasoning, while integrating traditional optimization techniques (heuristic or exact) as tools for placement generation by the Planning Agent. Moreover, the Planning Agent reasons over when to invoke a tool and which tool to invoke given the current orchestration scenario. The formulation below defines the problem that arises after intent translation, not the solution method.
+
+Once intent is translated into formal constraints, placement optimization seeks a $\pi$ minimizing \ac{QoS} deviation and infrastructure costs:
+\begin{equation}
+\pi^*(t) = \arg\min_\pi \quad J_{\mathrm{qos}}(\pi, t; \mathsf{req}(t)) + \lambda R(\pi, t) + \mu E(\pi, t),
+\label{eq:ch5_objective}
+\end{equation}
+where $\lambda \geq 0$ and $\mu \geq 0$ are trade-off parameters balancing \ac{QoS} adherence against load balancing cost $R(\pi, t)$ and energy cost $E(\pi, t)$, respectively. The load-balancing cost and energy cost are
+\begin{equation}
+R(\pi, t) = \sum_{i=1}^m \|\mathbf{u}_i(\pi, t)\|_2^2
+\label{eq:ch5_balance}
+\end{equation}
+and
+\begin{equation}
+E(\pi, t) = \sum_{i=1}^m p_i(\pi, t).
+\label{eq:ch5_energy}
+\end{equation}
+
+The optimization is subject to capacity constraints of Eq.~\ref{eq:ch5_capacity_constraint} and request-specific \ac{QoS} constraints
+\begin{equation}
+g(\pi, t; \mathsf{req}(t)) \le 0,
+\label{eq:ch5_qos_constraints}
+\end{equation}
+where $g(\cdot)$ encodes application-specific performance requirements (e.g., maximum end-to-end latency bounds, minimum throughput guarantees).
+We instantiate the \ac{QoS} deviation as
+\begin{equation}
+J_{\mathrm{qos}}(\pi, t; \mathsf{req}(t)) = \sum_{h \in \mathcal{M}} \gamma_h \, \big[\, Q_h(\pi, t; \mathsf{req}(t)) - \bar{q}_h(\mathsf{req}(t)) \,\big]_+,
+\label{eq:ch5_qos_penalty}
+\end{equation}
+where $\mathcal{M}$ indexes request-level \ac{QoS} metrics (e.g. end-to-end latency, success probability shortfall), $Q_h$ is the realized metric, and $\bar{q}_h$ is the target. The parameters $\gamma_h>0$ are \ac{QoS} metric weights, and $[x]_+ = \max\{x,0\}$. The term $Q_h(\pi, t)$ denotes the \textit{realized} value of \ac{QoS} metric $h$ under placement $\pi$ at time $t$, as opposed to the target $\bar{q}_h(\mathsf{req}(t))$ specified in the request. For latency, $Q_h$ is the measured end-to-end delay while $\bar{q}_h$ is the maximum acceptable delay. The penalty applies only when $Q_h$ exceeds the target $\bar{q}_h$.
+
+Additional performance or \ac{QoS} constraints such as communication delay, placement region, and reliability are incorporated through user-specified natural language requests rather than hardcoded in the objective. When users specify requirements in $\mathsf{req}(t)$, the Intent Agent parses these and the Planning Agent generates corresponding constraints $g(\pi, t; \mathsf{req}(t)) \le 0$. This user-centric design keeps the objective generic while allowing any parameter to be incorporated as a constraint.
+
+For multi-objective optimization, the trade-off parameters $(\lambda,\mu)$ are chosen by the strategy:
+\begin{align}
+(\lambda, \mu) = \begin{cases}
+(0,\, 0), & \text{\ac{QoS}-priority mode} \\
+(1,\, 0.1), & \text{load-balancing mode} \\
+(0.1,\, 1), & \text{energy-optimization mode} \\
+(\lambda_u,\, \mu_u), & \text{user-specified weights}
+\end{cases}.
+\end{align}
+The parameter pairs $(\lambda, \mu)$ are illustrative examples. In practice, the agentic framework determines optimal trade-off weights intrinsically based on the user's intent $\mathsf{req}(t)$, infrastructure state $\mathbf{u}(t)$, and agent promptset. The Planning Agent reasons about these inputs to derive appropriate optimization strategy without explicit parameter specification. The examples show how intent maps to behavior: \ac{QoS}-priority focuses on service quality, load-balancing distributes work evenly, and energy-optimization minimizes power.
+
+\subsection{Orchestration Challenges}
+\label{subsec:ch5_orchestration_challenges}
+
+Given this optimization formulation, finding an optimal placement $\pi^*$ is computationally costly for realistic problem sizes due to three fundamental challenges. First, combinatorial explosion creates a search space containing $|\mathcal{N}|^{|\mathcal{S}|}$ possible placements that grows exponentially with problem size. Second, dynamic constraints arise as infrastructure state $\mathbf{u}(t)$ changes continuously, requiring real-time adaptation of feasible placement decisions. Third, multi-objective optimization involves competing objectives (\ac{QoS} adherence, balance, and energy) that require careful trade-off analysis varying with system conditions. Traditional centralized optimization approaches cannot address these challenges simultaneously, motivating our multi-agent approach where four agent types (intent, observe, plan, and act) work together to solve Eq.~\ref{eq:ch5_objective}.

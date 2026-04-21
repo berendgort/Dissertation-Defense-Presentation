@@ -1,0 +1,24 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff','primaryTextColor':'#1a1a1a','primaryBorderColor':'#000000','lineColor':'#000000','fontFamily':'system-ui, -apple-system, sans-serif','fontSize':'15px'}}}%%
+flowchart TD
+    A["<b>ML Architectures</b><br/><i>Time-Series Forecasting</i>"]
+    
+    A ==> B["<b>RNN/LSTM</b>"]
+    A ==> C["<b>Temporal CNN</b>"]
+    A ==> D["<b>Transformers</b>"]
+    A ==> E["<b>Sparse MLP</b>"]
+    
+    B ==> B1["<span style='color:#059669'>✓</span> Sequential patterns<br/><span style='color:#dc2626'>✗</span> No parallelization<br/><span style='color:#dc2626'>✗</span> Vanishing gradients"]
+    C ==> C1["<span style='color:#059669'>✓</span> Parallel training<br/><span style='color:#dc2626'>✗</span> Limited receptive field"]
+    D ==> D1["<span style='color:#059669'>✓</span> Long-range dependencies<br/><span style='color:#dc2626'>✗</span> O(T²) complexity<br/><span style='color:#dc2626'>✗</span> Millions of parameters"]
+    E ==> E1["<span style='color:#059669'>✓</span> Fast inference &lt;50ms<br/><span style='color:#059669'>✓</span> Sub-1K parameters<br/><span style='color:#dc2626'>✗</span> Fixed periodicity"]
+    
+    style A fill:#3b82f6,stroke:#000,stroke-width:3px,color:#fff
+    style B fill:#8b5cf6,stroke:#000,stroke-width:2.5px,color:#fff
+    style C fill:#ec4899,stroke:#000,stroke-width:2.5px,color:#fff
+    style D fill:#06b6d4,stroke:#000,stroke-width:2.5px,color:#fff
+    style E fill:#10b981,stroke:#000,stroke-width:2.5px,color:#fff
+    style B1 fill:#f3f4f6,stroke:#000,stroke-width:2px,color:#1a1a1a
+    style C1 fill:#f3f4f6,stroke:#000,stroke-width:2px,color:#1a1a1a
+    style D1 fill:#f3f4f6,stroke:#000,stroke-width:2px,color:#1a1a1a
+    style E1 fill:#f3f4f6,stroke:#000,stroke-width:2px,color:#1a1a1a
+

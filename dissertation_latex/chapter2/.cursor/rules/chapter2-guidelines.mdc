@@ -1,0 +1,823 @@
+---
+description: Chapter 2 Background/State of the Art guidelines - structure, content, and writing patterns
+globs: ["sections/chapter2/**/*.tex"]
+alwaysApply: false
+---
+
+# Chapter 2: Background / State of the Art - Guidelines
+
+## Chapter Overview
+
+Chapter 2 is the **Background** or **State of the Art** chapter. This is a critical chapter that provides foundational knowledge, reviews existing approaches, and identifies research gaps that motivate the dissertation's contributions.
+
+**Dual Purpose**:
+1. **Educational**: Teach readers the fundamental concepts, mathematical tools, and techniques needed to understand later chapters
+2. **Analytical**: Survey existing literature, compare approaches, identify limitations, and establish gaps that the thesis addresses
+
+**Common Names for This Chapter** (all acceptable):
+- "Background" (UPC1 pattern: technical foundations + light literature review)
+- "State of the Art" (UPC2 pattern: heavy literature review + taxonomy)
+- "Related Work" (alternative emphasizing comparison)
+- "Background and Related Work" (combined approach)
+
+## Chapter Structure
+
+### Standard UPC PhD Thesis Background/SotA Structure
+
+Based on UPC dissertation examples, Chapter 2 typically follows one of two organizational patterns:
+
+#### **Pattern A: Background-Heavy (UPC1 Style)**
+
+Best for theses with significant mathematical/technical foundations:
+
+```latex
+\chapter{Background}
+
+\section{Introduction}
+% Brief context, chapter organization
+
+\section{Foundational Tool 1}  % e.g., Stochastic Geometry
+\subsection{Core Concepts}
+\subsection{Key Theorems}
+\subsection{Relevant Properties}
+
+\section{Foundational Tool 2}  % e.g., Connectivity Theory
+% Similar structure
+
+\section{Methodology}  % e.g., Simulation Approach
+% How research is conducted/validated
+
+\section{Related Work}  % Lighter literature review
+\subsection{Area 1}
+\subsection{Area 2}
+\subsection{Limitations and Gaps}
+```
+
+**Characteristics**:
+- Heavy mathematical foundations (40-50% of chapter)
+- Introduces specialized tools (stochastic geometry, optimization, etc.)
+- Literature review more focused, less taxonomic
+- Direct connection between tools and contributions
+
+#### **Pattern B: State of the Art-Heavy (UPC2 Style)**
+
+Best for theses in rapidly evolving fields with extensive prior work:
+
+```latex
+\chapter{State of the Art}
+
+\section{Main Concepts and Definitions}
+% Standardized terminology from ETSI/3GPP/standards bodies
+
+\section{Technology Area 1}  % e.g., Network Slicing
+\subsection{Enabling Technology A}  % e.g., SDN
+\subsection{Enabling Technology B}  % e.g., NFV
+\subsection{Combined Approach}  % e.g., SDN + NFV → Slicing
+\subsection{Current Implementations}
+\subsection{Beyond SoTA}  % What's missing
+
+\section{Technology Area 2}  % e.g., SLAs and Security
+\subsection{Concept A}
+\subsection{Concept B}
+\subsection{Beyond SoTA}
+
+\section{Technology Area 3}  % e.g., Distributed Architectures
+\subsection{Foundation Technology}  % e.g., Blockchain
+\subsection{Application Domain}  % e.g., Trust Management
+\subsection{Beyond SoTA}
+
+% Note: Each major section ends with "Beyond SoTA" subsection
+```
+
+**Characteristics**:
+- Comprehensive literature review (60-70% of chapter)
+- Taxonomy of approaches with clear categorization
+- Evolution narrative (how field developed)
+- Multiple "Beyond SoTA" sections identifying gaps
+- Standards-based definitions section
+
+### Current Thesis Structure (Hybrid Pattern)
+
+The current chapter2 follows a hybrid approach:
+
+```latex
+\chapter{Background}
+
+\subsection*{Introduction}  % Unnumbered, added to TOC manually
+
+% Part I: Foundational Concepts
+\section{Part I: Foundational Concepts}
+\input{2_workload_prediction}
+\input{3_generalization}
+\input{4_intelligent_orchestration_systems}
+
+% Part II: State of the Art
+\section{Part II: State of the Art}
+\input{5_sota_edge_deployable}
+\input{6_sota_generalization}
+\input{7_sota_autonomous}
+```
+
+**Files**:
+- `1_introduction.tex` - Chapter purpose, organization, gap analysis connection
+- `2_workload_prediction.tex` - ML for time-series, forecasting techniques
+- `3_generalization.tex` - Cross-dataset challenges, transfer learning
+- `4_intelligent_orchestration_systems.tex` - LLMs, agents, multi-agent systems
+- `5_sota_edge_deployable.tex` - Literature review: edge-deployable prediction
+- `6_sota_generalization.tex` - Literature review: cross-application methods
+- `7_sota_autonomous.tex` - Literature review: autonomous orchestration
+
+## Content Guidelines
+
+### Introduction Section (1_introduction.tex)
+
+**Purpose**: Set context, explain chapter organization, connect to thesis contributions
+
+**Required Elements**:
+
+1. **Purpose Statement**:
+   ```latex
+   This chapter provides the foundational knowledge required to understand the three technical contributions presented in Chapters X, Y, and Z.
+   ```
+
+2. **Scope Definition**:
+   ```latex
+   The background covers three essential areas: (i) [area 1]; (ii) [area 2]; and (iii) [area 3].
+   ```
+
+3. **Pedagogical Approach** (optional but recommended):
+   ```latex
+   The chapter follows a pedagogical progression: definitions → theory → applications → gaps. This structure ensures readers understand not only what techniques exist but why new approaches are necessary.
+   ```
+
+4. **Chapter Organization**:
+   ```latex
+   The remainder of this chapter is organized as follows. Section X covers [topic]. Section Y examines [topic]. Section Z presents [topic].
+   ```
+
+5. **Gap Analysis Preview**:
+   ```latex
+   The gap analyses explicitly connect state-of-the-art limitations to the three dissertation contributions: (i) [contribution 1] addressing [gap 1]; (ii) [contribution 2] addressing [gap 2]; and (iii) [contribution 3] addressing [gap 3].
+   ```
+
+**Writing Style**:
+- Keep introduction concise (1-2 pages maximum)
+- Use forward references to later chapters
+- Don't repeat motivation from Chapter 1
+- Focus on HOW this chapter supports the thesis, not WHY the research is needed
+
+### Foundational Sections (Technical Background)
+
+**Purpose**: Teach readers the mathematical tools, algorithms, or technical concepts needed for later chapters
+
+**Structure for Each Tool/Concept**:
+
+1. **Overview**: Why this tool is needed, what problems it solves
+2. **Core Definitions**: Precise mathematical or technical definitions
+3. **Key Properties/Theorems**: Essential results readers must know
+4. **Applications**: How the tool is used in the domain
+5. **Relevance**: Direct connection to thesis contributions
+
+**Example from UPC1 (Stochastic Geometry)**:
+```latex
+\section{Stochastic Geometry}
+
+\subsection{Overview}
+Traditional wireless network models are adequate for small-scale networks but unreliable for large-scale interference modeling. [Explain problem]
+
+[Introduce solution: PPP modeling]
+
+**Advantages:**
+- Wireless nodes are independently distributed
+- Enables advanced stochastic geometry tools
+- Studies average behavior over many spatial realizations
+
+\subsection{Point Process Properties and Transformations}
+
+**Key Definitions:**
+
+**Stationarity:** A point process is stationary if its distribution is translation invariant.
+
+**Thinning:** Critical for modeling battery-less nodes. If PPP point removal is independent with probability g(x), thinning generates PPP with intensity λg(x).
+
+[More definitions...]
+
+\subsection{Relevant Theorems}
+
+**Campbell's Theorem:** Provides expectation of sum over point process.
+[Mathematical formulation]
+[When/how it's used in thesis]
+```
+
+**Writing Requirements for Technical Background**:
+- Provide intuition BEFORE formalism
+- Explain why each concept matters for the thesis
+- Use concrete examples to illustrate abstract concepts
+- Include mathematical rigor but don't overwhelm with proofs
+- Reference standard textbooks for detailed derivations
+
+### Concepts and Definitions Section (If Used)
+
+**Purpose**: Establish standardized terminology from standards bodies (ETSI, 3GPP, IEEE)
+
+**Structure** (UPC2 pattern):
+```latex
+\section{Main Concepts and Definitions}
+
+The following list is presented to assist the reader with the content described in the following chapters. The definitions were obtained from different ETSI documentation to ensure the most standard description.
+
+\begin{itemize}
+\item \textbf{Software Defined Networking (SDN):} The means to dynamically control the network and the provisioning of networks as a service. [4]
+
+\item \textbf{Network Function Virtualisation (NFV):} The principle of separating network functions from the hardware they run on by using virtual hardware abstraction. [8]
+
+[More definitions...]
+\end{itemize}
+```
+
+**Guidelines**:
+- Use official standards-based definitions (cite the standard)
+- Order alphabetically or by logical dependency
+- Keep definitions concise (1-3 sentences)
+- Include citation to source (ETSI, 3GPP, IEEE, RFC)
+- Define acronyms at first use
+- Only include terms used in thesis (not exhaustive glossary)
+
+### Technology Evolution Sections
+
+**Purpose**: Show how field evolved from foundational technologies to current state
+
+**Pattern** (from UPC2):
+```latex
+\section{Introduction to [Technology Area]}
+
+[Context paragraph: why this area matters, growth trends]
+
+\subsection{Enabling Technology A}
+
+As previously introduced, [technology A] allowed to evolve [citation] the [aspect] using [method] instead of [old method]. 
+
+[Main benefits of technology A]
+
+Despite these advantages, different aspects are being researched such as [challenge 1 with citation], [challenge 2 with citation].
+
+\subsection{Enabling Technology B}
+
+The implementation of [technology B] gives the possibility to [capability] over [infrastructure] without the need of [limitation removed].
+
+[Main benefits of technology B]
+
+\subsection{Joining A and B: [Combined Technology]}
+
+[Technology C] takes the strengths of both technologies to [achieve result]. Based on [condition], [specific implementation].
+
+[Evolution narrative showing how combination creates new possibilities]
+
+\subsection{Beyond SoTA}
+
+Current implemented and near-future [systems] look towards [direction] based on [technologies]. [What's missing or still challenging]. Chapter X presents the work and studies done related to [gap addressed].
+```
+
+**Key Principles**:
+- Show EVOLUTION: technology A → technology B → A+B → new challenges
+- Each subsection: definition → benefits → current research challenges
+- Always end with "Beyond SoTA" identifying gaps
+- Use citations extensively (every claim about prior work)
+- Connect gaps to your thesis contributions
+
+### Literature Review Sections (State of the Art)
+
+**Purpose**: Comprehensive survey of existing approaches, comparison, gap identification
+
+**Structure Options**:
+
+#### **Option 1: Taxonomy-Based (Most Common)**
+
+```latex
+\section{[Problem Area] Approaches}
+
+[Introduction: problem definition, importance, scope of review]
+
+\subsection{Category A Approaches}
+
+**Representative Work [Author Year]:** [Brief description of approach, key idea, results].
+
+**Strengths:** [What it does well]
+**Limitations:** [What it doesn't address]
+
+[Additional works in category A...]
+
+\subsection{Category B Approaches}
+
+[Similar structure...]
+
+\subsection{Comparison and Gap Analysis}
+
+[Table comparing approaches across key dimensions]
+
+**Limitations of Existing Work:**
+\begin{itemize}
+\item [Gap 1]: No analysis of [aspect] [citations]
+\item [Gap 2]: Neglect of [consideration] [citations]
+\item [Gap 3]: Lack of [capability] [citations]
+\end{itemize}
+
+**This Thesis Contributions:**
+\begin{itemize}
+\item [How contribution 1 addresses gap 1]
+\item [How contribution 2 addresses gap 2]
+\item [How contribution 3 addresses gap 3]
+\end{itemize}
+```
+
+#### **Option 2: Chronological with Critique (UPC1 Pattern)**
+
+```latex
+\section{Large-Scale Networks with [Technology]}
+
+**Literature Review:**
+
+**Pioneer Work [Author]:** Studies [aspect] in [scenario] with [assumptions]. Identifies [benefits] but results not generalizable to [broader context] due to [limitation].
+
+**[Area] Studies [Author & Author]:** Analyze [aspect] but limited to [specific configuration]. Closed-form expressions only for [specific case], limiting generalizability.
+
+**[Specific Analysis] [Author]:** Studies [problem] with [approach]. Provides [benefits] but assumes:
+\begin{itemize}
+\item [Assumption 1] (unrealistic)
+\item [Assumption 2] (limiting)
+\end{itemize}
+
+**Limitations of Existing Work:**
+\begin{itemize}
+\item No analysis of end-to-end network performance
+\item Neglect of [consideration] in random deployments
+\item Lack of realistic [modeling aspect]
+\item Limited to specific [configuration]
+\end{itemize}
+
+**This Thesis Contributions:**
+\begin{itemize}
+\item Realistic [model/approach] considering [factor]
+\item Both [scenario A] and [scenario B]
+\item End-to-end performance analysis including [metric]
+\item [Specific innovation] for [objective]
+\end{itemize}
+```
+
+**Key Principles for Literature Review**:
+- **Comprehensive but focused**: Cover major approaches, not every paper
+- **Critical analysis**: Don't just describe, evaluate strengths and limitations
+- **Fair presentation**: Acknowledge what prior work does well
+- **Gap identification**: Explicitly state what's missing
+- **Connection to thesis**: Show how your work addresses gaps
+- **Recent and seminal**: Include foundational papers + recent advances
+- **Organized clearly**: Taxonomy or chronological, be consistent
+
+### Beyond SoTA Sections (Gap Analysis)
+
+**Purpose**: Explicitly identify research gaps that motivate thesis contributions
+
+**Structure** (UPC2 pattern):
+```latex
+\subsection{Beyond SoTA}
+
+[Context: what current state enables]
+
+Current implemented and near-future [systems] look towards [direction] based on [technologies]. However, [what's missing or what challenges remain].
+
+An interesting gap was detected regarding [specific aspect]. Among the literature presented, no direct [relationship/study/approach] has been studied/implemented for [specific scenario].
+
+To address this gap, [what thesis does differently]. Chapter X presents the work and studies done related to [gap addressed] by [approach]:
+\begin{itemize}
+\item [Specific contribution 1]
+\item [Specific contribution 2]
+\item [Specific contribution 3]
+\end{itemize}
+
+This work aims to innovate with [specific innovation] which [benefit/capability].
+```
+
+**Guidelines**:
+- Start with acknowledging what state-of-the-art achieves
+- Transition to specific gap ("However, ...", "An interesting gap...", "No direct...")
+- Be specific: not "more research needed" but "no study addresses X in context Y"
+- Forward reference to the chapter addressing this gap
+- Explain HOW your work is different, not just THAT it's different
+
+## Writing Style Requirements
+
+### Technical Precision
+
+**For Definitions**:
+```latex
+✅ A point process is stationary if its distribution is translation invariant.
+✅ Network Slicing permits the deployment of logical networks using a set of deployed computing and networking resources focused on a specific service.
+✅ The nearest neighbor distance distribution Gₓ(r) = P(||x - NN(x)|| ≤ r).
+
+❌ Stationarity means the process doesn't change when you move it around. (Too informal for definitions)
+❌ Network slicing is when you divide networks into pieces. (Vague, inaccurate)
+```
+
+**For Mathematical Content**:
+- Introduce notation before using it
+- Explain physical meaning of variables
+- Connect equations to intuition
+- Use consistent notation throughout chapter
+
+**Example**:
+```latex
+Interference power at typical receiver I_r is sum of received powers:
+
+I = Σ_{x∈Φ} h_x l(x)
+
+where:
+- Φ: PPP of wireless nodes
+- h_x: fading coefficient between receiver and transmitter x  
+- l(x): path loss function (typically r^{-α} with α = path loss exponent)
+
+This formulation captures the aggregate interference from all transmitters in the network, accounting for both random fading and distance-dependent attenuation.
+```
+
+### Literature Review Style
+
+**Citing Prior Work**:
+```latex
+✅ Author et al. [X] demonstrated that [specific finding] in [context]. However, their approach assumes [limitation], restricting applicability to [scenario].
+
+✅ Multiple approaches address this challenge. Smith [X] proposes [method A], while Jones [Y] develops [method B]. These differ primarily in [key distinction].
+
+❌ Smith showed some results. (Too vague)
+❌ [X] is a good paper about this topic. (Subjective, uninformative)
+❌ Many researchers have studied this. (Name them specifically)
+```
+
+**Comparison Table Format**:
+```latex
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Edge-Deployable Prediction Approaches}
+\label{tab:ch2_comparison_edge}
+\begin{tabular}{llcccc}
+\hline
+\textbf{Approach} & \textbf{Year} & \textbf{Model Size} & \textbf{Accuracy} & \textbf{Edge} & \textbf{Multi-App} \\
+\hline
+Method A [X] & 2020 & Large & High & ✗ & ✗ \\
+Method B [Y] & 2021 & Medium & Medium & ✓ & ✗ \\
+Method C [Z] & 2022 & Small & Low & ✓ & ✗ \\
+\textbf{This Work} & \textbf{2024} & \textbf{Small} & \textbf{High} & \textbf{✓} & \textbf{✓} \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+### Pedagogical Flow
+
+**Build from Simple to Complex**:
+```latex
+✅ Paragraph flow:
+1. Simple intuitive example
+2. Formal definition
+3. Key properties
+4. Advanced extensions
+5. Application to thesis problem
+
+❌ Starting with complex formalism before motivation
+❌ Jumping between abstraction levels without transitions
+```
+
+**Use Concrete Examples**:
+```latex
+✅ "For example, web services follow daily periodicities driven by user activity. Batch processing generates irregular bursts determined by job submissions."
+
+✅ "Consider a network of 100 wireless sensors randomly deployed in a 1km² area. Each sensor must transmit data to a central base station..."
+
+❌ "Systems exhibit various patterns." (Too abstract without examples)
+```
+
+### Maintaining Focus
+
+**Always Connect Back to Thesis**:
+```latex
+✅ At end of technical background section:
+"These stochastic geometry tools enable the analytical frameworks developed in Chapters 5 and 6, where we analyze network connectivity under wireless energy harvesting."
+
+✅ At end of literature review section:
+"This thesis addresses these gaps through lightweight models (Chapter 3), cross-application generalization (Chapter 4), and safe autonomous coordination (Chapter 5)."
+
+❌ Ending sections without connecting to thesis contributions
+❌ Including background material not used in later chapters
+```
+
+## Cross-References
+
+### Label Conventions
+
+All labels in Chapter 2 use the `ch2_` prefix:
+- Sections: `\label{sec:ch2_stochastic_geometry}`, `\label{sec:ch2_sota_edge}`
+- Subsections: `\label{subsec:ch2_point_processes}`, `\label{subsec:ch2_beyond_sota}`
+- Equations: `\label{eq:ch2_laplace_transform}`, `\label{eq:ch2_interference}`
+- Figures: `\label{fig:ch2_architecture}`, `\label{fig:ch2_taxonomy}`
+- Tables: `\label{tab:ch2_comparison}`, `\label{tab:ch2_notation}`
+- Algorithms: `\label{alg:ch2_power_splitting}`
+
+### Expected Cross-References
+
+**Forward References (to later chapters)**:
+```latex
+These concepts enable the analysis in Chapter~\ref{ch:adaptive-orchestration}.
+The gap identified here motivates the approach in Section~\ref{sec:ch4_pattern_discovery}.
+```
+
+**Backward References (from later chapters)**:
+```latex
+As introduced in Section~\ref{sec:ch2_workload_prediction}, time-series forecasting...
+Using the stochastic geometry framework from Section~\ref{sec:ch2_stochastic}, we derive...
+```
+
+## Bibliography Management
+
+### Chapter-Specific References
+
+Background chapters typically have many citations. Use `references.bib` in chapter2 directory for chapter-specific references:
+
+```bibtex
+@article{author2023approach,
+  author = {Author, A. and Coauthor, B.},
+  title = {Novel Approach for Edge Computing},
+  journal = {IEEE Transactions on Cloud Computing},
+  year = {2023},
+  volume = {11},
+  number = {2},
+  pages = {234--249}
+}
+```
+
+### Citation Best Practices
+
+**Density**: Background chapters are citation-heavy
+- Technical background: Cite textbooks, foundational papers
+- Literature review: Cite every approach discussed
+- Gap analysis: Cite works that exhibit the limitations
+
+**Quality over Quantity**:
+- Prefer peer-reviewed journals/conferences over arXiv
+- Use most recent version of evolving standards
+- Cite seminal works for foundational concepts
+- Cite recent surveys for field overview
+
+**Proper Attribution**:
+```latex
+✅ Smith et al. [X] first proposed this approach in 2015. Later work by Jones [Y] extended it to handle [scenario].
+
+❌ This approach was proposed [X, Y, Z]. (Unclear who did what)
+❌ There are many papers on this topic [list of 20 citations]. (Cite selectively, not exhaustively)
+```
+
+## Common Patterns
+
+### Pattern: Technical Background Section
+
+```latex
+\section{[Technical Area]}
+\label{sec:ch2_[area]}
+
+% Overview paragraph
+[Context: why this technical area is needed]
+[Problem that tools in this area solve]
+[How this area connects to thesis]
+
+\subsection{[Foundational Concept 1]}
+\label{subsec:ch2_[concept1]}
+
+% Definition
+[Precise technical definition]
+
+% Intuition
+[Explain what it means in practical terms]
+
+% Properties
+[Key properties readers must know]
+
+% Example
+[Concrete example illustrating the concept]
+
+\subsection{[Foundational Concept 2]}
+% Similar structure...
+
+\subsection{Application to [Thesis Domain]}
+% How these tools are used in your research
+```
+
+### Pattern: Literature Review Section
+
+```latex
+\section{State of the Art: [Problem Area]}
+\label{sec:ch2_sota_[area]}
+
+% Introduction
+[Problem definition]
+[Why this problem is important]
+[Scope of review: what you're covering]
+
+\subsection{[Category A] Approaches}
+\label{subsec:ch2_sota_[categoryA]}
+
+% Overview of category
+[What defines this category]
+[General approach characteristics]
+
+% Individual works
+\textbf{[Author Year]:} [Brief description of approach]. [Key innovation]. [Results achieved].
+
+\textbf{[Author Year]:} [Similar format for 2-4 representative works]
+
+% Category assessment
+\textbf{Strengths:} [What this category does well]
+\textbf{Limitations:} [What this category doesn't address]
+
+\subsection{[Category B] Approaches}
+% Similar structure...
+
+\subsection{Gap Analysis}
+\label{subsec:ch2_gap_[area]}
+
+% Comparison
+[Synthesize across categories]
+[Optional: comparison table]
+
+% Identified gaps
+\textbf{Limitations of Existing Work:}
+\begin{itemize}
+\item [Gap 1 with supporting citations]
+\item [Gap 2 with supporting citations]
+\item [Gap 3 with supporting citations]
+\end{itemize}
+
+% How thesis addresses gaps
+\textbf{This Thesis Contributions:}
+\begin{itemize}
+\item [Contribution 1 addressing Gap 1]
+\item [Contribution 2 addressing Gap 2]
+\item [Contribution 3 addressing Gap 3]
+\end{itemize}
+```
+
+### Pattern: Beyond SoTA Section
+
+```latex
+\subsection{Beyond SoTA}
+\label{subsec:ch2_beyond_sota_[area]}
+
+% Acknowledge current state
+Current [systems/approaches] achieve [what state-of-the-art enables] through [technologies/methods].
+
+% Identify gap
+However, [specific limitation or missing capability]. An interesting gap exists regarding [specific aspect]. Among the literature presented, [what hasn't been studied/addressed].
+
+% Preview thesis contribution
+Chapter~\ref{ch:[contribution_chapter]} addresses this gap through [approach]:
+\begin{itemize}
+\item [Specific innovation 1]
+\item [Specific innovation 2]
+\item [Specific innovation 3]
+\end{itemize}
+
+% Explain significance
+This approach enables [capability] which [benefit to field/applications].
+```
+
+## Quality Checklist
+
+### Content Completeness
+
+- [ ] **Introduction Section**:
+  - [ ] Purpose of chapter clearly stated
+  - [ ] Scope of background defined
+  - [ ] Chapter organization explained
+  - [ ] Connection to thesis contributions previewed
+  - [ ] Pedagogical approach described (optional)
+
+- [ ] **Technical Background** (if applicable):
+  - [ ] All tools/concepts used in later chapters are introduced
+  - [ ] Definitions are precise and formal
+  - [ ] Intuition provided alongside formalism
+  - [ ] Key theorems/properties stated clearly
+  - [ ] Examples illustrate abstract concepts
+  - [ ] Connection to thesis research explicit
+
+- [ ] **Literature Review**:
+  - [ ] Comprehensive coverage of major approaches
+  - [ ] Clear organization (taxonomy, chronological, or thematic)
+  - [ ] Critical analysis, not just description
+  - [ ] Fair presentation of prior work strengths
+  - [ ] Explicit identification of limitations
+  - [ ] Comparison across approaches (table recommended)
+  - [ ] Gap analysis connects to thesis contributions
+
+- [ ] **Beyond SoTA / Gap Analysis**:
+  - [ ] Specific gaps identified (not vague "more research needed")
+  - [ ] Gaps supported by citation evidence
+  - [ ] Connection to thesis chapters explicit
+  - [ ] Clear explanation of how thesis addresses gaps
+
+### Writing Quality
+
+- [ ] **Technical Precision**:
+  - [ ] Definitions are formal and accurate
+  - [ ] Mathematical notation introduced before use
+  - [ ] Variables and symbols explained
+  - [ ] Equations connected to intuition
+  - [ ] Consistent terminology throughout
+
+- [ ] **Citations**:
+  - [ ] Every claim about prior work cited
+  - [ ] Citations at end of claims, not middle
+  - [ ] Proper attribution (who did what)
+  - [ ] Mix of seminal and recent works
+  - [ ] Standards cited for definitions
+
+- [ ] **Flow and Organization**:
+  - [ ] Logical progression (simple → complex)
+  - [ ] Clear transitions between sections
+  - [ ] Each section has clear purpose
+  - [ ] Subsections build on each other
+  - [ ] Concrete examples interspersed with theory
+
+- [ ] **Connection to Thesis**:
+  - [ ] Technical background connects to later chapters
+  - [ ] Gap analyses map to specific contributions
+  - [ ] Forward references to contribution chapters
+  - [ ] Clear thread from background → gap → contribution
+
+### UPC Dissertation Standards
+
+- [ ] **Structure**:
+  - [ ] Chapter begins with introduction/overview
+  - [ ] Sections organized logically (chronological, taxonomic, or thematic)
+  - [ ] Either "Background" + "Related Work" or pure "State of the Art"
+  - [ ] Gap analysis explicit (separate section or "Beyond SoTA")
+
+- [ ] **Depth**:
+  - [ ] Sufficient detail for readers to understand later chapters
+  - [ ] Not overwhelming with unnecessary depth
+  - [ ] Balance between breadth (coverage) and depth (detail)
+
+- [ ] **Academic Standards**:
+  - [ ] Formal academic tone
+  - [ ] Objective assessment of prior work
+  - [ ] Acknowledges limitations of own assumptions
+  - [ ] Proper scholarly attribution
+
+## Common Mistakes to Avoid
+
+### Content Mistakes
+
+- ❌ **Including background not used later**: Every concept introduced should be referenced in later chapters
+- ❌ **Insufficient literature coverage**: Missing major approaches or recent advances
+- ❌ **Pure description without analysis**: Don't just list what papers do; evaluate and compare
+- ❌ **Vague gap identification**: "More research is needed" vs. "No study addresses X in context Y"
+- ❌ **Disconnected from thesis**: Gap analysis doesn't map to your contributions
+
+### Writing Mistakes
+
+- ❌ **Formalism without intuition**: Equations without explaining what they mean
+- ❌ **Poor organization**: Random walk through literature instead of clear taxonomy
+- ❌ **Inconsistent notation**: Using h for different things in different sections
+- ❌ **Missing context**: Jumping into technical details without motivation
+- ❌ **Overuse of acronyms**: Define at first use, don't assume knowledge
+
+### Citation Mistakes
+
+- ❌ **Insufficient citations**: Claims about prior work without references
+- ❌ **Citation dumping**: Listing 10 citations without explaining what each contributes
+- ❌ **Outdated references**: Only citing papers from 10+ years ago in active field
+- ❌ **Poor attribution**: Unclear who did what first or who extended whose work
+
+## Integration with Other Chapters
+
+### Relationship with Chapter 1 (Introduction)
+
+- **Chapter 1** motivates WHY research is needed (problem importance, impact)
+- **Chapter 2** provides HOW prior work attempted solutions and WHERE gaps exist
+- Don't repeat Chapter 1 motivation; assume reader knows problem is important
+
+### Relationship with Contribution Chapters (3-5+)
+
+- **Chapter 2** teaches concepts and identifies gaps
+- **Contribution chapters** present solutions addressing those gaps
+- Each contribution chapter should reference relevant Chapter 2 sections
+- Gap analysis in Chapter 2 should forward-reference contribution chapters
+
+### Typical Cross-Reference Pattern
+
+```latex
+% In Chapter 2 (Gap Analysis):
+No existing approach addresses [specific gap]. Chapter~\ref{ch:contribution} presents a novel [approach] that enables [capability].
+
+% In Chapter 3 (Contribution):
+As identified in Section~\ref{sec:ch2_gap_analysis}, existing approaches fail to [limitation]. This chapter addresses this gap through [approach].
+```
+
+---
+
+**Remember**: Chapter 2 serves two audiences: (1) readers who need to learn foundational concepts, and (2) experts who want to understand how your work fits in the landscape. Balance pedagogical clarity with scholarly rigor. Every concept introduced should be used in later chapters. Every gap identified should be addressed by your contributions.

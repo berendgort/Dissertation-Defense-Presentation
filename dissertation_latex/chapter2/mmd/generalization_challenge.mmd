@@ -1,0 +1,22 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff','primaryTextColor':'#1a1a1a','primaryBorderColor':'#000000','lineColor':'#000000','fontFamily':'system-ui, -apple-system, sans-serif','fontSize':'15px'}}}%%
+flowchart TD
+    A["<b>Model Training</b><br/>Source Workloads"] ==> B{"<b>Deployment</b><br/>Target Workloads"}
+    
+    B ==>|"<i>Same Pattern</i>"| C["<b style='color:#fff'>✓ Success</b><br/>Low RMSE"]
+    B ==>|"<i>Different Pattern</i>"| D["<b style='color:#fff'>✗ Failure</b><br/>High RMSE"]
+    
+    D ==> E["<b>Traditional Approach</b><br/>Separate model per app"]
+    
+    E ==> F["<b style='color:#fff'>Operational Problem</b><br/>50+ models to maintain<br/>Cannot handle new apps"]
+    
+    G["<b>Chapter 4 Solution</b><br/>Temporal Clustering<br/>Attention Mechanisms"] ==> H["<b style='color:#fff'>✓ Generalization</b><br/>Single model for all<br/>workload types"]
+    
+    style A fill:#3b82f6,stroke:#000,stroke-width:3px,color:#fff
+    style B fill:#8b5cf6,stroke:#000,stroke-width:3px,color:#fff
+    style C fill:#10b981,stroke:#000,stroke-width:2.5px,color:#fff
+    style D fill:#ef4444,stroke:#000,stroke-width:2.5px,color:#fff
+    style E fill:#f59e0b,stroke:#000,stroke-width:2.5px,color:#fff
+    style F fill:#dc2626,stroke:#000,stroke-width:2.5px,color:#fff
+    style G fill:#06b6d4,stroke:#000,stroke-width:3px,color:#fff
+    style H fill:#10b981,stroke:#000,stroke-width:3px,color:#fff
+
