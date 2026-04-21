@@ -1,0 +1,145 @@
+<section class="slide" data-section="agent" data-label="34 AgentEdge System Model">
+ <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">System model</span></div><div class="counter"><span class="num">34</span><span class="sep">/</span>54 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+ <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+
+ <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:32px;">
+ <h1 style="font-family:var(--f-display); font-size:50px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink);">Where AgentEdge runs</h1>
+ <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+ <div style="border:1.5px solid var(--c-agent); padding:4px 10px; font-family:var(--f-mono); font-size:15px; font-weight:600; color:var(--c-agent); letter-spacing:.1em; text-transform:uppercase;">Problem 3</div>
+ <div style="font-family:var(--f-mono); font-size:22px; color:var(--c-agent); letter-spacing:.08em;">L1+L2 · operator ⇄ decision</div>
+ </div>
+ </div>
+
+ <div style="flex:1; display:grid; grid-template-columns:200px 1fr; min-height:0;">
+
+ <!-- LEFT: 4-layer stack, L1+L2 highlighted -->
+ <div style="display:flex; flex-direction:column; border-right:2px solid var(--ink); background:var(--bg-alt);">
+ <!-- L1 Operator · highlighted -->
+ <div style="flex:0 0 110px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--c-agent); border-left:6px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 14%, var(--bg)); padding:0 16px; gap:4px;">
+ <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-agent); letter-spacing:.14em; font-weight:700;">▶ L1</div>
+ <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">OPERATOR</div>
+ <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-2); text-align:center;">NL intent</div>
+ </div>
+ <!-- L2 Decision · highlighted -->
+ <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--c-agent); border-left:6px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 14%, var(--bg)); padding:0 16px; gap:4px; min-height:0;">
+ <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-agent); letter-spacing:.14em; font-weight:700;">▶ L2</div>
+ <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">DECISION</div>
+ <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-2); text-align:center; line-height:1.3;">4-agent graph ·<br>ActSimCrit loop</div>
+ </div>
+ <!-- L3 Prediction -->
+ <div style="flex:0 0 80px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--ink-4); padding:0 16px; gap:3px;">
+ <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2); letter-spacing:.14em; font-weight:700;">L3</div>
+ <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-2); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">Prediction</div>
+ <div style="font-family:var(--f-mono); font-size:10px; color:var(--ink-3); text-align:center;">exposed as tools</div>
+ </div>
+ <!-- L4 Service-orch (K8s) -->
+ <div style="flex:0 0 70px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--ink-4); padding:0 16px; gap:3px;">
+ <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2); letter-spacing:.14em; font-weight:700;">L4</div>
+ <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-2); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">Service-orch</div>
+ <div style="font-family:var(--f-mono); font-size:10px; color:var(--ink-3); text-align:center;">K8s API</div>
+ </div>
+ <!-- L5 Infrastructure -->
+ <div style="flex:0 0 60px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 16px; gap:3px;">
+ <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2); letter-spacing:.14em; font-weight:700;">L5</div>
+ <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-2); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">Infra</div>
+ </div>
+ </div>
+
+ <!-- RIGHT: zero-touch loop visualization -->
+ <div style="position:relative; background:color-mix(in oklab,var(--c-agent) 3%, var(--bg)); padding:32px 48px; display:flex; flex-direction:column; gap:18px;">
+ <div style="font-family:var(--f-mono); font-size:22px; color:var(--c-agent); letter-spacing:.14em; text-transform:uppercase;">Closed loop · operator ⇄ infrastructure</div>
+
+ <svg viewBox="0 0 1200 600" style="width:100%; height:100%; max-height:100%;" font-family="Inter, sans-serif" preserveAspectRatio="xMidYMid meet">
+ <defs>
+ <marker id="mk-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#161616"/></marker>
+ <marker id="mk-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7a7874"/></marker>
+ <marker id="mk-pink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c94080"/></marker>
+ <marker id="mk-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+ </defs>
+
+ <!-- L1 OPERATOR -->
+ <rect x="420" y="8" width="360" height="60" rx="8" fill="#f59e0b" stroke="#d97706" stroke-width="2.5"/>
+ <text x="600" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="white">Operator</text>
+ <text x="600" y="56" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.92)" font-family="JetBrains Mono">"reduce energy while keeping SLA"</text>
+
+ <!-- L1↔L2 arrows -->
+ <line x1="550" y1="68" x2="550" y2="118" stroke="#161616" stroke-width="3" marker-end="url(#mk-dark)"/>
+ <text x="540" y="98" text-anchor="end" font-size="14" fill="#3a3a38" font-family="JetBrains Mono">ζ intent</text>
+ <line x1="650" y1="118" x2="650" y2="68" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
+ <text x="660" y="98" text-anchor="start" font-size="14" fill="#7a7874" font-family="JetBrains Mono">ρ response</text>
+
+ <!-- L2 AGENTIC FRAMEWORK box -->
+ <rect x="30" y="118" width="1140" height="170" rx="12" fill="none" stroke="#c94080" stroke-width="3" stroke-dasharray="12,6"/>
+ <text x="52" y="140" font-size="12" fill="#c94080" font-family="JetBrains Mono" font-weight="700" letter-spacing="2">AGENTIC FRAMEWORK 𝒜 · AgentEdge operates this layer</text>
+
+ <!-- 4 agents -->
+ <rect x="60" y="152" width="210" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
+ <text x="165" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Intent</text>
+ <text x="165" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">NL → goal</text>
+ <text x="165" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_intent</text>
+
+ <rect x="300" y="152" width="210" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
+ <text x="405" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Observability</text>
+ <text x="405" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">u → features</text>
+ <text x="405" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_observe</text>
+
+ <rect x="540" y="146" width="300" height="132" rx="8" fill="#c94080" stroke="#a8337b" stroke-width="3"/>
+ <text x="690" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="white">Planning</text>
+ <text x="690" y="198" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.92)">ActSimCrit</text>
+ <text x="690" y="236" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.88)" font-family="JetBrains Mono">plan → sim → critic → loop</text>
+ <text x="690" y="258" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.72)" font-family="JetBrains Mono">digital-twin validation</text>
+
+ <rect x="870" y="152" width="270" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
+ <text x="1005" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Infra Action</text>
+ <text x="1005" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">π* → API calls</text>
+ <text x="1005" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_act</text>
+
+ <!-- Agent flow arrows -->
+ <line x1="270" y1="212" x2="298" y2="212" stroke="#c94080" stroke-width="2" marker-end="url(#mk-pink)"/>
+ <line x1="510" y1="212" x2="538" y2="212" stroke="#c94080" stroke-width="2" marker-end="url(#mk-pink)"/>
+ <line x1="840" y1="212" x2="868" y2="212" stroke="#c94080" stroke-width="2" marker-end="url(#mk-pink)"/>
+
+ <!-- L2→L3 arrows -->
+ <line x1="550" y1="288" x2="550" y2="335" stroke="#161616" stroke-width="3" marker-end="url(#mk-dark)"/>
+ <text x="540" y="316" text-anchor="end" font-size="13" fill="#3a3a38" font-family="JetBrains Mono">operations</text>
+ <line x1="650" y1="335" x2="650" y2="288" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
+ <text x="660" y="316" text-anchor="start" font-size="13" fill="#7a7874" font-family="JetBrains Mono">state</text>
+
+ <!-- L3 · Prediction Models only (single box · centred) -->
+ <rect x="380" y="335" width="440" height="80" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5"/>
+ <text x="600" y="361" text-anchor="middle" font-size="19" font-weight="700" fill="#4338ca">Prediction Models</text>
+ <text x="600" y="382" text-anchor="middle" font-size="13" fill="#4338ca" font-family="JetBrains Mono">OmniFORE · AERO</text>
+ <text x="600" y="402" text-anchor="middle" font-size="11" fill="#6366f1" font-family="JetBrains Mono" font-style="italic">exposed as tools to the agent graph</text>
+
+ <!-- L3→L3.5 (service-orch) arrows -->
+ <line x1="550" y1="415" x2="550" y2="448" stroke="#0d9488" stroke-width="2.5" marker-end="url(#mk-teal)"/>
+ <text x="540" y="435" text-anchor="end" font-size="12" fill="#0d9488" font-family="JetBrains Mono">forecasts</text>
+ <line x1="650" y1="448" x2="650" y2="415" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
+ <text x="660" y="435" text-anchor="start" font-size="12" fill="#7a7874" font-family="JetBrains Mono">telemetry</text>
+
+ <!-- L3.5 · Service Orchestration layer (consolidated · no duplicate box) -->
+ <rect x="30" y="448" width="1140" height="60" rx="8" fill="#0d9488" stroke="#0f766e" stroke-width="2.5"/>
+ <text x="56" y="472" font-size="11" fill="rgba(255,255,255,0.75)" font-family="JetBrains Mono" font-weight="700" letter-spacing="2">SERVICE-ORCHESTRATION LAYER</text>
+ <text x="600" y="486" text-anchor="middle" font-size="18" font-weight="700" fill="white">Kubernetes API · 12 endpoints</text>
+ <text x="600" y="502" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono">deploy · migrate · scale · low-power</text>
+
+ <!-- L3.5→L4 arrow -->
+ <line x1="600" y1="508" x2="600" y2="526" stroke="#0d9488" stroke-width="2" marker-end="url(#mk-teal)"/>
+
+ <!-- L4 INFRASTRUCTURE: unified dashed box (compressed) -->
+ <rect x="30" y="528" width="1140" height="64" rx="12" fill="none" stroke="#7a7874" stroke-width="2.5" stroke-dasharray="10,5"/>
+ <text x="52" y="546" font-size="11" fill="#7a7874" font-family="JetBrains Mono" font-weight="700" letter-spacing="2">INFRASTRUCTURE · services running on edge / cloud nodes</text>
+
+ <!-- Node 1 -->
+ <rect x="80" y="558" width="500" height="26" rx="4" fill="none" stroke="#7a7874" stroke-width="1.5"/>
+ <text x="100" y="576" text-anchor="start" font-size="12" fill="#3a3a38" font-family="JetBrains Mono">node 1 · service A &middot; service B</text>
+
+ <!-- Node 2 -->
+ <rect x="620" y="558" width="500" height="26" rx="4" fill="none" stroke="#7a7874" stroke-width="1.5"/>
+ <text x="640" y="576" text-anchor="start" font-size="12" fill="#3a3a38" font-family="JetBrains Mono">node 2 · service A &middot; node N &middot; &hellip;</text>
+ </svg>
+ </div>
+ </div>
+ </div>
+ <div class="chrome-bot"><div class="meta-left">AgentEdge · operator ⇄ 4-agent decision layer ⇄ K8s orchestrator</div><div class="meta-right">§4 AgentEdge</div></div>
+</section>

@@ -1,0 +1,89 @@
+<section class="slide" data-section="agent" data-label="42 Scenario single vs multi">
+  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Experiment 1 · scenario</span></div><div class="counter"><span class="num">42</span><span class="sep">/</span>54 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+  <div class="body" style="padding:36px 80px; display:flex; flex-direction:column; gap:24px; justify-content:center;">
+    <div style="display:flex; align-items:baseline; gap:22px;">
+      <div>
+        <div class="h-subtle">Experiment 1 &middot; delta from master scenario (slide 41)</div>
+        <h1 class="h-title">Does the multi-agent design outperform single-agent baselines?</h1>
+      </div>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:13px; color:var(--c-agent); letter-spacing:.14em; text-transform:uppercase; border:1.5px solid var(--c-agent); padding:6px 12px; background:color-mix(in oklab,var(--c-agent) 6%,var(--bg));">&larr; see master scenario &middot; slide 41</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start;">
+
+      <!-- LEFT: 3 scenarios -->
+      <div style="display:flex; flex-direction:column; gap:0; border:1.5px solid var(--ink);">
+        <div style="background:color-mix(in oklab,var(--c-agent) 12%,var(--bg)); padding:12px 20px; border-bottom:2px solid var(--ink);">
+          <span style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">EXPERIMENT 1 · CONSTRAINT RESOLUTION · S1 · S3</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:60px 1fr; border-bottom:1px solid var(--ink-4);">
+          <div style="padding:18px 16px; font-family:var(--f-mono); font-size:24px; font-weight:700; color:var(--c-agent); border-right:1px solid var(--ink-4); display:flex; align-items:center; justify-content:center;">S1</div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:20px; font-weight:700; color:var(--ink);">Full Node</div>
+            <div style="font-size:16px; color:var(--ink-2); margin-top:5px; line-height:1.45;">Deploy a 2-core service onto a 100% utilized node. The agent must detect the conflict, migrate existing services to create capacity, then deploy.<br/><span style="color:var(--ink-3); font-size:15px;">Tests: basic constraint reasoning + migration planning</span></div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:60px 1fr; border-bottom:1px solid var(--ink-4);">
+          <div style="padding:18px 16px; font-family:var(--f-mono); font-size:24px; font-weight:700; color:var(--c-agent); border-right:1px solid var(--ink-4); display:flex; align-items:center; justify-content:center;">S2</div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:20px; font-weight:700; color:var(--ink);">Low-Power Conflict</div>
+            <div style="font-size:16px; color:var(--ink-2); margin-top:5px; line-height:1.45;">Scale API to 1.4 cores while putting edge-1 in low-power mode simultaneously. Services cannot run on low-power nodes · agent must migrate first.<br/><span style="color:var(--ink-3); font-size:15px;">Tests: dependency detection + multi-step coordination</span></div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:60px 1fr;">
+          <div style="padding:18px 16px; font-family:var(--f-mono); font-size:24px; font-weight:700; color:var(--c-agent); border-right:1px solid var(--ink-4); display:flex; align-items:center; justify-content:center;">S3</div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:20px; font-weight:700; color:var(--ink);">Compound Constraint</div>
+            <div style="font-size:16px; color:var(--ink-2); margin-top:5px; line-height:1.45;">Scale API to 2.4 cores + power down edge-1 · migrating both services creates a 0.52-core deficit. Intent is infeasible as stated.<br/><span style="color:var(--ink-3); font-size:15px;">Tests: deadlock detection + creative redistribution</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: measurement protocol -->
+      <div style="display:flex; flex-direction:column; gap:16px; justify-content:center;">
+
+        <div>
+          <div class="mono-tag" style="color:var(--c-agent); margin-bottom:8px;">How we measure success</div>
+          <div style="font-size:20px; line-height:1.5; color:var(--ink); padding:16px 20px; border:1.5px solid var(--ink); background:var(--bg);">
+            For each scenario we pre-define <strong>all valid end-states</strong> that satisfy the goal. A run counts as successful if the agent reaches any of those states.
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="padding:14px 16px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; font-weight:700;">RUNS</div>
+            <div style="font-size:26px; font-weight:700; color:var(--ink); margin-top:4px;">30</div>
+            <div style="font-size:15px; color:var(--ink-3);">10 seeds × 3 scenarios</div>
+          </div>
+          <div style="padding:14px 16px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; font-weight:700;">METRIC</div>
+            <div style="font-size:26px; font-weight:700; color:var(--ink); margin-top:4px;">% success</div>
+            <div style="font-size:15px; color:var(--ink-3);">per scenario + aggregate</div>
+          </div>
+        </div>
+
+        <div class="mono-tag" style="color:var(--c-agent); margin-top:6px;">Three experimental arms &middot; <em style="font-style:normal;">single-agent</em> = 1 LLM carrying every role</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="padding:12px 16px; border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 8%,var(--bg)); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">AGENTEDGE</div>
+            <div style="font-size:16px; color:var(--ink-2); margin-top:3px;">4 agents + ActSimCrit twin</div>
+          </div>
+          <div style="padding:12px 16px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; letter-spacing:.1em;">REACT</div>
+            <div style="font-size:16px; color:var(--ink-3); margin-top:3px;"><strong>single-agent</strong> &middot; 1 LLM &middot; reflection loop</div>
+          </div>
+          <div style="padding:12px 16px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; letter-spacing:.1em;">LATS</div>
+            <div style="font-size:16px; color:var(--ink-3); margin-top:3px;"><strong>single-agent</strong> &middot; 1 LLM &middot; tree search</div>
+          </div>
+        </div>
+
+        <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); text-align:center; border-top:1px dashed var(--ink-4); padding-top:8px;">same simulator &middot; same LLM &middot; same tools (slide 41) &middot; <strong style="color:var(--c-agent);">only the architecture varies</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Experiment 1 · constraint resolution · S1 · S3 · predefined success states</div><div class="meta-right">§4 AgentEdge</div></div>
+</section>

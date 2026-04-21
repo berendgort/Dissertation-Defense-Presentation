@@ -95,6 +95,9 @@ cover slides `02` through `56`, plus backup slides `B1` through `B13`.
 - Multiple agents are often editing slides in parallel, so avoid broad automatic
 renumbering or bulk search/replace operations unless they are scoped and
 reconciled first.
+- Math is absolutely not allowed anywhere in this presentation.
+- After any slide content change, update `DEFENSE_SPEAKER_NOTES_FULL.md` so slide
+  notes remain synchronized.
 - Verify visual changes in the browser; this repo is presentation-first, so
   manual review matters more than automated testing.
 

@@ -1,0 +1,167 @@
+<section class="slide" data-section="aero" data-label="13 AERO scenario efficiency benchmark">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; scenario</span></div>
+    <div class="counter"><span class="num">13</span><span class="sep">/</span>54 &nbsp; <span class="section-name">AERO</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 90px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Scenario - Efficiency benchmark</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">dataset &middot; hardware &middot; baselines &middot; tuning</div>
+    </div>
+
+    <!-- Scenario table · 4 columns -->
+    <div style="flex:1; display:grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; min-height:0; overflow:hidden;">
+
+      <!-- Column 1 · DATA -->
+      <div style="padding:36px 36px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Data</div>
+        <div style="font-family:var(--f-display); font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Alibaba cluster trace</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRACES</div>
+            <div style="font-size:22px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">4 000</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRAINING</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">2 800 &middot; 70 %</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">HELD-OUT</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">1 200 &middot; 30 %</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">SIGNAL</div>
+            <div style="font-size:18px; color:var(--ink);">CPU &amp; memory utilisation, multivariate</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">WINDOW</div>
+            <div style="font-size:18px; color:var(--ink);">&kappa; = 96, &lambda; = 96 &nbsp;<span style="color:var(--ink-3);">(past &rarr; future)</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
+          <svg viewBox="0 0 260 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
+            <rect x="2" y="10" width="256" height="68" rx="14" style="fill:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); stroke:var(--ink-4); stroke-width:1.5;" />
+            <path d="M182 10 H244 Q258 10 258 24 V64 Q258 78 244 78 H182 Z" style="fill:color-mix(in oklab, var(--ink) 5%, var(--bg));" />
+            <line x1="182" y1="12" x2="182" y2="76" style="stroke:var(--ink-4); stroke-width:1.5; stroke-dasharray:5 4;" />
+            <polyline points="10,56 26,38 42,44 58,22 74,34 90,30 106,48 122,28 138,42 154,20 170,36 186,52 202,40 218,58 234,44 250,50" style="fill:none; stroke:var(--c-aero); stroke-width:4; stroke-linecap:round; stroke-linejoin:round;" />
+            <polyline points="10,62 26,58 42,34 58,48 74,42 90,52 106,26 122,38 138,30 154,58 170,28 186,46 202,54 218,36 234,42 250,30" style="fill:none; stroke:var(--ink-2); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; opacity:.95;" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Column 2 · HARDWARE -->
+      <div style="padding:36px 30px; border-right:2px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Inference hardware</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Commodity edge CPU</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">DEVICE</div>
+            <div style="font-size:18px; color:var(--ink);">laptop-class ARM/x86</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">CORES</div>
+            <div style="font-size:18px; color:var(--ink);">4 &middot; no GPU / no accel</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">RAM</div>
+            <div style="font-size:18px; color:var(--ink);">8 GB &middot; shared with OS</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">TIMING</div>
+            <div style="font-size:18px; color:var(--ink);">mean of 1&thinsp;000 forward passes</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
+          <svg viewBox="0 0 220 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
+            <rect x="12" y="18" width="94" height="52" rx="10" style="fill:var(--bg); stroke:var(--ink); stroke-width:2.5;" />
+            <rect x="36" y="31" width="46" height="26" rx="6" style="fill:color-mix(in oklab, var(--c-aero) 10%, var(--bg)); stroke:var(--c-aero); stroke-width:2;" />
+            <line x1="24" y1="24" x2="24" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="42" y1="24" x2="42" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="60" y1="24" x2="60" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="78" y1="24" x2="78" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="96" y1="24" x2="96" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="24" y1="72" x2="24" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="42" y1="72" x2="42" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="60" y1="72" x2="60" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="78" y1="72" x2="78" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="96" y1="72" x2="96" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
+            <rect x="126" y="48" width="14" height="22" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 18%, var(--bg));" />
+            <rect x="146" y="36" width="14" height="34" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 24%, var(--bg));" />
+            <rect x="166" y="24" width="14" height="46" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 32%, var(--bg));" />
+            <rect x="186" y="12" width="14" height="58" rx="5" style="fill:var(--c-aero);" />
+            <rect x="156" y="14" width="40" height="20" rx="6" style="fill:none; stroke:var(--ink-3); stroke-width:2;" />
+            <line x1="154" y1="12" x2="198" y2="36" style="stroke:var(--c-sota-red); stroke-width:3;" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Column 3 · BASELINES -->
+      <div style="padding:36px 30px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Baselines &middot; 5 prior methods</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Comparable on the same split</div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">Pathformer</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.4 M</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">ModernTCN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">247 K</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">FourierGNN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">228 K</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">WGAN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.9 M</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">SparseTSF</span><span class="mono" style="font-size:13px; color:var(--c-sota-amber);">35</span></div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0;"><span style="font-size:17px; color:var(--ink); font-weight:700;">AERO</span><span class="mono" style="font-size:13px; color:var(--c-sota-green); font-weight:700;">599</span></div>
+        </div>
+
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
+          <svg viewBox="0 0 220 92" style="display:block; width:100%; height:92px;" aria-hidden="true">
+            <line x1="10" y1="8" x2="10" y2="84" style="stroke:var(--ink-4); stroke-width:1.5;" />
+            <line x1="10" y1="84" x2="212" y2="84" style="stroke:var(--ink-4); stroke-width:1.5;" />
+            <rect x="18" y="14" width="162" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 78%, white);" />
+            <rect x="18" y="26" width="90" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 50%, var(--ink));" />
+            <rect x="18" y="38" width="82" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 35%, var(--ink));" />
+            <rect x="18" y="50" width="188" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 88%, white);" />
+            <rect x="18" y="62" width="12" height="7" rx="4" style="fill:var(--c-sota-amber);" />
+            <rect x="18" y="74" width="22" height="7" rx="4" style="fill:var(--c-sota-green);" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Column 4 · TUNING -->
+      <div style="padding:36px 30px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Tuning procedure</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Bayesian optimisation &middot; per model</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Every baseline tuned on its <strong>own</strong> search space so no method is disadvantaged by grid quirks.</div>
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">100 BayesOpt trials &middot; validation MAE objective.</div>
+          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Same optimiser (Adam), same early-stopping, same seed sweep.</div>
+        </div>
+
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
+          <svg viewBox="0 0 220 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
+            <rect x="12" y="18" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
+            <rect x="12" y="40" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
+            <rect x="12" y="62" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
+            <path d="M54 70 C74 18, 112 18, 136 54" style="fill:none; stroke:var(--ink-2); stroke-width:3.5; stroke-linecap:round;" />
+            <circle cx="72" cy="40" r="4" style="fill:var(--ink-2);" />
+            <circle cx="96" cy="26" r="4" style="fill:var(--ink-2);" />
+            <circle cx="120" cy="30" r="4" style="fill:var(--ink-2);" />
+            <circle cx="136" cy="54" r="5" style="fill:var(--c-aero);" />
+            <line x1="146" y1="54" x2="178" y2="54" style="stroke:var(--c-aero); stroke-width:3; stroke-linecap:round;" />
+            <circle cx="194" cy="54" r="14" style="fill:color-mix(in oklab, var(--c-aero) 14%, var(--bg)); stroke:var(--c-aero); stroke-width:2.5;" />
+            <path d="M188 54 l5 5 l9 -12" style="fill:none; stroke:var(--c-aero); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round;" />
+            <path d="M182 24 C156 8, 110 6, 60 20" style="fill:none; stroke:var(--c-aero); stroke-width:2; stroke-dasharray:5 5; stroke-linecap:round;" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left"></div>
+    <div class="meta-right"></div>
+  </div>
+</section>
