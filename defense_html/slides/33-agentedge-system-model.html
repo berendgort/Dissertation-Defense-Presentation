@@ -1,9 +1,9 @@
-<section class="slide" data-section="agent" data-label="34 AgentEdge System Model">
- <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">System model</span></div><div class="counter"><span class="num">34</span><span class="sep">/</span>54 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+<section class="slide" data-section="agent" data-label="33 System Model">
+ <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">System model</span></div><div class="counter"><span class="num">33</span><span class="sep">/</span>53 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
 
  <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:32px;">
- <h1 style="font-family:var(--f-display); font-size:50px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink);">Where AgentEdge runs</h1>
+<h1 style="font-family:var(--f-display); font-size:50px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink);">System Model &middot; operator to orchestration stack</h1>
  <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
  <div style="border:1.5px solid var(--c-agent); padding:4px 10px; font-family:var(--f-mono); font-size:15px; font-weight:600; color:var(--c-agent); letter-spacing:.1em; text-transform:uppercase;">Problem 3</div>
  <div style="font-family:var(--f-mono); font-size:22px; color:var(--c-agent); letter-spacing:.08em;">L1+L2 · operator ⇄ decision</div>
@@ -24,13 +24,13 @@
  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--c-agent); border-left:6px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 14%, var(--bg)); padding:0 16px; gap:4px; min-height:0;">
  <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-agent); letter-spacing:.14em; font-weight:700;">▶ L2</div>
  <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">DECISION</div>
- <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-2); text-align:center; line-height:1.3;">4-agent graph ·<br>ActSimCrit loop</div>
+<div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-2); text-align:center; line-height:1.3;">reasoning +<br>validation</div>
  </div>
  <!-- L3 Prediction -->
  <div style="flex:0 0 80px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--ink-4); padding:0 16px; gap:3px;">
  <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2); letter-spacing:.14em; font-weight:700;">L3</div>
- <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-2); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">Prediction</div>
- <div style="font-family:var(--f-mono); font-size:10px; color:var(--ink-3); text-align:center;">exposed as tools</div>
+<div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-2); text-align:center; text-transform:uppercase; letter-spacing:.12em; font-weight:700;">Signals</div>
+<div style="font-family:var(--f-mono); font-size:10px; color:var(--ink-3); text-align:center;">forecasts + checks</div>
  </div>
  <!-- L4 Service-orch (K8s) -->
  <div style="flex:0 0 70px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--ink-4); padding:0 16px; gap:3px;">
@@ -47,7 +47,7 @@
 
  <!-- RIGHT: zero-touch loop visualization -->
  <div style="position:relative; background:color-mix(in oklab,var(--c-agent) 3%, var(--bg)); padding:32px 48px; display:flex; flex-direction:column; gap:18px;">
- <div style="font-family:var(--f-mono); font-size:22px; color:var(--c-agent); letter-spacing:.14em; text-transform:uppercase;">Closed loop · operator ⇄ infrastructure</div>
+<div style="font-family:var(--f-mono); font-size:22px; color:var(--c-agent); letter-spacing:.14em; text-transform:uppercase;">System loop · operator ⇄ infrastructure</div>
 
  <svg viewBox="0 0 1200 600" style="width:100%; height:100%; max-height:100%;" font-family="Inter, sans-serif" preserveAspectRatio="xMidYMid meet">
  <defs>
@@ -68,31 +68,31 @@
  <line x1="650" y1="118" x2="650" y2="68" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
  <text x="660" y="98" text-anchor="start" font-size="14" fill="#7a7874" font-family="JetBrains Mono">ρ response</text>
 
- <!-- L2 AGENTIC FRAMEWORK box -->
+<!-- L2 DECISION LAYER box -->
  <rect x="30" y="118" width="1140" height="170" rx="12" fill="none" stroke="#c94080" stroke-width="3" stroke-dasharray="12,6"/>
- <text x="52" y="140" font-size="12" fill="#c94080" font-family="JetBrains Mono" font-weight="700" letter-spacing="2">AGENTIC FRAMEWORK 𝒜 · AgentEdge operates this layer</text>
+<text x="52" y="140" font-size="12" fill="#c94080" font-family="JetBrains Mono" font-weight="700" letter-spacing="2">DECISION LAYER · this missing capability sits between intent and orchestration</text>
 
- <!-- 4 agents -->
+<!-- decision-layer functions -->
  <rect x="60" y="152" width="210" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
- <text x="165" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Intent</text>
- <text x="165" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">NL → goal</text>
- <text x="165" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_intent</text>
+<text x="165" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Intent context</text>
+<text x="165" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">goal + constraints</text>
+<text x="165" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">operator meaning</text>
 
  <rect x="300" y="152" width="210" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
- <text x="405" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Observability</text>
- <text x="405" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">u → features</text>
- <text x="405" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_observe</text>
+<text x="405" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Cluster state</text>
+<text x="405" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">telemetry + topology</text>
+<text x="405" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">what is true now</text>
 
  <rect x="540" y="146" width="300" height="132" rx="8" fill="#c94080" stroke="#a8337b" stroke-width="3"/>
- <text x="690" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="white">Planning</text>
- <text x="690" y="198" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.92)">ActSimCrit</text>
- <text x="690" y="236" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.88)" font-family="JetBrains Mono">plan → sim → critic → loop</text>
- <text x="690" y="258" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.72)" font-family="JetBrains Mono">digital-twin validation</text>
+<text x="690" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="white">Decision logic</text>
+<text x="690" y="198" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.92)">reason before acting</text>
+<text x="690" y="236" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.88)" font-family="JetBrains Mono">candidate action → safety check</text>
+<text x="690" y="258" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.72)" font-family="JetBrains Mono">commit only after validation</text>
 
  <rect x="870" y="152" width="270" height="120" rx="8" fill="#fbe4ec" stroke="#c94080" stroke-width="2.5"/>
- <text x="1005" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Infra Action</text>
- <text x="1005" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">π* → API calls</text>
- <text x="1005" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">f_act</text>
+<text x="1005" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#c94080">Action output</text>
+<text x="1005" y="204" text-anchor="middle" font-size="12" fill="#3a3a38">typed orchestration call</text>
+<text x="1005" y="254" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono">safe to apply</text>
 
  <!-- Agent flow arrows -->
  <line x1="270" y1="212" x2="298" y2="212" stroke="#c94080" stroke-width="2" marker-end="url(#mk-pink)"/>
@@ -101,21 +101,21 @@
 
  <!-- L2→L3 arrows -->
  <line x1="550" y1="288" x2="550" y2="335" stroke="#161616" stroke-width="3" marker-end="url(#mk-dark)"/>
- <text x="540" y="316" text-anchor="end" font-size="13" fill="#3a3a38" font-family="JetBrains Mono">operations</text>
+<text x="540" y="316" text-anchor="end" font-size="13" fill="#3a3a38" font-family="JetBrains Mono">queries</text>
  <line x1="650" y1="335" x2="650" y2="288" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
  <text x="660" y="316" text-anchor="start" font-size="13" fill="#7a7874" font-family="JetBrains Mono">state</text>
 
- <!-- L3 · Prediction Models only (single box · centred) -->
+<!-- L3 · generic signals -->
  <rect x="380" y="335" width="440" height="80" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5"/>
- <text x="600" y="361" text-anchor="middle" font-size="19" font-weight="700" fill="#4338ca">Prediction Models</text>
- <text x="600" y="382" text-anchor="middle" font-size="13" fill="#4338ca" font-family="JetBrains Mono">OmniFORE · AERO</text>
- <text x="600" y="402" text-anchor="middle" font-size="11" fill="#6366f1" font-family="JetBrains Mono" font-style="italic">exposed as tools to the agent graph</text>
+<text x="600" y="361" text-anchor="middle" font-size="19" font-weight="700" fill="#4338ca">Prediction / simulation layer</text>
+<text x="600" y="382" text-anchor="middle" font-size="13" fill="#4338ca" font-family="JetBrains Mono">forecasts &middot; checks &middot; what-if signals</text>
+<text x="600" y="402" text-anchor="middle" font-size="11" fill="#6366f1" font-family="JetBrains Mono" font-style="italic">supporting information for the decision layer</text>
 
  <!-- L3→L3.5 (service-orch) arrows -->
  <line x1="550" y1="415" x2="550" y2="448" stroke="#0d9488" stroke-width="2.5" marker-end="url(#mk-teal)"/>
- <text x="540" y="435" text-anchor="end" font-size="12" fill="#0d9488" font-family="JetBrains Mono">forecasts</text>
+<text x="540" y="435" text-anchor="end" font-size="12" fill="#0d9488" font-family="JetBrains Mono">actions</text>
  <line x1="650" y1="448" x2="650" y2="415" stroke="#7a7874" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#mk-gray)"/>
- <text x="660" y="435" text-anchor="start" font-size="12" fill="#7a7874" font-family="JetBrains Mono">telemetry</text>
+<text x="660" y="435" text-anchor="start" font-size="12" fill="#7a7874" font-family="JetBrains Mono">observations</text>
 
  <!-- L3.5 · Service Orchestration layer (consolidated · no duplicate box) -->
  <rect x="30" y="448" width="1140" height="60" rx="8" fill="#0d9488" stroke="#0f766e" stroke-width="2.5"/>
@@ -141,5 +141,5 @@
  </div>
  </div>
  </div>
- <div class="chrome-bot"><div class="meta-left">AgentEdge · operator ⇄ 4-agent decision layer ⇄ K8s orchestrator</div><div class="meta-right">§4 AgentEdge</div></div>
+<div class="chrome-bot"><div class="meta-left">System model &middot; operator intent ⇄ decision layer ⇄ K8s orchestrator</div><div class="meta-right">§4 AgentEdge</div></div>
 </section>
