@@ -98,7 +98,7 @@ Phase one is where representativeness is engineered rather than wished for. The 
 
 ### Slide 25 · Same scale, then focus
 
-Phase two still does two jobs. S₅ rescales every trace individually so that every service lands on equal footing, which means the optimiser weighs a quiet batch service just as seriously as a noisy web front-end. S₆ is efficient attention. Each forecast step scans the full recent window, keeps the strongest matches, and forecasts from those links. That transfers well because the model matches patterns rather than service identity, so after rescaling it can carry what it learned into unseen workloads.
+Phase two still does two jobs: S₅ is equal scale, and S₆ is efficient attention. S₅ rescales every trace individually so that every service lands on equal footing, which means the optimiser weighs a quiet batch service just as seriously as a noisy web front-end. S₆ scans the full recent window, keeps the strongest matches, and forecasts from those links. That transfers well because the model matches patterns rather than service identity, so after rescaling it can carry what it learned into unseen workloads.
 
 ### Slide 26 · Tuning so it transfers
 
