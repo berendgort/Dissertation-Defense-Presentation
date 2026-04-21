@@ -1,0 +1,41 @@
+<section class="slide" data-section="agent" data-label="39 AgentEdge Rationale">
+ <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Solution rationale 3</span></div><div class="counter"><span class="num">39</span><span class="sep">/</span>56 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+ <div class="body" style="display:flex; flex-direction:column; justify-content:center;">
+ <div>
+ <div class="h-subtle">AgentEdge · solution rationale</div>
+ <h1 class="h-title">Each pain-point forces <em style="font-style:normal; color:var(--c-agent);">exactly one</em> design decision</h1>
+
+ <div style="margin-top:26px; border:1px solid var(--ink); border-bottom:none;">
+ <div style="display:grid; grid-template-columns: 1fr 40px 1.2fr; background:var(--ink); color:var(--bg);">
+ <div class="mono-tag" style="padding:14px 20px; color:var(--bg);">Pain-point</div><div></div>
+ <div class="mono-tag" style="padding:14px 20px; color:var(--bg);">Design decision</div>
+ </div>
+ <div style="display:grid; grid-template-columns: 1fr 40px 1.2fr; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); align-items:center;">
+ <div style="padding:22px 26px;"><code style="font-size:24px;">Natural-language intent is ambiguous</code><div style="font-size:18px; color:var(--ink-3); margin-top:4px;">parsed incorrectly → whole pipeline fails</div></div>
+ <div style="display:flex; align-items:center; justify-content:center; color:var(--c-agent); font-family:var(--f-mono); font-size:26px;">→</div>
+ <div style="padding:22px 26px; font-size:30px;">Dedicated <strong style="color:var(--c-agent);">Intent agent</strong> · typed goal schema</div>
+ </div>
+ <div style="display:grid; grid-template-columns: 1fr 40px 1.2fr; border-bottom:1px solid var(--ink-4); background:var(--bg); align-items:center;">
+ <div style="padding:22px 26px;"><code style="font-size:24px;">state is large, dynamic</code><div style="font-size:18px; color:var(--ink-3); margin-top:4px;">planner drowns in raw telemetry</div></div>
+ <div style="display:flex; align-items:center; justify-content:center; color:var(--c-agent); font-family:var(--f-mono); font-size:26px;">→</div>
+ <div style="padding:22px 26px; font-size:30px;">Dedicated <strong style="color:var(--c-agent);">Observability agent</strong> · bounded world model</div>
+ </div>
+ <div style="display:grid; grid-template-columns: 1fr 40px 1.2fr; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); align-items:center;">
+ <div style="padding:22px 26px;"><code style="font-size:24px;">plans break on contact</code><div style="font-size:18px; color:var(--ink-3); margin-top:4px;">capacity constraints violated at exec</div></div>
+ <div style="display:flex; align-items:center; justify-content:center; color:var(--c-agent); font-family:var(--f-mono); font-size:26px;">→</div>
+ <div style="padding:22px 26px; font-size:30px;"><strong style="color:var(--c-agent);">ActSimCrit</strong> · simulate + critique before executing</div>
+ </div>
+ <div style="display:grid; grid-template-columns: 1fr 40px 1.2fr; background:var(--bg); align-items:center; border-bottom:1px solid var(--ink);">
+ <div style="padding:22px 26px;"><code style="font-size:24px;">action is irreversible</code><div style="font-size:18px; color:var(--ink-3); margin-top:4px;">can't "undeploy" to backtrack</div></div>
+ <div style="display:flex; align-items:center; justify-content:center; color:var(--c-agent); font-family:var(--f-mono); font-size:26px;">→</div>
+ <div style="padding:22px 26px; font-size:30px;"><strong style="color:var(--c-agent);">Digital-twin</strong> sandbox · no prod trial-and-error</div>
+ </div>
+ </div>
+
+ <div style="margin-top:22px; font-family:var(--f-serif); font-size:28px; font-style:italic; color:var(--ink); max-width:1700px;">
+ Drop any one of these four and the system fails predictably · each is load-bearing.
+ </div>
+ </div>
+ </div>
+ <div class="chrome-bot"><div class="meta-left">Four pain-points · four load-bearing decisions</div><div class="meta-right">§4 AgentEdge</div></div>
+</section>

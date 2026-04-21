@@ -1,0 +1,612 @@
+/* =========================================================
+   6G Orchestration Defense · Engineering / Grid aesthetic
+   1920 × 1080
+   ========================================================= */
+
+:root {
+  /* Palette A · default engineering */
+  --bg:        #f3f1ea;        /* off-white, warm paper */
+  --bg-alt:    #ebe8df;        /* card backgrounds */
+  --ink:       #161616;        /* primary text */
+  --ink-2:     #3a3a38;        /* secondary */
+  --ink-3:     #7a7874;        /* tertiary, captions */
+  --ink-4:     #b6b3ab;        /* hairlines, grid */
+  --ink-5:     #d8d4c8;        /* soft divider */
+  --rule:      #161616;
+
+  /* Contribution accents · oklch, same chroma/lightness, varied hue */
+  --c-aero:     oklch(55% 0.14 230);   /* cyan/blue */
+  --c-omnifore: oklch(60% 0.14 60);    /* amber */
+  --c-agent:    oklch(55% 0.16 350);   /* magenta */
+  --c-framing:  #161616;                /* neutral ink */
+  --c-synth:    #3a3a38;
+
+  /* SotA semantic palette · for red/green/amber color coding */
+  --c-sota-red:    #b83838;   /* heavy / undeployable */
+  --c-sota-green:  #3f7d3f;   /* lightweight / target */
+  --c-sota-amber:  #c88a1d;   /* adapted baseline / partial fit */
+
+  /* Fonts */
+  --f-sans:    "Inter", "Söhne", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Inter", "Söhne", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --f-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --f-serif:   "Newsreader", "Source Serif 4", Georgia, serif;
+}
+
+/* palette alt modes (activated by Tweaks) */
+body[data-palette="a"] {
+  --c-aero:     oklch(55% 0.14 230);
+  --c-omnifore: oklch(60% 0.14 60);
+  --c-agent:    oklch(55% 0.16 350);
+}
+body[data-palette="b"] {
+  --c-aero:     oklch(52% 0.14 180);   /* teal */
+  --c-omnifore: oklch(62% 0.14 45);    /* sunset */
+  --c-agent:    oklch(45% 0.14 280);   /* indigo */
+}
+body[data-palette="c"] {
+  --c-aero:     oklch(40% 0.08 250);   /* UPC blue */
+  --c-omnifore: oklch(55% 0.12 30);    /* warm red */
+  --c-agent:    oklch(40% 0.08 30);    /* deep warm */
+}
+body[data-palette="d"] {
+  --bg:        #0f100e;
+  --bg-alt:    #1a1b18;
+  --ink:       #f0eee6;
+  --ink-2:     #c9c6bc;
+  --ink-3:     #8d8a80;
+  --ink-4:     #3d3e3a;
+  --ink-5:     #272826;
+  --rule:      #f0eee6;
+  --c-aero:     oklch(72% 0.14 220);
+  --c-omnifore: oklch(76% 0.14 70);
+  --c-agent:    oklch(70% 0.16 350);
+  --c-framing:  #f0eee6;
+  --c-synth:    #c9c6bc;
+}
+
+html, body {
+  margin: 0; padding: 0;
+  background: #000;
+  font-family: var(--f-sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* MINIMUM SIZES for 1920×1080 presentation scale
+   At 67% viewport scale: 24px CSS → 16px rendered (minimum readable)
+   Body text:     min 28px
+   Secondary:     min 22px  
+   Labels/mono:   min 20px
+   Captions:      min 18px
+*/
+
+/* ------- slide canvas ------- */
+.slide {
+  width: 1920px;
+  height: 1080px;
+  background: var(--bg);
+  color: var(--ink);
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--f-sans);
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+/* ----- CHROME (top hidden, bottom is the nav bar) -------------- */
+.chrome-top {
+  display: none;
+}
+.chrome-top .section-bar {
+  grid-column: 1 / 2;
+  height: 56px;
+  width: 16px;
+  background: var(--c-framing);
+}
+.chrome-top .eyebrow {
+  grid-column: 2 / 3;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding-left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.chrome-top .eyebrow .eyb-tag {
+  color: var(--ink-3);
+}
+.chrome-top .eyebrow .eyb-sep {
+  color: var(--ink-4);
+}
+.chrome-top .counter {
+  display: none;
+}
+
+/* section colorings */
+.slide[data-section="framing"]  { --section-color: var(--c-framing); }
+.slide[data-section="aero"]     { --section-color: var(--c-aero); }
+.slide[data-section="omnifore"] { --section-color: var(--c-omnifore); }
+.slide[data-section="agent"]    { --section-color: var(--c-agent); }
+.slide[data-section="synth"]    { --section-color: var(--c-synth); }
+
+.slide[data-section="aero"]     .chrome-top .section-bar { background: var(--c-aero); }
+.slide[data-section="omnifore"] .chrome-top .section-bar { background: var(--c-omnifore); }
+.slide[data-section="agent"]    .chrome-top .section-bar { background: var(--c-agent); }
+.slide[data-section="framing"]  .chrome-top .section-bar { background: var(--c-framing); }
+.slide[data-section="synth"]    .chrome-top .section-bar { background: var(--c-synth); }
+
+/* bottom chrome */
+.chrome-bot {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 72px;
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  align-items: stretch;
+  border-top: 2px solid var(--ink-4);
+  font-family: var(--f-mono);
+  font-size: 18px;
+  color: var(--ink-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg);
+  z-index: 2;
+}
+/* section color accent on bottom-left */
+.chrome-bot::before {
+  content: '';
+  grid-column: 1 / 2;
+  background: var(--section-color, var(--ink-4));
+  display: block;
+}
+.chrome-bot .meta-left  {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  gap: 0;
+  /* hide the old descriptive text — replaced by JS-injected nav info */
+  display: none;
+}
+.chrome-bot .meta-right {
+  grid-column: 3 / 4;
+  display: none;
+}
+/* JS-injected nav bar */
+.chrome-bot .nav-info {
+  grid-column: 2 / 4;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  gap: 28px;
+}
+.chrome-bot .nav-eyebrow {
+  font-size: 19px;
+  color: var(--section-color, var(--ink-3));
+  font-weight: 700;
+  letter-spacing: .14em;
+  flex: 1;
+}
+.chrome-bot .nav-num {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--section-color, var(--ink));
+  letter-spacing: -.025em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  font-family: var(--f-display);
+}
+.chrome-bot .nav-sep {
+  font-size: 28px;
+  color: var(--ink-4);
+  padding: 0 2px;
+}
+.chrome-bot .nav-total {
+  font-size: 28px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.chrome-bot .nav-section {
+  font-size: 19px;
+  color: var(--ink-3);
+  letter-spacing: .14em;
+  padding-left: 10px;
+}
+
+/* ----- BODY CONTAINER ------------------------------------------- */
+.body {
+  position: absolute;
+  top: 0; bottom: 72px; left: 0; right: 0;
+  padding: 48px 80px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ----- TITLES --------------------------------------------------- */
+.h-title {
+  font-family: var(--f-display);
+  font-size: 58px;
+  line-height: 1.04;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 20px 0;
+  max-width: 1500px;
+}
+.h-title .accent { color: var(--section-color); }
+.h-subtle {
+  font-family: var(--f-mono);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+}
+
+/* ----- MONO ELEMENTS ------------------------------------------- */
+.mono { font-family: var(--f-mono); }
+.mono-tag {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono-lbl {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+.mono-num {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----- HERO NUMBER PAIR ---------------------------------------- */
+/* Big number with baseline contrast, used across result slides. */
+.num-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.num-pair .num-hero {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 128px;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  color: var(--section-color, var(--ink));
+  font-weight: 500;
+}
+.num-pair .num-hero .unit {
+  font-size: 52px;
+  color: var(--ink-2);
+  margin-left: 8px;
+}
+.num-pair .num-label {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.num-pair .num-compare {
+  font-family: var(--f-mono);
+  font-size: 22px;
+  color: var(--ink-2);
+  padding-top: 10px;
+  border-top: 1px solid var(--ink-4);
+  width: fit-content;
+  min-width: 200px;
+  font-variant-numeric: tabular-nums;
+}
+.num-pair .num-compare .vs { color: var(--ink-3); }
+.num-pair .num-compare .strike {
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-4);
+  color: var(--ink-3);
+}
+
+/* ----- CARDS / BOXES ------------------------------------------- */
+.card {
+  background: var(--bg-alt);
+  border: 1px solid var(--ink-4);
+  padding: 20px 22px;
+}
+.card.no-bg { background: transparent; }
+.card.framed {
+  border: 1px solid var(--ink);
+}
+.card-title {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 8px 0;
+}
+
+/* ----- GRID OVERLAY (decorative crosses) ----------------------- */
+.grid-bg {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.grid-bg svg { width: 100%; height: 100%; }
+
+/* ----- TABLES -------------------------------------------------- */
+.t {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 22px;
+  font-family: var(--f-sans);
+}
+.t th, .t td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--ink-4);
+  vertical-align: top;
+}
+.t thead th {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 400;
+  border-bottom: 1px solid var(--ink);
+}
+.t .mono-cell { font-family: var(--f-mono); font-size: 20px; }
+
+/* ----- PROOF STRIP --------------------------------------------- */
+.proof-strip {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--ink-4);
+  border-bottom: 1px solid var(--ink-4);
+  margin-top: auto;
+}
+.proof-strip > div {
+  flex: 1;
+  padding: 18px 24px;
+  border-right: 1px solid var(--ink-4);
+}
+.proof-strip > div:last-child { border-right: none; }
+.proof-strip .proof-num {
+  font-family: var(--f-mono);
+  font-size: 48px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+.proof-strip .proof-lbl {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+
+/* ----- BULLET LIST --------------------------------------------- */
+ul.bul {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+ul.bul li {
+  padding: 8px 0 8px 20px;
+  position: relative;
+  font-size: 26px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+ul.bul li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--ink-4);
+  font-family: var(--f-mono);
+}
+ul.bul.tight li { font-size: 22px; padding: 4px 0 4px 20px; }
+
+/* code inline */
+code, .code {
+  font-family: var(--f-mono);
+  font-size: 0.92em;
+  background: var(--bg-alt);
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: var(--ink);
+}
+.slide[data-section="aero"]     code { color: var(--c-aero); background: color-mix(in oklab, var(--c-aero) 8%, var(--bg-alt)); }
+.slide[data-section="omnifore"] code { color: var(--c-omnifore); background: color-mix(in oklab, var(--c-omnifore) 10%, var(--bg-alt)); }
+.slide[data-section="agent"]    code { color: var(--c-agent); background: color-mix(in oklab, var(--c-agent) 10%, var(--bg-alt)); }
+
+/* ----- PILLS --------------------------------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border: 1px solid var(--ink-4);
+  border-radius: 0;
+}
+.pill-accent {
+  color: var(--section-color);
+  border-color: var(--section-color);
+}
+.pill-filled {
+  background: var(--section-color);
+  color: var(--bg);
+  border-color: var(--section-color);
+}
+
+/* ----- KEYWORD STRIP ------------------------------------------- */
+.kw-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+/* ----- ARROWS -------------------------------------------------- */
+.arrow-r::after { content: " →"; color: var(--ink-3); font-family: var(--f-mono); }
+
+/* ----- UTILITY ------------------------------------------------- */
+.spacer { flex: 1; }
+.row { display: flex; gap: 24px; align-items: stretch; }
+.col { display: flex; flex-direction: column; gap: 24px; }
+.grow { flex: 1; }
+.divider-h { height: 1px; background: var(--ink-4); margin: 12px 0; }
+.divider-v { width: 1px; background: var(--ink-4); align-self: stretch; }
+
+.tag-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--section-color);
+}
+
+/* ----- FIGURE FRAME -------------------------------------------- */
+/* Wraps a PDF canvas or img, centers it, no overflow */
+.fig-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+  position: relative;
+}
+.fig-frame canvas,
+.fig-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.fig-caption {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: center;
+  margin-top: 6px;
+}
+/* ----- SOTA SEMANTIC COLOR CODING -------------------------------
+   Red  = heavy / undeployable.   Green = lightweight / on-target.
+   Amber = adapted baseline / partial fit.
+   Use on table rows, chips, or quadrant scatter points. */
+.sota-red   { color: var(--c-sota-red)   !important; }
+.sota-green { color: var(--c-sota-green) !important; }
+.sota-amber { color: var(--c-sota-amber) !important; }
+
+.sota-row-red {
+  background: color-mix(in oklab, var(--c-sota-red) 9%, var(--bg));
+  border-left: 6px solid var(--c-sota-red);
+}
+.sota-row-green {
+  background: color-mix(in oklab, var(--c-sota-green) 9%, var(--bg));
+  border-left: 6px solid var(--c-sota-green);
+}
+.sota-row-amber {
+  background: color-mix(in oklab, var(--c-sota-amber) 10%, var(--bg));
+  border-left: 6px solid var(--c-sota-amber);
+}
+
+.sota-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+}
+.sota-chip.red   { color: var(--c-sota-red); }
+.sota-chip.green { color: var(--c-sota-green); }
+.sota-chip.amber { color: var(--c-sota-amber); }
+
+/* ----- NEUTRAL INFRASTRUCTURE LAYER UTILITY --------------------
+   Applied to the L4 "infrastructure" row on framing & synthesis
+   slides so that solution colors (AERO/OmniFORE/AgentEdge) are
+   reserved for contribution layers only. */
+.infra-neutral {
+  background: var(--bg-alt) !important;
+}
+.infra-neutral-accent {
+  background: var(--ink-3) !important;
+}
+.infra-neutral-label {
+  color: var(--ink-3) !important;
+}
+
+#tweaks {
+  position: fixed;
+  right: 20px; bottom: 80px;
+  width: 280px;
+  background: var(--bg);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  padding: 16px;
+  z-index: 99999;
+  display: none;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+}
+#tweaks.show { display: block; }
+#tweaks h4 {
+  margin: 0 0 12px 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--ink-4);
+  padding-bottom: 8px;
+}
+#tweaks .row-t {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+#tweaks button {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--ink-4);
+  cursor: pointer;
+  color: var(--ink-2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#tweaks button.active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+#tweaks .swatch {
+  display: inline-block; width: 10px; height: 10px;
+  margin-right: 6px;
+  vertical-align: middle;
+}

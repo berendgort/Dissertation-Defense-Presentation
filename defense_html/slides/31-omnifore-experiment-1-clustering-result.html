@@ -1,0 +1,102 @@
+<section class="slide" data-section="omnifore" data-label="31 OmniFORE Experiment 1 clustering result">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; Result &middot; clustering ablation</span></div>
+    <div class="counter"><span class="num">31</span><span class="sep">/</span>56 &nbsp; <span class="section-name">OmniFORE</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
+      <div class="h-subtle" style="margin:0;">OmniFORE &middot; experiment 1 &middot; result</div>
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Clustering wins by about <span style="color:var(--c-omnifore);">20 %</span> &middot; on every error metric</h1>
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns:1.5fr 1fr; min-height:0;">
+      <!-- LEFT · plots (moved per feedback) -->
+      <div style="border-right:2px solid var(--ink); padding:36px 50px; display:flex; flex-direction:column; gap:18px; justify-content:center; background:var(--bg-alt);">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Clustered (filled) vs random (grey) &middot; lower is better</div>
+
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- MAE -->
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Error (MAE)</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:30px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:55%; background:var(--c-omnifore);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-omnifore); font-weight:700; width:110px; text-align:right;">clustered &#9733;</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:24px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:69%; background:var(--ink-3);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); width:110px; text-align:right;">random +20.66 %</div>
+            </div>
+          </div>
+          <!-- RMSE -->
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Error spread (RMSE)</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:30px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:50%; background:var(--c-omnifore);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-omnifore); font-weight:700; width:110px; text-align:right;">clustered &#9733;</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:24px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:66%; background:var(--ink-3);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); width:110px; text-align:right;">random +24.63 %</div>
+            </div>
+          </div>
+          <!-- SMAPE -->
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">SMAPE</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:30px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:44%; background:var(--c-omnifore);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-omnifore); font-weight:700; width:110px; text-align:right;">clustered &#9733;</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:24px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:70%; background:var(--ink-3);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); width:110px; text-align:right;">random +32.71 %</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">&larr; lower error &middot; proportional bar widths</div>
+      </div>
+
+      <!-- RIGHT · conclusions (moved per feedback) -->
+      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:20px; justify-content:center; background:var(--bg);">
+        <div class="num-pair">
+          <div class="num-label">Error (MAE) &middot; clustered vs random &middot; zero-shot test</div>
+          <div class="num-hero" style="color:var(--c-omnifore);">&minus;20.66<span class="unit">%</span></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
+            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">Error spread (RMSE)</span>
+            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;24.63 %</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
+            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">SMAPE improvement</span>
+            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;32.71 %</span>
+          </div>
+        </div>
+        <div style="font-family:var(--f-serif); font-size:19px; font-style:italic; color:var(--ink-2); line-height:1.45;">
+          Same model &middot; same tuning &middot; different training set. Clustering alone closes most of the gap.
+        </div>
+      </div>
+    </div>
+    <div style="flex:0 0 78px; display:flex; align-items:center; padding:0 56px; background:var(--c-omnifore); color:white; gap:28px; border-top:2px solid var(--ink);">
+      <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.18em; opacity:.82; flex-shrink:0;">&#9654; FINDING</div>
+      <div style="width:2px; height:44px; background:rgba(255,255,255,.28); flex-shrink:0;"></div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; line-height:1.25;">Clustering-based training yields real gains in prediction accuracy</div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">Experiment 1 &middot; MAE &minus;20.66 % &middot; RMSE &minus;24.63 % &middot; SMAPE &minus;32.71 %</div>
+    <div class="meta-right">&sect;3 OmniFORE</div>
+  </div>
+</section>

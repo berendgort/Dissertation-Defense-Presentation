@@ -1,0 +1,70 @@
+<section class="slide" data-section="synth" data-label="53 Future Real-time infra">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Future direction 2 of 3</span><span class="eyb-sep">//</span><span>Agentic Era</span></div>
+    <div class="counter"><span class="num">53</span><span class="sep">/</span>56 &nbsp; <span class="section-name">Synthesis</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;">
+
+    <!-- Left: visualization + headline -->
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:60px 64px; border-right:2px solid var(--ink); background:var(--bg); gap:20px;">
+      <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.16em; font-weight:700; text-transform:uppercase;">Problem 2 &middot; Context engineering &amp; real-time infra</div>
+      <div style="font-family:var(--f-display); font-size:48px; font-weight:700; line-height:1.04; letter-spacing:-.03em; color:var(--ink);">The 35-node ceiling is a <em style="font-style:normal; color:var(--c-agent);">context-engineering</em> problem, not a hardware one.</div>
+      <div style="height:2px; background:var(--c-agent); width:80px;"></div>
+
+      <svg viewBox="0 0 560 210" width="100%" style="max-width:720px;">
+        <!-- context window as a bar -->
+        <rect x="20" y="40" width="520" height="36" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <text x="280" y="32" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" letter-spacing="0.1em">LLM CONTEXT WINDOW</text>
+
+        <!-- tools section -->
+        <rect x="20" y="40" width="140" height="36" fill="color-mix(in oklab,var(--c-agent) 18%,var(--bg))"/>
+        <text x="90" y="64" font-family="JetBrains Mono" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">tools &middot; 20+</text>
+        <!-- state section -->
+        <rect x="160" y="40" width="300" height="36" fill="color-mix(in oklab,var(--c-agent) 32%,var(--bg))"/>
+        <text x="310" y="64" font-family="JetBrains Mono" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">node state &middot; grows with N</text>
+        <!-- overflow -->
+        <rect x="460" y="40" width="80" height="36" fill="#c94080" fill-opacity="0.85"/>
+        <text x="500" y="64" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">overflow</text>
+
+        <!-- anecdote caption -->
+        <text x="20" y="108" font-family="Inter" font-size="13" fill="var(--ink-2)" font-style="italic">Concrete: tunnels + NBI (20 tools) + K8s MCP &rArr; planner accuracy collapses.</text>
+
+        <!-- time bars: observe → plan → actuate -->
+        <line x1="20" y1="175" x2="540" y2="175" stroke="var(--ink-3)" stroke-width="1.5"/>
+        <rect x="20" y="140" width="100" height="30" fill="color-mix(in oklab,var(--c-agent) 20%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.2"/>
+        <text x="70" y="160" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Observe</text>
+        <text x="70" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">5 s</text>
+        <rect x="125" y="125" width="260" height="45" fill="color-mix(in oklab,var(--c-agent) 30%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.5"/>
+        <text x="255" y="148" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Plan (LLM)</text>
+        <text x="255" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">8&ndash;30 s</text>
+        <rect x="390" y="140" width="100" height="30" fill="color-mix(in oklab,var(--c-agent) 20%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.2"/>
+        <text x="440" y="160" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Actuate</text>
+        <text x="440" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">3 s</text>
+        <text x="495" y="155" font-family="JetBrains Mono" font-size="12" fill="#c94080" font-weight="700">&gt; SLA</text>
+      </svg>
+    </div>
+
+    <!-- Right: three research directions -->
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:55px 56px; background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); gap:20px;">
+      <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.14em; font-weight:700; text-transform:uppercase;">Research directions</div>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R1 &middot; CONTEXT ENGINEERING FOR INFRA</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Hierarchical state summarisation, tool sharding, retrieval-over-state; study when an orchestration problem is <em>context-bound</em> vs. <em>reasoning-bound</em>.</div>
+        </div>
+        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R2 &middot; LATENCY-AWARE LLM CO-DESIGN</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Pair frontier planners with <em>distilled sub-agents</em> specialised per decision (scale / migrate / placement); the AERO lesson applied to agent graphs: right-size the model to the decision.</div>
+        </div>
+        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R3 &middot; 6G INTEGRATION</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Agents in the <em>RAN</em> and <em>core</em> with sub-ms radio loops, unifying signal-theory timing budgets with LLM inference budgets. Cross-layer contract between O-RAN, MEC, and agentic control.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Context engineering &middot; model right-sizing &middot; 6G integration &middot; not "use a faster LLM"</div><div class="meta-right">&sect;6 Future work</div></div>
+</section>

@@ -1,0 +1,174 @@
+<section class="slide" data-section="omnifore" data-label="27 OmniFORE S1-S4">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Solution 2 &middot; stages S&#8321; &middot; S&#8324;</span></div>
+    <div class="counter"><span class="num">27</span><span class="sep">/</span>56 &nbsp; <span class="section-name">OmniFORE</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 82px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <div style="display:flex; flex-direction:column; gap:2px;">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">Phase 1 &middot; Curate &middot; S&#8321; &rarr; S&#8324;</div>
+        <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">Designing the training set</h1>
+      </div>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">groups &rarr; balanced mix &rarr; attention head sees them all</div>
+    </div>
+
+    <!-- 4 column flow -->
+    <div style="flex:1; padding:20px 60px 16px; display:flex; align-items:stretch; min-height:0; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:1fr 36px 1fr 36px 1fr 36px 1fr; gap:0; align-items:stretch; width:100%;">
+        <!-- S1 · fingerprint -->
+        <div style="display:flex; flex-direction:column; border:2px solid var(--c-omnifore); background:var(--bg); overflow:hidden;">
+          <div style="padding:10px 16px; background:var(--c-omnifore); display:flex; align-items:baseline; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--bg);">S&#8321;</span>
+            <span style="font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--bg); font-weight:600; line-height:1.2;">Fingerprint each trace</span>
+          </div>
+          <div style="padding:14px; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <svg viewBox="0 0 200 120" style="width:100%; height:auto;">
+              <g fill="none" stroke-width="2" opacity="0.85">
+                <polyline points="8,24 22,12 36,30 50,16 64,28 78,14 92,26" stroke="var(--ink)"/>
+                <polyline points="8,54 22,46 36,60 50,42 64,56 78,44 92,58" stroke="var(--ink-3)"/>
+                <polyline points="8,84 22,72 36,88 50,68 62,82 76,72 90,86" stroke="var(--ink)"/>
+              </g>
+              <line x1="100" y1="55" x2="128" y2="55" stroke="var(--c-omnifore)" stroke-width="2.5"/>
+              <path d="M125,50 L133,55 L125,60 Z" fill="var(--c-omnifore)"/>
+              <rect x="136" y="28" width="58" height="54" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.5"/>
+              <circle cx="155" cy="47" r="5" fill="var(--c-omnifore)" opacity=".8"/>
+              <circle cx="170" cy="54" r="4" fill="var(--c-omnifore)" opacity=".5"/>
+              <circle cx="162" cy="65" r="3" fill="var(--c-omnifore)" opacity=".6"/>
+              <text x="165" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="var(--c-omnifore)">fingerprint</text>
+            </svg>
+            <div style="font-size:17px; color:var(--ink); line-height:1.35;">Compress each trace into a shape descriptor.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 36 40" style="width:36px;"><line x1="4" y1="20" x2="28" y2="20" stroke="var(--ink-3)" stroke-width="2.5"/><path d="M24,14 L34,20 L24,26 Z" fill="var(--ink-3)"/></svg>
+        </div>
+
+        <!-- S2 · cluster with spiky bursty -->
+        <div style="display:flex; flex-direction:column; border:2px solid var(--c-omnifore); background:var(--bg); overflow:hidden;">
+          <div style="padding:10px 16px; background:var(--c-omnifore); display:flex; align-items:baseline; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--bg);">S&#8322;</span>
+            <span style="font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--bg); font-weight:600; line-height:1.2;">Cluster into families</span>
+          </div>
+          <div style="padding:14px; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <svg viewBox="0 0 200 120" style="width:100%; height:auto;">
+              <!-- BURSTY · spiky, irregular -->
+              <g>
+                <text x="6" y="11" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--c-omnifore)">bursty</text>
+                <line x1="2" y1="32" x2="95" y2="32" stroke="var(--ink-4)" stroke-width="0.6"/>
+                <!-- spiky, irregular, mostly flat with sudden tall spikes -->
+                <polyline points="2,30 10,30 18,30 22,8 26,30 34,30 42,30 46,14 50,30 58,30 62,30 66,6 70,30 78,30 82,30 86,22 92,30" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/>
+              </g>
+              <!-- STEADY · flat -->
+              <g>
+                <text x="6" y="50" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--ink-3)">steady</text>
+                <line x1="2" y1="68" x2="95" y2="68" stroke="var(--ink-4)" stroke-width="0.6"/>
+                <polyline points="2,66 14,67 26,65 38,66 50,67 62,65 74,66 86,67 95,66" fill="none" stroke="var(--ink-3)" stroke-width="1.8"/>
+              </g>
+              <!-- PERIODIC -->
+              <g>
+                <text x="6" y="86" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--ink-4)">periodic</text>
+                <line x1="2" y1="106" x2="95" y2="106" stroke="var(--ink-4)" stroke-width="0.6"/>
+                <path d="M 2 104 Q 10 96 18 104 Q 26 112 34 104 Q 42 96 50 104 Q 58 112 66 104 Q 74 96 82 104 Q 90 112 95 104" fill="none" stroke="var(--ink-4)" stroke-width="1.8"/>
+              </g>
+              <!-- Arrow -->
+              <line x1="104" y1="60" x2="126" y2="60" stroke="var(--c-omnifore)" stroke-width="2"/>
+              <path d="M123,56 L130,60 L123,64 Z" fill="var(--c-omnifore)"/>
+              <!-- Three clusters -->
+              <circle cx="155" cy="30" r="16" fill="color-mix(in oklab,var(--c-omnifore) 22%,var(--bg))" stroke="var(--c-omnifore)" stroke-width="1.5"/>
+              <text x="155" y="34" text-anchor="middle" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--c-omnifore)">bursty</text>
+              <circle cx="180" cy="66" r="14" fill="color-mix(in oklab,var(--ink) 10%,var(--bg))" stroke="var(--ink-3)" stroke-width="1.5"/>
+              <text x="180" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--ink-3)">steady</text>
+              <circle cx="158" cy="100" r="14" fill="color-mix(in oklab,var(--ink) 6%,var(--bg))" stroke="var(--ink-4)" stroke-width="1.5"/>
+              <text x="158" y="104" text-anchor="middle" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="var(--ink-4)">periodic</text>
+            </svg>
+            <div style="font-size:17px; color:var(--ink); line-height:1.35;">Same shape &rarr; same group.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 36 40" style="width:36px;"><line x1="4" y1="20" x2="28" y2="20" stroke="var(--ink-3)" stroke-width="2.5"/><path d="M24,14 L34,20 L24,26 Z" fill="var(--ink-3)"/></svg>
+        </div>
+
+        <!-- S3 · tag -->
+        <div style="display:flex; flex-direction:column; border:2px solid var(--c-omnifore); background:var(--bg); overflow:hidden;">
+          <div style="padding:10px 16px; background:var(--c-omnifore); display:flex; align-items:baseline; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--bg);">S&#8323;</span>
+            <span style="font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--bg); font-weight:600; line-height:1.2;">Tag every trace</span>
+          </div>
+          <div style="padding:14px; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <svg viewBox="0 0 200 120" style="width:100%; height:auto;">
+              <g>
+                <rect x="8" y="10" width="52" height="20" rx="3" fill="var(--c-omnifore)"/>
+                <text x="34" y="23" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">bursty</text>
+                <!-- spiky sample trace -->
+                <polyline points="64,28 72,28 76,10 82,28 90,28 96,28 102,12 108,28 118,28 128,28 132,6 138,28 148,28 158,28 164,18 172,28 184,28 192,28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              </g>
+              <g>
+                <rect x="8" y="50" width="52" height="20" rx="3" fill="var(--ink-3)"/>
+                <text x="34" y="63" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">steady</text>
+                <polyline points="64,58 80,54 96,60 112,56 128,58 144,54 160,60 176,56 192,58" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              </g>
+              <g>
+                <rect x="8" y="90" width="52" height="20" rx="3" fill="var(--ink-4)"/>
+                <text x="34" y="103" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">periodic</text>
+                <polyline points="64,98 80,90 96,98 112,90 128,98 144,90 160,98 176,90 192,98" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              </g>
+              <text x="100" y="119" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-4)">each trace carries its group label</text>
+            </svg>
+            <div style="font-size:17px; color:var(--ink); line-height:1.35;">Stamp each trace with its group label.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 36 40" style="width:36px;"><line x1="4" y1="20" x2="28" y2="20" stroke="var(--ink-3)" stroke-width="2.5"/><path d="M24,14 L34,20 L24,26 Z" fill="var(--ink-3)"/></svg>
+        </div>
+
+        <!-- S4 · pick -->
+        <div style="display:flex; flex-direction:column; border:2px solid var(--c-omnifore); background:var(--bg); overflow:hidden;">
+          <div style="padding:10px 16px; background:var(--c-omnifore); display:flex; align-items:baseline; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--bg);">S&#8324;</span>
+            <span style="font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--bg); font-weight:600; line-height:1.2;">Pick a balanced mix</span>
+          </div>
+          <div style="padding:14px; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <svg viewBox="0 0 200 120" style="width:100%; height:auto;">
+              <rect x="8" y="10" width="52" height="20" rx="3" fill="var(--c-omnifore)"/>
+              <text x="34" y="23" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">bursty</text>
+              <rect x="68" y="10" width="120" height="14" rx="2" fill="var(--c-omnifore)" opacity=".85"/>
+              <rect x="68" y="10" width="120" height="14" rx="2" fill="none" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="8" y="46" width="52" height="20" rx="3" fill="var(--ink-3)"/>
+              <text x="34" y="59" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">steady</text>
+              <rect x="68" y="46" width="84" height="14" rx="2" fill="var(--ink-3)" opacity=".7"/>
+              <rect x="68" y="46" width="120" height="14" rx="2" fill="none" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="8" y="82" width="52" height="20" rx="3" fill="var(--ink-4)"/>
+              <text x="34" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--bg)" font-weight="700">periodic</text>
+              <rect x="68" y="82" width="52" height="14" rx="2" fill="var(--ink-4)" opacity=".55"/>
+              <rect x="68" y="82" width="120" height="14" rx="2" fill="none" stroke="var(--ink-4)" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="100" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-4)">proportional to catalogue size</text>
+            </svg>
+            <div style="font-size:17px; color:var(--ink); line-height:1.35;">Sample proportionally from each group.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom banner · introduces attention + "models forget" -->
+    <div style="flex:0 0 108px; display:grid; grid-template-columns: 1fr 1fr; border-top:2px solid var(--ink); background:var(--bg-alt);">
+      <div style="padding:12px 30px 10px 60px; display:flex; flex-direction:column; gap:4px; border-right:2px solid var(--ink);">
+        <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">Why this training set?</div>
+        <div style="font-size:18px; color:var(--ink); line-height:1.35;">Current forecasters <strong>forget past points</strong>; windows roll past, context dies with them. A balanced catalogue only pays off if the model can <em>remember</em> what it saw.</div>
+      </div>
+      <div style="padding:12px 60px 10px 30px; display:flex; flex-direction:column; gap:4px;">
+        <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">Attention &rarr; longer memory</div>
+        <div style="font-size:18px; color:var(--ink); line-height:1.35;">Attention lets OmniFORE look back across the <em>entire</em> window and weight what matters: bursty spikes, steady drift, or periodic tick, giving it the memory generalisation needs.</div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">Phase 1 &middot; Curate &middot; S&#8321;&ndash;S&#8324; + attention introduction</div>
+    <div class="meta-right">&sect;3 OmniFORE</div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section class="slide" data-section="synth" data-label="B11 6G services expected">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Backup B11</span><span class="eyb-sep">//</span><span>6G &middot; service mix</span></div>
+    <div class="counter"><span class="num">B11</span><span class="sep">/</span>B13 &nbsp; <span class="section-name">Backup</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;">
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:56px 56px; border-right:2px solid var(--ink); background:var(--bg); gap:20px;">
+      <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.16em; font-weight:700; text-transform:uppercase;">Q&middot;6 &middot; What services will 6G carry?</div>
+      <div style="font-family:var(--f-display); font-size:44px; line-height:1.06; font-weight:700; color:var(--ink);">Both <em style="font-style:normal; color:var(--c-aero);">network-plane</em> and <em style="font-style:normal; color:var(--c-omnifore);">application-plane</em> workloads.</div>
+      <div style="height:2px; background:var(--ink); width:60px;"></div>
+      <div style="font-size:19px; line-height:1.4; color:var(--ink-2);">The thesis takes a <strong>deliberately non-committal</strong> stance on service mix: the orchestration contract is the same whatever the payload. This is also why the OmniFORE experiments span 4 public datasets; we do not cherry-pick one service category.</div>
+    </div>
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:48px 56px; background:var(--bg-alt); gap:16px;">
+      <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.14em; font-weight:700; text-transform:uppercase;">Two categories &middot; one orchestration problem</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="padding:16px 18px; background:var(--bg); border:2px solid var(--c-aero);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.1em; font-weight:700;">NETWORK-PLANE</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:6px;">O-RAN near-RT / non-RT RIC workloads, UPF/SMF control, slice management, MEC sidecars. Tight latency budgets, high variance, sub-ms decisions.</div>
+        </div>
+        <div style="padding:16px 18px; background:var(--bg); border:2px solid var(--c-omnifore);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-omnifore); letter-spacing:.1em; font-weight:700;">APPLICATION-PLANE</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:6px;">XR streaming, V2X decision loops, federated inference, industrial control, health telemetry. Latency budgets 10&ndash;200 ms, bursty, variable payload.</div>
+        </div>
+      </div>
+
+      <div style="padding:12px 18px; background:var(--ink); color:var(--bg); font-size:16px; line-height:1.35;">
+        <strong>Why this is not a weakness:</strong> AERO, OmniFORE and AgentEdge each expose a contract (forecast, generalise, act). The contract is payload-agnostic; that is the architectural claim.
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Network + application planes &middot; payload-agnostic contract &middot; 4-dataset generalisation</div><div class="meta-right">&sect;6 Future work &middot; backup B11</div></div>
+</section>

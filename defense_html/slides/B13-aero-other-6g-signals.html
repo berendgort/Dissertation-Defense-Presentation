@@ -1,0 +1,43 @@
+<section class="slide" data-section="aero" data-label="B13 AERO other 6G signals">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Backup B13</span><span class="eyb-sep">//</span><span>AERO &middot; beyond workload traces</span></div>
+    <div class="counter"><span class="num">B13</span><span class="sep">/</span>B13 &nbsp; <span class="section-name">Backup</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:grid; grid-template-columns:380px 1fr; overflow:hidden;">
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:56px 48px; border-right:2px solid var(--ink); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg)); gap:20px;">
+      <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-aero); letter-spacing:.16em; font-weight:700; text-transform:uppercase;">Q&middot;10 &middot; Can AERO forecast other 6G signals?</div>
+      <div style="font-family:var(--f-display); font-size:44px; line-height:1.06; font-weight:700; color:var(--ink);">Yes. <em style="font-style:normal; color:var(--c-aero);">any</em> univariate time series with learnable periodicity.</div>
+      <div style="height:2px; background:var(--c-aero); width:60px;"></div>
+      <div style="font-size:18px; color:var(--ink-2); line-height:1.4;">The architectural contract is: <em>observe → attend over periodicity → forecast</em>. It does not depend on the signal being CPU usage.</div>
+    </div>
+    <div style="display:flex; flex-direction:column; justify-content:center; padding:48px 56px; gap:18px;">
+      <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.14em; font-weight:700; text-transform:uppercase;">Candidate signals in a 6G stack</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="padding:14px 18px; background:var(--bg-alt); border-left:4px solid var(--c-aero);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.1em; font-weight:700;">RAN &middot; PHYSICAL</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:4px;">Physical resource-block (PRB) utilisation per cell &middot; MCS distribution &middot; active connections</div>
+        </div>
+        <div style="padding:14px 18px; background:var(--bg-alt); border-left:4px solid var(--c-aero);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.1em; font-weight:700;">CORE &middot; CONTROL</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:4px;">UPF throughput &middot; session setup rate &middot; slice-level QoS margin</div>
+        </div>
+        <div style="padding:14px 18px; background:var(--bg-alt); border-left:4px solid var(--c-aero);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.1em; font-weight:700;">EDGE &middot; APPLICATION</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:4px;">Service request rate &middot; inference latency percentiles &middot; energy per request</div>
+        </div>
+        <div style="padding:14px 18px; background:var(--bg-alt); border-left:4px solid var(--c-aero);">
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.1em; font-weight:700;">USER PLANE</div>
+          <div style="font-size:16px; color:var(--ink); line-height:1.35; margin-top:4px;">Downlink/uplink byte rates per UE class &middot; mobility-driven handover rate</div>
+        </div>
+      </div>
+
+      <div style="padding:12px 18px; background:var(--ink); color:var(--bg); font-size:16px; line-height:1.35;">
+        <strong>Caveat:</strong> non-periodic signals (e.g. pure mobility noise) need a companion module; AERO's inductive bias is periodicity. OmniFORE is the candidate for those cases.
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Any periodic time series &middot; RAN / core / edge / user plane &middot; OmniFORE for non-periodic</div><div class="meta-right">&sect;2 AERO &middot; backup B13</div></div>
+</section>
