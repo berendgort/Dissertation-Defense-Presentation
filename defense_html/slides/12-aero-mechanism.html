@@ -6,48 +6,37 @@
     <div></div>
   </div>
   <div class="body" style="padding:36px 70px 28px; display:flex; flex-direction:column; overflow:hidden;">
-    <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">AERO architecture &middot; three modules</div>
-    <h1 class="h-title" style="font-size:46px; margin-bottom:8px;">Adaptive periodicity in three steps</h1>
+    <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">Basic idea &middot; three steps</div>
+    <h1 class="h-title" style="font-size:46px; margin-bottom:10px;">How AERO works in three steps</h1>
     <div style="flex:1; display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:0; min-height:0; align-items:stretch;">
-      <!-- STEP 01: Period Detection -->
+      <!-- STEP 01 -->
       <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
         <div style="background:var(--ink); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
           <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">01</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Period Detection</div>
+          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Find the rhythm</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Dominant period changes, AERO follows it</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">The repeating pattern can change over time</div>
 
-          <!-- Three-trace progression · visible shift in period -->
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
-            <!-- Trace 1 · long period τ₁ = 24h -->
             <g transform="translate(0,0)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">week-day load</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8321; = 24&nbsp;h</text>
-              <!-- One long cosine -->
+              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">slow rhythm</text>
               <path d="M 6 55 Q 70 25 130 55 Q 190 85 250 55 Q 310 25 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
-              <!-- Period bracket -->
               <line x1="6" y1="72" x2="250" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
               <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
               <line x1="250" y1="66" x2="250" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
             </g>
 
-            <!-- Trace 2 · medium period τ₂ = 12h -->
             <g transform="translate(0,92)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">shift: dominant period halves</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8322; = 12&nbsp;h</text>
-              <!-- Two cycles -->
+              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">faster rhythm</text>
               <path d="M 6 55 Q 38 25 70 55 Q 102 85 130 55 Q 162 25 194 55 Q 226 85 258 55 Q 290 25 322 55 Q 354 85 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
               <line x1="6" y1="72" x2="130" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
               <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
               <line x1="130" y1="66" x2="130" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
             </g>
 
-            <!-- Trace 3 · short period τ₃ = 6h -->
             <g transform="translate(0,184)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst: quarter-day oscillation</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8323; = 6&nbsp;h</text>
-              <!-- Four cycles -->
+              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst rhythm</text>
               <path d="M 6 55 Q 20 25 34 55 Q 48 85 62 55 Q 76 25 90 55 Q 104 85 118 55 Q 132 25 146 55 Q 160 85 174 55 Q 188 25 202 55 Q 216 85 230 55 Q 244 25 258 55 Q 272 85 286 55 Q 300 25 314 55 Q 328 85 342 55 Q 356 25 370 55 Q 384 85 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
               <line x1="6" y1="72" x2="62" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
               <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
@@ -55,131 +44,102 @@
             </g>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">autocorrelation on each window &rarr; updated dominant &tau;</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">check the rhythm every window</div>
         </div>
       </div>
 
-      <!-- Arrow -->
       <div style="display:flex; align-items:center; justify-content:center;">
         <svg width="36" height="36" viewBox="0 0 36 36"><defs><marker id="mk14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/></marker></defs><line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk14a)"/></svg>
       </div>
 
-      <!-- STEP 02: Adaptive forecasting -->
+      <!-- STEP 02 -->
       <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
         <div style="background:var(--ink); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
           <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">02</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Adaptive forecasting</div>
+          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Align first</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Adjust to one valid &tau;*, reshape once, predict once</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">Line up repeating cycles so a small model is enough</div>
 
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="mk14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/></marker></defs>
 
-            <!-- Detect one period for the current window -->
-            <rect x="12" y="18" width="108" height="58" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.6" rx="3"/>
-            <text x="66" y="40" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">detected &tau;</text>
-            <text x="66" y="61" text-anchor="middle" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-aero)">from step 1</text>
+            <text x="74" y="42" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">raw trace</text>
+            <rect x="18" y="62" width="112" height="88" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.5"/>
+            <path d="M 24 106 Q 38 84 52 106 Q 66 128 80 106 Q 94 84 108 106 Q 120 124 124 110" fill="none" stroke="var(--ink)" stroke-width="2.2"/>
+            <line x1="56" y1="68" x2="56" y2="144" stroke="var(--c-aero)" stroke-width="1.4" stroke-dasharray="5,4"/>
+            <line x1="94" y1="68" x2="94" y2="144" stroke="var(--c-aero)" stroke-width="1.4" stroke-dasharray="5,4"/>
 
-            <line x1="122" y1="47" x2="172" y2="47" stroke="var(--ink)" stroke-width="1.8" marker-end="url(#mk14b)"/>
+            <line x1="130" y1="106" x2="154" y2="106" stroke="var(--ink)" stroke-width="2" marker-end="url(#mk14b)"/>
 
-            <!-- Adjust tau -->
-            <rect x="176" y="12" width="120" height="70" fill="color-mix(in oklab,var(--c-aero) 8%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.8" rx="3"/>
-            <text x="236" y="33" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--c-aero)">clamp + adjust</text>
-            <text x="236" y="54" text-anchor="middle" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-aero)">&tau; &rarr; &tau;*</text>
-            <text x="236" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)">nearest valid divisor of &kappa;, &lambda;</text>
+            <text x="210" y="42" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--c-aero)">line up repeats</text>
+            <rect x="162" y="56" width="96" height="104" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.6"/>
+            <line x1="162" y1="90" x2="258" y2="90" stroke="var(--c-aero)" stroke-width="0.8"/>
+            <line x1="162" y1="124" x2="258" y2="124" stroke="var(--c-aero)" stroke-width="0.8"/>
+            <path d="M 170 78 Q 182 64 194 78 Q 206 92 218 78 Q 230 64 242 78" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
+            <path d="M 170 112 Q 182 98 194 112 Q 206 126 218 112 Q 230 98 242 112" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
+            <path d="M 170 146 Q 182 132 194 146 Q 206 160 218 146 Q 230 132 242 146" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
 
-            <!-- Reshape grid -->
-            <rect x="24" y="126" width="130" height="92" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <g stroke="var(--c-aero)" stroke-width="0.8">
-              <line x1="50" y1="126" x2="50" y2="218"/>
-              <line x1="76" y1="126" x2="76" y2="218"/>
-              <line x1="102" y1="126" x2="102" y2="218"/>
-              <line x1="128" y1="126" x2="128" y2="218"/>
-              <line x1="24" y1="149" x2="154" y2="149"/>
-              <line x1="24" y1="172" x2="154" y2="172"/>
-              <line x1="24" y1="195" x2="154" y2="195"/>
-            </g>
-            <text x="89" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">reshape by &tau;*</text>
-            <text x="89" y="237" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">aligned grid &middot; [f &middot; &tau;*] &times; n_x</text>
+            <line x1="258" y1="106" x2="286" y2="106" stroke="var(--ink)" stroke-width="2" marker-end="url(#mk14b)"/>
 
-            <line x1="154" y1="172" x2="214" y2="172" stroke="var(--ink)" stroke-width="1.8" marker-end="url(#mk14b)"/>
-
-            <!-- SparseTSF path -->
-            <rect x="218" y="124" width="92" height="96" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.6" rx="3"/>
-            <text x="264" y="147" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">SparseTSF path</text>
-            <text x="264" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="var(--ink)">Conv1D</text>
-            <text x="264" y="194" text-anchor="middle" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="var(--ink)">Linear</text>
-
-            <line x1="312" y1="172" x2="350" y2="172" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#mk14b)"/>
-
-            <!-- Output forecast -->
-            <rect x="354" y="142" width="38" height="60" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="2" rx="3"/>
-            <text x="373" y="166" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-aero)">forecast</text>
-            <text x="373" y="184" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-aero)">&psi;_&phi;(W)</text>
-
-            <text x="200" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">single adjusted period per window &middot; one forecasting path, not a sum</text>
+            <rect x="292" y="66" width="90" height="80" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.8" rx="3"/>
+            <text x="337" y="100" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-3)">small</text>
+            <text x="337" y="122" text-anchor="middle" font-family="Inter" font-size="18" font-weight="700" fill="var(--ink)">model</text>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">period alignment keeps the SparseTSF-style path tiny; one adjusted &tau;* defines the reshape</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">design choice: organize the signal before prediction</div>
         </div>
       </div>
 
-      <!-- Arrow -->
       <div style="display:flex; align-items:center; justify-content:center;">
         <svg width="36" height="36" viewBox="0 0 36 36"><line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk14a)"/></svg>
       </div>
 
-      <!-- STEP 03: Layer caching -->
+      <!-- STEP 03 -->
       <div style="display:flex; flex-direction:column; border:2px solid var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">
         <div style="background:var(--c-aero); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
           <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">03</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg); text-transform:uppercase; letter-spacing:.1em;">Layer caching</div>
+          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg); text-transform:uppercase; letter-spacing:.1em;">Reuse cached layers</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Seen this &tau;* before? Reuse the layers.</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">When the pattern returns, reuse the same block</div>
 
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="mk14c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--c-aero)"/></marker></defs>
-            <rect x="10" y="12" width="240" height="240" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.5"/>
-            <text x="130" y="36" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--ink)">LAYER CACHE</text>
-            <line x1="10" y1="46" x2="250" y2="46" stroke="var(--ink-4)" stroke-width="1"/>
+            <rect x="12" y="18" width="254" height="210" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="139" y="40" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--ink)">CACHE</text>
+            <line x1="12" y1="52" x2="266" y2="52" stroke="var(--ink-4)" stroke-width="1"/>
 
-            <rect x="20" y="58" width="80" height="34" fill="color-mix(in oklab,var(--c-aero) 20%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <text x="60" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">&tau;* = 24h</text>
-            <rect x="110" y="58" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
+            <rect x="24" y="66" width="88" height="34" fill="color-mix(in oklab,var(--c-aero) 20%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
+            <text x="68" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">slow</text>
+            <rect x="122" y="66" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
+            <text x="188" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
-            <rect x="20" y="100" width="80" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="60" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">&tau;* = 12h</text>
-            <rect x="110" y="100" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
+            <rect x="24" y="108" width="88" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
+            <text x="68" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">mid</text>
+            <rect x="122" y="108" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
+            <text x="188" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
-            <rect x="20" y="142" width="80" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="60" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">&tau;* = 6h</text>
-            <rect x="110" y="142" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
+            <rect x="24" y="150" width="88" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
+            <text x="68" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst</text>
+            <rect x="122" y="150" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
+            <text x="188" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
-            <text x="130" y="208" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">new window arrives</text>
-            <text x="130" y="226" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-aero)">&tau;* = 24h &rarr; HIT</text>
+            <text x="139" y="206" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">slow pattern returns</text>
+            <text x="139" y="224" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="var(--c-aero)">cache hit</text>
 
-            <!-- reuse arrow -->
-            <line x1="252" y1="80" x2="300" y2="80" stroke="var(--c-aero)" stroke-width="2.5" marker-end="url(#mk14c)"/>
-            <rect x="304" y="58" width="86" height="34" fill="color-mix(in oklab,var(--c-aero) 14%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <text x="347" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">reuse layers</text>
-
-            <text x="347" y="140" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">same &tau;* &rarr; no rebuild</text>
-            <text x="347" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">&darr; compute overhead</text>
-            <text x="347" y="176" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">faster recurring windows</text>
+            <line x1="266" y1="84" x2="322" y2="84" stroke="var(--c-aero)" stroke-width="2.5" marker-end="url(#mk14c)"/>
+            <rect x="326" y="62" width="60" height="44" fill="color-mix(in oklab,var(--c-aero) 14%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
+            <text x="356" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">reuse</text>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">cache keyed by adjusted period &tau;* reuses the forecasting layers when the same pattern returns</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">repeat patterns stay cheap after a cache hit</div>
         </div>
       </div>
     </div>
   </div>
   <div class="chrome-bot">
-    <div class="meta-left">AERO &middot; detect &tau; &rarr; adjust to &tau;* &rarr; forecast &rarr; cache</div>
+    <div class="meta-left">AERO &middot; detect rhythm &middot; align &middot; forecast &middot; cache</div>
     <div class="meta-right">&sect;2 AERO</div>
   </div>
 </section>

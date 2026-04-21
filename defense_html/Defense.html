@@ -198,11 +198,6 @@
     <div style="flex:1; display:grid; grid-template-columns: 1.4fr 1fr; min-height:0;">
       <!-- LEFT: AERO-slotted schematic -->
       <div style="padding:36px 48px 28px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg);">
-        <div style="display:flex; gap:16px; align-items:center;">
-          <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase;">Generic edge loop &rarr;</div>
-          <div class="mono" style="background:var(--c-aero); color:#fff; font-size:17px; padding:5px 14px; border-radius:2px; letter-spacing:.06em;">AERO replaces the forecasting placeholder</div>
-        </div>
-
         <svg viewBox="0 0 1000 600" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="mkA11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -281,8 +276,8 @@
         </div>
 
         <div style="border:2px solid var(--ink); background:var(--bg); padding:14px 16px 12px; display:grid; grid-template-rows:auto auto 1fr; gap:10px; min-height:0;">
-          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Toy example &middot; adaptive traffic-light cabinet</div>
-          <div style="font-size:24px; line-height:1.18; font-weight:700; color:var(--ink); max-width:560px;">Queue spike at one intersection.</div>
+          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Toy example &middot; factory cell</div>
+          <div style="font-size:24px; line-height:1.18; font-weight:700; color:var(--ink); max-width:560px;">Queue spike at one workstation.</div>
 
           <div style="display:grid; grid-template-columns:1.05fr .95fr; gap:14px; min-height:0;">
             <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
@@ -296,7 +291,7 @@
               </div>
               <div style="padding:10px 12px; background:var(--bg-alt); border-left:3px solid var(--ink);">
                 <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);">3</div>
-                <div style="font-family:var(--f-mono); font-size:15px; line-height:1.35; color:var(--ink); margin-top:4px;">- controller updates next green phase</div>
+                <div style="font-family:var(--f-mono); font-size:15px; line-height:1.35; color:var(--ink); margin-top:4px;">- scheduler reroutes next job</div>
               </div>
             </div>
 
@@ -311,34 +306,37 @@
                   </marker>
                 </defs>
 
-                <rect x="26" y="28" width="248" height="180" rx="10" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2"/>
-                <text x="150" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" letter-spacing=".08em">INTERSECTION CABINET</text>
+                <rect x="24" y="28" width="252" height="182" rx="10" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2"/>
+                <text x="150" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" letter-spacing=".08em">FACTORY CELL</text>
 
-                <rect x="44" y="76" width="74" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <text x="81" y="99" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--ink)">Sensors</text>
-                <text x="81" y="117" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">camera</text>
-                <text x="81" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">loop detector</text>
+                <rect x="40" y="76" width="62" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
+                <text x="71" y="99" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="var(--ink)">Queue</text>
+                <rect x="49" y="110" width="10" height="10" fill="var(--ink-4)"/>
+                <rect x="62" y="110" width="10" height="10" fill="var(--ink-4)"/>
+                <rect x="75" y="110" width="10" height="10" fill="var(--ink-4)"/>
 
-                <rect x="138" y="76" width="74" height="56" rx="6" fill="var(--c-aero)" stroke="var(--c-aero)" stroke-width="1.8"/>
-                <text x="175" y="100" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">AERO</text>
-                <text x="175" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">edge forecast</text>
+                <rect x="118" y="76" width="74" height="56" rx="6" fill="var(--c-aero)" stroke="var(--c-aero)" stroke-width="1.8"/>
+                <text x="155" y="99" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">AERO</text>
+                <text x="155" y="117" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">next-window</text>
+                <text x="155" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">forecast</text>
 
-                <rect x="138" y="150" width="74" height="40" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <text x="175" y="166" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">Raspberry Pi-class</text>
-                <text x="175" y="181" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">edge box</text>
+                <rect x="208" y="76" width="52" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
+                <text x="234" y="96" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="var(--ink)">Local</text>
+                <text x="234" y="112" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="var(--ink)">scheduler</text>
 
-                <rect x="226" y="76" width="32" height="86" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <circle cx="242" cy="96" r="7" fill="#d64545"/>
-                <circle cx="242" cy="119" r="7" fill="#d0a43b"/>
-                <circle cx="242" cy="142" r="7" fill="#4b7c4b"/>
-                <text x="242" y="177" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">controller</text>
+                <rect x="58" y="160" width="54" height="32" rx="5" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+                <text x="85" y="179" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">WS-A</text>
 
-                <line x1="118" y1="104" x2="136" y2="104" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
-                <line x1="212" y1="104" x2="224" y2="104" stroke="var(--c-aero)" stroke-width="2.4" marker-end="url(#mkToy10Aero)"/>
+                <rect x="196" y="160" width="54" height="32" rx="5" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+                <text x="223" y="179" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">WS-B</text>
 
-                <path d="M242 76 C242 52, 276 50, 282 70" fill="none" stroke="var(--ink-4)" stroke-width="1.6" stroke-dasharray="4,4"/>
-                <path d="M282 70 C284 56, 268 50, 258 58 C248 40, 226 48, 230 66 C220 66, 216 78, 225 82 L280 82" fill="none" stroke="var(--ink-4)" stroke-width="1.8"/>
-                <text x="258" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">history only</text>
+                <line x1="102" y1="104" x2="116" y2="104" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
+                <line x1="192" y1="104" x2="206" y2="104" stroke="var(--c-aero)" stroke-width="2.4" marker-end="url(#mkToy10Aero)"/>
+
+                <path d="M234 132 L234 154 L223 154" fill="none" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
+                <path d="M226 150 C206 140, 170 140, 112 160" fill="none" stroke="var(--c-aero)" stroke-width="2.4" stroke-dasharray="5,4" marker-end="url(#mkToy10Aero)"/>
+
+                <text x="146" y="206" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--c-aero)">reroute next job</text>
               </svg>
             </div>
           </div>
@@ -364,16 +362,19 @@
     <!-- Title strip -->
     <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:20px;">
       <h1 style="font-family:var(--f-display); font-size:50px; font-weight:700; letter-spacing:-.02em; margin:0;">State-of-the-art - Accurate or deployable, not both</h1>
-      <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
-        <span class="sota-chip red">heavy &middot; undeployable</span>
-        <span class="sota-chip amber">adapted lightweight baseline</span>
-        <span class="sota-chip green">target zone &middot; AERO</span>
-      </div>
     </div>
 
     <!-- Quadrant chart -->
     <div style="flex:1; display:grid; grid-template-columns: minmax(0, 1fr) 408px; min-height:0;">
-      <div style="display:flex; align-items:center; justify-content:center; padding:16px 40px; min-height:0; background:var(--bg);">
+      <div style="display:flex; flex-direction:column; padding:20px 40px 18px; min-height:0; background:var(--bg);">
+        <div style="display:flex; min-height:120px; align-items:center; justify-content:center; margin:0;">
+          <div style="display:inline-flex; gap:12px; align-items:stretch;">
+            <span class="sota-chip red" style="justify-content:flex-start; padding:10px 16px; font-size:18px; letter-spacing:.14em;">heavy &middot; undeployable</span>
+            <span class="sota-chip amber" style="justify-content:flex-start; padding:10px 16px; font-size:18px; letter-spacing:.14em;">adapted lightweight baseline</span>
+            <span class="sota-chip green" style="justify-content:flex-start; padding:10px 16px; font-size:18px; letter-spacing:.14em;">target zone &middot; AERO</span>
+          </div>
+        </div>
+        <div style="flex:1; min-height:0; display:flex; align-items:flex-start; justify-content:center;">
         <svg viewBox="0 0 1500 680" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg">
           <!-- AXES -->
           <line x1="120" y1="580" x2="1480" y2="580" stroke="var(--ink)" stroke-width="4"/>
@@ -427,6 +428,7 @@
           <text x="300" y="200" text-anchor="middle" font-family="Inter" font-size="16" fill="#fff" opacity="0.9">ours</text>
           <text x="255" y="252" text-anchor="middle" font-family="JetBrains Mono" font-size="22" font-weight="700" fill="var(--c-sota-green)">599 params</text>
         </svg>
+        </div>
       </div>
 
       <!-- RIGHT: legend + takeaway -->
@@ -466,194 +468,8 @@
     <div></div>
   </div>
   <div class="body" style="padding:36px 70px 28px; display:flex; flex-direction:column; overflow:hidden;">
-    <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">AERO architecture &middot; three modules</div>
-    <h1 class="h-title" style="font-size:46px; margin-bottom:8px;">Adaptive periodicity in three steps</h1>
-    <div style="flex:1; display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:0; min-height:0; align-items:stretch;">
-      <!-- STEP 01: Period Detection -->
-      <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
-        <div style="background:var(--ink); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">01</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Period Detection</div>
-        </div>
-        <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Dominant period changes, AERO follows it</div>
-
-          <!-- Three-trace progression · visible shift in period -->
-          <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
-            <!-- Trace 1 · long period τ₁ = 24h -->
-            <g transform="translate(0,0)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">week-day load</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8321; = 24&nbsp;h</text>
-              <!-- One long cosine -->
-              <path d="M 6 55 Q 70 25 130 55 Q 190 85 250 55 Q 310 25 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
-              <!-- Period bracket -->
-              <line x1="6" y1="72" x2="250" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="250" y1="66" x2="250" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-            </g>
-
-            <!-- Trace 2 · medium period τ₂ = 12h -->
-            <g transform="translate(0,92)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">shift: dominant period halves</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8322; = 12&nbsp;h</text>
-              <!-- Two cycles -->
-              <path d="M 6 55 Q 38 25 70 55 Q 102 85 130 55 Q 162 25 194 55 Q 226 85 258 55 Q 290 25 322 55 Q 354 85 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
-              <line x1="6" y1="72" x2="130" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="130" y1="66" x2="130" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-            </g>
-
-            <!-- Trace 3 · short period τ₃ = 6h -->
-            <g transform="translate(0,184)">
-              <text x="6" y="18" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst: quarter-day oscillation</text>
-              <text x="394" y="18" text-anchor="end" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-aero)">&tau;&#8323; = 6&nbsp;h</text>
-              <!-- Four cycles -->
-              <path d="M 6 55 Q 20 25 34 55 Q 48 85 62 55 Q 76 25 90 55 Q 104 85 118 55 Q 132 25 146 55 Q 160 85 174 55 Q 188 25 202 55 Q 216 85 230 55 Q 244 25 258 55 Q 272 85 286 55 Q 300 25 314 55 Q 328 85 342 55 Q 356 25 370 55 Q 384 85 394 55" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
-              <line x1="6" y1="72" x2="62" y2="72" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="6" y1="66" x2="6" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-              <line x1="62" y1="66" x2="62" y2="78" stroke="var(--c-aero)" stroke-width="2"/>
-            </g>
-          </svg>
-
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">autocorrelation on each window &rarr; updated dominant &tau;</div>
-        </div>
-      </div>
-
-      <!-- Arrow -->
-      <div style="display:flex; align-items:center; justify-content:center;">
-        <svg width="36" height="36" viewBox="0 0 36 36"><defs><marker id="mk14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/></marker></defs><line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk14a)"/></svg>
-      </div>
-
-      <!-- STEP 02: Adaptive forecasting -->
-      <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
-        <div style="background:var(--ink); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">02</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Adaptive forecasting</div>
-        </div>
-        <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Adjust to one valid &tau;*, reshape once, predict once</div>
-
-          <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
-            <defs><marker id="mk14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/></marker></defs>
-
-            <!-- Detect one period for the current window -->
-            <rect x="12" y="18" width="108" height="58" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.6" rx="3"/>
-            <text x="66" y="40" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">detected &tau;</text>
-            <text x="66" y="61" text-anchor="middle" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-aero)">from step 1</text>
-
-            <line x1="122" y1="47" x2="172" y2="47" stroke="var(--ink)" stroke-width="1.8" marker-end="url(#mk14b)"/>
-
-            <!-- Adjust tau -->
-            <rect x="176" y="12" width="120" height="70" fill="color-mix(in oklab,var(--c-aero) 8%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.8" rx="3"/>
-            <text x="236" y="33" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--c-aero)">clamp + adjust</text>
-            <text x="236" y="54" text-anchor="middle" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-aero)">&tau; &rarr; &tau;*</text>
-            <text x="236" y="70" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)">nearest valid divisor of &kappa;, &lambda;</text>
-
-            <!-- Reshape grid -->
-            <rect x="24" y="126" width="130" height="92" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <g stroke="var(--c-aero)" stroke-width="0.8">
-              <line x1="50" y1="126" x2="50" y2="218"/>
-              <line x1="76" y1="126" x2="76" y2="218"/>
-              <line x1="102" y1="126" x2="102" y2="218"/>
-              <line x1="128" y1="126" x2="128" y2="218"/>
-              <line x1="24" y1="149" x2="154" y2="149"/>
-              <line x1="24" y1="172" x2="154" y2="172"/>
-              <line x1="24" y1="195" x2="154" y2="195"/>
-            </g>
-            <text x="89" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">reshape by &tau;*</text>
-            <text x="89" y="237" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">aligned grid &middot; [f &middot; &tau;*] &times; n_x</text>
-
-            <line x1="154" y1="172" x2="214" y2="172" stroke="var(--ink)" stroke-width="1.8" marker-end="url(#mk14b)"/>
-
-            <!-- SparseTSF path -->
-            <rect x="218" y="124" width="92" height="96" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.6" rx="3"/>
-            <text x="264" y="147" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">SparseTSF path</text>
-            <text x="264" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="var(--ink)">Conv1D</text>
-            <text x="264" y="194" text-anchor="middle" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="var(--ink)">Linear</text>
-
-            <line x1="312" y1="172" x2="350" y2="172" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#mk14b)"/>
-
-            <!-- Output forecast -->
-            <rect x="354" y="142" width="38" height="60" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="2" rx="3"/>
-            <text x="373" y="166" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--c-aero)">forecast</text>
-            <text x="373" y="184" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-aero)">&psi;_&phi;(W)</text>
-
-            <text x="200" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">single adjusted period per window &middot; one forecasting path, not a sum</text>
-          </svg>
-
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">period alignment keeps the SparseTSF-style path tiny; one adjusted &tau;* defines the reshape</div>
-        </div>
-      </div>
-
-      <!-- Arrow -->
-      <div style="display:flex; align-items:center; justify-content:center;">
-        <svg width="36" height="36" viewBox="0 0 36 36"><line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk14a)"/></svg>
-      </div>
-
-      <!-- STEP 03: Layer caching -->
-      <div style="display:flex; flex-direction:column; border:2px solid var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">
-        <div style="background:var(--c-aero); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">03</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg); text-transform:uppercase; letter-spacing:.1em;">Layer caching</div>
-        </div>
-        <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Seen this &tau;* before? Reuse the layers.</div>
-
-          <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
-            <defs><marker id="mk14c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--c-aero)"/></marker></defs>
-            <rect x="10" y="12" width="240" height="240" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.5"/>
-            <text x="130" y="36" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--ink)">LAYER CACHE</text>
-            <line x1="10" y1="46" x2="250" y2="46" stroke="var(--ink-4)" stroke-width="1"/>
-
-            <rect x="20" y="58" width="80" height="34" fill="color-mix(in oklab,var(--c-aero) 20%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <text x="60" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">&tau;* = 24h</text>
-            <rect x="110" y="58" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
-
-            <rect x="20" y="100" width="80" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="60" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">&tau;* = 12h</text>
-            <rect x="110" y="100" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
-
-            <rect x="20" y="142" width="80" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="60" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">&tau;* = 6h</text>
-            <rect x="110" y="142" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="176" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)">Conv + Linear cached</text>
-
-            <text x="130" y="208" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">new window arrives</text>
-            <text x="130" y="226" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-aero)">&tau;* = 24h &rarr; HIT</text>
-
-            <!-- reuse arrow -->
-            <line x1="252" y1="80" x2="300" y2="80" stroke="var(--c-aero)" stroke-width="2.5" marker-end="url(#mk14c)"/>
-            <rect x="304" y="58" width="86" height="34" fill="color-mix(in oklab,var(--c-aero) 14%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <text x="347" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">reuse layers</text>
-
-            <text x="347" y="140" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">same &tau;* &rarr; no rebuild</text>
-            <text x="347" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">&darr; compute overhead</text>
-            <text x="347" y="176" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">faster recurring windows</text>
-          </svg>
-
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">cache keyed by adjusted period &tau;* reuses the forecasting layers when the same pattern returns</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="chrome-bot">
-    <div class="meta-left">AERO &middot; detect &tau; &rarr; adjust to &tau;* &rarr; forecast &rarr; cache</div>
-    <div class="meta-right">&sect;2 AERO</div>
-  </div>
-</section>
-
-<section class="slide" data-section="aero" data-label="13 AERO mechanism">
-  <div class="chrome-top">
-    <div class="section-bar"></div>
-    <div class="eyebrow"><span class="eyb-tag">Mechanism</span></div>
-    <div class="counter"><span class="num">13</span><span class="sep">/</span>55 &nbsp; <span class="section-name">AERO</span></div>
-    <div></div>
-  </div>
-  <div class="body" style="padding:36px 70px 28px; display:flex; flex-direction:column; overflow:hidden;">
     <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">Basic idea &middot; three steps</div>
-    <h1 class="h-title" style="font-size:46px; margin-bottom:10px;">How AERO adapts in three steps</h1>
+    <h1 class="h-title" style="font-size:46px; margin-bottom:10px;">How AERO works in three steps</h1>
     <div style="flex:1; display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:0; min-height:0; align-items:stretch;">
       <!-- STEP 01 -->
       <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
@@ -662,7 +478,7 @@
           <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Find the rhythm</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">The repeating pattern can slow down or speed up</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">The repeating pattern can change over time</div>
 
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(0,0)">
@@ -690,7 +506,7 @@
             </g>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">re-check the repeating rhythm every window</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">check the rhythm every window</div>
         </div>
       </div>
 
@@ -702,40 +518,38 @@
       <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
         <div style="background:var(--ink); padding:14px 22px; display:flex; align-items:baseline; gap:14px;">
           <div style="font-family:var(--f-mono); font-size:38px; font-weight:700; color:var(--bg); line-height:1;">02</div>
-          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">One tiny model</div>
+          <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg-alt); text-transform:uppercase; letter-spacing:.1em;">Align first</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">Align the trace, then run one small forecasting path</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">Line up repeating cycles so a small model is enough</div>
 
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="mk14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/></marker></defs>
 
-            <text x="95" y="42" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">align into blocks</text>
-            <rect x="26" y="58" width="138" height="104" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.6"/>
-            <g stroke="var(--c-aero)" stroke-width="0.9">
-              <line x1="60" y1="58" x2="60" y2="162"/>
-              <line x1="94" y1="58" x2="94" y2="162"/>
-              <line x1="128" y1="58" x2="128" y2="162"/>
-              <line x1="26" y1="84" x2="164" y2="84"/>
-              <line x1="26" y1="110" x2="164" y2="110"/>
-              <line x1="26" y1="136" x2="164" y2="136"/>
-            </g>
+            <text x="74" y="42" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">raw trace</text>
+            <rect x="18" y="62" width="112" height="88" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.5"/>
+            <path d="M 24 106 Q 38 84 52 106 Q 66 128 80 106 Q 94 84 108 106 Q 120 124 124 110" fill="none" stroke="var(--ink)" stroke-width="2.2"/>
+            <line x1="56" y1="68" x2="56" y2="144" stroke="var(--c-aero)" stroke-width="1.4" stroke-dasharray="5,4"/>
+            <line x1="94" y1="68" x2="94" y2="144" stroke="var(--c-aero)" stroke-width="1.4" stroke-dasharray="5,4"/>
 
-            <line x1="164" y1="110" x2="220" y2="110" stroke="var(--ink)" stroke-width="2" marker-end="url(#mk14b)"/>
+            <line x1="130" y1="106" x2="154" y2="106" stroke="var(--ink)" stroke-width="2" marker-end="url(#mk14b)"/>
 
-            <rect x="228" y="68" width="106" height="84" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.8" rx="3"/>
-            <text x="281" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">tiny forecast</text>
-            <text x="281" y="122" text-anchor="middle" font-family="Inter" font-size="18" font-weight="700" fill="var(--ink)">model</text>
+            <text x="210" y="42" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--c-aero)">line up repeats</text>
+            <rect x="162" y="56" width="96" height="104" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.6"/>
+            <line x1="162" y1="90" x2="258" y2="90" stroke="var(--c-aero)" stroke-width="0.8"/>
+            <line x1="162" y1="124" x2="258" y2="124" stroke="var(--c-aero)" stroke-width="0.8"/>
+            <path d="M 170 78 Q 182 64 194 78 Q 206 92 218 78 Q 230 64 242 78" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
+            <path d="M 170 112 Q 182 98 194 112 Q 206 126 218 112 Q 230 98 242 112" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
+            <path d="M 170 146 Q 182 132 194 146 Q 206 160 218 146 Q 230 132 242 146" fill="none" stroke="var(--c-aero)" stroke-width="2"/>
 
-            <line x1="334" y1="110" x2="340" y2="110" stroke="var(--c-aero)" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#mk14b)"/>
+            <line x1="258" y1="106" x2="286" y2="106" stroke="var(--ink)" stroke-width="2" marker-end="url(#mk14b)"/>
 
-            <rect x="344" y="84" width="48" height="52" fill="color-mix(in oklab,var(--c-aero) 10%,var(--bg))" stroke="var(--c-aero)" stroke-width="2" rx="3"/>
-            <text x="368" y="114" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="var(--c-aero)">forecast</text>
-
-            <text x="200" y="232" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">one simple forecasting path for the current window</text>
+            <rect x="292" y="66" width="90" height="80" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.8" rx="3"/>
+            <text x="337" y="100" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-3)">small</text>
+            <text x="337" y="122" text-anchor="middle" font-family="Inter" font-size="18" font-weight="700" fill="var(--ink)">model</text>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">keeps the model small and fast</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">design choice: organize the signal before prediction</div>
         </div>
       </div>
 
@@ -750,7 +564,7 @@
           <div style="font-family:var(--f-mono); font-size:19px; color:var(--bg); text-transform:uppercase; letter-spacing:.1em;">Reuse cached layers</div>
         </div>
         <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px; justify-content:space-between; min-height:0;">
-          <div style="font-size:22px; font-weight:600; color:var(--ink); line-height:1.25;">When the rhythm returns, reuse the same model block</div>
+          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.25;">When the pattern returns, reuse the same block</div>
 
           <svg viewBox="0 0 400 280" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="mk14c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="var(--c-aero)"/></marker></defs>
@@ -759,21 +573,21 @@
             <line x1="12" y1="52" x2="266" y2="52" stroke="var(--ink-4)" stroke-width="1"/>
 
             <rect x="24" y="66" width="88" height="34" fill="color-mix(in oklab,var(--c-aero) 20%,var(--bg))" stroke="var(--c-aero)" stroke-width="1.5"/>
-            <text x="68" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">slow rhythm</text>
+            <text x="68" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--c-aero)">slow</text>
             <rect x="122" y="66" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="188" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">model block ready</text>
+            <text x="188" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
             <rect x="24" y="108" width="88" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="68" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">mid rhythm</text>
+            <text x="68" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">mid</text>
             <rect x="122" y="108" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="188" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">model block ready</text>
+            <text x="188" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
             <rect x="24" y="150" width="88" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="68" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst rhythm</text>
+            <text x="68" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">burst</text>
             <rect x="122" y="150" width="132" height="34" fill="var(--bg-alt)" stroke="var(--ink-4)"/>
-            <text x="188" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">model block ready</text>
+            <text x="188" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">block ready</text>
 
-            <text x="139" y="206" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--ink-3)">new window matches slow rhythm</text>
+            <text x="139" y="206" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)">slow pattern returns</text>
             <text x="139" y="224" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="var(--c-aero)">cache hit</text>
 
             <line x1="266" y1="84" x2="322" y2="84" stroke="var(--c-aero)" stroke-width="2.5" marker-end="url(#mk14c)"/>
@@ -781,7 +595,7 @@
             <text x="356" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-aero)">reuse</text>
           </svg>
 
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.4;">repeat patterns stay cheap because the block is already cached</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.4;">repeat patterns stay cheap after a cache hit</div>
         </div>
       </div>
     </div>
@@ -792,163 +606,204 @@
   </div>
 </section>
 
-<section class="slide" data-section="aero" data-label="13 AERO scenario efficiency benchmark">
+<section class="slide" data-section="aero" data-label="13 AERO evaluation setup cloud workload prediction">
   <div class="chrome-top">
     <div class="section-bar"></div>
-    <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; scenario</span></div>
+    <div class="eyebrow"><span class="eyb-tag">Experiment 1 &middot; setup</span></div>
     <div class="counter"><span class="num">13</span><span class="sep">/</span>54 &nbsp; <span class="section-name">AERO</span></div>
     <div></div>
   </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
     <!-- Title strip -->
     <div style="flex:0 0 90px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
-      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Scenario - Efficiency benchmark</h1>
-      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">dataset &middot; hardware &middot; baselines &middot; tuning</div>
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Evaluation Setup - Cloud Workload Prediction</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">dataset &middot; baselines &middot; training server &middot; reported metrics</div>
     </div>
 
     <!-- Scenario table · 4 columns -->
-    <div style="flex:1; display:grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; min-height:0; overflow:hidden;">
+    <div style="flex:1; display:grid; grid-template-columns: 1.08fr 1.02fr 1fr 1fr; min-height:0; overflow:hidden;">
 
       <!-- Column 1 · DATA -->
-      <div style="padding:36px 36px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="padding:34px 34px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
         <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Data</div>
-        <div style="font-family:var(--f-display); font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Alibaba cluster trace</div>
+        <div style="font-family:var(--f-display); font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Alibaba 2022 microservices trace</div>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRACES</div>
-            <div style="font-size:22px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">4 000</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">POD</div>
+            <div style="font-size:20px; font-weight:700; color:var(--c-aero); font-variant-numeric:tabular-nums;">MS_11349</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">TRAINING</div>
-            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">2 800 &middot; 70 %</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">SAMPLES</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">18 720</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">HELD-OUT</div>
-            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">1 200 &middot; 30 %</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">INTERVAL</div>
+            <div style="font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums;">1 min &middot; 13 days</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">SIGNAL</div>
-            <div style="font-size:18px; color:var(--ink);">CPU &amp; memory utilisation, multivariate</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">FEATURES</div>
+            <div style="font-size:18px; color:var(--ink);">2 &middot; normalized CPU + memory</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">WINDOW</div>
-            <div style="font-size:18px; color:var(--ink);">&kappa; = 96, &lambda; = 96 &nbsp;<span style="color:var(--ink-3);">(past &rarr; future)</span></div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:120px;">FORECAST</div>
+            <div style="font-size:18px; color:var(--ink);">context &kappa; &rarr; horizon &lambda;</div>
           </div>
         </div>
 
         <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
           <svg viewBox="0 0 260 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
-            <rect x="2" y="10" width="256" height="68" rx="14" style="fill:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); stroke:var(--ink-4); stroke-width:1.5;" />
-            <path d="M182 10 H244 Q258 10 258 24 V64 Q258 78 244 78 H182 Z" style="fill:color-mix(in oklab, var(--ink) 5%, var(--bg));" />
-            <line x1="182" y1="12" x2="182" y2="76" style="stroke:var(--ink-4); stroke-width:1.5; stroke-dasharray:5 4;" />
-            <polyline points="10,56 26,38 42,44 58,22 74,34 90,30 106,48 122,28 138,42 154,20 170,36 186,52 202,40 218,58 234,44 250,50" style="fill:none; stroke:var(--c-aero); stroke-width:4; stroke-linecap:round; stroke-linejoin:round;" />
-            <polyline points="10,62 26,58 42,34 58,48 74,42 90,52 106,26 122,38 138,30 154,58 170,28 186,46 202,54 218,36 234,42 250,30" style="fill:none; stroke:var(--ink-2); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; opacity:.95;" />
+            <rect x="4" y="10" width="252" height="68" rx="14" style="fill:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); stroke:var(--ink-4); stroke-width:1.5;" />
+            <line x1="20" y1="64" x2="242" y2="64" style="stroke:var(--ink-4); stroke-width:1.5;" />
+            <line x1="20" y1="24" x2="20" y2="64" style="stroke:var(--ink-4); stroke-width:1.5;" />
+            <line x1="74" y1="18" x2="74" y2="68" style="stroke:var(--ink-4); stroke-width:1; stroke-dasharray:4 5;" />
+            <line x1="128" y1="18" x2="128" y2="68" style="stroke:var(--ink-4); stroke-width:1; stroke-dasharray:4 5;" />
+            <line x1="182" y1="18" x2="182" y2="68" style="stroke:var(--ink-4); stroke-width:1; stroke-dasharray:4 5;" />
+            <rect x="184" y="18" width="40" height="46" rx="9" style="fill:color-mix(in oklab, var(--c-aero) 14%, var(--bg));" />
+            <polyline points="20,57 34,42 48,46 62,27 76,36 90,33 104,49 118,31 132,38 146,26 160,34 174,54 188,47 202,55 216,39 230,46 242,30" style="fill:none; stroke:var(--ink-2); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round;" />
+            <polyline points="20,61 34,58 48,34 62,43 76,39 90,48 104,29 118,35 132,31 146,55 160,28 174,41 188,50 202,37 216,44 230,34 242,41" style="fill:none; stroke:var(--c-aero); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round;" />
           </svg>
         </div>
       </div>
 
-      <!-- Column 2 · HARDWARE -->
-      <div style="padding:36px 30px; border-right:2px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
-        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Inference hardware</div>
-        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Commodity edge CPU</div>
+      <!-- Column 2 · BASELINES -->
+      <div style="padding:34px 28px; border-right:2px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Benchmarks</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Five SOTA baselines + AERO</div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">FourierGNN</span><span class="mono" style="font-size:12px; color:var(--ink-3);">GNN + Fourier</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">ModernTCN</span><span class="mono" style="font-size:12px; color:var(--ink-3);">dilated TCN</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">WGAN</span><span class="mono" style="font-size:12px; color:var(--ink-3);">adversarial</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">Pathformer</span><span class="mono" style="font-size:12px; color:var(--ink-3);">attention</span></div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">SparseTSF</span><span class="mono" style="font-size:12px; color:var(--ink-3);">sparse MLP</span></div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0;"><span style="font-size:17px; color:var(--ink); font-weight:700;">AERO</span><span class="mono" style="font-size:12px; color:var(--c-aero);">adaptive periodic</span></div>
+        </div>
+
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
+          <svg viewBox="0 0 220 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
+            <rect x="12" y="14" width="56" height="24" rx="8" style="fill:var(--bg); stroke:var(--ink-4); stroke-width:1.5;" />
+            <circle cx="26" cy="26" r="4" style="fill:var(--ink-2);" />
+            <circle cx="40" cy="20" r="4" style="fill:var(--ink-2);" />
+            <circle cx="54" cy="26" r="4" style="fill:var(--ink-2);" />
+            <line x1="26" y1="26" x2="40" y2="20" style="stroke:var(--ink-2); stroke-width:2;" />
+            <line x1="40" y1="20" x2="54" y2="26" style="stroke:var(--ink-2); stroke-width:2;" />
+            <rect x="82" y="14" width="56" height="24" rx="8" style="fill:var(--bg); stroke:var(--ink-4); stroke-width:1.5;" />
+            <rect x="92" y="20" width="36" height="4" rx="2" style="fill:var(--ink-2);" />
+            <rect x="92" y="27" width="30" height="4" rx="2" style="fill:var(--ink-3);" />
+            <rect x="92" y="34" width="40" height="4" rx="2" style="fill:var(--ink-2);" />
+            <rect x="152" y="14" width="56" height="24" rx="8" style="fill:var(--bg); stroke:var(--ink-4); stroke-width:1.5;" />
+            <path d="M164 31 L176 19 L188 31 L196 23" style="fill:none; stroke:var(--ink-2); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;" />
+            <path d="M164 21 L176 33 L188 21 L196 29" style="fill:none; stroke:var(--ink-3); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;" />
+            <rect x="12" y="50" width="56" height="24" rx="8" style="fill:var(--bg); stroke:var(--ink-4); stroke-width:1.5;" />
+            <circle cx="28" cy="62" r="4" style="fill:var(--ink-2);" />
+            <circle cx="52" cy="62" r="4" style="fill:var(--ink-2);" />
+            <line x1="32" y1="62" x2="48" y2="62" style="stroke:var(--ink-2); stroke-width:2;" />
+            <path d="M40 49 L40 75" style="stroke:var(--ink-3); stroke-width:2;" />
+            <rect x="82" y="50" width="56" height="24" rx="8" style="fill:var(--bg); stroke:var(--ink-4); stroke-width:1.5;" />
+            <circle cx="96" cy="62" r="2.5" style="fill:var(--ink-2);" />
+            <circle cx="108" cy="56" r="2.5" style="fill:var(--ink-2);" />
+            <circle cx="120" cy="68" r="2.5" style="fill:var(--ink-2);" />
+            <circle cx="126" cy="58" r="2.5" style="fill:var(--ink-2);" />
+            <rect x="152" y="50" width="56" height="24" rx="8" style="fill:color-mix(in oklab, var(--c-aero) 8%, var(--bg)); stroke:var(--c-aero); stroke-width:1.5;" />
+            <polyline points="160,67 170,58 180,62 190,50 200,56" style="fill:none; stroke:var(--c-aero); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;" />
+            <circle cx="196" cy="30" r="7" style="fill:color-mix(in oklab, var(--c-aero) 14%, var(--bg)); stroke:var(--c-aero); stroke-width:2;" />
+            <path d="M193 30 l2 2 l4 -5" style="fill:none; stroke:var(--c-aero); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Column 3 · EXPERIMENTAL SETTINGS -->
+      <div style="padding:34px 28px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Experimental settings</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Common training server</div>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">DEVICE</div>
-            <div style="font-size:18px; color:var(--ink);">laptop-class ARM/x86</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">GPU</div>
+            <div style="font-size:18px; color:var(--ink);">NVIDIA A100 &middot; 40 GB</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">CORES</div>
-            <div style="font-size:18px; color:var(--ink);">4 &middot; no GPU / no accel</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">CPU</div>
+            <div style="font-size:18px; color:var(--ink);">30 cores</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
             <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">RAM</div>
-            <div style="font-size:18px; color:var(--ink);">8 GB &middot; shared with OS</div>
+            <div style="font-size:18px; color:var(--ink);">200 GiB</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">SSD</div>
+            <div style="font-size:18px; color:var(--ink);">512 GiB</div>
           </div>
           <div style="display:flex; align-items:baseline; gap:10px;">
-            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">TIMING</div>
-            <div style="font-size:18px; color:var(--ink);">mean of 1&thinsp;000 forward passes</div>
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">STACK</div>
+            <div style="font-size:18px; color:var(--ink);">Ubuntu 20.04.2 &middot; Python/PyTorch</div>
           </div>
         </div>
 
         <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
           <svg viewBox="0 0 220 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
-            <rect x="12" y="18" width="94" height="52" rx="10" style="fill:var(--bg); stroke:var(--ink); stroke-width:2.5;" />
-            <rect x="36" y="31" width="46" height="26" rx="6" style="fill:color-mix(in oklab, var(--c-aero) 10%, var(--bg)); stroke:var(--c-aero); stroke-width:2;" />
-            <line x1="24" y1="24" x2="24" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="42" y1="24" x2="42" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="60" y1="24" x2="60" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="78" y1="24" x2="78" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="96" y1="24" x2="96" y2="16" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="24" y1="72" x2="24" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="42" y1="72" x2="42" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="60" y1="72" x2="60" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="78" y1="72" x2="78" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="96" y1="72" x2="96" y2="80" style="stroke:var(--ink-3); stroke-width:2;" />
-            <rect x="126" y="48" width="14" height="22" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 18%, var(--bg));" />
-            <rect x="146" y="36" width="14" height="34" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 24%, var(--bg));" />
-            <rect x="166" y="24" width="14" height="46" rx="5" style="fill:color-mix(in oklab, var(--c-aero) 32%, var(--bg));" />
-            <rect x="186" y="12" width="14" height="58" rx="5" style="fill:var(--c-aero);" />
-            <rect x="156" y="14" width="40" height="20" rx="6" style="fill:none; stroke:var(--ink-3); stroke-width:2;" />
-            <line x1="154" y1="12" x2="198" y2="36" style="stroke:var(--c-sota-red); stroke-width:3;" />
+            <rect x="14" y="12" width="112" height="64" rx="12" style="fill:var(--bg); stroke:var(--ink); stroke-width:2.2;" />
+            <rect x="26" y="22" width="88" height="12" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-4); stroke-width:1;" />
+            <rect x="26" y="38" width="88" height="12" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-4); stroke-width:1;" />
+            <rect x="26" y="54" width="88" height="12" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-4); stroke-width:1;" />
+            <rect x="70" y="40" width="24" height="8" rx="4" style="fill:var(--c-aero);" />
+            <circle cx="36" cy="28" r="2.4" style="fill:var(--ink-3);" />
+            <circle cx="36" cy="44" r="2.4" style="fill:var(--ink-3);" />
+            <circle cx="36" cy="60" r="2.4" style="fill:var(--ink-3);" />
+            <rect x="146" y="16" width="12" height="56" rx="5" style="fill:color-mix(in oklab, var(--ink) 10%, var(--bg));" />
+            <rect x="166" y="28" width="12" height="44" rx="5" style="fill:color-mix(in oklab, var(--ink) 18%, var(--bg));" />
+            <rect x="186" y="10" width="12" height="62" rx="5" style="fill:var(--c-aero);" />
+            <rect x="160" y="12" width="44" height="14" rx="5" style="fill:none; stroke:var(--ink-4); stroke-width:1.5;" />
           </svg>
         </div>
       </div>
 
-      <!-- Column 3 · BASELINES -->
-      <div style="padding:36px 30px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0;">
-        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Baselines &middot; 5 prior methods</div>
-        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Comparable on the same split</div>
-
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">Pathformer</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.4 M</span></div>
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">ModernTCN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">247 K</span></div>
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">FourierGNN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">228 K</span></div>
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">WGAN</span><span class="mono" style="font-size:13px; color:var(--c-sota-red);">2.9 M</span></div>
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--ink-4); padding:4px 0;"><span style="font-size:17px; color:var(--ink);">SparseTSF</span><span class="mono" style="font-size:13px; color:var(--c-sota-amber);">35</span></div>
-          <div style="display:flex; justify-content:space-between; padding:4px 0;"><span style="font-size:17px; color:var(--ink); font-weight:700;">AERO</span><span class="mono" style="font-size:13px; color:var(--c-sota-green); font-weight:700;">599</span></div>
-        </div>
-
-        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
-          <svg viewBox="0 0 220 92" style="display:block; width:100%; height:92px;" aria-hidden="true">
-            <line x1="10" y1="8" x2="10" y2="84" style="stroke:var(--ink-4); stroke-width:1.5;" />
-            <line x1="10" y1="84" x2="212" y2="84" style="stroke:var(--ink-4); stroke-width:1.5;" />
-            <rect x="18" y="14" width="162" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 78%, white);" />
-            <rect x="18" y="26" width="90" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 50%, var(--ink));" />
-            <rect x="18" y="38" width="82" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 35%, var(--ink));" />
-            <rect x="18" y="50" width="188" height="7" rx="4" style="fill:color-mix(in oklab, var(--c-sota-red) 88%, white);" />
-            <rect x="18" y="62" width="12" height="7" rx="4" style="fill:var(--c-sota-amber);" />
-            <rect x="18" y="74" width="22" height="7" rx="4" style="fill:var(--c-sota-green);" />
-          </svg>
-        </div>
-      </div>
-
-      <!-- Column 4 · TUNING -->
-      <div style="padding:36px 30px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
-        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Tuning procedure</div>
-        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Bayesian optimisation &middot; per model</div>
+      <!-- Column 4 · TUNING + METRICS -->
+      <div style="padding:34px 28px; background:var(--bg-alt); display:flex; flex-direction:column; gap:14px; min-height:0;">
+        <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Tuning + reporting</div>
+        <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">Evaluation protocol</div>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Every baseline tuned on its <strong>own</strong> search space so no method is disadvantaged by grid quirks.</div>
-          <div style="font-size:17px; color:var(--ink); line-height:1.4;">100 BayesOpt trials &middot; validation MAE objective.</div>
-          <div style="font-size:17px; color:var(--ink); line-height:1.4;">Same optimiser (Adam), same early-stopping, same seed sweep.</div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">SEARCH</div>
+            <div style="font-size:18px; color:var(--ink);">Bayesian optimisation</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">BUDGET</div>
+            <div style="font-size:18px; color:var(--ink);">20 random + 30 refinement</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">SPACE</div>
+            <div style="font-size:18px; color:var(--ink);">per-model hyperparameter ranges</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:6px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">ERROR</div>
+            <div style="font-size:18px; color:var(--ink);">MAE and RMSE</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:10px;">
+            <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:90px;">ALSO</div>
+            <div style="font-size:18px; color:var(--ink);">latency &middot; convergence &middot; params &middot; memory</div>
+          </div>
         </div>
 
         <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--ink-4);">
           <svg viewBox="0 0 220 88" style="display:block; width:100%; height:88px;" aria-hidden="true">
-            <rect x="12" y="18" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
-            <rect x="12" y="40" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
-            <rect x="12" y="62" width="26" height="16" rx="5" style="fill:color-mix(in oklab, var(--ink) 8%, var(--bg)); stroke:var(--ink-3); stroke-width:1.5;" />
-            <path d="M54 70 C74 18, 112 18, 136 54" style="fill:none; stroke:var(--ink-2); stroke-width:3.5; stroke-linecap:round;" />
-            <circle cx="72" cy="40" r="4" style="fill:var(--ink-2);" />
-            <circle cx="96" cy="26" r="4" style="fill:var(--ink-2);" />
-            <circle cx="120" cy="30" r="4" style="fill:var(--ink-2);" />
-            <circle cx="136" cy="54" r="5" style="fill:var(--c-aero);" />
-            <line x1="146" y1="54" x2="178" y2="54" style="stroke:var(--c-aero); stroke-width:3; stroke-linecap:round;" />
-            <circle cx="194" cy="54" r="14" style="fill:color-mix(in oklab, var(--c-aero) 14%, var(--bg)); stroke:var(--c-aero); stroke-width:2.5;" />
-            <path d="M188 54 l5 5 l9 -12" style="fill:none; stroke:var(--c-aero); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round;" />
-            <path d="M182 24 C156 8, 110 6, 60 20" style="fill:none; stroke:var(--c-aero); stroke-width:2; stroke-dasharray:5 5; stroke-linecap:round;" />
+            <circle cx="26" cy="22" r="4" style="fill:var(--ink-3);" />
+            <circle cx="40" cy="30" r="4" style="fill:var(--ink-3);" />
+            <circle cx="24" cy="44" r="4" style="fill:var(--ink-3);" />
+            <circle cx="42" cy="52" r="4" style="fill:var(--ink-3);" />
+            <circle cx="58" cy="24" r="4" style="fill:var(--ink-3);" />
+            <circle cx="62" cy="42" r="4" style="fill:var(--ink-3);" />
+            <circle cx="58" cy="60" r="4" style="fill:var(--ink-3);" />
+            <circle cx="78" cy="34" r="4" style="fill:var(--ink-3);" />
+            <circle cx="82" cy="54" r="4" style="fill:var(--ink-3);" />
+            <path d="M96 58 C108 44, 118 34, 132 34" style="fill:none; stroke:var(--ink-2); stroke-width:3; stroke-linecap:round;" />
+            <circle cx="138" cy="34" r="7" style="fill:var(--c-aero);" />
+            <line x1="148" y1="34" x2="166" y2="34" style="stroke:var(--c-aero); stroke-width:3; stroke-linecap:round;" />
+            <rect x="174" y="20" width="9" height="44" rx="4" style="fill:color-mix(in oklab, var(--ink) 12%, var(--bg));" />
+            <rect x="188" y="28" width="9" height="36" rx="4" style="fill:color-mix(in oklab, var(--ink) 22%, var(--bg));" />
+            <rect x="202" y="14" width="9" height="50" rx="4" style="fill:var(--c-aero);" />
           </svg>
         </div>
       </div>

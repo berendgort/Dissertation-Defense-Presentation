@@ -15,11 +15,6 @@
     <div style="flex:1; display:grid; grid-template-columns: 1.4fr 1fr; min-height:0;">
       <!-- LEFT: AERO-slotted schematic -->
       <div style="padding:36px 48px 28px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg);">
-        <div style="display:flex; gap:16px; align-items:center;">
-          <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase;">Generic edge loop &rarr;</div>
-          <div class="mono" style="background:var(--c-aero); color:#fff; font-size:17px; padding:5px 14px; border-radius:2px; letter-spacing:.06em;">AERO replaces the forecasting placeholder</div>
-        </div>
-
         <svg viewBox="0 0 1000 600" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="mkA11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -98,8 +93,8 @@
         </div>
 
         <div style="border:2px solid var(--ink); background:var(--bg); padding:14px 16px 12px; display:grid; grid-template-rows:auto auto 1fr; gap:10px; min-height:0;">
-          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Toy example &middot; adaptive traffic-light cabinet</div>
-          <div style="font-size:24px; line-height:1.18; font-weight:700; color:var(--ink); max-width:560px;">Queue spike at one intersection.</div>
+          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Toy example &middot; factory cell</div>
+          <div style="font-size:24px; line-height:1.18; font-weight:700; color:var(--ink); max-width:560px;">Queue spike at one workstation.</div>
 
           <div style="display:grid; grid-template-columns:1.05fr .95fr; gap:14px; min-height:0;">
             <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
@@ -113,7 +108,7 @@
               </div>
               <div style="padding:10px 12px; background:var(--bg-alt); border-left:3px solid var(--ink);">
                 <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);">3</div>
-                <div style="font-family:var(--f-mono); font-size:15px; line-height:1.35; color:var(--ink); margin-top:4px;">- controller updates next green phase</div>
+                <div style="font-family:var(--f-mono); font-size:15px; line-height:1.35; color:var(--ink); margin-top:4px;">- scheduler reroutes next job</div>
               </div>
             </div>
 
@@ -128,34 +123,37 @@
                   </marker>
                 </defs>
 
-                <rect x="26" y="28" width="248" height="180" rx="10" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2"/>
-                <text x="150" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" letter-spacing=".08em">INTERSECTION CABINET</text>
+                <rect x="24" y="28" width="252" height="182" rx="10" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="2"/>
+                <text x="150" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" letter-spacing=".08em">FACTORY CELL</text>
 
-                <rect x="44" y="76" width="74" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <text x="81" y="99" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="var(--ink)">Sensors</text>
-                <text x="81" y="117" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">camera</text>
-                <text x="81" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">loop detector</text>
+                <rect x="40" y="76" width="62" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
+                <text x="71" y="99" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="var(--ink)">Queue</text>
+                <rect x="49" y="110" width="10" height="10" fill="var(--ink-4)"/>
+                <rect x="62" y="110" width="10" height="10" fill="var(--ink-4)"/>
+                <rect x="75" y="110" width="10" height="10" fill="var(--ink-4)"/>
 
-                <rect x="138" y="76" width="74" height="56" rx="6" fill="var(--c-aero)" stroke="var(--c-aero)" stroke-width="1.8"/>
-                <text x="175" y="100" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">AERO</text>
-                <text x="175" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">edge forecast</text>
+                <rect x="118" y="76" width="74" height="56" rx="6" fill="var(--c-aero)" stroke="var(--c-aero)" stroke-width="1.8"/>
+                <text x="155" y="99" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">AERO</text>
+                <text x="155" y="117" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">next-window</text>
+                <text x="155" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fff" opacity=".92">forecast</text>
 
-                <rect x="138" y="150" width="74" height="40" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <text x="175" y="166" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">Raspberry Pi-class</text>
-                <text x="175" y="181" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">edge box</text>
+                <rect x="208" y="76" width="52" height="56" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
+                <text x="234" y="96" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="var(--ink)">Local</text>
+                <text x="234" y="112" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="var(--ink)">scheduler</text>
 
-                <rect x="226" y="76" width="32" height="86" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
-                <circle cx="242" cy="96" r="7" fill="#d64545"/>
-                <circle cx="242" cy="119" r="7" fill="#d0a43b"/>
-                <circle cx="242" cy="142" r="7" fill="#4b7c4b"/>
-                <text x="242" y="177" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">controller</text>
+                <rect x="58" y="160" width="54" height="32" rx="5" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+                <text x="85" y="179" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">WS-A</text>
 
-                <line x1="118" y1="104" x2="136" y2="104" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
-                <line x1="212" y1="104" x2="224" y2="104" stroke="var(--c-aero)" stroke-width="2.4" marker-end="url(#mkToy10Aero)"/>
+                <rect x="196" y="160" width="54" height="32" rx="5" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+                <text x="223" y="179" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">WS-B</text>
 
-                <path d="M242 76 C242 52, 276 50, 282 70" fill="none" stroke="var(--ink-4)" stroke-width="1.6" stroke-dasharray="4,4"/>
-                <path d="M282 70 C284 56, 268 50, 258 58 C248 40, 226 48, 230 66 C220 66, 216 78, 225 82 L280 82" fill="none" stroke="var(--ink-4)" stroke-width="1.8"/>
-                <text x="258" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--ink-3)">history only</text>
+                <line x1="102" y1="104" x2="116" y2="104" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
+                <line x1="192" y1="104" x2="206" y2="104" stroke="var(--c-aero)" stroke-width="2.4" marker-end="url(#mkToy10Aero)"/>
+
+                <path d="M234 132 L234 154 L223 154" fill="none" stroke="var(--ink)" stroke-width="2" marker-end="url(#mkToy10)"/>
+                <path d="M226 150 C206 140, 170 140, 112 160" fill="none" stroke="var(--c-aero)" stroke-width="2.4" stroke-dasharray="5,4" marker-end="url(#mkToy10Aero)"/>
+
+                <text x="146" y="206" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--c-aero)">reroute next job</text>
               </svg>
             </div>
           </div>
