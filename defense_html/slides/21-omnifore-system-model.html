@@ -12,16 +12,14 @@
       <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--c-omnifore); letter-spacing:.1em; text-transform:uppercase;">heterogeneous workloads &middot; shared forecast contract</div>
     </div>
 
-    <!-- Content grid -->
-    <div style="flex:1; display:grid; grid-template-columns:minmax(0, 1fr) 408px; min-height:0;">
-      <!-- LEFT: schematic · many services feed one shared forecaster -->
-      <div style="padding:36px 48px 28px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg);">
-        <div style="display:flex; gap:16px; align-items:center;">
-          <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase;">Generic system setting &rarr;</div>
-          <div class="mono" style="background:var(--c-omnifore); color:#fff; font-size:17px; padding:5px 14px; border-radius:2px; letter-spacing:.06em;">one model serves many services</div>
+    <div style="flex:1; display:grid; grid-template-columns:1.02fr 1.18fr; min-height:0;">
+      <div style="padding:30px 34px 24px; display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:14px; min-height:0; background:var(--bg);">
+        <div style="border-left:4px solid var(--c-omnifore); padding:12px 16px; background:color-mix(in oklab, var(--c-omnifore) 6%, var(--bg));">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); margin-bottom:4px;">System setting</div>
+          <div style="font-size:20px; line-height:1.25; color:var(--ink);">One prediction layer observes many services at a site and returns per-service forecasts to the decision stack.</div>
         </div>
 
-        <svg viewBox="0 0 1000 580" style="width:100%; flex:1; min-height:0;" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 1000 580" style="width:100%; height:100%; min-height:0;" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="mkO23" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
               <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
@@ -78,33 +76,106 @@
           <line class="flo23" x1="730" y1="352" x2="730" y2="390" stroke="var(--c-omnifore)" stroke-width="3" marker-end="url(#mkO23)"/>
           <text x="748" y="378" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-omnifore)">per-service forecast</text>
         </svg>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center;">
+          <div class="mono" style="padding:8px 12px; border:2px solid var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 7%, var(--bg)); color:var(--c-omnifore); font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700;">Shared prediction layer</div>
+          <div class="mono" style="padding:8px 12px; border:1px solid var(--ink-4); background:var(--bg-alt); color:var(--ink-2); font-size:13px; letter-spacing:.1em;">One model</div>
+          <div class="mono" style="padding:8px 12px; border:1px solid var(--ink-4); background:var(--bg-alt); color:var(--ink-2); font-size:13px; letter-spacing:.1em;">Many services</div>
+          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-2);">Only the generic box is fixed here; the method comes next.</div>
+        </div>
       </div>
 
-      <!-- RIGHT: stacked constraints -->
-      <div style="border-left:2px solid var(--ink); padding:32px 28px 24px; background:var(--bg-alt); display:flex; flex-direction:column; gap:16px; min-height:0;">
-        <div style="font-family:var(--f-mono); font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Three constraints &middot; before the method</div>
-
-        <div style="padding:18px 18px; display:flex; flex:1 1 0; flex-direction:column; justify-content:center; gap:8px; min-height:0; border-left:6px solid var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 9%, var(--bg));">
-          <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore);">Heterogeneous inputs</div>
-          <div style="font-size:19px; line-height:1.34;">Bursty, steady, and mixed services all enter the same prediction layer.</div>
+      <div style="border-left:2px solid var(--ink); padding:28px 34px 24px; background:var(--bg-alt); display:grid; grid-template-rows:auto minmax(0,1fr); gap:14px; min-height:0; overflow:hidden;">
+        <div style="border-left:4px solid var(--c-omnifore); padding:12px 16px; background:color-mix(in oklab, var(--c-omnifore) 6%, var(--bg));">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); margin-bottom:4px;">Motivation</div>
+          <div style="font-size:24px; line-height:1.18; font-weight:700; color:var(--ink);">Per-location models do not scale to 6G.</div>
         </div>
 
-        <div style="padding:18px 18px; display:flex; flex:1 1 0; flex-direction:column; justify-content:center; gap:8px; min-height:0; border-left:6px solid var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 7%, var(--bg));">
-          <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore);">One contract downstream</div>
-          <div style="font-size:19px; line-height:1.34;">The controller still consumes per-service forecasts from one shared model.</div>
-        </div>
+        <div style="min-height:0; display:grid; grid-template-rows:auto minmax(0,1fr); gap:14px;">
+          <div style="display:grid; gap:10px;">
+            <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
+              <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 8%, var(--bg));">Today</div>
+              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">Each site gets its own forecasting model copy.</div>
+            </div>
+            <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
+              <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 8%, var(--bg));">Cost</div>
+              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">Retraining, memory, and monitoring repeat at every site.</div>
+            </div>
+            <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
+              <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); background:var(--bg-alt);">Scaling</div>
+              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">More sites means more ML-engineer upkeep.</div>
+            </div>
+            <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
+              <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 8%, var(--bg));">Need</div>
+              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">One shared model should serve many locations.</div>
+            </div>
+          </div>
 
-        <div style="padding:18px 18px; display:flex; flex:1 1 0; flex-direction:column; justify-content:center; gap:8px; min-height:0; border-left:6px solid var(--c-omnifore); background:color-mix(in oklab, var(--c-omnifore) 9%, var(--bg));">
-          <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore);">Deployment is operational</div>
-          <div style="font-size:19px; line-height:1.34;">Far edge, aggregation, or cloud changes placement, not the research problem.</div>
-        </div>
+          <div style="min-height:0; display:flex; align-items:flex-start;">
+            <svg viewBox="0 0 780 260" style="width:102%; height:100%; min-height:0; margin-left:-8px;" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="mkToy21Dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                  <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+                </marker>
+                <marker id="mkToy21Red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                  <path d="M0,1 L10,5 L0,9 z" fill="var(--c-sota-red)"/>
+                </marker>
+                <marker id="mkToy21Omni" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                  <path d="M0,1 L10,5 L0,9 z" fill="var(--c-omnifore)"/>
+                </marker>
+              </defs>
 
-        <div style="margin-top:4px; border-top:1px solid var(--ink-4); padding-top:12px; font-family:var(--f-mono); font-size:15px; color:var(--ink-3);">This slide fixes the setting only: one model serving many services through one interface.</div>
+              <rect x="24" y="28" width="344" height="220" rx="18" style="fill:color-mix(in oklab, var(--c-sota-red) 4%, var(--bg)); stroke:var(--c-sota-red); stroke-width:1.8;"/>
+              <rect x="412" y="28" width="344" height="220" rx="18" style="fill:color-mix(in oklab, var(--c-omnifore) 5%, var(--bg)); stroke:var(--c-omnifore); stroke-width:1.8;"/>
+
+              <text x="48" y="58" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="var(--c-sota-red)" letter-spacing=".1em">CURRENT PRACTICE</text>
+              <text x="48" y="76" font-family="Inter" font-size="23" font-weight="800" fill="var(--ink)">one model per location</text>
+
+              <text x="436" y="58" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="var(--c-omnifore)" letter-spacing=".1em">TARGET</text>
+              <text x="436" y="76" font-family="Inter" font-size="23" font-weight="800" fill="var(--ink)">one shared model</text>
+
+              <rect x="56" y="106" width="86" height="36" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="154" y="106" width="86" height="36" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="252" y="106" width="86" height="36" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>
+              <text x="99" y="129" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">site A</text>
+              <text x="197" y="129" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">site B</text>
+              <text x="295" y="129" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">site C</text>
+
+              <rect x="56" y="186" width="86" height="42" rx="8" style="fill:color-mix(in oklab, var(--c-sota-red) 7%, var(--bg)); stroke:var(--c-sota-red); stroke-width:2;"/>
+              <rect x="154" y="186" width="86" height="42" rx="8" style="fill:color-mix(in oklab, var(--c-sota-red) 7%, var(--bg)); stroke:var(--c-sota-red); stroke-width:2;"/>
+              <rect x="252" y="186" width="86" height="42" rx="8" style="fill:color-mix(in oklab, var(--c-sota-red) 7%, var(--bg)); stroke:var(--c-sota-red); stroke-width:2;"/>
+              <text x="99" y="212" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--c-sota-red)">model A</text>
+              <text x="197" y="212" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--c-sota-red)">model B</text>
+              <text x="295" y="212" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="var(--c-sota-red)">model C</text>
+
+              <line x1="99" y1="144" x2="99" y2="182" stroke="var(--c-sota-red)" stroke-width="2.4" marker-end="url(#mkToy21Red)"/>
+              <line x1="197" y1="144" x2="197" y2="182" stroke="var(--c-sota-red)" stroke-width="2.4" marker-end="url(#mkToy21Red)"/>
+              <line x1="295" y1="144" x2="295" y2="182" stroke="var(--c-sota-red)" stroke-width="2.4" marker-end="url(#mkToy21Red)"/>
+
+              <rect x="432" y="108" width="52" height="30" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+              <rect x="492" y="108" width="52" height="30" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+              <rect x="552" y="108" width="52" height="30" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+              <rect x="612" y="108" width="52" height="30" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+              <rect x="672" y="108" width="52" height="30" rx="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/>
+              <text x="458" y="127" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink)">site 1</text>
+              <text x="518" y="127" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink)">site 2</text>
+              <text x="578" y="127" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink)">site 3</text>
+              <text x="638" y="127" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink)">...</text>
+              <text x="698" y="127" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink)">site N</text>
+
+              <line x1="584" y1="144" x2="584" y2="178" stroke="var(--c-omnifore)" stroke-width="2.8" marker-end="url(#mkToy21Omni)"/>
+
+              <rect x="478" y="186" width="212" height="58" rx="12" style="fill:color-mix(in oklab, var(--c-omnifore) 12%, var(--bg)); stroke:var(--c-omnifore); stroke-width:2.6;"/>
+              <text x="584" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--c-omnifore)" letter-spacing=".08em">GOOD</text>
+              <text x="584" y="232" text-anchor="middle" font-family="Inter" font-size="24" font-weight="800" fill="var(--c-omnifore)">1 shared model</text>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="chrome-bot">
-    <div class="meta-left">System model &middot; one model, many services &middot; shared prediction layer</div>
+    <div class="meta-left">System model &middot; one model, many services &middot; per-location retraining does not scale</div>
     <div class="meta-right">&sect;3 System model</div>
   </div>
 </section>

@@ -140,9 +140,10 @@ After making changes:
 
 1. Run `python3 dev.py` from the repo root.
 2. Confirm the target slide rebuilds into `Defense.html`.
-3. Check the slide in-browser for overflow, spacing, and readability.
-4. Prefer fast iteration loops: rerun/reload quickly and visually verify each slide change before moving on.
-5. Make sure slide numbering, ordering, and section color semantics still make sense.
+3. Thoroughly check in-browser that every slide block still fits: text overflow is the most common regression.
+4. Check the slide for overflow, spacing, and readability.
+5. Prefer fast iteration loops: rerun/reload quickly and visually verify each slide change before moving on.
+6. Make sure slide numbering, ordering, and section color semantics still make sense.
 
 ## Known Sources Of Confusion
 

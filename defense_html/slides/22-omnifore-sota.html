@@ -57,8 +57,8 @@
             <text x="230" y="76" text-anchor="start" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-sota-red)" letter-spacing="0.08em">GENERIC, BUT HEAVY</text>
             <text x="230" y="99" text-anchor="start" font-family="JetBrains Mono" font-size="14" fill="var(--c-sota-red)">reusable idea, wrong deployment budget</text>
 
-            <text x="1370" y="352" text-anchor="end" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-sota-red)" letter-spacing="0.08em">PER-SERVICE ONLY</text>
-            <text x="1370" y="375" text-anchor="end" font-family="JetBrains Mono" font-size="14" fill="var(--c-sota-red)">accurate until the service changes</text>
+            <text x="1432" y="536" text-anchor="end" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-sota-red)" letter-spacing="0.08em" opacity="0.82">PER-SERVICE ONLY</text>
+            <text x="1432" y="559" text-anchor="end" font-family="JetBrains Mono" font-size="14" fill="var(--c-sota-red)" opacity="0.82">accurate until the service changes</text>
 
             <text x="890" y="76" text-anchor="start" font-family="JetBrains Mono" font-size="18" font-weight="700" fill="var(--c-sota-green)" letter-spacing="0.08em">TARGET ZONE</text>
             <text x="890" y="99" text-anchor="start" font-family="JetBrains Mono" font-size="14" fill="var(--c-sota-green)">one model + unseen-service accuracy</text>
@@ -88,13 +88,11 @@
             <text x="842" y="527" text-anchor="middle" font-family="Inter" font-size="21" font-weight="700" fill="var(--c-sota-red)">LSTNet</text>
 
             <!-- OmniFORE -->
-            <circle cx="1200" cy="150" r="48" fill="var(--c-sota-green)" stroke="var(--c-omnifore)" stroke-width="4"/>
+            <ellipse cx="1200" cy="150" rx="72" ry="48" fill="var(--c-sota-green)" stroke="var(--c-omnifore)" stroke-width="4"/>
             <text x="1200" y="145" text-anchor="middle" font-family="Inter" font-size="23" font-weight="800" fill="#fff">OmniFORE</text>
             <text x="1200" y="168" text-anchor="middle" font-family="Inter" font-size="15" fill="#fff" opacity="0.9">ours</text>
             <text x="1200" y="228" text-anchor="middle" font-family="JetBrains Mono" font-size="22" font-weight="700" fill="var(--c-sota-green)">trained once</text>
 
-            <path d="M 1188 398 Q 1240 300 1212 214" fill="none" stroke="var(--c-omnifore)" stroke-width="3" stroke-dasharray="10,8" opacity="0.7"/>
-            <polygon points="1212,214 1204,228 1218,226" fill="var(--c-omnifore)" opacity="0.7"/>
           </svg>
         </div>
       </div>
@@ -117,7 +115,6 @@
           <div style="font-size:19px; line-height:1.34;"><strong>OmniFORE</strong> aims for one shared model that is <strong>trained once</strong> and still forecasts services it has never seen.</div>
         </div>
 
-        <div style="margin-top:4px; border-top:1px solid var(--ink-4); padding-top:12px; font-family:var(--f-mono); font-size:15px; color:var(--ink-3);">Training set, shared-pattern model, and reuse-rewarding tuning are the three levers to reach the green quadrant.</div>
       </div>
     </div>
   </div>
