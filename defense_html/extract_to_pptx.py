@@ -269,8 +269,9 @@ def write_markdown_deck(
 
 
 def escape_note_text(text: str) -> str:
+    raw_lines = text.splitlines()
     escaped: list[str] = []
-    for line in text.splitlines():
+    for index, line in enumerate(raw_lines):
         stripped = line.lstrip()
         indent = line[: len(line) - len(stripped)]
 
@@ -279,16 +280,19 @@ def escape_note_text(text: str) -> str:
             continue
 
         if stripped.startswith(("- ", "* ", "+ ", "#", ">")):
-            escaped.append(f"{indent}\\{stripped}")
-            continue
+            escaped_line = f"{indent}\\{stripped}"
+        else:
+            number_match = re.match(r"^(\d+)\.\s+(.*)$", stripped)
+            if number_match:
+                escaped_line = f"{indent}{number_match.group(1)}\\. {number_match.group(2)}"
+            else:
+                escaped_line = line
 
-        number_match = re.match(r"^(\d+)\.\s+(.*)$", stripped)
-        if number_match:
-            escaped.append(f"{indent}{number_match.group(1)}\\. {number_match.group(2)}")
-            continue
+        next_nonblank = index + 1 < len(raw_lines) and raw_lines[index + 1].strip()
+        if next_nonblank:
+            escaped_line += "\\"
 
-        escaped.append(line)
-
+        escaped.append(escaped_line)
     return "\n".join(escaped)
 
 
