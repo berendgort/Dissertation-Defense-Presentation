@@ -244,13 +244,13 @@ This slide is a callback to slide three. The left side is a headline-only versio
 
 I keep this one very short in delivery. The point is simply that the publication record lines up with the stack itself. The full bibliographic list remains on backup slide B7.
 
-### Slide 47 · Future Work · Agentic Frontier
+### Slide 47 · Future Work · The Agentic Intelligence Layer
 
-This is the launcher for the three future-work slides. The message is framed in one horizontal line at the top: the prediction layer is solved — AERO for far-edge forecasting and OmniFORE for cross-service generalization — and the agentic layer, AgentEdge, is the open frontier. That is where the remaining work lives.
+Same stack as the previous slide. The left column is unchanged on purpose: L1 and L2 are the agentic layers, L3 is the prediction layer finished by AERO and OmniFORE, L4 is the hardware we run on. What changed is the right-hand side. The publications are gone, and in their place is a single clear indicator: future work lives on L1 and L2. That is the agentic intelligence layer, and that is where this chapter of research continues.
 
-Underneath, I preview the next three slides as three cards. Future Work 1 is *Reliability and Trust*, with two blockers: evaluation and benchmarking — no shared score — and explainability and guardrails — rejected paths invisible. Future Work 2 is *Real-time Infrastructure*, with inference efficiency — tens of seconds per plan — and tool discovery — the accuracy cliff beyond roughly thirty tools. Future Work 3 is *Distributed Ecosystems*, with multi-agent coordination — parallel agents collide — and model-agnostic design — tool calls change shape per provider.
+Three short cards explain why. The first, *prediction is heavily researched*: lightweight nets and attention mechanisms rest on decades of time-series work. It is a mature field with established methodology. The second, *orchestration is a younger field*: which predictor to invoke for each situation, when a forecast warrants action, how to balance objectives that no single model optimizes — those are all still open questions. The third, *predictors become tools the agent selects*: AERO and OmniFORE are tools an agent picks, the same way a human operator picks between monitoring dashboards. Once you frame them as tools, the research question moves one level up, to the entity that chooses between them.
 
-Three slides, six blockers, each paired with a direction. I move through this slide quickly: it sets up what comes next.
+That is the transition. From here, the next three slides open up the specific blockers on L1 and L2.
 
 ### Slide 48 · Future Work 1 · Reliability & Trust
 
@@ -280,7 +280,7 @@ Two cards per slide, one visual each, the blocker on top and the direction on th
 
 ### Slide 51 · Three contributions, one systems thesis
 
-Three claims, each defended with three anchor numbers that were already shown on the result slides, nine anchors in total. Claim one, AERO — 599 parameters, eight-times-lower live MAE versus the SOTA small model, and 0.21 percent SLA violations versus 22 percent for a reactive baseline: real-time forecasting fits on the edge, sub-one-thousand parameters, SOTA accuracy, and robust under drift. Claim two, OmniFORE — 30.4 percent lower MAE versus ModernTCN, a 20.7 percent gain from clustering-based training, and zero-shot transfer from Google to Alibaba: one attention model generalises across services, no retraining for each new workload. Claim three, AgentEdge — 1.47 times success twin-on versus twin-off, ten-times-lower API-call variance, and 300.8 watts of rack power reclaimed at eighteen nodes: agentic orchestration with a digital-twin critic is reliable on live infrastructure and saves energy at scale. The closing line captures the thesis: edge-cloud orchestration moves from reactive supervision to a proactive, validated control stack — three layers, nine anchor numbers. That is what I defend.
+Three claims, each defended with three anchor numbers that were already shown on the result slides, nine anchors in total. Claim one, AERO — eight-times-lower live MAE versus the SOTA small model, roughly a hundred-times fewer SLA misses than a reactive baseline, and all of it in 599 parameters: real-time forecasting fits on the edge, SOTA accuracy, robust under drift, and small enough to deploy anywhere. Claim two, OmniFORE — 30.4 percent lower MAE versus ModernTCN, a 20.7 percent gain from clustering-based training, and zero-shot transfer from Google to Alibaba: one attention model generalises across services, no retraining for each new workload. Claim three, AgentEdge — 1.47 times success twin-on versus twin-off, ten-times-lower API-call variance, and 300.8 watts of rack power reclaimed at eighteen nodes: agentic orchestration with a digital-twin critic is reliable on live infrastructure and saves energy at scale. The closing line captures the thesis: edge-cloud orchestration moves from reactive supervision to a proactive, validated control stack — three layers, nine anchor numbers. That is what I defend.
 
 ### Slide 52 · Questions
 
