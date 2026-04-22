@@ -82,7 +82,7 @@
             </div>
             <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
               <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); background:var(--bg-alt);">Window</div>
-              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">The dispatch decision is due in <strong>3 seconds</strong>.</div>
+              <div style="padding:11px 16px; font-size:18px; line-height:1.25; color:var(--ink);">Dispatch decision is due in <strong>~3 s</strong> <span style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3);">(representative edge control cycle &middot; tight enough to miss a remote round-trip)</span>.</div>
             </div>
             <div style="display:grid; grid-template-columns:116px 1fr; align-items:stretch; border:1px solid var(--ink-4); background:var(--bg);">
               <div style="display:flex; align-items:center; justify-content:center; padding:10px 12px; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--c-sota-red); background:color-mix(in oklab, var(--c-sota-red) 6%, var(--bg));">Consequence</div>
@@ -112,7 +112,7 @@
 
             <rect x="576" y="10" width="166" height="48" rx="24" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/>
             <text x="659" y="31" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" letter-spacing=".08em">DECISION WINDOW</text>
-            <text x="659" y="47" text-anchor="middle" font-family="Inter" font-size="20" font-weight="800" fill="var(--ink)">3 s</text>
+            <text x="659" y="47" text-anchor="middle" font-family="Inter" font-size="20" font-weight="800" fill="var(--ink)">~3 s</text>
 
             <text x="42" y="96" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-sota-red)" letter-spacing=".1em">REMOTE ROUND-TRIP</text>
             <text x="42" y="286" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-aero)" letter-spacing=".1em">LOCAL FORECAST</text>
@@ -155,7 +155,7 @@
           </svg>
           </div>
 
-          <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); border-top:1px solid var(--ink-4); padding-top:8px;">WS = Workstation</div>
+          <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); border-top:1px solid var(--ink-4); padding-top:8px;">WS = Workstation &middot; 3&nbsp;s window is illustrative of fast edge control cycles; real deployments range from sub-second to tens of seconds depending on SLA.</div>
         </div>
       </div>
     </div>

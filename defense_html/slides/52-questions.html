@@ -6,83 +6,71 @@
     <div></div>
   </div>
 
-  <div class="body" style="padding:48px 80px 40px;">
-    <div style="display:grid; grid-template-columns:1.08fr .92fr; gap:44px; flex:1; min-height:0;">
-      <div style="display:flex; flex-direction:column; justify-content:center; gap:42px; min-height:0;">
-        <div class="mono-tag" style="margin-bottom:18px;">Discussion</div>
-        <h1 class="h-title" style="font-size:132px; margin:0; line-height:0.92;">Q&amp;A</h1>
-        <div style="margin-top:28px; max-width:520px; font-family:var(--f-serif); font-size:30px; line-height:1.35; color:var(--ink-2); font-style:italic;">
-          &ldquo;The system is zero-touch. The Q&amp;A should definitely not be.&rdquo;
+  <div class="body" style="padding:56px 80px 40px;">
+    <div style="display:grid; grid-template-columns:1.15fr .85fr; gap:56px; flex:1; min-height:0;">
+
+      <!-- LEFT: dominant Q&A + quote + compact acknowledgments -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between; min-height:0; gap:28px;">
+
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="mono-tag" style="margin:0;">Discussion &middot; open floor</div>
+          <h1 class="h-title" style="font-size:200px; margin:0; line-height:0.9; letter-spacing:-.04em;">Q&amp;A</h1>
+          <div style="max-width:640px; font-family:var(--f-serif); font-size:26px; line-height:1.35; color:var(--ink-2); font-style:italic; border-left:3px solid var(--ink); padding-left:18px; margin-top:14px;">
+            &ldquo;The system is zero-touch. The Q&amp;A should definitely not be.&rdquo;
+          </div>
         </div>
 
-        <div style="max-width:760px; padding-top:24px; border-top:1px solid var(--ink-4); display:grid; grid-template-columns:.95fr 1.25fr; gap:28px;">
+        <!-- Acknowledgments compressed into a three-column strip at the bottom -->
+        <div style="border-top:1px solid var(--ink-4); padding-top:18px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;">
           <div>
-            <div class="mono-tag" style="margin-bottom:12px;">Supervisors</div>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              <div>
-                <div style="font-size:22px; font-weight:600; line-height:1.25;">Dr. Angelos Antonopoulos</div>
-                <div class="mono" style="margin-top:4px; font-size:15px; color:var(--ink-3);">Main &middot; Nearby Computing</div>
-              </div>
-              <div>
-                <div style="font-size:22px; font-weight:600; line-height:1.25;">Dra. Anna Umbert</div>
-                <div class="mono" style="margin-top:4px; font-size:15px; color:var(--ink-3);">Co-supervisor &middot; Associate Professor, UPC</div>
-              </div>
-            </div>
-            <div class="mono-tag" style="margin-top:20px; margin-bottom:12px;">Colleagues</div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Dr. Godfrey M. Kibalya</div>
-            </div>
+            <div class="mono-tag" style="margin-bottom:8px; font-size:11px;">Supervisors</div>
+            <div style="font-size:15px; font-weight:600; line-height:1.3;">Dr. Angelos Antonopoulos</div>
+            <div class="mono" style="font-size:11px; color:var(--ink-3); margin-bottom:6px;">Nearby Computing</div>
+            <div style="font-size:15px; font-weight:600; line-height:1.3;">Dra. Anna Umbert</div>
+            <div class="mono" style="font-size:11px; color:var(--ink-3);">UPC</div>
           </div>
-
           <div>
-            <div class="mono-tag" style="margin-bottom:12px;">Thesis Tribunal</div>
-            <div style="display:grid; gap:8px;">
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Ferran Adelantado Freixer</div>
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Jorge Perez Romero</div>
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Lorenza Giupponi</div>
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Dionisis Xenakis</div>
-              <div style="font-size:18px; font-weight:600; line-height:1.25;">Georgios Kalfas</div>
-            </div>
+            <div class="mono-tag" style="margin-bottom:8px; font-size:11px;">Tribunal</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Ferran Adelantado Freixer</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Jorge Perez Romero</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Lorenza Giupponi</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Dionisis Xenakis</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Georgios Kalfas</div>
+          </div>
+          <div>
+            <div class="mono-tag" style="margin-bottom:8px; font-size:11px;">Colleagues</div>
+            <div style="font-size:14px; font-weight:600; line-height:1.35;">Dr. Godfrey M. Kibalya</div>
           </div>
         </div>
       </div>
 
-      <div style="display:flex; align-items:center; min-height:0;">
-        <div style="width:100%; background:var(--bg); border:1px solid var(--ink-4); border-top:1px solid var(--ink); overflow:hidden;">
-          <div style="display:grid; grid-template-columns:132px minmax(0,1fr) 214px; min-height:0;">
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2);">Slides</div>
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2);">Section</div>
-            <div style="border-left:1px solid var(--ink-4); border-bottom:1px solid var(--ink-4); background:var(--bg);"></div>
+      <!-- RIGHT: slim slide navigation (secondary reference) -->
+      <div style="display:flex; flex-direction:column; justify-content:center; min-height:0;">
+        <div class="mono-tag" style="margin:0 0 10px; color:var(--ink-3);">Deck reference</div>
+        <div style="background:var(--bg); border:1px solid var(--ink-4); overflow:hidden;">
+          <div style="display:grid; grid-template-columns:90px 1fr;">
+            <div style="padding:8px 14px; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2);">Slides</div>
+            <div style="padding:8px 14px; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2);">Section</div>
 
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:22px; font-weight:700;">01-08</div>
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-size:22px; font-weight:600;">Framing</div>
-            <div style="grid-column:3; grid-row:2; padding:10px 12px 10px 14px; border-left:1px solid var(--ink-4); border-bottom:1px solid var(--ink-4); display:flex; flex-direction:column; justify-content:center;">
-              <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:6px;">1 - Framing</div>
-              <div style="font-size:15px; line-height:1.3; color:var(--ink);">motivation / zero-touch /<br>research questions</div>
-            </div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:15px; font-weight:700;">01-08</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-size:15px; font-weight:600;">Framing</div>
 
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">09-18</div>
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-size:22px; font-weight:600; color:var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">AERO</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">09-18</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-size:15px; font-weight:600; color:var(--c-aero); background:color-mix(in oklab,var(--c-aero) 5%,var(--bg));">AERO</div>
 
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-omnifore); background:color-mix(in oklab,var(--c-omnifore) 5%,var(--bg));">19-30</div>
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-size:22px; font-weight:600; color:var(--c-omnifore); background:color-mix(in oklab,var(--c-omnifore) 5%,var(--bg));">OmniFORE</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-omnifore); background:color-mix(in oklab,var(--c-omnifore) 5%,var(--bg));">19-30</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-size:15px; font-weight:600; color:var(--c-omnifore); background:color-mix(in oklab,var(--c-omnifore) 5%,var(--bg));">OmniFORE</div>
 
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg));">31-46</div>
-            <div style="padding:10px 18px; border-bottom:1px solid var(--ink-4); font-size:22px; font-weight:600; color:var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg));">AgentEdge</div>
-            <div style="grid-column:3; grid-row:3 / span 3; padding:12px 12px 12px 14px; border-left:1px solid var(--ink-4); border-bottom:1px solid var(--ink-4); display:flex; flex-direction:column; justify-content:center; background:var(--bg-alt);">
-              <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:6px;">2 - Contributions</div>
-              <div style="font-size:15px; line-height:1.3; color:var(--ink);">problem / motivation<br>system model / state-of-the-art<br>design / scenario + result</div>
-            </div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg));">31-46</div>
+            <div style="padding:10px 14px; border-bottom:1px solid var(--ink-4); font-size:15px; font-weight:600; color:var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg));">AgentEdge</div>
 
-            <div style="padding:10px 18px; font-family:var(--f-mono); font-size:22px; font-weight:700;">47-52</div>
-            <div style="padding:10px 18px; font-size:22px; font-weight:600;">Synthesis</div>
-            <div style="grid-column:3; grid-row:6; padding:10px 12px 10px 14px; border-left:1px solid var(--ink-4); display:flex; flex-direction:column; justify-content:center;">
-              <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:6px;">3 - Synthesis</div>
-              <div style="font-size:15px; line-height:1.3; color:var(--ink);">stack / future work /<br>conclusions</div>
-            </div>
+            <div style="padding:10px 14px; font-family:var(--f-mono); font-size:15px; font-weight:700;">47-52</div>
+            <div style="padding:10px 14px; font-size:15px; font-weight:600;">Synthesis</div>
           </div>
         </div>
+        <div style="margin-top:10px; font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em;">+ backup slides B1-B13 available on request</div>
       </div>
+
     </div>
   </div>
 

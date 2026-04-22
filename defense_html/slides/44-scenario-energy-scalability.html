@@ -5,7 +5,7 @@
       <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Scenario 3: Energy scalability</h1>
     </div>
     <div style="font-size:19px; color:var(--ink-2); margin-top:2px; line-height:1.4; max-width:1700px;">
-      Same task, three infrastructure sizes. Start state: services spread across nodes, <em>idle nodes drawing baseline power</em>. Goal: <strong>consolidate services, power down idle nodes</strong>. Does multi-agent planning hold up as scale grows?
+      Three-tier edge-cloud (far-edge 10-35 W &middot; near-edge 40-120 W &middot; cloud 180-450 W). Start: services spread across nodes, <em>idle ones still drawing baseline power</em>. Task: <strong>consolidate services, drop idle nodes to low-power (-60 % draw)</strong>. 10 runs per scale &middot; deterministically seeded &middot; measured over a <strong>5 s</strong> power-sampling window.
     </div>
 
     <div style="display:flex; gap:24px; margin-top:10px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3);">
@@ -134,7 +134,7 @@
     </div>
 
     <div style="margin-top:12px; padding:10px 16px; border-left:3px solid var(--c-agent); background:var(--bg-alt); font-size:16px; line-height:1.4;">
-      <strong>Success metric:</strong> energy reduction &gt; 0&nbsp;W at every scale. Multi-agent coordination must remain effective without planning overhead dominating at 35 nodes.
+      <strong>Pass condition:</strong> end-state matches target <em>and</em> measured energy reduction &gt; 0&nbsp;W &middot; tracked alongside response time and API-call count to catch planning overhead dominating at 35 nodes.
     </div>
   </div>
   <div class="chrome-bot"><div class="meta-left">3 infrastructure scales · consolidate &amp; power-down · scalability of planning overhead</div><div class="meta-right">§4 AgentEdge</div></div>
