@@ -42,6 +42,11 @@ DEFENSE_HTML_DIR = ROOT / "defense_html"
 OUTPUT_HTML = DEFENSE_HTML_DIR / "Defense.html"
 DEFAULT_NOTES_PATH = ROOT / "speaker_notes" / "speaker_notes_pptx.md"
 DEFAULT_OUTPUT_PATH = ROOT / "Defense_screenshots.pptx"
+DEFAULT_VIEWPORT_WIDTH = 1920
+DEFAULT_VIEWPORT_HEIGHT = 1080
+DEFAULT_DEVICE_SCALE_FACTOR = 2.0
+DEFAULT_PNG_WIDTH = 3840
+DEFAULT_PNG_HEIGHT = 2160
 
 sys.path.insert(0, str(ROOT))
 from dev import build, discover_slides, ensure_template  # type: ignore  # noqa: E402
@@ -202,7 +207,16 @@ def wait_for_url(url: str, timeout_s: float = 5.0) -> None:
     raise RuntimeError(f"Local deck server did not become ready: {last_error}")
 
 
-def render_pdf(chrome: str, url: str, pdf_path: Path, virtual_time_ms: int) -> None:
+def render_pdf(
+    chrome: str,
+    url: str,
+    pdf_path: Path,
+    virtual_time_ms: int,
+    *,
+    viewport_width: int,
+    viewport_height: int,
+    device_scale_factor: float,
+) -> None:
     wait_for_url(url)
     run_command(
         [
@@ -215,6 +229,8 @@ def render_pdf(chrome: str, url: str, pdf_path: Path, virtual_time_ms: int) -> N
             "--no-first-run",
             "--no-default-browser-check",
             "--run-all-compositor-stages-before-draw",
+            f"--window-size={viewport_width},{viewport_height}",
+            f"--force-device-scale-factor={device_scale_factor}",
             f"--virtual-time-budget={virtual_time_ms}",
             "--print-to-pdf-no-header",
             f"--print-to-pdf={pdf_path}",
@@ -223,7 +239,14 @@ def render_pdf(chrome: str, url: str, pdf_path: Path, virtual_time_ms: int) -> N
     )
 
 
-def render_pngs(pdftoppm: str, pdf_path: Path, output_dir: Path) -> list[Path]:
+def render_pngs(
+    pdftoppm: str,
+    pdf_path: Path,
+    output_dir: Path,
+    *,
+    png_width: int,
+    png_height: int,
+) -> list[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     prefix = output_dir / "slide"
     run_command(
@@ -231,9 +254,9 @@ def render_pngs(pdftoppm: str, pdf_path: Path, output_dir: Path) -> list[Path]:
             pdftoppm,
             "-png",
             "-scale-to-x",
-            "1920",
+            str(png_width),
             "-scale-to-y",
-            "1080",
+            str(png_height),
             str(pdf_path),
             str(prefix),
         ]
@@ -373,6 +396,36 @@ def main() -> None:
         help="How long headless Chrome waits for assets before printing.",
     )
     parser.add_argument(
+        "--viewport-width",
+        type=int,
+        default=DEFAULT_VIEWPORT_WIDTH,
+        help="Headless Chrome viewport width in CSS pixels before printing.",
+    )
+    parser.add_argument(
+        "--viewport-height",
+        type=int,
+        default=DEFAULT_VIEWPORT_HEIGHT,
+        help="Headless Chrome viewport height in CSS pixels before printing.",
+    )
+    parser.add_argument(
+        "--device-scale-factor",
+        type=float,
+        default=DEFAULT_DEVICE_SCALE_FACTOR,
+        help="Headless Chrome device scale factor for higher-density rendering before PDF export.",
+    )
+    parser.add_argument(
+        "--png-width",
+        type=int,
+        default=DEFAULT_PNG_WIDTH,
+        help="Rasterized slide width in pixels for the PPTX images. Default: 3840.",
+    )
+    parser.add_argument(
+        "--png-height",
+        type=int,
+        default=DEFAULT_PNG_HEIGHT,
+        help="Rasterized slide height in pixels for the PPTX images. Default: 2160.",
+    )
+    parser.add_argument(
         "--keep-temp",
         action="store_true",
         help="Keep intermediate PDF, PNG, and Markdown files for debugging.",
@@ -391,6 +444,13 @@ def main() -> None:
     ensure_template()
     build()
 
+    if args.viewport_width <= 0 or args.viewport_height <= 0:
+        raise ValueError("Viewport dimensions must be positive integers.")
+    if args.device_scale_factor <= 0:
+        raise ValueError("Device scale factor must be greater than zero.")
+    if args.png_width <= 0 or args.png_height <= 0:
+        raise ValueError("PNG dimensions must be positive integers.")
+
     slide_keys = discover_slide_keys()
     notes_by_key = parse_notes(notes_path)
     unknown_note_keys = sorted(set(notes_by_key) - set(slide_keys), key=slide_sort_key)
@@ -406,10 +466,24 @@ def main() -> None:
 
         print("[2/5] Printing deck to PDF")
         with serve_directory(DEFENSE_HTML_DIR) as url:
-            render_pdf(chrome, url, pdf_path, args.virtual_time_ms)
+            render_pdf(
+                chrome,
+                url,
+                pdf_path,
+                args.virtual_time_ms,
+                viewport_width=args.viewport_width,
+                viewport_height=args.viewport_height,
+                device_scale_factor=args.device_scale_factor,
+            )
 
         print("[3/5] Rendering slide PNGs")
-        pngs = render_pngs(pdftoppm, pdf_path, png_dir)
+        pngs = render_pngs(
+            pdftoppm,
+            pdf_path,
+            png_dir,
+            png_width=args.png_width,
+            png_height=args.png_height,
+        )
         if len(pngs) != len(slide_keys):
             raise RuntimeError(
                 f"Rendered {len(pngs)} slide images, but the deck source contains {len(slide_keys)} slides."
