@@ -282,7 +282,7 @@ def write_markdown_deck(
         rel_path = png_path.relative_to(markdown_path.parent).as_posix()
         lines = [f"![]({rel_path}){{width=13.333333in height=7.5in}}"]
 
-        notes = escape_note_text(notes_by_key.get(slide_key, "").strip())
+        notes = normalize_note_text(notes_by_key.get(slide_key, "").strip())
         if notes:
             lines.extend(["", ":::::::: notes", notes, "::::::::"])
 
@@ -291,32 +291,9 @@ def write_markdown_deck(
     markdown_path.write_text("\n\n---\n\n".join(sections) + "\n", encoding="utf-8")
 
 
-def escape_note_text(text: str) -> str:
-    raw_lines = text.splitlines()
-    escaped: list[str] = []
-    for index, line in enumerate(raw_lines):
-        stripped = line.lstrip()
-        indent = line[: len(line) - len(stripped)]
-
-        if not stripped:
-            escaped.append("")
-            continue
-
-        if stripped.startswith(("- ", "* ", "+ ", "#", ">")):
-            escaped_line = f"{indent}\\{stripped}"
-        else:
-            number_match = re.match(r"^(\d+)\.\s+(.*)$", stripped)
-            if number_match:
-                escaped_line = f"{indent}{number_match.group(1)}\\. {number_match.group(2)}"
-            else:
-                escaped_line = line
-
-        next_nonblank = index + 1 < len(raw_lines) and raw_lines[index + 1].strip()
-        if next_nonblank:
-            escaped_line += "\\"
-
-        escaped.append(escaped_line)
-    return "\n".join(escaped)
+def normalize_note_text(text: str) -> str:
+    """Keep markdown structure intact so PPTX notes preserve bullets and paragraphs."""
+    return "\n".join(line.rstrip() for line in text.splitlines()).strip()
 
 
 def read_slide_size(pptx_path: Path) -> tuple[str, str]:
