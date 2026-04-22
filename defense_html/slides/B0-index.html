@@ -1,69 +1,57 @@
 <section class="slide" data-section="framing" data-label="B0 Backup index">
-<div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Backup B0</span><span class="eyb-sep">//</span><span>Index · what each backup defends</span></div><div class="counter"><span class="num">B0</span><span class="sep">/</span>B16 &nbsp; <span class="section-name">Backup</span></div><div></div></div>
-<div class="body" style="padding:52px 72px 40px; display:flex; flex-direction:column; gap:20px; overflow:hidden;">
-  <div class="h-subtle" style="margin:0;">Q&amp;A appendix · 16 topical defenses · grouped by question type</div>
+<div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Backup B0</span><span class="eyb-sep">//</span><span>Index &middot; what each backup defends</span></div><div class="counter"><span class="num">B0</span><span class="sep">/</span>B16 &nbsp; <span class="section-name">Backup</span></div><div></div></div>
+<div class="body" style="padding:60px 80px 48px; display:flex; flex-direction:column; gap:28px; overflow:hidden;">
   <h1 class="h-title" style="margin:0; font-size:56px;">Backup slide index</h1>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; flex:1; min-height:0;">
-    <!-- Col 1 : methodology + AgentEdge -->
-    <div style="display:flex; flex-direction:column; gap:18px; min-height:0;">
-      <!-- Methodology -->
-      <div style="border-left:3px solid var(--ink); padding-left:18px;">
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.16em; font-weight:700; text-transform:uppercase; color:var(--ink); margin-bottom:8px;">Methodology &amp; rigor</div>
-        <div style="font-size:16px; color:var(--ink-3); margin-bottom:10px; font-style:italic;">If asked about sample sizes, significance, fairness, reproducibility</div>
-        <div style="display:flex; flex-direction:column; gap:6px; font-size:18px;">
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B1</span> &nbsp;Statistical rigor · sample sizes, variance, CIs</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B2</span> &nbsp;Baseline fairness · same BO budget, adapted baselines</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B3</span> &nbsp;Trace selection · why MS_11349, why 20% subsample</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B4</span> &nbsp;Simulator fidelity · COSCO, digital-twin independence</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B5</span> &nbsp;LLM reproducibility · hosted provider, seeds, drift</div>
-        </div>
-      </div>
-      <!-- AgentEdge -->
-      <div style="border-left:3px solid var(--c-agent); padding-left:18px;">
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.16em; font-weight:700; text-transform:uppercase; color:var(--c-agent); margin-bottom:8px;">AgentEdge deep dives</div>
-        <div style="font-size:16px; color:var(--ink-3); margin-bottom:10px; font-style:italic;">If asked about the agent, the twin, or the scaling experiment</div>
-        <div style="display:flex; flex-direction:column; gap:6px; font-size:18px;">
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent);">B6</span> &nbsp;PARES full definition · the five-capability contract</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent);">B7</span> &nbsp;Twin: why 78.3 %, not 100 % · residual failure modes</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent);">B8</span> &nbsp;Scaling 8 / 20 / 35 · context bloat · 150 ms budget origin</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent);">B9</span> &nbsp;Success metric · exact match · scenario design bias</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent);">B10</span> Plan-vs-execute state staleness gap</div>
-        </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px 52px; flex:1; min-height:0;">
+
+    <!-- METHODOLOGY -->
+    <div style="border-left:3px solid var(--ink); padding-left:22px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; font-weight:700; text-transform:uppercase; color:var(--ink);">Methodology &amp; rigor</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:19px; color:var(--ink-2);">
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B1</span>Statistical rigor</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B2</span>Baseline fairness</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B3</span>Trace &amp; dataset selection</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B4</span>Simulator &amp; twin fidelity</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B5</span>LLM reproducibility</div>
       </div>
     </div>
-    <!-- Col 2 : AERO/OmniFORE + context -->
-    <div style="display:flex; flex-direction:column; gap:18px; min-height:0;">
-      <!-- AERO + OmniFORE -->
-      <div style="border-left:3px solid var(--c-aero); padding-left:18px;">
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.16em; font-weight:700; text-transform:uppercase; color:var(--c-aero); margin-bottom:8px;">AERO &amp; OmniFORE deep dives</div>
-        <div style="font-size:16px; color:var(--ink-3); margin-bottom:10px; font-style:italic;">If asked about prediction-layer claims, CPU/RAM chart, or generalization</div>
-        <div style="display:flex; flex-direction:column; gap:6px; font-size:18px;">
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero);">B11</span> AERO vs Pathformer · the CPU / RAM chart explained</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero);">B12</span> Informer vs Pathformer vs AERO · roles, not rankings</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero);">B13</span> AERO beyond workload traces · other 6G signals</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-omnifore);">B14</span> OmniFORE · deployment tier &amp; leakage asymmetry</div>
-        </div>
-      </div>
-      <!-- Context / scope -->
-      <div style="border-left:3px solid var(--ink-3); padding-left:18px;">
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.16em; font-weight:700; text-transform:uppercase; color:var(--ink-2); margin-bottom:8px;">Context &amp; scope</div>
-        <div style="font-size:16px; color:var(--ink-3); margin-bottom:10px; font-style:italic;">If asked about 6G, publications, or industrial scope</div>
-        <div style="display:flex; flex-direction:column; gap:6px; font-size:18px;">
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B15</span> 6G service mix · industrial scope · J4 mapping</div>
-          <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink);">B16</span> Full publications · 9 outputs · bibliographic data</div>
-        </div>
-      </div>
-      <!-- Reading key -->
-      <div style="flex:1; display:flex; align-items:flex-end;">
-        <div style="width:100%; border-top:1px solid var(--ink-4); padding-top:12px; display:flex; gap:28px; font-size:14px; color:var(--ink-3); font-family:var(--f-mono);">
-          <div><span style="display:inline-block; width:10px; height:10px; background:var(--c-aero); margin-right:6px;"></span>AERO</div>
-          <div><span style="display:inline-block; width:10px; height:10px; background:var(--c-omnifore); margin-right:6px;"></span>OmniFORE</div>
-          <div><span style="display:inline-block; width:10px; height:10px; background:var(--c-agent); margin-right:6px;"></span>AgentEdge</div>
-          <div style="margin-left:auto; font-style:italic;">Every backup: &nbsp;question &nbsp;· &nbsp;defense &nbsp;· &nbsp;pivot line</div>
-        </div>
+
+    <!-- AGENTEDGE -->
+    <div style="border-left:3px solid var(--c-agent); padding-left:22px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; font-weight:700; text-transform:uppercase; color:var(--c-agent);">AgentEdge deep dives</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:19px; color:var(--ink-2);">
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent); margin-right:10px;">B6</span>PARES capability contract</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent); margin-right:10px;">B7</span>Why 78.3 %, not 100 %</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent); margin-right:10px;">B8</span>Scaling 8 &#x2F; 20 &#x2F; 35 &middot; 150 ms</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent); margin-right:10px;">B9</span>Success metric &amp; scenarios</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-agent); margin-right:10px;">B10</span>Plan&ndash;execute staleness</div>
       </div>
     </div>
+
+    <!-- AERO / OMNIFORE -->
+    <div style="border-left:3px solid var(--c-aero); padding-left:22px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; font-weight:700; text-transform:uppercase; color:var(--c-aero);">AERO &amp; OmniFORE deep dives</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:19px; color:var(--ink-2);">
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero); margin-right:10px;">B11</span>AERO vs Pathformer (CPU &#x2F; RAM)</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero); margin-right:10px;">B12</span>Informer &#x2F; Pathformer &#x2F; AERO roles</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-aero); margin-right:10px;">B13</span>AERO beyond workload traces</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--c-omnifore); margin-right:10px;">B14</span>OmniFORE deployment &amp; leakage</div>
+      </div>
+    </div>
+
+    <!-- CONTEXT -->
+    <div style="border-left:3px solid var(--ink-3); padding-left:22px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; font-weight:700; text-transform:uppercase; color:var(--ink-2);">Context &amp; scope</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:19px; color:var(--ink-2);">
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B15</span>6G service mix &middot; Nearby &middot; J4 mapping</div>
+        <div><span style="font-family:var(--f-mono); font-weight:700; color:var(--ink); margin-right:10px;">B16</span>Full publications (9 outputs)</div>
+      </div>
+    </div>
+
+  </div>
+  <div style="border-top:1px solid var(--ink-4); padding-top:14px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em;">
+    Every backup follows the same shape &middot; <span style="color:var(--ink);">question</span> &middot; <span style="color:var(--ink);">3 answer points</span> &middot; <span style="color:var(--ink);">pivot</span>
   </div>
 </div>
-<div class="chrome-bot"><div class="meta-left">Navigable index · jump directly to the relevant backup</div><div class="meta-right">Q&amp;A appendix · backup B0</div></div>
+<div class="chrome-bot"><div class="meta-left">Navigable index &middot; jump directly to the relevant backup</div><div class="meta-right">Q&amp;A appendix &middot; backup B0</div></div>
 </section>

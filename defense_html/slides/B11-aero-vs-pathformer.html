@@ -1,0 +1,30 @@
+<section class="slide" data-section="aero" data-label="B11 AERO vs Pathformer">
+<div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Backup B11</span><span class="eyb-sep">//</span><span>AERO · the CPU &#x2F; RAM chart explained</span></div><div class="counter"><span class="num">B11</span><span class="sep">/</span>B16 &nbsp; <span class="section-name">Backup</span></div><div></div></div>
+<div class="body" style="padding:72px 96px 56px; display:flex; flex-direction:column; gap:38px; overflow:hidden;">
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);">If asked &mdash;</div>
+    <div style="font-family:var(--f-display); font-size:44px; font-weight:500; line-height:1.18; color:var(--ink); max-width:1700px;">
+      &ldquo;Why does Pathformer look lighter in the CPU &#x2F; RAM chart?&rdquo;
+    </div>
+  </div>
+  <div style="height:3px; background:var(--c-aero); width:96px;"></div>
+  <div style="display:flex; flex-direction:column; gap:26px; flex:1; min-height:0;">
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-aero);">01</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">Those bars are infrastructure utilization &middot; <span style="color:var(--ink-3); font-weight:500;">not the predictor&rsquo;s own footprint.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-aero);">02</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">Pathformer (2.4 M params) cannot fit the far-edge envelope &middot; <span style="color:var(--ink-3); font-weight:500;">the node runs without it. Floor artifact.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-aero);">03</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">AERO (599 params, 0.38 ms inference) &middot; <span style="color:var(--ink-3); font-weight:500;">actually executed on-node during the run.</span></div>
+    </div>
+  </div>
+  <div style="border-top:2px solid var(--c-aero); padding-top:20px; font-family:var(--f-display); font-size:24px; font-weight:600; color:var(--ink); line-height:1.35; max-width:1700px;">
+    The fit is judged on <strong>parameters</strong>, not on observed CPU &#x2F; RAM of the running stack. V2 removed those bars on Slide 16.
+  </div>
+</div>
+<div class="chrome-bot"><div class="meta-left">AERO matches Pathformer accuracy at ~4000&times; fewer parameters &middot; 8&times; better than SparseTSF live</div><div class="meta-right">&sect;2 AERO &middot; backup B11</div></div>
+</section>

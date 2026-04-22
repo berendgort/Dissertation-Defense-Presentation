@@ -1,0 +1,30 @@
+<section class="slide" data-section="agent" data-label="B8 Scaling and context">
+<div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Backup B8</span><span class="eyb-sep">//</span><span>AgentEdge · 8 &#x2F; 20 &#x2F; 35 nodes &amp; the 150 ms budget</span></div><div class="counter"><span class="num">B8</span><span class="sep">/</span>B16 &nbsp; <span class="section-name">Backup</span></div><div></div></div>
+<div class="body" style="padding:72px 96px 56px; display:flex; flex-direction:column; gap:38px; overflow:hidden;">
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);">If asked &mdash;</div>
+    <div style="font-family:var(--f-display); font-size:44px; font-weight:500; line-height:1.18; color:var(--ink); max-width:1700px;">
+      &ldquo;Why does energy saving peak at 20 and drop at 35?&rdquo;
+    </div>
+  </div>
+  <div style="height:3px; background:var(--c-agent); width:96px;"></div>
+  <div style="display:flex; flex-direction:column; gap:26px; flex:1; min-height:0;">
+    <div style="display:grid; grid-template-columns:120px 1fr; gap:28px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">8 nodes</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">~89 W &middot; <span style="color:var(--ink-3); font-weight:500;">floor-limited &mdash; little to consolidate.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:120px 1fr; gap:28px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">20 nodes</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">300.8 W &middot; <span style="color:var(--ink-3); font-weight:500;">full state fits the planner context &mdash; sweet spot.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:120px 1fr; gap:28px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">35 nodes</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">185.2 W &middot; <span style="color:var(--ink-3); font-weight:500;">state overflows context &mdash; needs summarization (future work).</span></div>
+    </div>
+  </div>
+  <div style="border-top:2px solid var(--c-agent); padding-top:20px; font-family:var(--f-display); font-size:24px; font-weight:600; color:var(--ink); line-height:1.35; max-width:1700px;">
+    Context budget, not architecture. The 150 ms AgentEdge target is the future-work benchmark, not a claim for today.
+  </div>
+</div>
+<div class="chrome-bot"><div class="meta-left">50 ms AERO scheduler inference &middot; 150 ms AgentEdge decision tier &middot; O-RAN &amp; MEC latency literature</div><div class="meta-right">&sect;4 AgentEdge &middot; backup B8</div></div>
+</section>

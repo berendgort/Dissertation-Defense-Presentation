@@ -1,0 +1,30 @@
+<section class="slide" data-section="agent" data-label="B10 State staleness">
+<div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Backup B10</span><span class="eyb-sep">//</span><span>AgentEdge · plan&ndash;execute state staleness</span></div><div class="counter"><span class="num">B10</span><span class="sep">/</span>B16 &nbsp; <span class="section-name">Backup</span></div><div></div></div>
+<div class="body" style="padding:72px 96px 56px; display:flex; flex-direction:column; gap:38px; overflow:hidden;">
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);">If asked &mdash;</div>
+    <div style="font-family:var(--f-display); font-size:44px; font-weight:500; line-height:1.18; color:var(--ink); max-width:1700px;">
+      &ldquo;What if state changes between planning and execution?&rdquo;
+    </div>
+  </div>
+  <div style="height:3px; background:var(--c-agent); width:96px;"></div>
+  <div style="display:flex; flex-direction:column; gap:26px; flex:1; min-height:0;">
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">01</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">Execution gate &middot; <span style="color:var(--ink-3); font-weight:500;">Infra Action agent re-queries live state before each committed call.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">02</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">Three-tier isolation &middot; <span style="color:var(--ink-3); font-weight:500;">baseline, accepted, simulated states kept distinct.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:56px 1fr; gap:24px; align-items:baseline;">
+      <div style="font-family:var(--f-mono); font-weight:700; font-size:22px; color:var(--c-agent);">03</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--ink); line-height:1.3;">Failure routes to Planning &middot; <span style="color:var(--ink-3); font-weight:500;">ActSimCrit re-plans on fresh observed state, not local retry.</span></div>
+    </div>
+  </div>
+  <div style="border-top:2px solid var(--c-agent); padding-top:20px; font-family:var(--f-display); font-size:24px; font-weight:600; color:var(--ink); line-height:1.35; max-width:1700px;">
+    ILP planner: 107 s &rarr; 48 s. Faster planners and focused context narrow the drift window further.
+  </div>
+</div>
+<div class="chrome-bot"><div class="meta-left">Structured twin retry ~100&times; cheaper in API-call variance than physical retry</div><div class="meta-right">&sect;4 AgentEdge &middot; backup B10</div></div>
+</section>
