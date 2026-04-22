@@ -100,6 +100,8 @@ slides `02` through `53`, plus backup slides `B1` through `B13`.
 - Keep generic infrastructure/framing elements neutral unless a slide is making
   a deliberate contribution-specific point.
 - Prefer small, local edits over broad rewrites when adjusting slide copy/layout.
+- Prefer fast iteration and avoid asking many questions; if details are ambiguous,
+  proceed with the safest minimal change and refine by visual check.
 - Multiple agents are often editing slides in parallel, so avoid broad automatic
 renumbering or bulk search/replace operations unless they are scoped and
 reconciled first.

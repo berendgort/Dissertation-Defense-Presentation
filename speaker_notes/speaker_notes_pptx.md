@@ -12,3 +12,11 @@ Good morning. These notes are a placeholder example for the PPTX export.
 
 - Introduce the thesis title.
 - Mention the supervisors and industrial partner.
+
+### Slide 25 · Training the model
+
+Phase two has two steps.
+
+- S5 equal scale: rescale each trace so large services do not dominate training.
+- S6 efficient attention: scan the full window, keep the strongest matches, then drop weak links so long windows stay cheap.
+- Generalization comes from matching patterns rather than service identity.

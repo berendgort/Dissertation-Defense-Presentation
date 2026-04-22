@@ -1,2 +1,103 @@
-<section class="slide" data-section="omnifore" data-label="27 OmniFORE Experiment 1 clustering scenario"> <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Experiment 1 · Scenario · clustering ablation</span></div><div class="counter"><span class="num">27</span><span class="sep">/</span>53 &nbsp; <span class="section-name">OmniFORE</span></div><div></div></div> <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;"> <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;"> <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">Experiment 1 &middot; training-set design</div> <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">The impact of <span style="color:var(--c-omnifore);">clustering-based</span> training data selection</h1> </div> <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; min-height:0;"> <!-- LEFT: cluster visualization --> <div style="border-right:2px solid var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 40px; gap:18px; background:var(--bg);"> <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700; text-align:center;">Version A &middot; clustering-based picking &middot; one trace per cluster</div> <svg viewBox="0 0 500 380" style="width:100%; height:100%; max-height:340px;"> <!-- Cluster 1 · bursty (orange) --> <circle cx="115" cy="95" r="78" fill="color-mix(in oklab,var(--c-omnifore) 10%, transparent)" stroke="var(--c-omnifore)" stroke-width="2" stroke-dasharray="5,4"/> <circle cx="90" cy="75" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="118" cy="62" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="145" cy="82" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="102" cy="112" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="78" cy="108" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="138" cy="118" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="155" cy="100" r="6" fill="var(--c-omnifore)" opacity=".35"/> <circle cx="112" cy="92" r="15" fill="var(--c-omnifore)" stroke="var(--bg)" stroke-width="3"/> <text x="112" y="97" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">★</text> <text x="115" y="190" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-omnifore)" font-weight="600">bursty</text> <!-- Cluster 2 · steady (ink-2) --> <circle cx="370" cy="105" r="75" fill="color-mix(in oklab,var(--ink-2) 10%, transparent)" stroke="var(--ink-2)" stroke-width="2" stroke-dasharray="5,4"/> <circle cx="348" cy="82" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="378" cy="72" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="400" cy="96" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="358" cy="122" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="392" cy="126" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="340" cy="108" r="6" fill="var(--ink-2)" opacity=".4"/> <circle cx="370" cy="102" r="15" fill="var(--ink-2)" stroke="var(--bg)" stroke-width="3"/> <text x="370" y="107" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">★</text> <text x="370" y="196" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-2)" font-weight="600">steady</text> <!-- Cluster 3 · periodic (ink) · center bottom row --> <circle cx="245" cy="295" r="72" fill="color-mix(in oklab,var(--ink) 8%, transparent)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5,4"/> <circle cx="222" cy="274" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="255" cy="264" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="278" cy="282" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="232" cy="312" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="265" cy="318" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="210" cy="298" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="276" cy="306" r="6" fill="var(--ink)" opacity=".3"/> <circle cx="245" cy="292" r="15" fill="var(--ink)" stroke="var(--bg)" stroke-width="3"/> <text x="245" y="297" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">★</text> <text x="245" y="376" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink)" font-weight="600">periodic</text> </svg> </div> <!-- RIGHT: vs random + framing --> <div style="display:flex; flex-direction:column; justify-content:center; padding:36px 50px; gap:28px; background:var(--bg-alt);"> <div style="padding:26px 28px; border:1.5px dashed var(--ink); background:var(--bg); display:flex; flex-direction:column; gap:10px;"> <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink); letter-spacing:.12em; text-transform:uppercase; font-weight:700;">Version B · random picking</div> <div style="font-size:22px; color:var(--ink); line-height:1.3; font-family:var(--f-display); font-weight:600;">Pick 100 traces at random.</div> <div style="font-size:17px; color:var(--ink-2); line-height:1.45;">Over-picks common workloads. Misses rare patterns entirely.</div> </div> <div style="padding:14px 18px; border-left:4px solid var(--ink); background:var(--bg); font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em; line-height:1.6;"> same model &nbsp;·&nbsp; same tuning &nbsp;·&nbsp; same test set<br>only the 100 training traces differ </div> <div style="font-family:var(--f-serif); font-size:22px; font-style:italic; color:var(--ink); line-height:1.5;"> If A wins by a lot, clustering is doing the real work.</div> </div> </div> </div> <div class="chrome-bot"><div class="meta-left">Experiment 1 · smart vs random training-set picking · 100 traces each</div><div class="meta-right">§3 OmniFORE</div></div>
+<section class="slide" data-section="omnifore" data-label="27 OmniFORE Scenario 1 clustering impact">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Scenario 1</span></div>
+    <div class="counter"><span class="num">27</span><span class="sep">/</span>53 &nbsp; <span class="section-name">OmniFORE</span></div>
+    <div></div>
+  </div>
+
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="flex:0 0 100px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:28px;">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.08;">Scenario 1 - Clustering Impact</h1>
+      </div>
+      <div style="margin-left:auto; max-width:520px; text-align:right; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase; line-height:1.45;">same model &rarr; same tuning &rarr; same test set<br>only the training traces change</div>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; min-height:0;">
+      <div style="border-right:2px solid var(--ink); padding:18px 26px 14px 44px; background:var(--bg); min-height:0; display:grid; grid-template-rows:auto 1fr; gap:10px;">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">Version A &middot; clustering-based picking</div>
+        <div style="min-height:0; display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 460 295" style="width:100%; height:100%;">
+            <circle cx="98" cy="76" r="63" fill="color-mix(in oklab,var(--c-omnifore) 10%, transparent)" stroke="var(--c-omnifore)" stroke-width="2" stroke-dasharray="5,4"/>
+            <circle cx="74" cy="58" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="100" cy="46" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="126" cy="64" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="86" cy="92" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="64" cy="88" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="118" cy="96" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="138" cy="82" r="6" fill="var(--c-omnifore)" opacity=".35"/>
+            <circle cx="98" cy="76" r="14" fill="var(--c-omnifore)" stroke="var(--bg)" stroke-width="3"/>
+            <text x="98" y="81" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">&#9733;</text>
+            <text x="98" y="148" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--c-omnifore)" font-weight="600">bursty</text>
+
+            <circle cx="366" cy="82" r="60" fill="color-mix(in oklab,var(--ink-2) 10%, transparent)" stroke="var(--ink-2)" stroke-width="2" stroke-dasharray="5,4"/>
+            <circle cx="344" cy="62" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="370" cy="54" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="392" cy="72" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="352" cy="100" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="382" cy="106" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="332" cy="84" r="6" fill="var(--ink-2)" opacity=".4"/>
+            <circle cx="366" cy="82" r="14" fill="var(--ink-2)" stroke="var(--bg)" stroke-width="3"/>
+            <text x="366" y="87" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">&#9733;</text>
+            <text x="366" y="152" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink-2)" font-weight="600">steady</text>
+
+            <circle cx="230" cy="220" r="58" fill="color-mix(in oklab,var(--ink) 8%, transparent)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5,4"/>
+            <circle cx="208" cy="202" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="232" cy="192" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="254" cy="208" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="214" cy="234" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="240" cy="242" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="194" cy="220" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="252" cy="228" r="6" fill="var(--ink)" opacity=".3"/>
+            <circle cx="230" cy="220" r="14" fill="var(--ink)" stroke="var(--bg)" stroke-width="3"/>
+            <text x="230" y="225" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="var(--bg)" font-weight="700">&#9733;</text>
+            <text x="230" y="286" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="var(--ink)" font-weight="600">periodic</text>
+          </svg>
+        </div>
+      </div>
+
+      <div style="padding:18px 44px 18px 32px; background:var(--bg-alt); min-height:0; display:grid; grid-template-rows:auto 1fr; gap:18px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); font-weight:700;">Version B &middot; random baseline</div>
+          <div style="font-family:var(--f-display); font-size:34px; color:var(--ink); font-weight:700; line-height:1.02;">Draw at random.</div>
+        </div>
+
+        <div style="min-height:0; display:grid; grid-template-columns:180px 1fr; gap:24px; align-items:center;">
+          <div style="display:flex; align-items:center; justify-content:center;">
+            <div style="width:100%; background:#171d28; border-radius:30px; padding:18px;">
+              <img src="figures/random-baseline-casino.png" alt="Random baseline icon" style="width:100%; height:184px; object-fit:contain; display:block;">
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:18px; justify-content:center;">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-family:var(--f-display); font-size:28px; font-weight:700; color:var(--ink); line-height:1.04;">Repeat five times.</div>
+              <div style="font-size:18px; color:var(--ink-2); line-height:1.3;">Average the result.</div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:10px;">
+              <div style="border:1px solid var(--ink-4); padding:14px 4px 12px; display:flex; align-items:center; justify-content:center; min-height:62px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);">run 1</div>
+              <div style="border:1px solid var(--ink-4); padding:14px 4px 12px; display:flex; align-items:center; justify-content:center; min-height:62px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);">run 2</div>
+              <div style="border:1px solid var(--ink-4); padding:14px 4px 12px; display:flex; align-items:center; justify-content:center; min-height:62px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);">run 3</div>
+              <div style="border:1px solid var(--ink-4); padding:14px 4px 12px; display:flex; align-items:center; justify-content:center; min-height:62px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);">run 4</div>
+              <div style="border:1px solid var(--ink-4); padding:14px 4px 12px; display:flex; align-items:center; justify-content:center; min-height:62px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);">run 5</div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="flex:1; height:2px; background:var(--ink-5); position:relative;">
+                <div style="position:absolute; right:-1px; top:-4px; width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:10px solid var(--ink-5);"></div>
+              </div>
+              <div style="padding:10px 14px 8px; border:1.5px solid var(--c-omnifore); font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">average</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chrome-bot">
+    <div class="meta-left">Experiment 1 &middot; clustered sample vs repeated random baseline</div>
+    <div class="meta-right">&sect;3 OmniFORE</div>
+  </div>
 </section>
