@@ -17,7 +17,7 @@
   /* Contribution accents · oklch, same chroma/lightness, varied hue */
   --c-aero:     oklch(55% 0.14 230);   /* cyan/blue */
   --c-omnifore: oklch(60% 0.14 60);    /* amber */
-  --c-agent:    oklch(55% 0.16 350);   /* magenta */
+  --c-agent:    oklch(60% 0.15 22);    /* coral red · intelligent agent */
   --c-framing:  #161616;                /* neutral ink */
   --c-synth:    #3a3a38;
 
@@ -37,7 +37,7 @@
 body[data-palette="a"] {
   --c-aero:     oklch(55% 0.14 230);
   --c-omnifore: oklch(60% 0.14 60);
-  --c-agent:    oklch(55% 0.16 350);
+  --c-agent:    oklch(60% 0.15 22);
 }
 body[data-palette="b"] {
   --c-aero:     oklch(52% 0.14 180);   /* teal */
@@ -60,7 +60,7 @@ body[data-palette="d"] {
   --rule:      #f0eee6;
   --c-aero:     oklch(72% 0.14 220);
   --c-omnifore: oklch(76% 0.14 70);
-  --c-agent:    oklch(70% 0.16 350);
+  --c-agent:    oklch(74% 0.12 22);
   --c-framing:  #f0eee6;
   --c-synth:    #c9c6bc;
 }
