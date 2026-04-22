@@ -1,4 +1,4 @@
-<section class="slide" data-section="agent" data-label="34 PARES capability framework">
+<section class="slide" data-section="agent" data-label="34 What is an agent?">
   <div class="chrome-top">
     <div class="section-bar"></div>
     <div class="eyebrow"><span class="eyb-tag">Design</span></div>
@@ -6,97 +6,132 @@
     <div></div>
   </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
-    <!-- Title strip -->
-    <div style="flex:0 0 96px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:28px;">
-      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">PARES capability contract</h1>
-      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--c-agent); letter-spacing:.1em; text-transform:uppercase;">9 capabilities &middot; 3 axes</div>
+    <div style="flex:0 0 94px; display:flex; align-items:center; gap:28px; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.05;">Design - What is an agent?</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--c-agent); letter-spacing:.12em; text-transform:uppercase;">PARES capability contract</div>
     </div>
 
-    <!-- Motivation strip -->
-    <div style="flex:0 0 80px; display:flex; align-items:center; padding:16px 80px; border-bottom:1px solid var(--ink-4); background:var(--bg);">
-      <div style="font-family:var(--f-serif); font-size:22px; color:var(--ink-2); font-style:italic; line-height:1.4; max-width:1700px;">
-        Prior systems are described in prose; impossible to compare. <strong style="color:var(--c-agent); font-style:normal;">PARES</strong> turns vague claims into a checklist with exactly 9 yes/no capabilities.
+    <div style="flex:0 0 74px; display:flex; align-items:center; padding:0 80px; border-bottom:1px solid var(--ink-4); background:var(--bg);">
+      <div style="font-family:var(--f-serif); font-size:23px; color:var(--ink-2); font-style:italic; line-height:1.35; max-width:1600px;">
+        An orchestration system is only an <strong style="color:var(--c-agent); font-style:normal;">agent</strong> if it can do all five.
+        <span style="color:var(--ink);">Each card is one required capability.</span>
       </div>
     </div>
 
-    <!-- Three axes grid -->
-    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr 1fr; min-height:0;">
-      <!-- Axis 1 · DEPLOYMENT -->
-      <div style="border-right:2px solid var(--ink); padding:32px 36px; display:flex; flex-direction:column; gap:16px; min-height:0;">
-        <div style="display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; color:var(--c-agent); font-weight:700;">AXIS 1</div>
-          <div style="font-family:var(--f-display); font-size:28px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Deployment</div>
+    <div style="flex:1; display:grid; grid-template-columns:repeat(5, 1fr); gap:18px; padding:24px 50px 18px; min-height:0; background:color-mix(in oklab, var(--c-agent) 2%, var(--bg));">
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink); border-radius:28px; background:var(--bg); overflow:hidden; min-width:0;">
+        <div style="padding:18px 18px 14px; border-bottom:1px solid var(--ink-4); background:color-mix(in oklab, var(--c-agent) 4%, var(--bg));">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:999px; background:var(--c-agent); color:white; font-family:var(--f-mono); font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center;">P</div>
+            <div style="font-family:var(--f-display); font-size:31px; font-weight:700; letter-spacing:-.02em; color:var(--ink);">Perceive</div>
+          </div>
+          <div style="font-size:16px; color:var(--ink-2); margin-top:10px; line-height:1.35;">Read bounded live state from the infrastructure.</div>
         </div>
-        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.08em;">3 capabilities &middot; where the system can run</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="padding:12px 16px; border-left:3px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg));">
-            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; margin-bottom:3px;">Edge</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);">Can execute on constrained nodes close to the service.</div>
-          </div>
-          <div style="padding:12px 16px; border-left:3px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg));">
-            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; margin-bottom:3px;">Cloud</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);">Can execute on hyperscale clusters for heavy reasoning.</div>
-          </div>
-          <div style="padding:12px 16px; border-left:3px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg));">
-            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; margin-bottom:3px;">Pre-Exec. Validation</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);">Simulates plans on a digital twin before touching production.</div>
-          </div>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:18px;">
+          <svg viewBox="0 0 220 170" style="width:100%; height:auto; max-height:210px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="78" y="30" width="108" height="92" rx="26" fill="#FFF4D8" stroke="#111111" stroke-width="6"/>
+            <path d="M22 84H78" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+            <path d="M56 56L84 84L56 112" stroke="#F59E0B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <ellipse cx="132" cy="76" rx="26" ry="18" fill="#DDF5FF" stroke="#111111" stroke-width="6"/>
+            <circle cx="132" cy="76" r="8" fill="#38BDF8"/>
+            <path d="M111 116H154" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M98 134H164" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
 
-      <!-- Axis 2 · LIFECYCLE -->
-      <div style="border-right:2px solid var(--ink); padding:32px 36px; display:flex; flex-direction:column; gap:16px; min-height:0; background:var(--bg-alt);">
-        <div style="display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; color:var(--c-agent); font-weight:700;">AXIS 2</div>
-          <div style="font-family:var(--f-display); font-size:28px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Lifecycle &middot; I &middot; O &middot; P &middot; A</div>
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink); border-radius:28px; background:var(--bg); overflow:hidden; min-width:0;">
+        <div style="padding:18px 18px 14px; border-bottom:1px solid var(--ink-4); background:color-mix(in oklab, var(--c-agent) 4%, var(--bg));">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:999px; background:var(--c-agent); color:white; font-family:var(--f-mono); font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center;">A</div>
+            <div style="font-family:var(--f-display); font-size:31px; font-weight:700; letter-spacing:-.02em; color:var(--ink);">Act</div>
+          </div>
+          <div style="font-size:16px; color:var(--ink-2); margin-top:10px; line-height:1.35;">Use typed tools to change the live system.</div>
         </div>
-        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.08em;">4 capabilities &middot; the full control loop</div>
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <div style="display:grid; grid-template-columns: 52px 1fr; align-items:baseline; gap:10px; padding:10px 0; border-bottom:1px solid var(--ink-4);">
-            <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-agent); text-align:center;">I</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);"><strong>Intent</strong> &middot; translates NL operator goals into structured objectives.</div>
-          </div>
-          <div style="display:grid; grid-template-columns: 52px 1fr; align-items:baseline; gap:10px; padding:10px 0; border-bottom:1px solid var(--ink-4);">
-            <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-agent); text-align:center;">O</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);"><strong>Observe</strong> &middot; aggregates live telemetry into decision features.</div>
-          </div>
-          <div style="display:grid; grid-template-columns: 52px 1fr; align-items:baseline; gap:10px; padding:10px 0; border-bottom:1px solid var(--ink-4);">
-            <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-agent); text-align:center;">P</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);"><strong>Plan</strong> &middot; reasons about actions, validates before committing.</div>
-          </div>
-          <div style="display:grid; grid-template-columns: 52px 1fr; align-items:baseline; gap:10px; padding:10px 0;">
-            <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--c-agent); text-align:center;">A</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);"><strong>Act</strong> &middot; calls the infrastructure API and closes the loop.</div>
-          </div>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:18px;">
+          <svg viewBox="0 0 220 170" style="width:100%; height:auto; max-height:210px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="38" y="22" width="110" height="126" rx="18" fill="#FFF4D8" stroke="#111111" stroke-width="6"/>
+            <path d="M64 52H120" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M64 78H120" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M64 104H108" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <rect x="122" y="34" width="24" height="52" rx="8" fill="#F59E0B" stroke="#111111" stroke-width="6"/>
+            <rect x="148" y="48" width="42" height="18" rx="9" fill="#FFE0B2" stroke="#111111" stroke-width="6"/>
+            <path d="M158 92L110 126" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="102" cy="132" r="10" fill="#FDE68A" stroke="#111111" stroke-width="6"/>
+          </svg>
         </div>
       </div>
 
-      <!-- Axis 3 · STRUCTURE -->
-      <div style="padding:32px 36px; display:flex; flex-direction:column; gap:16px; min-height:0;">
-        <div style="display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; color:var(--c-agent); font-weight:700;">AXIS 3</div>
-          <div style="font-family:var(--f-display); font-size:28px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Structure</div>
-        </div>
-        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.08em;">2 capabilities &middot; engineering maturity</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="padding:12px 16px; border-left:3px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg));">
-            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; margin-bottom:3px;">Multi-agent</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);">Separate agents specialise; no single LLM carries every role.</div>
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink); border-radius:28px; background:var(--bg); overflow:hidden; min-width:0;">
+        <div style="padding:18px 18px 14px; border-bottom:1px solid var(--ink-4); background:color-mix(in oklab, var(--c-agent) 4%, var(--bg));">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:999px; background:var(--c-agent); color:white; font-family:var(--f-mono); font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center;">R</div>
+            <div style="font-family:var(--f-display); font-size:31px; font-weight:700; letter-spacing:-.02em; color:var(--ink);">Reason</div>
           </div>
-          <div style="padding:12px 16px; border-left:3px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg));">
-            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; margin-bottom:3px;">Agent framework</div>
-            <div style="font-size:17px; line-height:1.35; color:var(--ink);">Built on a general orchestration library, not a monolithic script.</div>
-          </div>
+          <div style="font-size:16px; color:var(--ink-2); margin-top:10px; line-height:1.35;">Choose actions from goals, state, and constraints.</div>
         </div>
-        <div style="margin-top:auto; padding:14px 18px; background:var(--ink); color:var(--bg);">
-          <div style="font-family:var(--f-mono); font-size:13px; opacity:.7; letter-spacing:.08em;">NEXT SLIDE</div>
-          <div style="font-size:18px; margin-top:4px; line-height:1.3;">We score <strong style="color:var(--c-agent);">six prior systems</strong> on all 9 capabilities &rarr; the empty green row is the design space.</div>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:18px;">
+          <svg viewBox="0 0 220 170" style="width:100%; height:auto; max-height:210px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M72 122C44 122 28 103 28 79C28 61 40 46 58 42C64 24 80 14 98 14C117 14 133 24 140 40C163 41 182 58 182 82C182 107 162 126 136 126H72Z" fill="#FFCCD5" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M88 40V62" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M120 34V58" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M64 70H148" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M76 98C92 84 116 84 132 98" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <path d="M108 70V108" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink); border-radius:28px; background:var(--bg); overflow:hidden; min-width:0;">
+        <div style="padding:18px 18px 14px; border-bottom:1px solid var(--ink-4); background:color-mix(in oklab, var(--c-agent) 4%, var(--bg));">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:999px; background:var(--c-agent); color:white; font-family:var(--f-mono); font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center;">E</div>
+            <div style="font-family:var(--f-display); font-size:31px; font-weight:700; letter-spacing:-.02em; color:var(--ink);">Evaluate</div>
+          </div>
+          <div style="font-size:16px; color:var(--ink-2); margin-top:10px; line-height:1.35;">Check candidate plans before committing to production.</div>
+        </div>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:18px;">
+          <svg viewBox="0 0 220 170" style="width:100%; height:auto; max-height:210px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="44" y="20" width="112" height="132" rx="18" fill="#FFF8EF" stroke="#111111" stroke-width="6"/>
+            <rect x="78" y="10" width="44" height="22" rx="8" fill="#D6D3D1" stroke="#111111" stroke-width="6"/>
+            <rect x="64" y="50" width="18" height="18" rx="4" stroke="#111111" stroke-width="6"/>
+            <path d="M68 58L73 63L82 54" stroke="#111111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M96 58H136" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <rect x="64" y="84" width="18" height="18" rx="4" stroke="#111111" stroke-width="6"/>
+            <path d="M68 92L73 97L82 88" stroke="#111111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M96 92H132" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="154" cy="112" r="28" fill="#DDF5FF" stroke="#111111" stroke-width="6"/>
+            <path d="M174 132L194 152" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink); border-radius:28px; background:var(--bg); overflow:hidden; min-width:0;">
+        <div style="padding:18px 18px 14px; border-bottom:1px solid var(--ink-4); background:color-mix(in oklab, var(--c-agent) 4%, var(--bg));">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:999px; background:var(--c-agent); color:white; font-family:var(--f-mono); font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center;">S</div>
+            <div style="font-family:var(--f-display); font-size:31px; font-weight:700; letter-spacing:-.02em; color:var(--ink);">Sustain</div>
+          </div>
+          <div style="font-size:16px; color:var(--ink-2); margin-top:10px; line-height:1.35;">Stay coherent across multi-step, changing interactions.</div>
+        </div>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:18px;">
+          <svg viewBox="0 0 220 170" style="width:100%; height:auto; max-height:210px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M54 44C74 24 104 18 132 24" stroke="#10B981" stroke-width="10" stroke-linecap="round"/>
+            <path d="M126 16L144 24L132 40" fill="#10B981"/>
+            <path d="M172 58C190 80 194 112 182 138" stroke="#10B981" stroke-width="10" stroke-linecap="round"/>
+            <path d="M192 130L182 148L164 136" fill="#10B981"/>
+            <path d="M150 150C124 164 92 162 66 148" stroke="#10B981" stroke-width="10" stroke-linecap="round"/>
+            <path d="M72 158L52 152L62 134" fill="#10B981"/>
+            <circle cx="110" cy="92" r="32" fill="#C7D2FE" stroke="#111111" stroke-width="6"/>
+            <path d="M110 76L117 84C119 86 122 86 124 84C128 80 134 80 138 84C142 88 142 94 138 98L110 122L82 98C78 94 78 88 82 84C86 80 92 80 96 84C98 86 101 86 103 84L110 76Z" fill="#DDF5FF" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+          </svg>
         </div>
       </div>
     </div>
+
   </div>
   <div class="chrome-bot">
-    <div class="meta-left">PARES &middot; 3 axes &middot; 9 yes/no capabilities &middot; a common yardstick</div>
+    <div class="meta-left">What is an agent? &middot; PARES = 5 required capabilities &middot; roles come after the contract</div>
     <div class="meta-right">&sect;4 AgentEdge</div>
   </div>
 </section>

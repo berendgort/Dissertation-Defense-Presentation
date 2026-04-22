@@ -1,4 +1,4 @@
-<section class="slide" data-section="synth" data-label="47 Synthesis · stack + anchor results">
+<section class="slide" data-section="synth" data-label="47 Publication mapping">
   <div class="chrome-top">
     <div class="section-bar"></div>
     <div class="eyebrow"><span class="eyb-tag">Synthesis</span></div>
@@ -6,135 +6,197 @@
     <div></div>
   </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
-    <!-- Title strip -->
-    <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
-      <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; margin:0; letter-spacing:-.02em;">One operator stack, nine anchors</h1>
+    <div style="flex:0 0 76px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; margin:0; letter-spacing:-.02em; color:var(--ink);">Publication Mapping</h1>
     </div>
-
-    <!-- L1 Operator layer -->
-    <div style="flex:0 0 96px; display:grid; grid-template-columns:180px 8px 1fr auto; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 6%, var(--bg));">
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:0 24px; border-right:1px solid var(--ink-4); background:var(--bg);">
-        <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L1</div>
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); line-height:1.3; margin-top:4px;">Operator</div>
-      </div>
-      <div style="background:var(--c-agent);"></div>
-      <div style="padding:12px 40px; display:flex; align-items:center; gap:24px;">
-        <div style="flex:1;">
-          <div style="font-size:22px; font-weight:700; line-height:1.15; color:var(--ink);">Sets intent &middot; reviews exceptions only</div>
-          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); margin-top:2px;">NL goals &rarr; SLA &middot; energy &middot; cost</div>
+    <div style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(0, 1fr) 620px;">
+      <div style="display:flex; flex-direction:column; min-width:0; min-height:0;">
+      <div style="flex:1; min-height:0; display:grid; grid-template-columns:92px 8px 1fr auto; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 6%, var(--bg));">
+        <div style="display:flex; justify-content:center; align-items:center; padding:0 12px; border-right:1px solid var(--ink-4); box-shadow: inset 0 -2px 0 var(--ink); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L1</div>
         </div>
-      </div>
-      <div style="display:flex; align-items:center; padding:0 28px;">
-        <div style="background:var(--c-agent); padding:8px 14px; font-family:var(--f-mono); font-size:16px; font-weight:700; color:#fff; letter-spacing:.06em;">AgentEdge</div>
-      </div>
-    </div>
-
-    <!-- L2 Decision layer · with anchor -->
-    <div style="flex:0 0 128px; display:grid; grid-template-columns:180px 8px 1fr auto; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 6%, var(--bg));">
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:0 24px; border-right:1px solid var(--ink-4); background:var(--bg);">
-        <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L2</div>
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); line-height:1.3; margin-top:4px;">Decision</div>
-      </div>
-      <div style="background:var(--c-agent);"></div>
-      <div style="padding:14px 40px; display:flex; align-items:center; gap:28px;">
-        <div style="flex:1;">
-          <div style="font-size:22px; font-weight:700; line-height:1.2; color:var(--ink);">Intent &rarr; validated orchestration actions</div>
-          <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); margin-top:3px;">4-agent graph &middot; ActSimCrit + digital-twin gate</div>
-        </div>
-        <div style="display:flex; gap:18px; align-items:baseline; flex-shrink:0;">
-          <div style="text-align:right;">
-            <div style="font-family:var(--f-display); font-size:30px; font-weight:700; color:var(--c-agent); line-height:1;">78.3 %</div>
-            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">success &middot; 60 runs</div>
-          </div>
-          <div style="width:1px; height:38px; background:var(--ink-4);"></div>
-          <div style="text-align:right;">
-            <div style="font-family:var(--f-display); font-size:30px; font-weight:700; color:var(--c-agent); line-height:1;">55.5 %</div>
-            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">energy saved &middot; 18 nodes</div>
+        <div style="background:var(--c-agent); box-shadow: inset 0 -2px 0 var(--ink);"></div>
+        <div style="padding:22px 40px; display:flex; align-items:center; gap:28px;">
+          <svg width="40" height="40" viewBox="0 0 54 54" style="flex-shrink:0;">
+            <circle cx="27" cy="18" r="11" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+            <path d="M4,52 Q4,36 27,36 Q50,36 50,52" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+          </svg>
+          <div style="flex:1;">
+            <div style="font-size:36px; font-weight:700; letter-spacing:-.02em; line-height:1.1; color:var(--ink);">Operator sets intent. The loop does the rest.</div>
           </div>
         </div>
+        <div style="display:flex; align-items:center; padding:0 28px;">
+          <div style="border:2px solid var(--c-agent); padding:10px 18px; font-family:var(--f-mono); font-size:22px; font-weight:600; color:var(--c-agent); letter-spacing:.02em; white-space:nowrap;">AgentEdge</div>
+        </div>
       </div>
-      <div style="display:flex; align-items:center; padding:0 28px;">
-        <div style="background:var(--c-agent); padding:8px 14px; font-family:var(--f-mono); font-size:16px; font-weight:700; color:#fff; letter-spacing:.06em;">AgentEdge</div>
+      <div style="flex:1; min-height:0; display:grid; grid-template-columns:92px 8px 1fr auto; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 6%, var(--bg));">
+        <div style="display:flex; justify-content:center; align-items:center; padding:0 12px; border-right:1px solid var(--ink-4); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L2</div>
+        </div>
+        <div style="background:var(--c-agent);"></div>
+        <div style="padding:22px 40px; display:flex; align-items:center; gap:28px;">
+          <div style="flex:1;">
+            <div style="font-size:36px; font-weight:700; letter-spacing:-.02em; line-height:1.1; color:var(--ink);">No intelligent path from intent to orchestration action</div>
+          </div>
+          <svg width="140" height="86" viewBox="0 0 180 110" style="flex-shrink:0;">
+            <circle cx="18" cy="28" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="18" cy="60" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="18" cy="92" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="68" cy="16" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="68" cy="54" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="68" cy="92" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="118" cy="36" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="118" cy="74" r="10" fill="none" stroke="var(--c-agent)" stroke-width="2"/>
+            <circle cx="164" cy="55" r="14" fill="var(--c-agent)"/>
+            <g stroke="var(--c-agent)" stroke-width="1" opacity=".45">
+              <line x1="28" y1="30" x2="58" y2="18"/>
+              <line x1="28" y1="62" x2="58" y2="54"/>
+              <line x1="28" y1="90" x2="58" y2="92"/>
+              <line x1="78" y1="20" x2="108" y2="38"/>
+              <line x1="78" y1="56" x2="108" y2="38"/>
+              <line x1="78" y1="56" x2="108" y2="74"/>
+              <line x1="78" y1="92" x2="108" y2="74"/>
+              <line x1="128" y1="40" x2="150" y2="52"/>
+              <line x1="128" y1="74" x2="150" y2="58"/>
+            </g>
+          </svg>
+        </div>
+        <div style="display:flex; align-items:center; padding:0 28px;">
+          <div style="border:2px solid var(--c-agent); padding:10px 18px; font-family:var(--f-mono); font-size:22px; font-weight:600; color:var(--c-agent); letter-spacing:.02em; white-space:nowrap;">AgentEdge</div>
+        </div>
       </div>
-    </div>
-
-    <!-- L3 Prediction layer · split AERO / OmniFORE with anchor numbers -->
-    <div style="flex:0 0 172px; display:grid; grid-template-columns:180px 1fr; border-bottom:2px solid var(--ink);">
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:0 24px; border-right:1px solid var(--ink-4); background:var(--bg);">
-        <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L3</div>
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); line-height:1.3; margin-top:4px;">Prediction</div>
+      <div style="flex:1; min-height:0; display:grid; grid-template-columns:92px 1fr;">
+        <div style="display:flex; justify-content:center; align-items:center; padding:0 12px; border-right:1px solid var(--ink-4); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L3</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1px 1fr;">
+          <div style="display:grid; grid-template-columns:8px 1fr auto; background:color-mix(in oklab, var(--c-aero) 6%, var(--bg));">
+            <div style="background:var(--c-aero);"></div>
+            <div style="padding:20px 36px;">
+              <div style="font-size:26px; font-weight:700; color:var(--ink); line-height:1.1;">No accurate per-node forecasts exist today</div>
+              <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); margin-top:4px;">small models are inaccurate &middot; accurate models don't fit</div>
+            </div>
+            <div style="display:flex; align-items:center; padding:0 24px;">
+              <div style="border:2px solid var(--c-aero); padding:8px 14px; font-family:var(--f-mono); font-size:19px; font-weight:600; color:var(--c-aero); letter-spacing:.02em; white-space:nowrap;">AERO</div>
+            </div>
+          </div>
+          <div style="background:var(--ink-4);"></div>
+          <div style="display:grid; grid-template-columns:8px 1fr auto; background:color-mix(in oklab, var(--c-omnifore) 6%, var(--bg));">
+            <div style="background:var(--c-omnifore);"></div>
+            <div style="padding:20px 36px;">
+              <div style="font-size:26px; font-weight:700; color:var(--ink); line-height:1.1;">A new model must be refit for every service</div>
+              <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); margin-top:4px;">custom pipeline per workload</div>
+            </div>
+            <div style="display:flex; align-items:center; padding:0 24px;">
+              <div style="border:2px solid var(--c-omnifore); padding:8px 14px; font-family:var(--f-mono); font-size:19px; font-weight:600; color:var(--c-omnifore); letter-spacing:.02em; white-space:nowrap;">OmniFORE</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1px 1fr;">
-        <!-- AERO -->
-        <div style="display:grid; grid-template-columns:8px 1fr auto; background:color-mix(in oklab, var(--c-aero) 6%, var(--bg));">
-          <div style="background:var(--c-aero);"></div>
-          <div style="padding:14px 32px; display:flex; flex-direction:column; justify-content:center; gap:6px;">
-            <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-aero);">Per-node forecasts</div>
-            <div style="font-size:20px; font-weight:700; color:var(--ink); line-height:1.15;">Runs where the service runs</div>
-            <div style="display:flex; gap:20px; align-items:baseline; margin-top:4px;">
-              <div>
-                <span style="font-family:var(--f-display); font-size:26px; font-weight:700; color:var(--c-aero);">599</span>
-                <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-left:4px;">params</span>
+      <div style="flex:1; min-height:0; display:grid; grid-template-columns:92px 8px 1fr; border-top:2px solid var(--ink); background:var(--bg-alt);">
+        <div style="display:flex; justify-content:center; align-items:center; padding:0 12px; border-right:1px solid var(--ink-4); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L4</div>
+        </div>
+        <div style="background:var(--ink-3);"></div>
+        <div style="display:grid; grid-template-columns:1fr 1px 1fr; min-height:0;">
+          <div style="padding:16px 36px; display:flex; flex-direction:column; gap:10px; justify-content:center; background:var(--bg-alt);">
+            <div style="display:flex; gap:8px; flex-wrap:wrap;"><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg><svg width="40" height="40" viewBox="0 0 44 44"><rect x="1" y="1" width="42" height="42" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="6" y="8" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="17" width="32" height="6" fill="var(--ink-4)"/><rect x="6" y="26" width="32" height="6" fill="var(--ink-4)"/></svg></div>
+            <div style="font-family:var(--f-mono); font-size:16px; color:var(--ink-4);">tiny compute &middot; heterogeneous</div>
+          </div>
+          <div style="background:var(--ink-4);"></div>
+          <div style="display:flex; flex-direction:column; gap:0;">
+            <div style="flex:1; padding:16px 36px; display:flex; flex-direction:column; gap:10px; justify-content:center; background:var(--bg-alt); border-bottom:1px solid var(--ink-4);">
+              <div style="display:flex; gap:14px;"><svg width="66" height="66" viewBox="0 0 80 80"><rect x="1" y="1" width="78" height="78" fill="var(--bg)" stroke="var(--ink-2)" stroke-width="2"/><rect x="8" y="8" width="26" height="26" fill="var(--ink-3)"/><rect x="13" y="13" width="16" height="16" fill="var(--ink)"/><rect x="8" y="42" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="54" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="66" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="42" width="28" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="54" width="22" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="66" width="34" height="8" fill="var(--ink-3)" rx="1"/><circle cx="44" cy="22" r="4" fill="var(--ink-4)"/><circle cx="54" cy="22" r="4" fill="var(--ink-2)"/><circle cx="64" cy="22" r="4" fill="var(--ink-4)"/></svg> <svg width="66" height="66" viewBox="0 0 80 80"><rect x="1" y="1" width="78" height="78" fill="var(--bg)" stroke="var(--ink-2)" stroke-width="2"/><rect x="8" y="8" width="26" height="26" fill="var(--ink-3)"/><rect x="13" y="13" width="16" height="16" fill="var(--ink)"/><rect x="8" y="42" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="54" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="66" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="42" width="34" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="54" width="29" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="66" width="39" height="8" fill="var(--ink-3)" rx="1"/><circle cx="44" cy="22" r="4" fill="var(--ink-4)"/><circle cx="54" cy="22" r="4" fill="var(--ink-2)"/><circle cx="64" cy="22" r="4" fill="var(--ink-4)"/></svg> <svg width="66" height="66" viewBox="0 0 80 80"><rect x="1" y="1" width="78" height="78" fill="var(--bg)" stroke="var(--ink-2)" stroke-width="2"/><rect x="8" y="8" width="26" height="26" fill="var(--ink-3)"/><rect x="13" y="13" width="16" height="16" fill="var(--ink)"/><rect x="8" y="42" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="54" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="66" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="42" width="40" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="54" width="36" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="66" width="44" height="8" fill="var(--ink-3)" rx="1"/><circle cx="44" cy="22" r="4" fill="var(--ink-4)"/><circle cx="54" cy="22" r="4" fill="var(--ink-2)"/><circle cx="64" cy="22" r="4" fill="var(--ink-4)"/></svg> <svg width="66" height="66" viewBox="0 0 80 80"><rect x="1" y="1" width="78" height="78" fill="var(--bg)" stroke="var(--ink-2)" stroke-width="2"/><rect x="8" y="8" width="26" height="26" fill="var(--ink-3)"/><rect x="13" y="13" width="16" height="16" fill="var(--ink)"/><rect x="8" y="42" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="54" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="66" width="64" height="8" fill="var(--ink-5)" rx="1"/><rect x="8" y="42" width="46" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="54" width="43" height="8" fill="var(--ink-3)" rx="1"/><rect x="8" y="66" width="49" height="8" fill="var(--ink-3)" rx="1"/><circle cx="44" cy="22" r="4" fill="var(--ink-4)"/><circle cx="54" cy="22" r="4" fill="var(--ink-2)"/><circle cx="64" cy="22" r="4" fill="var(--ink-4)"/></svg></div>
+              <div style="font-family:var(--f-mono); font-size:16px; color:var(--ink-4);">mid-to-high compute &middot; datacenters or edge clusters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div style="display:grid; grid-template-rows:1fr 1fr 1fr 1fr; min-width:0; min-height:0; border-left:2px solid var(--ink); background:var(--bg);">
+        <div style="display:grid; grid-template-columns:18px 1fr; min-height:0; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 9%, var(--bg));">
+          <div style="background:var(--c-agent);"></div>
+          <div style="padding:16px 22px 14px 18px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+            <div style="display:flex; align-items:baseline; gap:12px;">
+              <div style="font-family:var(--f-mono); font-size:16px; font-weight:700; color:var(--c-agent);">L1</div>
+              <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; letter-spacing:.08em; color:var(--c-agent);">AgentEdge</div>
+            </div>
+            <div style="font-size:21px; font-weight:700; color:var(--ink); line-height:1.12;">[J1] Distributed Agentic AI Framework for Autonomous Edge-Cloud Service Orchestration</div>
+            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">IEEE TMLCN &middot; under review</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:18px 1fr; min-height:0; border-bottom:2px solid var(--ink); background:color-mix(in oklab, var(--c-agent) 9%, var(--bg));">
+          <div style="background:var(--c-agent);"></div>
+          <div style="padding:16px 22px 14px 18px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+            <div style="display:flex; align-items:baseline; gap:12px;">
+              <div style="font-family:var(--f-mono); font-size:16px; font-weight:700; color:var(--c-agent);">L2</div>
+              <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; letter-spacing:.08em; color:var(--c-agent);">AgentEdge</div>
+            </div>
+            <div style="font-size:21px; font-weight:700; color:var(--ink); line-height:1.12;">[C1] Agentic AI with Emulation-assisted Prevalidation for Edge-Cloud Service Orchestration</div>
+            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">IEEE SECON 2026 &middot; under review</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1px 1fr; min-height:0;">
+          <div style="display:grid; grid-template-columns:18px 1fr; min-height:0; background:color-mix(in oklab, var(--c-aero) 9%, var(--bg));">
+            <div style="background:var(--c-aero);"></div>
+            <div style="padding:14px 18px 12px 14px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+              <div style="display:flex; align-items:baseline; gap:10px;">
+                <div style="font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-aero);">L3</div>
+                <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--c-aero);">AERO</div>
               </div>
-              <div>
-                <span style="font-family:var(--f-display); font-size:26px; font-weight:700; color:var(--c-aero);">0.38 ms</span>
-                <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-left:4px;">inference</span>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <div>
+                  <div style="font-size:15px; font-weight:700; color:var(--ink); line-height:1.12;">[J4] AERO: Adaptive Edge-Cloud Orchestration With a Sub-1K-Parameter Forecasting Model</div>
+                  <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-top:3px;">IEEE TMLCN 2025</div>
+                </div>
+                <div>
+                  <div style="font-size:15px; font-weight:700; color:var(--ink); line-height:1.12;">[C3] Optimization of Distinct Time-Series Neural Architectures for Cloud-Edge Workload Prediction</div>
+                  <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-top:3px;">IEEE ICMLCN 2025</div>
+                </div>
               </div>
             </div>
           </div>
-          <div style="display:flex; align-items:center; padding:0 20px;">
-            <div style="background:var(--c-aero); padding:7px 12px; font-family:var(--f-mono); font-size:15px; font-weight:700; color:#fff; letter-spacing:.06em;">AERO</div>
-          </div>
-        </div>
-        <div style="background:var(--ink-4);"></div>
-        <!-- OmniFORE -->
-        <div style="display:grid; grid-template-columns:8px 1fr auto; background:color-mix(in oklab, var(--c-omnifore) 6%, var(--bg));">
-          <div style="background:var(--c-omnifore);"></div>
-          <div style="padding:14px 32px; display:flex; flex-direction:column; justify-content:center; gap:6px;">
-            <div style="font-family:var(--f-mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-omnifore);">Shared cross-service</div>
-            <div style="font-size:20px; font-weight:700; color:var(--ink); line-height:1.15;">One model &middot; no per-service retraining</div>
-            <div style="display:flex; gap:20px; align-items:baseline; margin-top:4px;">
-              <div>
-                <span style="font-family:var(--f-display); font-size:26px; font-weight:700; color:var(--c-omnifore);">&minus;30.41 %</span>
-                <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-left:4px;">MAE &middot; cross-dataset</span>
+          <div style="background:var(--ink-4);"></div>
+          <div style="display:grid; grid-template-columns:18px 1fr; min-height:0; background:color-mix(in oklab, var(--c-omnifore) 10%, var(--bg));">
+            <div style="background:var(--c-omnifore);"></div>
+            <div style="padding:14px 18px 12px 14px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+              <div style="display:flex; align-items:baseline; gap:10px;">
+                <div style="font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-omnifore);">L3</div>
+                <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--c-omnifore);">OmniFORE</div>
               </div>
-              <div>
-                <span style="font-family:var(--f-display); font-size:26px; font-weight:700; color:var(--c-omnifore);">1 model</span>
-                <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-left:4px;">zero-shot to new services</span>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div>
+                  <div style="font-size:15px; font-weight:700; color:var(--ink); line-height:1.12;">[J3] Attention-Driven AI Model Generalization for Workload Forecasting in the Compute Continuum</div>
+                  <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-top:3px;">IEEE TMLCN 2025</div>
+                </div>
+                <div>
+                  <div style="font-size:15px; font-weight:700; color:var(--ink); line-height:1.12;">[J5] Forecasting Trends in Cloud-Edge Computing: Unleashing the Power of Attention Mechanisms</div>
+                  <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-top:3px;">IEEE Comms. Mag. 2025</div>
+                </div>
+                <div>
+                  <div style="font-size:15px; font-weight:700; color:var(--ink); line-height:1.12;">[C2] OmniFORE: Attention-Based Generalization Framework for Edge-Cloud Workload Predictions</div>
+                  <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-top:3px;">IEEE ISCC 2025</div>
+                </div>
               </div>
             </div>
           </div>
-          <div style="display:flex; align-items:center; padding:0 20px;">
-            <div style="background:var(--c-omnifore); padding:7px 12px; font-family:var(--f-mono); font-size:15px; font-weight:700; color:#fff; letter-spacing:.06em;">OmniFORE</div>
+        </div>
+        <div style="display:grid; grid-template-columns:18px 1fr; min-height:0; border-top:2px solid var(--ink); background:var(--bg-alt);">
+          <div style="background:var(--ink-2);"></div>
+          <div style="padding:16px 22px 14px 18px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+            <div style="display:flex; align-items:baseline; gap:12px;">
+              <div style="font-family:var(--f-mono); font-size:16px; font-weight:700; color:var(--ink-2);">L4</div>
+              <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; letter-spacing:.08em; color:var(--ink-2);">Related output</div>
+            </div>
+            <div style="font-size:21px; font-weight:700; color:var(--ink); line-height:1.12;">[B1] Intelligent orchestration mechanisms for image workload placement</div>
+            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">Elsevier 2026</div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- L4 Service-orch + L5 Infra (neutral) -->
-    <div style="flex:1; min-height:0; display:grid; grid-template-columns:180px 8px 1fr; background:var(--bg-alt);">
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:0 24px; border-right:1px solid var(--ink-4); background:var(--bg);">
-        <div style="font-family:var(--f-mono); font-size:22px; font-weight:700; color:var(--ink);">L4 / L5</div>
-        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); line-height:1.3; margin-top:4px;">Service-orch<br>&middot; Infrastructure</div>
-      </div>
-      <div style="background:var(--ink-3);"></div>
-      <div style="padding:16px 36px; display:flex; align-items:center; gap:30px;">
-        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase; flex:1;">Kubernetes API &middot; 12 endpoints &middot; consumed by AgentEdge</div>
-        <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase; flex:1;">far edge &middot; aggregation &middot; cloud &middot; heterogeneous</div>
-      </div>
-    </div>
-
-    <!-- Footer banner · 8 publications pointer -->
-    <div style="flex:0 0 72px; display:flex; align-items:center; padding:0 56px; background:var(--ink); color:var(--bg); gap:24px; border-top:2px solid var(--ink);">
-      <div style="font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.18em; opacity:.7; flex-shrink:0;">PUBLICATIONS</div>
-      <div style="width:2px; height:44px; background:rgba(255,255,255,.2); flex-shrink:0;"></div>
-      <div style="font-size:18px; line-height:1.35; opacity:.92;">
-        <strong>8 total</strong> &middot; 4 Journal + 3 Conference + 1 Book Chapter. Full list on backup slide <strong>B7</strong>.
       </div>
     </div>
   </div>
   <div class="chrome-bot">
-    <div class="meta-left">Three contributions &middot; one stack &middot; anchor numbers in-line &middot; publications &rarr; B7</div>
+    <div class="meta-left">Contribution labels on the stack &middot; publications aligned to L1-L4 on the right &middot; full list on B7</div>
     <div class="meta-right">&sect;5 Synthesis</div>
   </div>
 </section>

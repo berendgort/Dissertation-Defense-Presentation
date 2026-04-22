@@ -1,193 +1,360 @@
 <section class="slide" data-section="agent" data-label="35 AgentEdge SotA">
  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">State of the Art</span></div><div class="counter"><span class="num">35</span><span class="sep">/</span>53 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+  <div style="flex:0 0 74px; display:flex; align-items:center; padding:0 48px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+   <h1 style="font-family:var(--f-display); font-size:38px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">State-of-the-art:</h1>
+  </div>
 
- <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
- <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">State of the Art - load-bearing gaps remain</h1>
+  <div style="flex:0 0 52px; display:flex; align-items:center; padding:0 48px; border-bottom:1px solid var(--ink-4); background:var(--bg);">
+   <div style="font-size:16px; line-height:1.3; color:var(--ink-2);"><strong style="color:var(--c-agent); font-style:normal;">Ref.</strong> maps each row to the citation panel at right. <strong style="color:var(--c-agent); font-style:normal;">PARES = Perceive, Act, Reason, Evaluate, Sustain.</strong></div>
+  </div>
+
+  <div style="flex:1; padding:10px 48px 12px; display:grid; grid-template-columns:minmax(0,1.58fr) minmax(0,.92fr); gap:18px; min-height:0;">
+   <div style="display:flex; flex-direction:column; gap:10px; min-height:0;">
+    <div style="flex:1; min-height:0; border:1.5px solid var(--ink); background:var(--bg); overflow:hidden;">
+     <table style="width:100%; height:100%; border-collapse:collapse; table-layout:fixed;">
+      <colgroup>
+       <col style="width:31%;">
+       <col style="width:6%;">
+       <col style="width:6%;">
+       <col style="width:6.5%;">
+       <col style="width:6.5%;">
+       <col style="width:8%;">
+       <col style="width:5%;">
+       <col style="width:5%;">
+       <col style="width:5%;">
+       <col style="width:5%;">
+       <col style="width:5%;">
+       <col style="width:11%;">
+      </colgroup>
+      <thead>
+       <tr style="background:var(--ink); color:var(--bg);">
+        <th rowspan="2" class="sota-head-left">Approach</th>
+        <th rowspan="2" class="sota-head">Ref.</th>
+        <th rowspan="2" class="sota-head">Lit.</th>
+        <th colspan="3" class="sota-head-group">Deployment</th>
+        <th colspan="5" class="sota-head-group">PARES</th>
+        <th rowspan="2" class="sota-head">Multi-Agent</th>
+       </tr>
+       <tr style="background:var(--bg-alt); border-bottom:2px solid var(--ink);">
+        <th class="sota-subhead">Edge</th>
+        <th class="sota-subhead">Cloud</th>
+        <th class="sota-subhead">Pre-Exec</th>
+        <th class="sota-subhead pares-col">P</th>
+        <th class="sota-subhead pares-col">A</th>
+        <th class="sota-subhead pares-col">R</th>
+        <th class="sota-subhead pares-col">E</th>
+        <th class="sota-subhead pares-col">S</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr class="sota-row" style="background:var(--bg-alt);">
+        <td class="sota-approach"><div class="sota-name">Intent Translation</div></td>
+        <td class="sota-center ref-col">[1]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+       </tr>
+       <tr class="sota-row">
+        <td class="sota-approach"><div class="sota-name">Wireless Agent</div></td>
+        <td class="sota-center ref-col">[2]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+       </tr>
+       <tr class="sota-row" style="background:var(--bg-alt);">
+        <td class="sota-approach"><div class="sota-name">Fault Agent</div></td>
+        <td class="sota-center ref-col">[3]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+       </tr>
+       <tr class="sota-row">
+        <td class="sota-approach"><div class="sota-name">Chain-of-Agent</div></td>
+        <td class="sota-center ref-col">[4]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+       </tr>
+       <tr class="sota-row" style="background:var(--bg-alt);">
+        <td class="sota-approach"><div class="sota-name">Multi-Agent MAS</div></td>
+        <td class="sota-center ref-col">[5]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+       </tr>
+       <tr class="sota-row">
+        <td class="sota-approach"><div class="sota-name">Service Orchestration</div></td>
+        <td class="sota-center ref-col">[6]</td>
+        <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+       </tr>
+       <tr class="sota-row" style="background:color-mix(in oklab,var(--ink) 4%,var(--bg));">
+        <td class="sota-approach"><div class="sota-name">ReAct</div></td>
+        <td class="sota-center ref-col">[7]</td>
+        <td class="sota-center"><span class="lit-badge lit-ml">ML</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+       </tr>
+       <tr class="sota-row" style="background:color-mix(in oklab,var(--ink) 4%,var(--bg));">
+        <td class="sota-approach"><div class="sota-name">LATS</div></td>
+        <td class="sota-center ref-col">[8]</td>
+        <td class="sota-center"><span class="lit-badge lit-ml">ML</span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-yes"></span></td>
+        <td class="sota-center"><span class="cap-no"></span></td>
+       </tr>
+       <tr class="sota-row" style="background:color-mix(in oklab,var(--c-agent) 12%,var(--bg)); border-top:3px solid var(--ink);">
+        <td class="sota-approach"><div class="sota-name" style="font-size:18px; font-weight:700; color:var(--ink);">AgentEdge</div><div class="sota-note" style="color:var(--c-agent); font-weight:700;">ours</div></td>
+        <td class="sota-center ref-col"><span class="ref-empty">-</span></td>
+        <td class="sota-center"><span class="lit-badge lit-ours">OURS</span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+        <td class="sota-center"><span class="cap-ours"></span></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:18px; font-family:var(--f-mono); font-size:11px; color:var(--ink-3);">
+     <div style="display:flex; align-items:center; gap:8px;"><span class="cap-yes" style="width:13px; height:13px;"></span>present</div>
+     <div style="display:flex; align-items:center; gap:8px;"><span class="cap-no" style="width:13px; height:13px;"></span>absent</div>
+     <div style="margin-left:auto;">[7]-[8] are PARES-complete ML baselines.</div>
+    </div>
+
+   </div>
+
+   <div style="display:flex; flex-direction:column; min-height:0; border:1.5px solid var(--ink); background:var(--bg-alt);">
+    <div style="padding:10px 14px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:10px;">
+     <div class="mono-tag" style="color:var(--c-agent); margin:0;">References</div>
+     <div style="margin-left:auto; font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3);">numbers match Ref. column</div>
+    </div>
+    <div style="padding:10px 12px 12px; display:flex; flex-direction:column; gap:8px; min-height:0;">
+     <div class="refs-label">6G literature</div>
+     <div class="ref-entry"><div class="ref-num">[1]</div><div class="ref-body"><strong>Mekrache &amp; Ksentini.</strong> LLM-Enabled Intent-Driven Service Configuration for Next Generation Networks. <em>NetSoft '24</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[2]</div><div class="ref-body"><strong>Tong et al.</strong> WirelessAgent: Large Language Model Agents for Intelligent Wireless Networks. <em>arXiv '25</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[3]</div><div class="ref-body"><strong>Fang et al.</strong> Large Language Model Enhanced Autonomous Agents for Proactive Fault-Tolerant Edge Networks. <em>INFOCOM WKSHPS '24</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[4]</div><div class="ref-body"><strong>Ayed et al.</strong> Hermes: A Large Language Model Framework on the Journey to Autonomous Networks. <em>arXiv '24</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[5]</div><div class="ref-body"><strong>Chatzistefanidis et al.</strong> Maestro: LLM-Driven Collaborative Automation of Intent-Based 6G Networks. <em>IEEE Netw. Lett. '24</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[6]</div><div class="ref-body"><strong>Brodimas et al.</strong> Intent-Based Infrastructure and Service Orchestration Using Agentic-AI. <em>IEEE OJ-COMS '25</em>.</div></div>
+
+     <div class="refs-label" style="margin-top:4px;">ML baselines</div>
+     <div class="ref-entry"><div class="ref-num">[7]</div><div class="ref-body"><strong>Yao et al.</strong> ReAct: Synergizing Reasoning and Acting in Language Models. <em>arXiv '22</em>.</div></div>
+     <div class="ref-entry"><div class="ref-num">[8]</div><div class="ref-body"><strong>Zhou et al.</strong> Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models. <em>ICML '24</em>.</div></div>
+    </div>
+   </div>
+  </div>
+
+  <style>
+   .sota-head-left, .sota-head, .sota-head-group {
+    padding: 9px 8px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: center;
+   }
+   .sota-head-left {
+    text-align: left;
+    padding-left: 12px;
+   }
+   .sota-head-group {
+    font-weight: 700;
+   }
+   .sota-subhead {
+    padding: 7px 4px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-2);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: center;
+   }
+   .pares-col {
+    color: var(--c-agent);
+    font-weight: 700;
+   }
+   .sota-row td {
+    border-bottom: 1px solid var(--ink-4);
+   }
+   .sota-row:last-child td {
+    border-bottom: none;
+   }
+   .sota-approach {
+    padding: 8px 10px 8px 12px;
+    text-align: left;
+   }
+   .sota-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+   }
+   .sota-note {
+    margin-top: 2px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+   }
+   .sota-center {
+    padding: 6px 4px;
+    text-align: center;
+   }
+   .ref-col {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-2);
+    letter-spacing: .04em;
+   }
+   .ref-empty {
+    opacity: .35;
+   }
+   .cap-yes, .cap-no, .cap-ours {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+   }
+   .cap-yes {
+    background: var(--c-sota-green);
+   }
+   .cap-no {
+    border: 1.4px solid var(--c-sota-red);
+    background: none;
+   }
+   .cap-ours {
+    background: var(--c-sota-green);
+    box-shadow: 0 0 0 2px rgba(255,255,255,.85);
+   }
+   .lit-badge, .lit-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+   }
+   .lit-inline {
+    padding: 1px 7px;
+    font-size: 11px;
+    vertical-align: middle;
+   }
+   .lit-6g {
+    background: #eaf1f8;
+    color: #234f78;
+   }
+   .lit-ml {
+    background: #f1ebf8;
+    color: #5b3d78;
+   }
+   .lit-ours {
+    background: var(--c-agent);
+    color: white;
+   }
+   .refs-label {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-agent);
+   }
+   .ref-entry {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 8px;
+    align-items: start;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--ink-4);
+   }
+   .ref-num {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--c-agent);
+    padding-top: 1px;
+   }
+   .ref-body {
+    font-size: 11.5px;
+    line-height: 1.28;
+    color: var(--ink);
+   }
+   .ref-body em {
+    font-style: italic;
+    color: var(--ink-2);
+   }
+  </style>
  </div>
-
- <div style="flex:1; display:grid; grid-template-columns: 2fr 1fr; min-height:0; align-items:center;">
-
- <!-- LEFT: dot matrix -->
- <div style="padding:0 40px 0 80px; display:flex; flex-direction:column; gap:0; min-height:0; justify-content:center;">
-
- <!-- column headers -->
- <div style="display:grid; grid-template-columns: 240px repeat(3, 1fr) 14px repeat(4, 1fr) 14px repeat(2, 1.15fr); gap:0; align-items:end; padding-bottom:10px; border-bottom:1px solid var(--ink); font-family:var(--f-mono); font-size:13px; color:var(--ink-2); letter-spacing:.05em; text-transform:uppercase;">
- <div></div>
- <div style="text-align:center;">Edge</div>
- <div style="text-align:center;">Cloud</div>
- <div style="text-align:center; line-height:1.1;">Pre-Exec<br>Valid.</div>
- <div></div>
- <div style="text-align:center;">I</div>
- <div style="text-align:center;">O</div>
- <div style="text-align:center;">P</div>
- <div style="text-align:center;">A</div>
- <div></div>
- <div style="text-align:center; line-height:1.1;">Multi-<br>Agent</div>
- <div style="text-align:center; line-height:1.1;">Agent<br>Framework</div>
- </div>
-
- <!-- rows -->
- <div id="sota-rows" style="display:flex; flex-direction:column; gap:0;">
-
- <!-- Intent Translation -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg-alt); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Intent Translation</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 6/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- Wireless Agent -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Wireless Agent</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 5/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- Fault Agent -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg-alt); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Fault Agent</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 4/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- Chain-of-Agent -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Chain-of-Agent</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 5/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- Multi-Agent MAS -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg-alt); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Multi-Agent MAS</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 5/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- Service Orchestration -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:11px 0; background:var(--bg); border-bottom:1px solid var(--ink-4);">
- <div style="padding-left:14px;"><div style="font-size:19px; font-weight:500; color:var(--ink); line-height:1.15;">Service Orchestration</div><div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:2px;">missing 4/9</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-on"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-off"></span></div>
- </div>
-
- <!-- AgentEdge -->
- <div style="display:grid; grid-template-columns:240px repeat(3,1fr) 14px repeat(4,1fr) 14px repeat(2,1.15fr); align-items:center; padding:13px 0; background:color-mix(in oklab,var(--c-agent) 60%,var(--bg)); border-top:3px solid var(--ink);">
- <div style="padding-left:14px;"><div style="font-size:22px; font-weight:700; color:white; line-height:1.15;">AgentEdge <em style="font-style:normal; font-weight:400; opacity:.75; font-size:15px;">· ours</em></div><div style="font-family:var(--f-mono); font-size:12px; color:rgba(255,255,255,.85); margin-top:2px;">all 9 capabilities</div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- <div style="display:flex; justify-content:center;"><span class="dot-ours"></span></div>
- </div>
-
- </div>
-
- <style>
- .dot-on { width:18px; height:18px; border-radius:50%; background:var(--c-sota-green); display:inline-block; }
- .dot-off { width:18px; height:18px; border-radius:50%; background:none; border:1.5px solid var(--c-sota-red); display:inline-block; }
- .dot-ours { width:18px; height:18px; border-radius:50%; background:var(--c-sota-green); display:inline-block; box-shadow:0 0 0 2px rgba(255,255,255,.35); }
- </style>
-
- <!-- legend -->
- <div style="display:flex; gap:28px; align-items:center; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); padding-top:10px; border-top:1px dashed var(--ink-4);">
- <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:50%; background:var(--c-sota-green); display:inline-block;"></span>has capability</div>
- <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:50%; background:none; border:1.5px solid var(--c-sota-red); display:inline-block;"></span>missing &middot; gap to fill</div>
- <div style="margin-left:auto; font-style:italic;">all 6 prior systems are <strong style="color:var(--c-sota-red); font-style:normal;">adapted baselines</strong> &middot; none designed for the full 9-capability task</div>
- </div>
- </div>
-
- <!-- RIGHT: three differentiators -->
- <div style="padding:28px 40px 28px 0; display:flex; flex-direction:column; gap:14px; min-height:0; justify-content:center;">
- <div class="mono-tag" style="color:var(--c-agent);">Three capabilities <em style="font-style:normal;">no other system</em> combines</div>
-
- <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:16px 20px;">
- <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.08em;">1 · SPANS THE CONTINUUM</div>
- <div style="font-size:22px; margin-top:4px; line-height:1.35; color:var(--ink);">Edge <strong>+</strong> cloud together · prior systems pick one side.</div>
- </div>
-
- <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:16px 20px;">
- <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.08em;">2 · VALIDATES BEFORE ACTING</div>
- <div style="font-size:22px; margin-top:4px; line-height:1.35; color:var(--ink);">Pre-execution sim <strong>+</strong> full I·O·P·A loop · most skip one or the other.</div>
- </div>
-
- <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:16px 20px;">
- <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.08em;">3 · FORMAL AGENT CONTRACT</div>
- <div style="font-size:22px; margin-top:4px; line-height:1.35; color:var(--ink);">PARES capability framework · <strong>0 prior systems</strong> have this column.</div>
- </div>
-
- <div style="padding:12px 16px; border-left:4px solid var(--c-agent); background:var(--bg-alt);">
- <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); letter-spacing:.08em; font-weight:700;">WHY ReAct + LATS AS BASELINES?</div>
- <div style="font-size:16px; margin-top:4px; line-height:1.35; color:var(--ink);">No prior system satisfies PARES across the full orchestration cycle. We therefore <strong>adapted ReAct</strong> (reason-act loop) and <strong>LATS</strong> (tree-search over LLM rollouts) by <em>retargeting them to our tool surface</em>, giving them the same tools, LLM, and scenarios so comparison is fair.</div>
- </div>
-
- <div style="margin-top:auto; padding:14px 18px; background:var(--ink); color:var(--bg);">
- <div style="font-family:var(--f-mono); font-size:13px; opacity:.7; letter-spacing:.08em;">BOTTOM LINE</div>
- <div style="font-size:22px; margin-top:4px; line-height:1.3;">Only AgentEdge is <strong style="color:var(--c-agent);">full-row green</strong>.</div>
- </div>
- </div>
- </div>
- </div>
- <div class="chrome-bot"><div class="meta-left">9 capabilities · 6 competitors all partial · AgentEdge alone complete</div><div class="meta-right">§4 AgentEdge</div></div>
+ <div class="chrome-bot"><div class="meta-left">Ref. column + compact citations · 6G rows 0 full agents · AgentEdge alone complete</div><div class="meta-right">§4 AgentEdge</div></div>
 </section>
