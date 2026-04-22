@@ -12,9 +12,9 @@ The point of this slide is simply to fix the map before the evidence starts: fra
 
 ### Slide 03 · Manual reality today
 
-This is the operator stack as it exists today. At layer one the operator can express intent, but still has to inspect the system manually. At layer two there is no intelligent path from natural-language intent to orchestration action. At layer three the prediction layer fails in two different ways: at the far edge there are no accurate per-node forecasts, and in larger compute sites a new model must be refit for every service.
+This slide defines the operator contract we want at the top of the stack: the operator should set intent, and the loop should do the rest with human review only on exceptions. The reason that contract is still a problem, marked here as Problem 4, is that the layers underneath do not yet support it.
 
-The far-edge box now makes the motivation explicit: prediction matters because actions must be chosen before SLA and energy drift become irreversible. Layer four is the given environment: heterogeneous far-edge nodes, regional clusters, and the cloud. Four layers, four open problems, one operator holding the loop together.
+At layer two there is no intelligent path from natural-language intent to orchestration action, so the operator still ends up bridging the gap manually. At layer three the prediction layer fails in two different ways: at the far edge there are no accurate per-node forecasts, and in larger compute sites a new model must be refit for every service. The far-edge box makes the motivation explicit: prediction matters because actions must be chosen before SLA and energy drift become irreversible. Layer four is the given environment: heterogeneous far-edge nodes, regional clusters, and the cloud. Four layers, four open problems, one stack that still does not close the loop.
 
 ### Slide 04 · Zero-touch: operator sets intent, not actions
 
@@ -160,7 +160,7 @@ Scenario 1 isolates the impact of clustering in the training-set design. On the 
 
 ### Slide 28 · Result 1 - Clustering-based training helps
 
-The percentages matter here because the experimental control is so clean. When the 100 training traces are chosen through clustering instead of random sampling, MAE drops by 20.66 percent, RMSE by 24.63 percent, and SMAPE by 32.71 percent. The model, tuning, and zero-shot test are all unchanged, so the gain comes from the training-set selection step itself.
+The percentages matter here because the experimental control is so clean. When the training traces are chosen through clustering instead of random sampling, MAE drops by 20.66 percent, RMSE by 24.63 percent, and SMAPE by 32.71 percent. The model, tuning, and zero-shot test are all unchanged, so the gain comes from the training-set selection step itself.
 
 That is the takeaway: clustering forces the sample to cover bursty, steady, and periodic workload families, whereas random selection over-samples the common shapes and misses rare ones. The next experiment asks whether that representativeness survives a full cross-dataset transfer.
 
@@ -170,9 +170,9 @@ The second experiment is the hardest test a forecaster can run: train on Google 
 
 ### Slide 30 · Result 2 - Generalises without retraining
 
-This is the transfer result on Alibaba. OmniFORE reaches an MAE of 0.00727, while ModernTCN reaches 0.01045, AGCRN 0.02870, and LSTNet 0.04751 on the same task. So the frozen model improves over those baselines by 30.41 percent, 74.67 percent, and 84.70 percent respectively, without any retraining or fine-tuning.
+This is the transfer result on Alibaba. OmniFORE reaches an MAE of 0.00727, while ModernTCN reaches 0.01045, AGCRN 0.02870, and LSTNet 0.04751 on the same task. Read the bars as "how much worse the baseline is than OmniFORE": ModernTCN is 44 percent higher, AGCRN 295 percent higher, and LSTNet 554 percent higher, all with OmniFORE still running as the same frozen model.
 
-That is why this result matters operationally. The model is learning portable workload patterns rather than provider-specific identities, so a new service can be forecast with the existing model immediately. That answers research question two: one framework generalises across heterogeneous services, and the last missing block in the zero-touch loop is AgentEdge.
+That is why this result matters operationally. The model is learning portable workload patterns rather than provider-specific identities, so a new service can be forecast with the existing model immediately instead of triggering a new training cycle. That answers research question two: one framework generalises across heterogeneous services, and the last missing block in the zero-touch loop is AgentEdge.
 
 ### Slide 31 · AgentEdge
 
@@ -180,7 +180,7 @@ Contribution three is AgentEdge: natural-language intent becomes validated auton
 
 ### Slide 32 · Problem & Motivation
 
-What I want to achieve with this slide is to make the missing layer explicit before I introduce the system model, and I now do that with the same card language used in the following design slides. The three cards at the top say the argument directly: the operator speaks in goals, current optimization methods usually start only after a human has already formalized the request, and the missing capability is a decision layer that must interpret the goal, choose a safe machine-readable action, and keep monitoring after execution. The large figure card underneath then visualizes that same gap in one flow. Once that framing is clear, the next slide can move from the problem statement to the generic system model.
+This slide must make one point absolutely explicit: the decision layer is not a convenience, it is the missing step that turns a human goal into something the platform can actually execute. If an operator says *"reduce energy while keeping SLA"*, Kubernetes cannot do anything with that sentence. Someone still has to decide which service may move, which node must stay pinned, where spare capacity exists, what action is safe, and what has to be monitored afterward. In the example on the slide, that human translation becomes something like: keep the latency-critical service pinned, shift batch load to a freer node, then allow low-power mode where it is safe. Existing optimizers usually start only after those choices have already been made and written down as formal inputs. That is why this layer is necessary: without it, the control loop still depends on a human in the middle. The figure then visualizes that exact translation step before the next slide formalizes it as the system model.
 
 ### Slide 33 · System Model
 
@@ -270,7 +270,7 @@ Three claims, each defended with three anchor numbers, nine anchors in total. Cl
 
 ### Slide 53 · Questions
 
-Thank you. I welcome your questions. The final slide keeps a compact navigation guide, with the main section ranges on the left of the card and a small legend on the right showing the framing, contribution, and synthesis structure.
+Thank you. I welcome your questions. The final slide keeps the compact deck guide on the right, while the left now closes with a lighter Q and A line plus the supervisors and thesis tribunal.
 
 ### Backup B1 · AgentEdge S35 result
 
