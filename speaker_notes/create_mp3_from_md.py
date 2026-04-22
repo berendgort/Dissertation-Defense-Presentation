@@ -45,9 +45,10 @@ DEFAULT_OPENAI_MAX_CHARS = 3800
 
 NOTES_SEPARATOR_RE = re.compile(r"^-{10,}\s*$")
 SLIDE_HEADER_RE = re.compile(r"^Slide\s+(\d+)\s+-\s+(.+)$")
-# Markdown-heading slide format: e.g. "### Slide 01 — Title" (em-dash or hyphen).
+# Markdown-heading format: e.g. "### Slide 01 · Title" or "### Backup B1 · Title".
 SLIDE_HEADING_RE = re.compile(
-    r"^#{1,6}\s*Slide\s+0*(\d+)\s*[\u2014\u2013\-:]\s*(.+?)\s*$"
+    r"^#{1,6}\s*(?:Slide\s+0*(\d+)|Backup\s+(B\d+))\s*[\u2014\u2013\-:\u00B7]\s*(.+?)\s*$",
+    re.IGNORECASE,
 )
 
 ASSEMBLYAI_API_KEY_ENV = "ASSEMBLYAI_API_KEY"
@@ -391,6 +392,13 @@ def clean_markdown_for_speech(text: str) -> str:
     return cleaned
 
 
+def spoken_slide_label(number: str) -> str:
+    value = number.strip().upper()
+    if value.startswith("B"):
+        return f"Backup B {int(value[1:])}"
+    return f"Slide {int(value)}"
+
+
 def parse_heading_style_markdown(markdown_text: str) -> list[SlideNotes]:
     """Parse a file shaped like:
 
@@ -440,9 +448,12 @@ def parse_heading_style_markdown(markdown_text: str) -> list[SlideNotes]:
         heading_match = SLIDE_HEADING_RE.match(stripped)
         if heading_match:
             flush()
+            number = heading_match.group(1) or heading_match.group(2)
+            if number is None:
+                continue
             current = SlideNotes(
-                number=heading_match.group(1),
-                title=clean_markdown_for_speech(heading_match.group(2)),
+                number=number.upper(),
+                title=clean_markdown_for_speech(heading_match.group(3)),
                 say=[],
                 notes=[],
                 next_lines=[],
@@ -472,7 +483,7 @@ def build_spoken_script(
     for slide in slides:
         parts = []
         if include_slide_titles:
-            parts.append(f"Slide {int(slide.number)}. {normalize_spoken_line(slide.title)}.")
+            parts.append(f"{spoken_slide_label(slide.number)}. {normalize_spoken_line(slide.title)}.")
         if slide.say:
             parts.append(" ".join(slide.say) + ".")
         if not say_only and slide.notes:
