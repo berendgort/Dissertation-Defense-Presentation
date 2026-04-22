@@ -8,7 +8,7 @@ It was developed with Nearby Computing as the industrial partner, which matters 
 
 The defense follows a five-part path. I start with framing, then move through the three contributions in order: AERO, OmniFORE, and AgentEdge, and I close with a synthesis. The color code is consistent throughout the deck: blue for AERO, orange for OmniFORE, and pink for AgentEdge.
 
-The purpose of this slide is simply to give the committee the map before I start spending numbers.
+The point of this slide is simply to fix the map before the evidence starts: framing first, then the three contributions, then synthesis.
 
 ### Slide 03 · Manual reality today
 
@@ -32,13 +32,13 @@ That leaves an unfilled deployability gap: small and accurate at the same time. 
 
 The second sub-problem is generalization. Even if edge prediction works, the default practice is still one model per service, and that cost scales linearly with the catalogue. Each new service or drift event means retraining, monitoring, and maintenance all over again.
 
-At 6G scale a typical operator can easily manage hundreds of microservices, so the real barrier is not inference cost but retraining burden. Research question two therefore becomes: can one forecasting framework cover heterogeneous service workloads without per-service retraining?
+At 6G scale that quickly becomes a three-hundred-plus-service problem, so the real barrier is not inference cost but retraining burden. Research question two therefore becomes: can one forecasting framework cover heterogeneous service workloads without per-service retraining?
 
 ### Slide 07 · From natural-language intent to intelligent orchestration action
 
-The third and fourth problems belong to the decision layer. The operator can already state intent in natural language, for example, *"reduce energy while keeping SLA"*, but the bridge from that sentence to concrete orchestration commands is still a human. The operator reads dashboards, chooses services, chooses targets, and executes commands like drain, scale, migrate, or power-off.
+The third and fourth problems belong to the decision layer. The operator can already state intent in natural language, for example, *"reduce energy while keeping SLA"*, but that input does not map cleanly onto classical heuristics or fixed objective functions. Today the bridge is still a human who reads dashboards, chooses services, chooses targets, and executes commands like drain, scale, migrate, or power-off.
 
-That means the control loop scales with human attention rather than workload. The decision layer therefore has to do two things at once: understand intent and act on it safely. That is the combined research question behind AgentEdge and the real meaning of zero-touch.
+That means the control loop still scales with human attention rather than workload. Zero-touch at this layer means two abilities together: understand intent and turn it into safe orchestration action without a person translating each step by hand.
 
 ### Slide 08 · One orchestration stack that predicts, generalizes, and acts on intent
 
@@ -160,7 +160,9 @@ Scenario 1 isolates the impact of clustering in the training-set design. On the 
 
 ### Slide 28 · Result 1 - Clustering-based training helps
 
-The point of this slide is not one specific percentage. The point is that only the training-set selection changed. The left bars show that once the 100 traces are chosen through clustering, the error drops consistently across every metric. Because the model, tuning, and test set are held fixed, this experiment isolates the effect of the training-set selection step. Clustering gives the model a more representative catalogue of bursty, steady, and periodic behaviours. The next experiment asks whether that benefit survives a full cross-dataset transfer.
+The percentages matter here because the experimental control is so clean. When the 100 training traces are chosen through clustering instead of random sampling, MAE drops by 20.66 percent, RMSE by 24.63 percent, and SMAPE by 32.71 percent. The model, tuning, and zero-shot test are all unchanged, so the gain comes from the training-set selection step itself.
+
+That is the takeaway: clustering forces the sample to cover bursty, steady, and periodic workload families, whereas random selection over-samples the common shapes and misses rare ones. The next experiment asks whether that representativeness survives a full cross-dataset transfer.
 
 ### Slide 29 · Scenario 2 - Cross-dataset transfer
 
@@ -168,31 +170,33 @@ The second experiment is the hardest test a forecaster can run: train on Google 
 
 ### Slide 30 · Result 2 - Generalises without retraining
 
-This is the transfer result. We train on Google, freeze the weights, and evaluate on an Alibaba service the model has never seen. So the key point of the left chart is not just that OmniFORE is lowest; it is that the same frozen model still beats ModernTCN, AGCRN, and LSTNet in a new provider and workload setting. That means the model has learned portable workload patterns rather than memorising service-specific identities. Operationally, a new service does not require training a new forecaster; the existing model can be reused immediately. That is research question two answered: one framework generalises across heterogeneous services, and the cost of adding a new service is zero. With prediction now both deployable at the edge and generalisable across services, the last piece of the zero-touch loop is validated action, which is AgentEdge.
+This is the transfer result on Alibaba. OmniFORE reaches an MAE of 0.00727, while ModernTCN reaches 0.01045, AGCRN 0.02870, and LSTNet 0.04751 on the same task. So the frozen model improves over those baselines by 30.41 percent, 74.67 percent, and 84.70 percent respectively, without any retraining or fine-tuning.
+
+That is why this result matters operationally. The model is learning portable workload patterns rather than provider-specific identities, so a new service can be forecast with the existing model immediately. That answers research question two: one framework generalises across heterogeneous services, and the last missing block in the zero-touch loop is AgentEdge.
 
 ### Slide 31 · AgentEdge
 
-Contribution three is AgentEdge: natural-language intent becomes validated autonomous action. The one-line claim on the banner is that a multi-agent LLM design, with validation before execution, beats single-agent and tree-search baselines — quantified on-slide at more than seventy-five percent success. The keywords I want on the record from this slide forward are multi-agent, tool-use, multi-step reasoning, and digital-twin validation. Those are the technical anchors for everything in the rest of this section.
+Contribution three is AgentEdge: natural-language intent becomes validated autonomous action. The banner states the claim in one sentence: a multi-agent large-language-model system with validation before execution beats single-agent and tree-search baselines, with success above seventy-five percent. The keywords I want on the record from this slide forward are multi-agent, tool-use, multi-step reasoning, and digital-twin validation. Those are the technical anchors for everything in the rest of this section.
 
 ### Slide 32 · Problem & Motivation
 
-What I want to achieve with this slide is to make the missing layer explicit before I introduce the system model. Read it as one simple pipeline: operator goal at the top, live state on the left, the decision layer in the middle, machine-readable action on the right, and monitoring after execution at the bottom. The key point is that the operator speaks in goals, not commands. Existing optimization methods usually start only after a human has already translated that goal into explicit constraints. AgentEdge targets exactly that missing capability in the middle: combine intent with live state, produce a safe machine-readable action, and keep monitoring once the action is applied.
+What I want to achieve with this slide is to make the missing layer explicit before I introduce the system model, and I now do that with the same card language used in the following design slides. The three cards at the top say the argument directly: the operator speaks in goals, current optimization methods usually start only after a human has already formalized the request, and the missing capability is a decision layer that must interpret the goal, choose a safe machine-readable action, and keep monitoring after execution. The large figure card underneath then visualizes that same gap in one flow. Once that framing is clear, the next slide can move from the problem statement to the generic system model.
 
 ### Slide 33 · System Model
 
-This slide is the generic stack, not the AgentEdge architecture yet. The left column compresses the loop into four layers: operator intent, a decision layer, a service-orchestration layer, and the infrastructure itself. In that framing, the prediction step belongs inside the service-orchestration layer rather than standing alone as its own layer. The key point in the right-hand diagram is that the decision layer does not query the prediction layer directly. Instead, service orchestration queries the prediction model, stores the returned predictions in data objects, and the decision layer reads those stored objects together with the live state. The purpose of this slide is simply to pin down those interfaces before the following slides introduce the concrete AgentEdge design.
+This slide is the generic stack, not the AgentEdge architecture yet. The left column compresses the loop into four layers: operator intent, a decision layer, a service-orchestration layer, and the infrastructure itself. In that framing, the prediction step belongs inside the service-orchestration layer rather than standing alone as its own layer. The key point in the right-hand diagram is that the decision layer does not query the prediction layer directly. Instead, service orchestration queries the prediction model, stores the returned predictions in data objects, and the decision layer reads those stored objects together with the live state. Inside that decision layer, the intelligent logic reasons over sets of actions rather than a single raw action. The purpose of this slide is simply to pin down those interfaces before the following slides introduce the concrete AgentEdge design.
 
 ### Slide 34 · Design - What is an agent?
 
-Before the state of the art, I first need a precise definition of what I mean by *agent* in this thesis. It is not just one LLM call. Read this slide left to right as five icon cards. To count as an agent here, the system must satisfy PARES: Perceive live bounded state, Act through typed tools, Reason over goals and constraints, Evaluate candidate plans before production, and Sustain behaviour across multi-step interactions. Every card is load-bearing, and if one is missing the system may still be useful automation, but it is not agent-complete.
+Before the state of the art, I first need a precise definition of what I mean by *agent* in this thesis. It is not just one LLM call. Read the slide left to right as five compact cards. To count as an agent here, the system must satisfy PARES: Perceive live bounded state, Act through typed tools, Reason over goals and constraints, Evaluate candidate plans before production, and Sustain behaviour across multi-step interactions. Every card is load-bearing, and if one is missing the system may still be useful automation, but it is not agent-complete.
 
-The distinction at the bottom of the slide is important for what comes next. PARES defines what makes something an agent. Intent, Observe, Plan, and Act do *not* define agentness; they are only the four specialised roles that AgentEdge uses internally once the capability contract is in place.
+The reference band below the cards makes an important methodological point: PARES was not copied from one single framework. It was synthesised in Chapter 2 from six representative agentic-framework papers, and that is what justifies using it as the comparison contract on the next slide.
 
-### Slide 35 · State-of-the-art:
+### Slide 35 · State-of-the-art: 6G literature still lacks a full agent
 
-This table makes one point directly: the 6G literature still does not give us a full agent. I keep the comparison split into deployment capabilities, the five PARES letters - Perceive, Act, Reason, Evaluate, Sustain - and multi-agent coordination, but I now add a numbered Ref. column so each row maps directly to the compact citation list on the right. That way the committee can see immediately which exact paper each row corresponds to without needing backup slides.
+This table still makes one point directly: the 6G literature still does not give us a full agent. The left side is the capability matrix with deployment, the five PARES letters - Perceive, Act, Reason, Evaluate, Sustain - and multi-agent coordination. The numbered Ref. column maps to the compact citations on the lower right, and the new top-right card explains why the actual Chapter 5 baselines had to come from ML rather than from the 6G rows.
 
-The 6G papers cover useful pieces: intent translation validates before acting, fault management gets closest on the PARES side, and service orchestration adds multi-agent coordination. But none of those six 6G rows is complete, and none delivers validated edge-cloud orchestration end to end. ReAct and LATS are important because they are generic ML agents that do satisfy the full PARES contract, which is exactly why they are legitimate baselines. Even so, they still do not span edge-cloud orchestration as a system design: no pre-execution validation, no multi-agent coordination, and no explicit edge-cloud deployment model. So the conclusion I want the slide to land is simple: zero 6G rows are full agents, ReAct and LATS are PARES-complete but task-misaligned, and only AgentEdge is full-row green.
+The reason is methodological, not cosmetic. The six 6G papers are valuable related work, but they do not satisfy full PARES and they do not fit the validated Intent-Observe-Plan-Act system model that AgentEdge evaluates for edge-cloud orchestration. ReAct and LATS are therefore the legitimate baselines: they are genuine agentic frameworks that interpret natural-language intent and coordinate multi-step actions, and we retarget them to the same tools, base LLM, and scenarios for fairness. So the conclusion I want the slide to land is simple: zero 6G rows are full agents, ReAct and LATS are PARES-complete but task-misaligned, and only AgentEdge is full-row green.
 
 ### Slide 36 · One pain-point, one decision
 
@@ -266,7 +270,7 @@ Three claims, each defended with three anchor numbers, nine anchors in total. Cl
 
 ### Slide 53 · Questions
 
-Thank you. I welcome your questions on the three flagged topics — deployability, generalisation, and validated autonomy — and on the three neutrals — baselines, evaluation methodology, and future work. I hand the floor.
+Thank you. I welcome your questions. The final slide keeps a compact navigation guide, with the main section ranges on the left of the card and a small legend on the right showing the framing, contribution, and synthesis structure.
 
 ### Backup B1 · AgentEdge S35 result
 

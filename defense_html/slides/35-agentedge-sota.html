@@ -2,14 +2,10 @@
  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">State of the Art</span></div><div class="counter"><span class="num">35</span><span class="sep">/</span>53 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
   <div style="flex:0 0 74px; display:flex; align-items:center; padding:0 48px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
-   <h1 style="font-family:var(--f-display); font-size:38px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">State-of-the-art:</h1>
+   <h1 style="font-family:var(--f-display); font-size:38px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">State-of-the-art: 6G literature still lacks a full agent</h1>
   </div>
 
-  <div style="flex:0 0 52px; display:flex; align-items:center; padding:0 48px; border-bottom:1px solid var(--ink-4); background:var(--bg);">
-   <div style="font-size:16px; line-height:1.3; color:var(--ink-2);"><strong style="color:var(--c-agent); font-style:normal;">Ref.</strong> maps each row to the citation panel at right. <strong style="color:var(--c-agent); font-style:normal;">PARES = Perceive, Act, Reason, Evaluate, Sustain.</strong></div>
-  </div>
-
-  <div style="flex:1; padding:10px 48px 12px; display:grid; grid-template-columns:minmax(0,1.58fr) minmax(0,.92fr); gap:18px; min-height:0;">
+  <div style="flex:1; padding:14px 48px 12px; display:grid; grid-template-columns:minmax(0,1.58fr) minmax(0,.92fr); gap:18px; min-height:0;">
    <div style="display:flex; flex-direction:column; gap:10px; min-height:0;">
     <div style="flex:1; min-height:0; border:1.5px solid var(--ink); background:var(--bg); overflow:hidden;">
      <table style="width:100%; height:100%; border-collapse:collapse; table-layout:fixed;">
@@ -28,28 +24,28 @@
        <col style="width:11%;">
       </colgroup>
       <thead>
-       <tr style="background:var(--ink); color:var(--bg);">
-        <th rowspan="2" class="sota-head-left">Approach</th>
-        <th rowspan="2" class="sota-head">Ref.</th>
-        <th rowspan="2" class="sota-head">Lit.</th>
-        <th colspan="3" class="sota-head-group">Deployment</th>
-        <th colspan="5" class="sota-head-group">PARES</th>
+       <tr style="background:color-mix(in oklab,var(--ink) 7%,var(--bg)); color:var(--ink);">
+        <th rowspan="2" class="sota-head-left topbar-divide">Approach</th>
+        <th rowspan="2" class="sota-head topbar-divide">Ref.</th>
+        <th rowspan="2" class="sota-head topbar-divide">Lit.</th>
+        <th colspan="3" class="sota-head-group topbar-divide">Deployment</th>
+        <th colspan="5" class="sota-head-group topbar-divide">PARES</th>
         <th rowspan="2" class="sota-head">Multi-Agent</th>
        </tr>
-       <tr style="background:var(--bg-alt); border-bottom:2px solid var(--ink);">
+       <tr style="background:color-mix(in oklab,var(--ink) 3%,var(--bg)); border-bottom:2px solid var(--ink);">
         <th class="sota-subhead">Edge</th>
         <th class="sota-subhead">Cloud</th>
-        <th class="sota-subhead">Pre-Exec</th>
+        <th class="sota-subhead topbar-divide">Pre-Exec</th>
         <th class="sota-subhead pares-col">P</th>
         <th class="sota-subhead pares-col">A</th>
         <th class="sota-subhead pares-col">R</th>
         <th class="sota-subhead pares-col">E</th>
-        <th class="sota-subhead pares-col">S</th>
+        <th class="sota-subhead pares-col topbar-divide">S</th>
        </tr>
       </thead>
       <tbody>
-       <tr class="sota-row" style="background:var(--bg-alt);">
-        <td class="sota-approach"><div class="sota-name">Intent Translation</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Intent-Driven Service Configuration</div></td>
         <td class="sota-center ref-col">[1]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -62,8 +58,8 @@
         <td class="sota-center"><span class="cap-no"></span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
        </tr>
-       <tr class="sota-row">
-        <td class="sota-approach"><div class="sota-name">Wireless Agent</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Wireless Network Management Agent</div></td>
         <td class="sota-center ref-col">[2]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-yes"></span></td>
@@ -76,8 +72,8 @@
         <td class="sota-center"><span class="cap-no"></span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
        </tr>
-       <tr class="sota-row" style="background:var(--bg-alt);">
-        <td class="sota-approach"><div class="sota-name">Fault Agent</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Fault-Tolerant Edge Agent</div></td>
         <td class="sota-center ref-col">[3]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-yes"></span></td>
@@ -90,8 +86,8 @@
         <td class="sota-center"><span class="cap-no"></span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
        </tr>
-       <tr class="sota-row">
-        <td class="sota-approach"><div class="sota-name">Chain-of-Agent</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Hermes Chain-of-Agents</div></td>
         <td class="sota-center ref-col">[4]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -104,8 +100,8 @@
         <td class="sota-center"><span class="cap-yes"></span></td>
         <td class="sota-center"><span class="cap-yes"></span></td>
        </tr>
-       <tr class="sota-row" style="background:var(--bg-alt);">
-        <td class="sota-approach"><div class="sota-name">Multi-Agent MAS</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Maestro Collaborative Automation</div></td>
         <td class="sota-center ref-col">[5]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -118,8 +114,8 @@
         <td class="sota-center"><span class="cap-yes"></span></td>
         <td class="sota-center"><span class="cap-yes"></span></td>
        </tr>
-       <tr class="sota-row">
-        <td class="sota-approach"><div class="sota-name">Service Orchestration</div></td>
+       <tr class="sota-row row-6g">
+        <td class="sota-approach"><div class="sota-name">Agentic Service Orchestration</div></td>
         <td class="sota-center ref-col">[6]</td>
         <td class="sota-center"><span class="lit-badge lit-6g">6G</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -132,8 +128,8 @@
         <td class="sota-center"><span class="cap-yes"></span></td>
         <td class="sota-center"><span class="cap-yes"></span></td>
        </tr>
-       <tr class="sota-row" style="background:color-mix(in oklab,var(--ink) 4%,var(--bg));">
-        <td class="sota-approach"><div class="sota-name">ReAct</div></td>
+       <tr class="sota-row row-ml">
+        <td class="sota-approach"><div class="sota-name">ReAct Framework</div></td>
         <td class="sota-center ref-col">[7]</td>
         <td class="sota-center"><span class="lit-badge lit-ml">ML</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -146,8 +142,8 @@
         <td class="sota-center"><span class="cap-yes"></span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
        </tr>
-       <tr class="sota-row" style="background:color-mix(in oklab,var(--ink) 4%,var(--bg));">
-        <td class="sota-approach"><div class="sota-name">LATS</div></td>
+       <tr class="sota-row row-ml">
+        <td class="sota-approach"><div class="sota-name">LATS Framework</div></td>
         <td class="sota-center ref-col">[8]</td>
         <td class="sota-center"><span class="lit-badge lit-ml">ML</span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
@@ -160,7 +156,7 @@
         <td class="sota-center"><span class="cap-yes"></span></td>
         <td class="sota-center"><span class="cap-no"></span></td>
        </tr>
-       <tr class="sota-row" style="background:color-mix(in oklab,var(--c-agent) 12%,var(--bg)); border-top:3px solid var(--ink);">
+       <tr class="sota-row row-ours" style="border-top:3px solid var(--ink);">
         <td class="sota-approach"><div class="sota-name" style="font-size:18px; font-weight:700; color:var(--ink);">AgentEdge</div><div class="sota-note" style="color:var(--c-agent); font-weight:700;">ours</div></td>
         <td class="sota-center ref-col"><span class="ref-empty">-</span></td>
         <td class="sota-center"><span class="lit-badge lit-ours">OURS</span></td>
@@ -181,28 +177,52 @@
     <div style="display:flex; align-items:center; gap:18px; font-family:var(--f-mono); font-size:11px; color:var(--ink-3);">
      <div style="display:flex; align-items:center; gap:8px;"><span class="cap-yes" style="width:13px; height:13px;"></span>present</div>
      <div style="display:flex; align-items:center; gap:8px;"><span class="cap-no" style="width:13px; height:13px;"></span>absent</div>
-     <div style="margin-left:auto;">[7]-[8] are PARES-complete ML baselines.</div>
+     <div style="display:flex; align-items:center; gap:8px; margin-left:auto;"><span class="row-swatch swatch-6g"></span>6G rows</div>
+     <div style="display:flex; align-items:center; gap:8px;"><span class="row-swatch swatch-ml"></span>ML rows</div>
     </div>
 
    </div>
 
-   <div style="display:flex; flex-direction:column; min-height:0; border:1.5px solid var(--ink); background:var(--bg-alt);">
-    <div style="padding:10px 14px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:10px;">
-     <div class="mono-tag" style="color:var(--c-agent); margin:0;">References</div>
-     <div style="margin-left:auto; font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3);">numbers match Ref. column</div>
+   <div style="display:flex; flex-direction:column; gap:12px; min-height:0;">
+    <div style="flex:0 0 270px; display:flex; flex-direction:column; border:1.5px solid var(--ink); background:var(--bg-alt);">
+     <div style="padding:12px 16px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:10px;">
+      <div class="mono-tag" style="color:var(--c-agent); margin:0;">Why ML Baselines?</div>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; color:var(--ink-3);">why not 6G rows</div>
+     </div>
+     <div style="padding:12px 14px 14px; display:flex; flex-direction:column; gap:10px;">
+      <div class="why-card">
+       <div class="why-kicker">1 · NOT FULL AGENTIC FRAMEWORKS</div>
+       <div class="why-text">The 6G papers are valuable related work, but they do <strong>not satisfy full PARES</strong>, so in this thesis they are not classified as complete agentic frameworks.</div>
+      </div>
+      <div class="why-card">
+       <div class="why-kicker">2 · DO NOT FIT OUR SYSTEM MODEL</div>
+       <div class="why-text">They do not instantiate the validated <strong>Intent-Observe-Plan-Act</strong> agentic loop that AgentEdge evaluates for edge-cloud orchestration.</div>
+      </div>
+      <div class="why-card">
+       <div class="why-kicker">3 · WHY REACT AND LATS</div>
+       <div class="why-text">They are actual <strong>agentic AI frameworks</strong> that interpret natural-language intent and coordinate multi-step actions, so they can be retargeted to the same tools, LLM, and scenarios for fair comparison.</div>
+      </div>
+     </div>
     </div>
-    <div style="padding:10px 12px 12px; display:flex; flex-direction:column; gap:8px; min-height:0;">
-     <div class="refs-label">6G literature</div>
-     <div class="ref-entry"><div class="ref-num">[1]</div><div class="ref-body"><strong>Mekrache &amp; Ksentini.</strong> LLM-Enabled Intent-Driven Service Configuration for Next Generation Networks. <em>NetSoft '24</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[2]</div><div class="ref-body"><strong>Tong et al.</strong> WirelessAgent: Large Language Model Agents for Intelligent Wireless Networks. <em>arXiv '25</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[3]</div><div class="ref-body"><strong>Fang et al.</strong> Large Language Model Enhanced Autonomous Agents for Proactive Fault-Tolerant Edge Networks. <em>INFOCOM WKSHPS '24</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[4]</div><div class="ref-body"><strong>Ayed et al.</strong> Hermes: A Large Language Model Framework on the Journey to Autonomous Networks. <em>arXiv '24</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[5]</div><div class="ref-body"><strong>Chatzistefanidis et al.</strong> Maestro: LLM-Driven Collaborative Automation of Intent-Based 6G Networks. <em>IEEE Netw. Lett. '24</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[6]</div><div class="ref-body"><strong>Brodimas et al.</strong> Intent-Based Infrastructure and Service Orchestration Using Agentic-AI. <em>IEEE OJ-COMS '25</em>.</div></div>
 
-     <div class="refs-label" style="margin-top:4px;">ML baselines</div>
-     <div class="ref-entry"><div class="ref-num">[7]</div><div class="ref-body"><strong>Yao et al.</strong> ReAct: Synergizing Reasoning and Acting in Language Models. <em>arXiv '22</em>.</div></div>
-     <div class="ref-entry"><div class="ref-num">[8]</div><div class="ref-body"><strong>Zhou et al.</strong> Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models. <em>ICML '24</em>.</div></div>
+    <div style="flex:1; min-height:0; display:flex; flex-direction:column; border:1.5px solid var(--ink); background:var(--bg-alt);">
+     <div style="padding:12px 16px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:10px;">
+      <div class="mono-tag" style="color:var(--c-agent); margin:0;">References</div>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; color:var(--ink-3);">numbers match Ref. column</div>
+     </div>
+     <div style="padding:12px 14px 14px; display:flex; flex-direction:column; gap:9px; min-height:0;">
+      <div class="refs-label refs-label-6g">6G literature</div>
+      <div class="ref-entry"><div class="ref-num">[1]</div><div class="ref-body"><strong>Mekrache &amp; Ksentini.</strong> LLM-Enabled Intent-Driven Service Configuration for Next Generation Networks. <em>NetSoft '24</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[2]</div><div class="ref-body"><strong>Tong et al.</strong> WirelessAgent: Large Language Model Agents for Intelligent Wireless Networks. <em>arXiv '25</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[3]</div><div class="ref-body"><strong>Fang et al.</strong> Large Language Model Enhanced Autonomous Agents for Proactive Fault-Tolerant Edge Networks. <em>INFOCOM WKSHPS '24</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[4]</div><div class="ref-body"><strong>Ayed et al.</strong> Hermes: A Large Language Model Framework on the Journey to Autonomous Networks. <em>arXiv '24</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[5]</div><div class="ref-body"><strong>Chatzistefanidis et al.</strong> Maestro: LLM-Driven Collaborative Automation of Intent-Based 6G Networks. <em>IEEE Netw. Lett. '24</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[6]</div><div class="ref-body"><strong>Brodimas et al.</strong> Intent-Based Infrastructure and Service Orchestration Using Agentic-AI. <em>IEEE OJ-COMS '25</em>.</div></div>
+
+      <div class="refs-label refs-label-ml" style="margin-top:4px;">ML baselines</div>
+      <div class="ref-entry"><div class="ref-num">[7]</div><div class="ref-body"><strong>Yao et al.</strong> ReAct: Synergizing Reasoning and Acting in Language Models. <em>arXiv '22</em>.</div></div>
+      <div class="ref-entry"><div class="ref-num">[8]</div><div class="ref-body"><strong>Zhou et al.</strong> Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models. <em>ICML '24</em>.</div></div>
+     </div>
     </div>
    </div>
   </div>
@@ -223,6 +243,9 @@
    .sota-head-group {
     font-weight: 700;
    }
+   .topbar-divide {
+    border-right: 1px solid color-mix(in oklab,var(--ink) 18%,var(--bg));
+   }
    .sota-subhead {
     padding: 7px 4px;
     font-family: var(--f-mono);
@@ -236,6 +259,15 @@
     color: var(--c-agent);
     font-weight: 700;
    }
+   .row-6g {
+    background: color-mix(in oklab, #7daedc 24%, var(--bg));
+   }
+   .row-ml {
+    background: color-mix(in oklab, #b999d9 22%, var(--bg));
+   }
+   .row-ours {
+    background: color-mix(in oklab,var(--c-agent) 12%,var(--bg));
+   }
    .sota-row td {
     border-bottom: 1px solid var(--ink-4);
    }
@@ -247,10 +279,10 @@
     text-align: left;
    }
    .sota-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--ink);
-    line-height: 1.1;
+    line-height: 1.08;
    }
    .sota-note {
     margin-top: 2px;
@@ -322,32 +354,70 @@
     background: var(--c-agent);
     color: white;
    }
+   .row-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+    border: 1px solid var(--ink-4);
+   }
+   .swatch-6g {
+    background: color-mix(in oklab, #7daedc 24%, var(--bg));
+   }
+   .swatch-ml {
+    background: color-mix(in oklab, #b999d9 22%, var(--bg));
+   }
+   .why-card {
+    padding: 10px 12px;
+    border-left: 3px solid var(--c-agent);
+    background: color-mix(in oklab,var(--c-agent) 5%,var(--bg));
+   }
+   .why-kicker {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-agent);
+   }
+   .why-text {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--ink);
+   }
    .refs-label {
     font-family: var(--f-mono);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--c-agent);
    }
+   .refs-label-6g {
+    color: #234f78;
+   }
+   .refs-label-ml {
+    color: #5b3d78;
+   }
    .ref-entry {
     display: grid;
-    grid-template-columns: 34px 1fr;
-    gap: 8px;
+    grid-template-columns: 38px 1fr;
+    gap: 10px;
     align-items: start;
-    padding: 4px 0;
+    padding: 5px 0;
     border-bottom: 1px solid var(--ink-4);
    }
    .ref-num {
     font-family: var(--f-mono);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--c-agent);
     padding-top: 1px;
    }
    .ref-body {
-    font-size: 11.5px;
-    line-height: 1.28;
+    font-size: 13px;
+    line-height: 1.3;
     color: var(--ink);
    }
    .ref-body em {
@@ -356,5 +426,5 @@
    }
   </style>
  </div>
- <div class="chrome-bot"><div class="meta-left">Ref. column + compact citations · 6G rows 0 full agents · AgentEdge alone complete</div><div class="meta-right">§4 AgentEdge</div></div>
+ <div class="chrome-bot"><div class="meta-left">Why ML baselines + compact citations · 6G rows 0 full agents · AgentEdge alone complete</div><div class="meta-right">§4 AgentEdge</div></div>
 </section>
