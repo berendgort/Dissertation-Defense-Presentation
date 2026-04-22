@@ -136,13 +136,13 @@ This slide packages the OmniFORE pipeline. Phase one, stages S1 through S4, desi
 
 The message is that generalization comes from the whole pipeline: representative data, shared training, and transfer-focused tuning.
 
-### Slide 24 · Phase 1 - Designing the training set
+### Slide 24 · Designing the training set
 
 This slide zooms into phase one. S1 fingerprints each trace by compressing it into a shape descriptor. S2 clusters those fingerprints into bursty, steady, and periodic families. S3 tags every trace with its group label. S4 samples proportionally from those groups to build a balanced mix.
 
 The point is that representativeness is engineered before training begins, so the model later sees the catalogue in balanced form instead of allowing one family to dominate the dataset.
 
-### Slide 25 · Phase 2 - Training the model
+### Slide 25 · Training the model
 
 Phase two has two steps. S5 is equal scale: raw services arrive at very different magnitudes, so each trace is rescaled so that large services do not drown out small ones. Every workload gets an equal say in training.
 
@@ -150,7 +150,7 @@ S6 is efficient attention. The top figure shows the head scanning the full recen
 
 That is also why the model generalizes: it matches patterns rather than service identity, so after rescaling those patterns can transfer to services it has never seen.
 
-### Slide 26 · Phase 3 - Tuning for transfer
+### Slide 26 · Tuning for transfer
 
 Phase three is the single S₇ stage: tune so it transfers. On the left, Bayesian optimisation keeps moving toward the best region, and the star marks the winning setting on the objective-function curve. On the right, the training set is shown separately because it is used to fit the model, not to score the hyperparameters. Only the held-out traces T1, T2, and T3 feed the combined transfer score, so the selected setting is the one that works across new services, not the one that merely fits the training set. The bottom result strip makes the payoff explicit: the winner is chosen for new services.
 
@@ -182,7 +182,7 @@ The problem AgentEdge solves is visible on the diagram. The operator types *"red
 
 This slide is the generic stack, not the AgentEdge architecture yet. The left column shows the layers: operator intent at the top, a decision layer beneath it, then supporting signals, the service-orchestration interface, and finally the infrastructure itself. The large diagram on the right turns that stack into a loop. Intent comes down from the operator, the decision layer must combine meaning and cluster state, supporting forecasts and checks can be queried underneath, and only then does a validated action flow through Kubernetes into the infrastructure. So the point of this slide is to pin down the interfaces and the missing capability: something has to sit between natural-language intent and typed orchestration actions. The following slides introduce the actual design that fills that gap.
 
-### Slide 34 · Design Lens - PARES capability contract
+### Slide 34 · PARES capability contract
 
 Before the state of the art, a short aside on what I mean by *agent* in this thesis. Prior systems are described in prose; impossible to compare. PARES is the capability contract I use throughout: Perceive the cluster state, Act through typed tools, Reason explicitly over the goal, Evaluate candidate plans before committing, Sustain across multi-step interactions. Separate agents specialise; no single LLM carries every role. The framework is built on a general orchestration library, not a monolithic script. This is the grid I use to compare prior work on the next slide.
 
@@ -190,23 +190,23 @@ Before the state of the art, a short aside on what I mean by *agent* in this the
 
 The state of the art is a capability matrix. Nine capabilities run across the top — things like natural-language intent translation, wireless-agent awareness, fault handling, chain-of-agent reasoning, multi-agent coordination, service orchestration, cross-layer span, pre-execution validation, and PARES. Every prior system I benchmarked is missing at least one load-bearing column. The three differentiators I want the committee to focus on are the three where no prior system delivers at all: spanning edge-plus-cloud, validating before acting, and filling the PARES capability contract. That PARES column has zero prior entries. One honest question that comes up here is *why ReAct and LATS as baselines, if none of them satisfies PARES?* No prior system does, across the full orchestration cycle. We therefore adapted ReAct, the reason-act loop, and LATS, tree-search over LLM rollouts, by retargeting them onto our tool surface: same tools, same base LLM, same scenarios, so comparison is fair. The bottom line on-slide is simple: only AgentEdge is full-row green.
 
-### Slide 36 · Design - each pain-point forces one decision
+### Slide 36 · Each pain-point forces one decision
 
 The rationale table has four rows, and each row is the minimal response to one specific pain-point. Ambiguous natural-language intent forces a dedicated Intent agent whose only job is to parse operator sentences into structured goals. A large, distributed state forces an Observability agent with tool-use and a bounded world model, so the system does not drown in raw telemetry. The fact that plans break in complex environments forces ActSimCrit — Plan, Simulate, Critique — which validates candidate plans before execution. The fact that actions are irreversible on live infrastructure forces a digital-twin sandbox where the simulation happens. The line the slide leaves with the committee is that each of these four is load-bearing: drop any one of them and the system fails predictably in a way that can be traced to the missing piece.
 
-### Slide 37 · Design - four specialised agents
+### Slide 37 · Four specialised agents
 
 The architecture is a graph of graphs. Outer structure is sequential — start, Intent, Observability, Planning, Infra Action, end — and each of those four agents is itself a small subgraph with its own internal reasoning steps. On top of that, every agent satisfies the PARES capability contract: Perceive, Act, Reason, Evaluate, Sustain — the five capabilities that define what it means to be an agent in this framework rather than a prompt chain. The agentic-spectrum note on the slide places this design deliberately: it is specialised enough to be debuggable, but not so rigid that it reduces to a pipeline.
 
-### Slide 38 · Design - intent and observability
+### Slide 38 · Intent and observability
 
 This slide shows the two perception agents with concrete examples. The Intent agent takes an operator sentence and returns structured JSON. On-slide it reads as a rebalance goal from node three to node five, subject to an SLA constraint and an energy-savings floor of fifteen percent. The Observability agent takes the bounded infrastructure context and returns a typed snapshot: per-node metrics plus an SLA object with p99 latency of 118 milliseconds and an error budget used at 0.70. Perception is a bounded world model plus a typed intent parse, not free-form chatter. That is what makes the rest of the pipeline debuggable.
 
-### Slide 39 · Design - planning, simulation, and execution
+### Slide 39 · Planning, simulation, and execution
 
 This is the core of AgentEdge. The Planning agent runs a five-phase loop: strategic planning, state analysis, action selection, digital-twin simulation with a critic, and a check on whether the intent is satisfied. If the critic rejects the simulated outcome, control returns to action selection rather than being committed to the cluster. Four technical mechanisms sit underneath that loop: tool-call batching, a three-tier state representation, rejection-feedback on failed plans, and deadlock detection. The example JSON at the bottom of the slide shows the output of a successful cycle — a plan object with `validated: true`, an energy delta of minus eighteen percent, and SLA preserved. Nothing reaches the cluster until that object exists. Validation before execution is structural, not a post-hoc check.
 
-### Slide 40 · Scenario Setup - infrastructure simulator
+### Slide 40 · Infrastructure simulator
 
 The simulator does two jobs at once. At runtime, it is the digital twin that the Planning agent uses inside ActSimCrit to validate a proposed tool-call batch before anything is committed. As an evaluation harness, it is the controlled environment where all three AgentEdge experiments run. The tier table on-slide names the three levels — far edge, near edge, cloud — with per-tier node counts, CPU and memory, power envelopes, latency, and the sixty-percent low-power saving applied in each tier. The twelve API endpoints — deploy, migrate, scale, low-power, status, and seven others — are listed as chips, and the simulator is explicit about its stochastic timing, its 0.1-to-2-percent failure probability, and its real-time validation. The bottom line on-slide — *same infrastructure, same LLM, same tools, only architecture varies* — is the fairness guarantee that makes the next three experiments comparable.
 
