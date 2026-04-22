@@ -1,0 +1,353 @@
+<section class="slide" data-section="agent" data-label="39 Experimental setup · AgentEdge">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Experimental Setup</span></div>
+    <div class="counter"><span class="num">39</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <!-- Title strip -->
+    <div style="flex:0 0 96px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Simulator testbed &amp; six evaluation scenarios</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:15px; color:var(--c-agent); letter-spacing:.1em; text-transform:uppercase;">3-tier testbed &middot; constraint resolution &middot; energy scalability</div>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns: 1.05fr 1.1fr; min-height:0;">
+
+      <!-- ============== LEFT · TESTBED FIGURE ============== -->
+      <div style="padding:28px 36px 24px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:14px; min-height:0; background:var(--bg);">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+          <div>
+            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">System setup</div>
+            <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15; margin-top:2px;">3-tier edge&ndash;cloud testbed</div>
+          </div>
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); text-align:right; line-height:1.4;">Flask APIs &middot; stochastic timing<br/>real-time constraint checks</div>
+        </div>
+
+        <!-- Tiered architecture figure -->
+        <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:10px; font-family:var(--f-mono); margin-top:4px;">
+
+          <!-- CLOUD TIER -->
+          <div style="display:grid; grid-template-columns: 100px 1fr 120px; align-items:stretch; border:1.5px solid var(--ink); background:color-mix(in oklab,var(--c-agent) 10%,var(--bg));">
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--ink-4);">
+              <div style="font-size:11px; color:var(--ink-3); letter-spacing:.1em;">TIER 3</div>
+              <div style="font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Cloud</div>
+            </div>
+            <div style="padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:4px;">
+              <div style="display:flex; gap:4px; align-items:center;">
+                <svg width="40" height="24" viewBox="0 0 40 24"><rect x="2" y="4" width="36" height="16" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/></svg>
+                <span style="font-size:13px; color:var(--ink-3); margin-left:6px;">0&ndash;1 node</span>
+              </div>
+              <div style="font-size:13px; color:var(--ink); display:flex; gap:14px;">
+                <span><strong>64</strong> CPU</span>
+                <span><strong>256</strong> GB</span>
+              </div>
+            </div>
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; border-left:1px solid var(--ink-4); background:var(--bg);">
+              <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em;">POWER</div>
+              <div style="font-size:15px; color:var(--ink); font-weight:700;">180&ndash;450 W</div>
+            </div>
+          </div>
+
+          <!-- Latency link -->
+          <div style="display:flex; align-items:center; justify-content:center; padding:4px 0; gap:10px;">
+            <div style="width:2px; height:18px; background:var(--ink-4);"></div>
+            <div style="font-size:12px; color:var(--ink-3); letter-spacing:.08em;">25&ndash;60 ms</div>
+            <div style="width:2px; height:18px; background:var(--ink-4);"></div>
+          </div>
+
+          <!-- NEAR EDGE TIER -->
+          <div style="display:grid; grid-template-columns: 100px 1fr 120px; align-items:stretch; border:1.5px solid var(--ink); background:color-mix(in oklab,var(--c-agent) 6%,var(--bg));">
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--ink-4);">
+              <div style="font-size:11px; color:var(--ink-3); letter-spacing:.1em;">TIER 2</div>
+              <div style="font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Near edge</div>
+            </div>
+            <div style="padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:4px;">
+              <div style="display:flex; gap:4px; align-items:center;">
+                <svg width="96" height="24" viewBox="0 0 96 24"><rect x="2" y="5" width="18" height="14" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/><rect x="24" y="5" width="18" height="14" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/><rect x="46" y="5" width="18" height="14" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/><text x="72" y="16" font-family="inherit" font-size="10" fill="var(--ink-3)">&hellip;</text></svg>
+                <span style="font-size:13px; color:var(--ink-3); margin-left:6px;">0&ndash;10 nodes</span>
+              </div>
+              <div style="font-size:13px; color:var(--ink); display:flex; gap:14px;">
+                <span><strong>16</strong> CPU</span>
+                <span><strong>32</strong> GB</span>
+              </div>
+            </div>
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; border-left:1px solid var(--ink-4); background:var(--bg);">
+              <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em;">POWER</div>
+              <div style="font-size:15px; color:var(--ink); font-weight:700;">40&ndash;120 W</div>
+            </div>
+          </div>
+
+          <!-- Latency link -->
+          <div style="display:flex; align-items:center; justify-content:center; padding:4px 0; gap:10px;">
+            <div style="width:2px; height:18px; background:var(--ink-4);"></div>
+            <div style="font-size:12px; color:var(--ink-3); letter-spacing:.08em;">10&ndash;25 ms</div>
+            <div style="width:2px; height:18px; background:var(--ink-4);"></div>
+          </div>
+
+          <!-- FAR EDGE TIER -->
+          <div style="display:grid; grid-template-columns: 100px 1fr 120px; align-items:stretch; border:1.5px solid var(--ink); background:color-mix(in oklab,var(--c-agent) 3%,var(--bg));">
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--ink-4);">
+              <div style="font-size:11px; color:var(--ink-3); letter-spacing:.1em;">TIER 1</div>
+              <div style="font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em;">Far edge</div>
+            </div>
+            <div style="padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:4px;">
+              <div style="display:flex; gap:4px; align-items:center;">
+                <svg width="150" height="22" viewBox="0 0 150 22"><rect x="2" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="18" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="34" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="50" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="66" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="82" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><text x="100" y="15" font-family="inherit" font-size="10" fill="var(--ink-3)">&hellip; up to 24</text></svg>
+                <span style="font-size:13px; color:var(--ink-3); margin-left:6px;">2&ndash;24 nodes</span>
+              </div>
+              <div style="font-size:13px; color:var(--ink); display:flex; gap:14px;">
+                <span><strong>4</strong> CPU</span>
+                <span><strong>8</strong> GB</span>
+              </div>
+            </div>
+            <div style="padding:10px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; border-left:1px solid var(--ink-4); background:var(--bg);">
+              <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em;">POWER</div>
+              <div style="font-size:15px; color:var(--ink); font-weight:700;">10&ndash;35 W</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Testbed footer chips -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:2px;">
+          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
+            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">LOW-POWER</div>
+            <div style="font-size:17px; color:var(--c-agent); font-weight:700; font-family:var(--f-mono);">&minus;60 % W</div>
+          </div>
+          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
+            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">STOCH. TIMING</div>
+            <div style="font-size:17px; color:var(--ink); font-weight:700; font-family:var(--f-mono);">&plusmn;15&ndash;25 %</div>
+          </div>
+          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
+            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">FLASK APIs</div>
+            <div style="font-size:17px; color:var(--ink); font-weight:700; font-family:var(--f-mono);">12 endpoints</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== RIGHT · SIX SCENARIOS FIGURE ============== -->
+      <div style="padding:28px 36px 24px; display:flex; flex-direction:column; gap:14px; justify-content:space-between; min-height:0; background:var(--bg-alt);">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+          <div>
+            <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Scenarios</div>
+            <div style="font-family:var(--f-display); font-size:26px; font-weight:700; letter-spacing:-.01em; line-height:1.15; margin-top:2px;">Six orchestration challenges</div>
+          </div>
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); text-align:right; line-height:1.4;">pre-defined valid end-states<br/>success = exact match</div>
+        </div>
+
+        <!-- GROUP A · Constraint resolution S1-S3 -->
+        <div style="display:grid; grid-template-rows:auto 1fr; gap:6px; min-height:0;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; letter-spacing:.12em; color:var(--c-agent);">GROUP A &middot; CONSTRAINT RESOLUTION</span>
+            <span style="flex:1; height:1px; background:var(--ink-4);"></span>
+            <span style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em;">2 nodes &middot; reasoning under conflict</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; min-height:0;">
+
+            <!-- S1 -->
+            <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:color-mix(in oklab,var(--c-agent) 16%,var(--bg)); border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S1</span>
+                <span style="font-size:14px; font-weight:700; color:var(--ink);">Full Node</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
+                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
+                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
+                  <rect x="6" y="6" width="68" height="42" rx="3" fill="var(--c-agent)" opacity="0.75"/>
+                  <text x="40" y="22" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
+                  <text x="40" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">100%</text>
+                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink-3)" stroke-dasharray="3 2" stroke-width="1.2"/>
+                  <text x="120" y="22" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink-3)">edge-1</text>
+                  <text x="120" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--ink-3)" font-weight="700">idle</text>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;">Deploy a <strong>2-core</strong> service on a full node &rarr; must migrate first.</div>
+              </div>
+            </div>
+
+            <!-- S2 -->
+            <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:color-mix(in oklab,var(--c-agent) 16%,var(--bg)); border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S2</span>
+                <span style="font-size:14px; font-weight:700; color:var(--ink);">Low-Power Conflict</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
+                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
+                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
+                  <rect x="6" y="6" width="68" height="18" rx="0" fill="var(--c-agent)" opacity="0.35"/>
+                  <text x="40" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-0 24%</text>
+                  <text x="40" y="40" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--c-agent)" font-weight="700">+API 1.4c</text>
+                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+                  <rect x="86" y="6" width="68" height="9" rx="0" fill="var(--c-agent)" opacity="0.35"/>
+                  <text x="120" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-1 10%</text>
+                  <path d="M108 30 l6 -8 l-4 0 l6 -8 l-6 8 l4 0 l-6 8 z" fill="var(--c-agent)"/>
+                  <text x="135" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--c-agent)" font-weight="700">low-power</text>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;">Scale API <strong>+</strong> power down the host &rarr; migrate first, then transition.</div>
+              </div>
+            </div>
+
+            <!-- S3 -->
+            <div style="border:2px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:var(--c-agent); color:#fff; border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:#fff; letter-spacing:.12em;">S3</span>
+                <span style="font-size:14px; font-weight:700; color:#fff;">Compound Constraint</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
+                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
+                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
+                  <rect x="6" y="6" width="68" height="36" rx="0" fill="var(--c-agent)" opacity="0.55"/>
+                  <text x="40" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
+                  <text x="40" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">API 2.4c?</text>
+                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+                  <rect x="86" y="6" width="68" height="9" rx="0" fill="var(--c-agent)" opacity="0.35"/>
+                  <path d="M108 30 l6 -8 l-4 0 l6 -8 l-6 8 l4 0 l-6 8 z" fill="var(--c-agent)"/>
+                  <text x="135" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--c-agent)" font-weight="700">low-power</text>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;"><strong style="color:var(--c-agent);">&minus;0.52 core deficit</strong> &rarr; infeasible as stated, needs redistribution.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- GROUP B · Energy scalability S4-S6 -->
+        <div style="display:grid; grid-template-rows:auto 1fr; gap:6px; min-height:0;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; letter-spacing:.12em; color:var(--c-agent);">GROUP B &middot; ENERGY SCALABILITY</span>
+            <span style="flex:1; height:1px; background:var(--ink-4);"></span>
+            <span style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em;">consolidate &middot; power down idle</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; min-height:0;">
+
+            <!-- S4 Small -->
+            <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:color-mix(in oklab,var(--c-agent) 10%,var(--bg)); border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S4 &middot; SMALL</span>
+                <span style="font-size:14px; font-weight:700; color:var(--ink);">8 nodes</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px; flex:1;">
+                <svg viewBox="0 0 160 52" style="width:100%; height:110px;" preserveAspectRatio="xMidYMid meet">
+                  <g>
+                    <rect x="4"   y="6"  width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                    <rect x="42"  y="6"  width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                    <rect x="80"  y="6"  width="34" height="18" rx="2" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="1.2" opacity="0.35"/>
+                    <rect x="118" y="6"  width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                    <rect x="4"   y="28" width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                    <rect x="42"  y="28" width="34" height="18" rx="2" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="1.2" opacity="0.35"/>
+                    <rect x="80"  y="28" width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                    <rect x="118" y="28" width="34" height="18" rx="2" fill="#fff" stroke="var(--c-agent)" stroke-width="1.2"/>
+                  </g>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;"><strong>6 services</strong> spread across 8 nodes &middot; 2 idle.</div>
+              </div>
+            </div>
+
+            <!-- S5 Medium -->
+            <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:color-mix(in oklab,var(--c-agent) 10%,var(--bg)); border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S5 &middot; MEDIUM</span>
+                <span style="font-size:14px; font-weight:700; color:var(--ink);">18 nodes</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px; flex:1;">
+                <svg viewBox="0 0 160 52" style="width:100%; height:110px;" preserveAspectRatio="xMidYMid meet">
+                  <g>
+                    <!-- 3x6 grid -->
+                    <!-- row 1 -->
+                    <rect x="4"   y="5"  width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="30"  y="5"  width="22" height="11" rx="1.5" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="1" opacity="0.35"/>
+                    <rect x="56"  y="5"  width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="82"  y="5"  width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="108" y="5"  width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="134" y="5"  width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <!-- row 2 -->
+                    <rect x="4"   y="20" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="30"  y="20" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="56"  y="20" width="22" height="11" rx="1.5" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="1" opacity="0.35"/>
+                    <rect x="82"  y="20" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="108" y="20" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="134" y="20" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <!-- row 3 -->
+                    <rect x="4"   y="35" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="30"  y="35" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="56"  y="35" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="82"  y="35" width="22" height="11" rx="1.5" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="1" opacity="0.35"/>
+                    <rect x="108" y="35" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                    <rect x="134" y="35" width="22" height="11" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/>
+                  </g>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;"><strong>15 services</strong> across 18 nodes &middot; 3 idle.</div>
+              </div>
+            </div>
+
+            <!-- S6 Large -->
+            <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 4%,var(--bg)); display:flex; flex-direction:column;">
+              <div style="padding:6px 10px; background:var(--c-agent); color:#fff; border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:#fff; letter-spacing:.12em;">S6 &middot; LARGE</span>
+                <span style="font-size:14px; font-weight:700; color:#fff;">35 nodes</span>
+              </div>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px; flex:1;">
+                <svg viewBox="0 0 160 52" style="width:100%; height:110px;" preserveAspectRatio="xMidYMid meet">
+                  <g>
+                    <!-- 5x7 grid -->
+                    <!-- row 1 -->
+                    <rect x="4"   y="3"  width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="26"  y="3"  width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="48"  y="3"  width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="70"  y="3"  width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="92"  y="3"  width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="114" y="3"  width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="136" y="3"  width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <!-- row 2 -->
+                    <rect x="4"   y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="26"  y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="48"  y="14" width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="70"  y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="92"  y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="114" y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="136" y="14" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <!-- row 3 -->
+                    <rect x="4"   y="25" width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="26"  y="25" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="48"  y="25" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="70"  y="25" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="92"  y="25" width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="114" y="25" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="136" y="25" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <!-- row 4 -->
+                    <rect x="4"   y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="26"  y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="48"  y="36" width="19" height="8" rx="1" fill="var(--c-agent)" stroke="var(--c-agent)" stroke-width="0.9" opacity="0.35"/>
+                    <rect x="70"  y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="92"  y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="114" y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                    <rect x="136" y="36" width="19" height="8" rx="1" fill="#fff" stroke="var(--c-agent)" stroke-width="0.9"/>
+                  </g>
+                </svg>
+                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;"><strong>30 services</strong> across 35 nodes &middot; 6 idle.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scenarios footer -->
+        <div style="display:flex; gap:8px; align-items:stretch;">
+          <div style="flex:1; padding:8px 12px; border:1px solid var(--ink-4); background:var(--bg); display:flex; align-items:center; gap:10px;">
+            <div style="width:12px; height:12px; background:var(--c-agent); opacity:0.35; border:1px solid var(--c-agent);"></div>
+            <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2);">hosted service</span>
+            <div style="width:12px; height:12px; background:#fff; border:1px dashed var(--ink-3); margin-left:8px;"></div>
+            <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-2);">idle node</span>
+          </div>
+          <div style="padding:8px 12px; border-left:3px solid var(--c-agent); background:var(--bg); font-family:var(--f-mono); font-size:12px; color:var(--ink-2);">
+            same catalogue &middot; same LLM &middot; <strong style="color:var(--c-agent);">only architecture varies</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">Experimental setup &middot; 3-tier edge&ndash;cloud testbed &middot; six orchestration scenarios (S1&ndash;S6)</div>
+    <div class="meta-right">&sect;4 AgentEdge</div>
+  </div>
+</section>

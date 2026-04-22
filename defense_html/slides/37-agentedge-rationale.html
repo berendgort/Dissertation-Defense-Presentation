@@ -1,0 +1,253 @@
+<section class="slide" data-section="agent" data-label="37 AgentEdge Pipeline Overview">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Design</span></div>
+    <div class="counter"><span class="num">37</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:36px 70px 28px; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="margin:-36px -70px 24px; min-height:86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; letter-spacing:-.02em; margin:0;">Design &middot; AgentEdge splits orchestration across four specialists</h1>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr; gap:0; min-height:0; align-items:stretch;">
+
+      <!-- 01 · Intent -->
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
+        <div style="background:var(--ink); padding:12px 18px; display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:32px; font-weight:700; color:var(--bg); line-height:1;">01</div>
+          <div style="font-family:var(--f-mono); font-size:15px; color:var(--bg-alt); letter-spacing:.04em; line-height:1.1;">Intent Agent</div>
+        </div>
+        <div style="flex:1; padding:14px 18px 14px; display:grid; grid-template-rows:auto auto 1fr auto; gap:10px; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12.5px; color:var(--c-agent); letter-spacing:.12em; text-transform:uppercase; font-weight:700;">operator request &rarr; typed goal</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.28;">Parse ambiguous natural language into a structured intention the rest of the stack can trust.</div>
+
+          <svg viewBox="0 0 300 340" style="width:100%; height:100%; min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="mk36a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="var(--c-agent)"/>
+              </marker>
+            </defs>
+            <text x="150" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" letter-spacing="1.5">operator</text>
+            <rect x="18" y="24" width="264" height="102" rx="12" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.8"/>
+            <path d="M52 124 L68 150 L82 124 Z" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.8"/>
+            <line x1="55" y1="125" x2="79" y2="125" stroke="var(--bg-alt)" stroke-width="2.6"/>
+            <text x="32" y="54" font-family="Inter" font-size="14" fill="var(--ink-2)" font-style="italic">&quot;rebalance node 3 &rarr; 5,</text>
+            <text x="32" y="76" font-family="Inter" font-size="14" fill="var(--ink-2)" font-style="italic">keep SLA budget,</text>
+            <text x="32" y="98" font-family="Inter" font-size="14" fill="var(--ink-2)" font-style="italic">cut power 15%&quot;</text>
+            <line x1="150" y1="160" x2="150" y2="194" stroke="var(--c-agent)" stroke-width="3" marker-end="url(#mk36a)"/>
+            <text x="196" y="184" font-family="JetBrains Mono" font-size="10.5" fill="var(--c-agent)" font-weight="700">parse</text>
+            <text x="150" y="214" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" letter-spacing="1.5" font-weight="700">typed goal</text>
+            <rect x="18" y="222" width="264" height="108" rx="8" fill="color-mix(in oklab,var(--c-agent) 7%, var(--bg))" stroke="var(--c-agent)" stroke-width="1.8"/>
+            <g font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">
+              <text x="30" y="242">{</text>
+              <text x="42" y="260"><tspan fill="var(--c-agent)">&quot;action&quot;</tspan>: &quot;rebalance&quot;,</text>
+              <text x="42" y="278"><tspan fill="var(--c-agent)">&quot;from&quot;</tspan>: &quot;node_3&quot;,</text>
+              <text x="42" y="296"><tspan fill="var(--c-agent)">&quot;to&quot;</tspan>: &quot;node_5&quot;, <tspan fill="var(--c-agent)">&quot;sla&quot;</tspan>: &quot;preserve&quot;,</text>
+              <text x="42" y="314"><tspan fill="var(--c-agent)">&quot;energy&quot;</tspan>: &quot;&minus;15%&quot;</text>
+              <text x="30" y="328">}</text>
+            </g>
+          </svg>
+
+          <div style="font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); text-align:center;">output &rarr; typed goal schema</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="mk36outa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+            </marker>
+          </defs>
+          <line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk36outa)"/>
+        </svg>
+      </div>
+
+      <!-- 02 · Observability -->
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
+        <div style="background:var(--ink); padding:12px 18px; display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:32px; font-weight:700; color:var(--bg); line-height:1;">02</div>
+          <div style="font-family:var(--f-mono); font-size:15px; color:var(--bg-alt); letter-spacing:.04em; line-height:1.1;">Observability Agent</div>
+        </div>
+        <div style="flex:1; padding:14px 18px 14px; display:grid; grid-template-rows:auto auto 1fr auto; gap:10px; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12.5px; color:var(--c-agent); letter-spacing:.12em; text-transform:uppercase; font-weight:700;">raw state &rarr; actionable intel</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.28;">Watch the live system and surface the alerts and opportunities that actually matter for planning.</div>
+
+          <svg viewBox="0 0 300 340" style="width:100%; height:100%; min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="mk36b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="var(--c-agent)"/>
+              </marker>
+            </defs>
+            <text x="150" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" letter-spacing="1.5">raw telemetry</text>
+            <rect x="18" y="24" width="264" height="116" fill="var(--bg-alt)" stroke="var(--ink-4)" stroke-width="1.8"/>
+            <!-- cpu: jagged -->
+            <polyline points="28,52 50,42 72,58 94,40 116,56 138,38 160,54 182,44 204,58 226,46 248,56 272,48" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+            <text x="270" y="52" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="var(--ink)" opacity=".55">cpu</text>
+            <!-- mem: smooth wave -->
+            <path d="M28 82 Q60 72 90 82 T150 82 T210 82 T272 80" fill="none" stroke="var(--ink-2)" stroke-width="1.8"/>
+            <text x="270" y="78" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="var(--ink-2)" opacity=".55">mem</text>
+            <!-- pwr: monotonic red rise -->
+            <polyline points="28,114 60,112 92,108 124,104 156,100 188,96 220,90 252,84 272,80" fill="none" stroke="#b83838" stroke-width="1.8"/>
+            <circle cx="272" cy="80" r="2.5" fill="#b83838"/>
+            <text x="270" y="126" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#b83838" opacity=".8">pwr</text>
+            <line x1="150" y1="150" x2="150" y2="184" stroke="var(--c-agent)" stroke-width="3" marker-end="url(#mk36b)"/>
+            <text x="196" y="174" font-family="JetBrains Mono" font-size="10.5" fill="var(--c-agent)" font-weight="700">filter</text>
+            <text x="150" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" letter-spacing="1.5" font-weight="700">distilled intel</text>
+            <g>
+              <rect x="18" y="212" width="264" height="32" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <circle cx="34" cy="228" r="5" fill="var(--c-agent)"/>
+              <text x="48" y="232" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">node_3 hot &middot; p99 rising</text>
+            </g>
+            <g>
+              <rect x="18" y="250" width="264" height="32" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <circle cx="34" cy="266" r="5" fill="var(--c-agent)" opacity=".6"/>
+              <text x="48" y="270" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">node_5 headroom 55%</text>
+            </g>
+            <g>
+              <rect x="18" y="288" width="264" height="32" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <circle cx="34" cy="304" r="5" fill="var(--c-agent)" opacity=".4"/>
+              <text x="48" y="308" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">SLA budget 70% used</text>
+            </g>
+          </svg>
+
+          <div style="font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); text-align:center;">output &rarr; actionable alerts</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="mk36outb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+            </marker>
+          </defs>
+          <line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk36outb)"/>
+        </svg>
+      </div>
+
+      <!-- 03 · Planning -->
+      <div style="display:flex; flex-direction:column; border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg));">
+        <div style="background:var(--c-agent); padding:12px 18px; display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:32px; font-weight:700; color:var(--bg); line-height:1;">03</div>
+          <div style="font-family:var(--f-mono); font-size:15px; color:var(--bg); letter-spacing:.04em; line-height:1.1;">Planning Agent &middot; ActSimCrit</div>
+        </div>
+        <div style="flex:1; padding:14px 18px 14px; display:grid; grid-template-rows:auto auto 1fr auto; gap:10px; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12.5px; color:var(--c-agent); letter-spacing:.12em; text-transform:uppercase; font-weight:700;">plan &rarr; simulate &rarr; critique</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.28;">Iterate candidate plans inside a digital twin until the critic LLM agrees before anything touches production.</div>
+
+          <svg viewBox="0 0 300 340" style="width:100%; height:100%; min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="mk36c-solid" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="var(--c-agent)"/>
+              </marker>
+              <marker id="mk36c-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="#b83838"/>
+              </marker>
+              <marker id="mk36c-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="#15803d"/>
+              </marker>
+            </defs>
+            <text x="150" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" letter-spacing="1.5" font-weight="700">candidate plan loop</text>
+
+            <!-- loop circle -->
+            <circle cx="150" cy="170" r="108" fill="none" stroke="var(--c-agent)" stroke-width="2" stroke-dasharray="5,5" opacity=".55"/>
+
+            <!-- Plan -->
+            <rect x="108" y="38" width="84" height="46" rx="6" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2"/>
+            <text x="150" y="66" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-agent)">Plan</text>
+
+            <!-- Sim -->
+            <rect x="214" y="146" width="84" height="46" rx="6" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2"/>
+            <text x="256" y="174" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-agent)">Sim</text>
+
+            <!-- Crit -->
+            <rect x="108" y="254" width="84" height="46" rx="6" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2"/>
+            <text x="150" y="282" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="var(--c-agent)">Crit</text>
+
+            <!-- arrows around loop -->
+            <path d="M192 70 Q252 90 252 146" fill="none" stroke="var(--c-agent)" stroke-width="2" marker-end="url(#mk36c-solid)"/>
+            <path d="M246 192 Q222 254 192 264" fill="none" stroke="var(--c-agent)" stroke-width="2" marker-end="url(#mk36c-solid)"/>
+
+            <!-- reject arc (Crit back to Plan) -->
+            <path d="M108 268 Q50 270 46 190 Q46 92 108 72" fill="none" stroke="#b83838" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#mk36c-red)"/>
+            <text x="24" y="174" font-family="JetBrains Mono" font-size="10.5" fill="#b83838" font-weight="700">reject</text>
+
+            <!-- pass exit -->
+            <line x1="214" y1="282" x2="156" y2="322" stroke="#15803d" stroke-width="2.4" marker-end="url(#mk36c-green)" opacity="0"/>
+            <text x="150" y="338" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#15803d" font-weight="700" letter-spacing="1.2">pass &rarr; validated plan</text>
+          </svg>
+
+          <div style="font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700; text-align:center;">detail &rarr; slide 38</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="mk36outc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,1 L10,5 L0,9 z" fill="var(--ink)"/>
+            </marker>
+          </defs>
+          <line x1="4" y1="18" x2="30" y2="18" stroke="var(--ink)" stroke-width="3" marker-end="url(#mk36outc)"/>
+        </svg>
+      </div>
+
+      <!-- 04 · Infra action -->
+      <div style="display:flex; flex-direction:column; border:2px solid var(--ink);">
+        <div style="background:var(--ink); padding:12px 18px; display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:32px; font-weight:700; color:var(--bg); line-height:1;">04</div>
+          <div style="font-family:var(--f-mono); font-size:15px; color:var(--bg-alt); letter-spacing:.04em; line-height:1.1;">Infra Action Agent</div>
+        </div>
+        <div style="flex:1; padding:14px 18px 14px; display:grid; grid-template-rows:auto auto 1fr auto; gap:10px; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12.5px; color:var(--c-agent); letter-spacing:.12em; text-transform:uppercase; font-weight:700;">validated plan &rarr; K8s API</div>
+          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.28;">Execute the validated plan as concrete API calls; self-heal on failure.</div>
+
+          <svg viewBox="0 0 300 340" style="width:100%; height:100%; min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="mk36d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="var(--c-agent)"/>
+              </marker>
+              <marker id="mk36d-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,1 L10,5 L0,9 z" fill="var(--ink-3)"/>
+              </marker>
+            </defs>
+            <text x="150" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" letter-spacing="1.5" font-weight="700">validated plan</text>
+            <g>
+              <rect x="18" y="24" width="264" height="28" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <text x="30" y="43" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">migrate svc_a &rarr; node_5</text>
+            </g>
+            <g>
+              <rect x="18" y="58" width="264" height="28" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <text x="30" y="77" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">migrate svc_b &rarr; node_7</text>
+            </g>
+            <g>
+              <rect x="18" y="92" width="264" height="28" rx="5" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.4"/>
+              <text x="30" y="111" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">low_power node_3</text>
+            </g>
+            <line x1="150" y1="130" x2="150" y2="166" stroke="var(--c-agent)" stroke-width="3" marker-end="url(#mk36d)"/>
+            <text x="196" y="156" font-family="JetBrains Mono" font-size="10.5" fill="var(--c-agent)" font-weight="700">execute</text>
+            <text x="150" y="186" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" letter-spacing="1.5" font-weight="700">K8s / Swarm API</text>
+            <rect x="18" y="194" width="264" height="90" rx="8" fill="color-mix(in oklab,var(--c-agent) 7%, var(--bg))" stroke="var(--c-agent)" stroke-width="1.8"/>
+            <g font-family="JetBrains Mono" font-size="11.5" fill="var(--ink)">
+              <text x="30" y="216">POST /migrate   &rarr; 200</text>
+              <text x="30" y="236">POST /migrate   &rarr; 200</text>
+              <text x="30" y="256">PATCH /power    &rarr; 200</text>
+              <text x="30" y="276"><tspan fill="#15803d">all ops &#10003; settled</tspan></text>
+            </g>
+            <!-- retry loop -->
+            <path d="M260 284 Q290 300 260 318 Q210 326 100 326 Q50 326 42 310 Q34 296 34 284" fill="none" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#mk36d-gray)"/>
+            <text x="150" y="338" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-3)">on failure &middot; diagnose &amp; retry</text>
+          </svg>
+
+          <div style="font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); text-align:center;">deploy &rarr; slide 36</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">AgentEdge &middot; parse intent &middot; watch state &middot; plan safely &middot; act on infra</div>
+    <div class="meta-right">&sect;4 AgentEdge</div>
+  </div>
+</section>

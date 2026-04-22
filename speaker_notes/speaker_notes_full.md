@@ -198,77 +198,73 @@ This table still makes one point directly: the 6G literature still does not give
 
 The reason is methodological, not cosmetic. The six 6G papers are valuable related work, but they do not satisfy full PARES and they do not fit the validated Intent-Observe-Plan-Act system model that AgentEdge evaluates for edge-cloud orchestration. ReAct and LATS are therefore the legitimate baselines: they are genuine agentic frameworks that interpret natural-language intent and coordinate multi-step actions, and we retarget them to the same tools, base LLM, and scenarios for fairness. So the conclusion I want the slide to land is simple: zero 6G rows are full agents, ReAct and LATS are PARES-complete but task-misaligned, and only AgentEdge is full-row green.
 
-### Slide 36 · One pain-point, one decision
-
-The rationale table has four rows, and each row is the minimal response to one specific pain-point. Ambiguous natural-language intent forces a dedicated Intent agent whose only job is to parse operator sentences into structured goals. A large, distributed state forces an Observability agent with tool-use and a bounded world model, so the system does not drown in raw telemetry. The fact that plans break in complex environments forces ActSimCrit — Plan, Simulate, Critique — which validates candidate plans before execution. The fact that actions are irreversible on live infrastructure forces a digital-twin sandbox where the simulation happens. The line the slide leaves with the committee is that each of these four is load-bearing: drop any one of them and the system fails predictably in a way that can be traced to the missing piece.
-
-### Slide 37 · Design - Four specialised agents
+### Slide 36 · Graph of graphs and microservice deployment
 
 The architecture is a graph of graphs. Outer structure is sequential — start, Intent, Observability, Planning, Infra Action, end — and each of those four agents is itself a small subgraph with its own internal reasoning steps. On top of that, every agent satisfies the PARES capability contract: Perceive, Act, Reason, Evaluate, Sustain — the five capabilities that define what it means to be an agent in this framework rather than a prompt chain. The agentic-spectrum note on the slide places this design deliberately: it is specialised enough to be debuggable, but not so rigid that it reduces to a pipeline.
 
-### Slide 38 · Intent and observability
+### Slide 37 · AgentEdge splits orchestration across four specialists
 
-This slide shows the two perception agents with concrete examples. The Intent agent takes an operator sentence and returns structured JSON. On-slide it reads as a rebalance goal from node three to node five, subject to an SLA constraint and an energy-savings floor of fifteen percent. The Observability agent takes the bounded infrastructure context and returns a typed snapshot: per-node metrics plus an SLA object with p99 latency of 118 milliseconds and an error budget used at 0.70. Perception is a bounded world model plus a typed intent parse, not free-form chatter. That is what makes the rest of the pipeline debuggable.
+The rationale table has four rows, and each row is the minimal response to one specific pain-point. Ambiguous natural-language intent forces a dedicated Intent agent whose only job is to parse operator sentences into structured goals. A large, distributed state forces an Observability agent with tool-use and a bounded world model, so the system does not drown in raw telemetry. The fact that plans break in complex environments forces ActSimCrit — Plan, Simulate, Critique — which validates candidate plans before execution. The fact that actions are irreversible on live infrastructure forces a digital-twin sandbox where the simulation happens. The line the slide leaves with the committee is that each of these four is load-bearing: drop any one of them and the system fails predictably in a way that can be traced to the missing piece.
 
-### Slide 39 · Planning, simulation, and execution
+### Slide 38 · Planning Agent · the ActSimCrit loop
 
 This is the core of AgentEdge. The Planning agent runs a five-phase loop: strategic planning, state analysis, action selection, digital-twin simulation with a critic, and a check on whether the intent is satisfied. If the critic rejects the simulated outcome, control returns to action selection rather than being committed to the cluster. Four technical mechanisms sit underneath that loop: tool-call batching, a three-tier state representation, rejection-feedback on failed plans, and deadlock detection. The example JSON at the bottom of the slide shows the output of a successful cycle — a plan object with `validated: true`, an energy delta of minus eighteen percent, and SLA preserved. Nothing reaches the cluster until that object exists. Validation before execution is structural, not a post-hoc check.
 
-### Slide 40 · Infrastructure simulator
+### Slide 39 · Infrastructure simulator
 
 The simulator does two jobs at once. At runtime, it is the digital twin that the Planning agent uses inside ActSimCrit to validate a proposed tool-call batch before anything is committed. As an evaluation harness, it is the controlled environment where all three AgentEdge experiments run. The tier table on-slide names the three levels — far edge, near edge, cloud — with per-tier node counts, CPU and memory, power envelopes, latency, and the sixty-percent low-power saving applied in each tier. The twelve API endpoints — deploy, migrate, scale, low-power, status, and seven others — are listed as chips, and the simulator is explicit about its stochastic timing, its 0.1-to-2-percent failure probability, and its real-time validation. The bottom line on-slide — *same infrastructure, same LLM, same tools, only architecture varies* — is the fairness guarantee that makes the next three experiments comparable.
 
-### Slide 41 · Scenario 1 - Multi-agent vs single-agent
+### Slide 40 · Scenario 1 - Multi-agent vs single-agent
 
 The first AgentEdge experiment is an architecture-versus-architecture comparison. Three scenarios are specified on-slide: S1 is a full-node reallocation task; S2 is a low-power conflict where multiple constraints compete; S3 is a compound-constraint task with a measured 0.52-core deficit that forces the agent to reason across services. Success is defined by predefined valid end-states, and we run thirty trials per scenario per system, reporting the percent success rate. The three arms are AgentEdge with four agents and the twin, ReAct — the reason-act loop — and LATS, which is tree-search over LLM rollouts. Critically, all three arms run on the same base LLM, `qwen3-235B-A22B` at temperature 0.2, so any difference between them is attributable to architecture, not to model capability.
 
-### Slide 42 · Result 1 - Multi-agent beats every baseline
+### Slide 41 · Result 1 - Multi-agent beats every baseline
 
 The numbers are clean. AgentEdge succeeds on 78.3 percent of trials. LATS succeeds on 65.0 percent. ReAct succeeds on 28.3 percent. As multipliers, which are stickier than raw percentages, that is 1.20 times LATS and 2.76 times ReAct. The finding banner is direct: multi-agent architecture beats every SOTA single-agent baseline, on the same LLM, on the same tasks, in the same simulator. The next experiment takes the next obvious question — is this gain really coming from the digital twin, or from the four-agent structure alone?
 
-### Slide 43 · Scenario 2 - Twin ablation
+### Slide 42 · Scenario 2 - Twin ablation
 
 The ablation turns the digital twin on and off and holds everything else constant. The *WITH* arm is the full AgentEdge — Plan, Simulate, Critique, Execute. The *WITHOUT* arm runs the same four agents, with planning and critique, but strips out the simulation step so the critic has no simulated trajectory to evaluate. Let me be precise about what "WITHOUT" means here, because this is a question that often comes up: on a Crit failure the plan is refined *in place* by the Exec agent; no round-trip back to Planning. In other words, the twin's contribution is isolated as *pre-execution validation*, not as the existence of a retry mechanism at all. The Q&A anticipation on-slide is the related point: the twin does not change *whether* a plan can succeed, it changes *how many physical retries* it takes. We report both success rate and API-call count, so failure-shifting cannot hide behind either metric alone.
 
-### Slide 44 · Result 2 - Sandbox validation reduces costly trial-and-error
+### Slide 43 · Result 2 - Sandbox validation reduces costly trial-and-error
 
 The ablation tells a very direct story. With the twin, success is 78.3 percent; without it, success drops to 53.3 percent — a 1.47 times improvement. The more operational number is API behaviour. With the twin, API-call counts stay tight at 10.9 with a standard deviation of 1.1. Without the twin, they range from eight to five-hundred-and-seventeen with a standard deviation of 109.4 — about ten times higher variability. Without simulation, the agent enters unproductive retry loops that are not just slower; they are operationally unsafe, because every retry touches production. The twin is therefore structural: it lifts success *and* collapses variance. The last experiment asks how this behaviour changes as the infrastructure grows.
 
-### Slide 45 · Scenario 3 - Energy scalability
+### Slide 44 · Scenario 3 - Energy scalability
 
 The scalability experiment asks a practical question: does AgentEdge keep saving energy as the infrastructure grows? The three scales on the slide are eight nodes, twenty nodes, and thirty-five nodes. The task is the same at each size — consolidate energy while preserving the SLA. The main metric is power saved in watts, and each number is also contextualised on-slide as a percentage of baseline rack power, so it is not just a floating watt figure. Response time is shown alongside it, because AgentEdge is strategic orchestration, not a fast control loop.
 
-### Slide 46 · Result 3 - Energy savings peak at 18 nodes
+### Slide 45 · Result 3 - Power drops across every scale
 
-Three bars, three findings, and one shared scale across all scales. At eight nodes, AgentEdge saves 89 watts, a 20.6 percent efficiency gain. At twenty nodes, it saves 300.8 watts, a 55.5 percent gain — the peak, and the one I want the committee to remember. At thirty-five nodes, it saves 185.2 watts, a 9.5 percent gain. A reasonable follow-up is *why does twenty beat thirty-five?* The honest answer on-slide is that it is a context-window artefact, not a fundamental limit; the full node state overflows the prompt. With summarisation or sharding, the gain would continue to scale. The shared y-axis and ten runs per scale make these numbers directly comparable. Response time still grows with infrastructure size, which is exactly why real-time agent infrastructure appears again in future work. The key claim on this slide is not that scale is free; it is that validated autonomy remains useful and energy-relevant at production scale, and that the peak is explained rather than hidden.
+Three panels, one story. The y-axis on each panel is total rack power in watts, and the x-axis is the number of API calls the agent has made. Every green square marks the starting power, every red triangle marks the settled power, and the green arrow in the middle of each panel is the delta-watts — how much power the agent reclaimed. At eight nodes, power drops from about four-hundred-and-sixty watts to roughly three-hundred-and-seventy watts; delta-W equals eighty-nine watts. At eighteen nodes, power drops from about seven-hundred-and-ten watts to four-hundred-and-ten watts; delta-W equals three-hundred-point-eight watts — the peak, and the one I want the committee to remember. At thirty-five nodes, power drops from roughly twelve-hundred-and-fifty watts to just over one-thousand watts; delta-W equals one-hundred-and-eighty-five-point-two watts. A reasonable follow-up is *why does eighteen beat thirty-five?* The thirty-five-node curve flattens early because the full node state overflows the LLM prompt; it is a context-window artefact, not a fundamental limit. With summarisation or sharded context, the curve would keep descending. All thirty runs succeeded across every scale. The key claim on this slide is that validated autonomy remains energy-relevant at production scale, and that the saturation at the largest scale is explained rather than hidden.
 
-### Slide 47 · Slide 03 reprise + publication mapping
+### Slide 46 · Slide 03 reprise + publication mapping
 
 This slide is still a callback to slide three, but the left side is now stripped down to headline-only reminders with the contribution labels in place of the old problem tags. AgentEdge sits at layers one and two, AERO and OmniFORE split layer three, and the related book chapter sits with layer four. On the right, the mapping follows the thesis publication list exactly: AgentEdge maps to [J1] and [C1], AERO maps to [J4] and [C3], OmniFORE maps to [J3], [J5], and [C2], and [B1] stays as the related output at infrastructure level.
 
 I keep this one very short in delivery. The point is simply that the publication record lines up with the stack itself, and the full bibliographic list remains on backup slide B7.
 
-### Slide 48 · Future work · agentic era
+### Slide 47 · Future work · agentic era
 
 The same stack appears one more time, but now layers three and four are dimmed and explicitly marked *solved*, while layer one and layer two stay lit. The message is that the open frontier is now at the agentic layers, not at the predictor. Three future challenges follow, each with its own slide: reliability and trust, real-time agent infrastructure, and distributed orchestration ecosystems. AgentEdge works, but three new challenges emerge once it leaves the lab and starts operating at production scale.
 
-### Slide 49 · Reliable benchmarks for agentic orchestration
+### Slide 48 · Reliable benchmarks for agentic orchestration
 
 Let me start with the first trust problem: benchmarking. At the moment, we simply do not have benchmark suites for agentic orchestration, and without them developers cannot know whether a change helps or hurts. The reason this is hard is that these tasks rarely have one ground-truth label; several plans can be valid at once. On top of that, LLM non-determinism means a fix that improves one scenario can break another. And if we had good benchmark data, it would not only improve evaluation, it would also enable fine-tuning smaller, orchestration-specific models. So trust begins with evaluation engineering. Before these systems can be deployed confidently, the field needs shared test suites, and research should characterise *equivalence classes* of correct orchestration plans; expand LLM evaluation theory into orchestration; and build orchestration-trace datasets — plan, state, outcome — that enable small LoRA/SFT models that are cheaper and easier to audit.
 
-### Slide 50 · Real-time agentic infrastructure
+### Slide 49 · Real-time agentic infrastructure
 
 The second barrier is real-time performance. Even simple orchestration tasks can take tens of seconds because the planner iterates, calls tools, revises, and reasons again, and token costs compound at scale. This is ultimately a context-engineering problem, not a hardware one. The three barriers on this slide: first, the state the agent sees when reasoning starts may already differ by the time it executes. Second, accuracy drops once the tool surface gets too large — in our experiments, beyond roughly thirty tools, and in some cases removing tools actually improved results. Third, latency points toward the same lesson AERO taught us at the prediction layer: smaller, fine-tuned models may be the only practical way to break the latency barrier. State summarisation, tool sharding, retrieval-over-state; specialised models per decision — scale, migrate, placement; and, further out, agent loops fused with the RAN and core on sub-millisecond radio loops, unifying signal-theory timing budgets with LLM inference budgets.
 
-### Slide 51 · Distributed agent ecosystems
+### Slide 50 · Distributed agent ecosystems
 
 The third direction is system architecture at scale. Once orchestration is deployed across regions, providers, or administrative domains, the problem is no longer one agent in one cluster; it is many agent instances acting on shared infrastructure. The slide gives three open questions. First, the same prompt routed through a different model or provider can break because the output format shifts; we need an OpenAPI-equivalent for agent tool-calls, so that swapping provider X for provider Y preserves agent behaviour. Second, consensus or lock-lease schemes for *intended* actions, so conflicts are detected *before* actuation, not after. And third, scaling will come from parallelising across regions, not from adding more agents in sequence. Without these protocols, one agent may consolidate onto a node while another powers it down.
 
-### Slide 52 · Three contributions, one systems thesis
+### Slide 51 · Three contributions, one systems thesis
 
 Three claims, each defended with three anchor numbers, nine anchors in total. Claim one, AERO — 599 parameters, eight-times-lower error under drift, and fifty-percent fewer migrations than SOTA: edge-real-time prediction is feasible with a sub-one-thousand-parameter model, with accuracy preserved. Claim two, OmniFORE — 30.41 percent lower MAE versus ModernTCN, a 20.66 percent MAE gain from clustering, and zero-shot deployment on an unseen cloud: a single attention-based model generalises across services, no per-service retraining. Claim three, AgentEdge — 1.47 times twin-on versus twin-off, ten-times-lower API-call variance, and 300.8 watts peak savings at eighteen nodes: validated autonomous orchestration — planning plus twin plus critic — is reliable and saves energy. The banner quote captures the thesis in one line: *orchestration turned from reactive supervision into a proactive, validated control stack; across three layers, with nine anchor numbers to defend it.* That is what I defend.
 
-### Slide 53 · Questions
+### Slide 52 · Questions
 
 Thank you. I welcome your questions. The final slide keeps the compact deck guide on the right, while the left now closes with a lighter Q and A line plus the supervisors and thesis tribunal.
 

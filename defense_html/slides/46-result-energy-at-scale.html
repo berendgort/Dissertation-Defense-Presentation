@@ -1,112 +1,201 @@
 <section class="slide" data-section="agent" data-label="46 Result energy at scale">
-  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Result 3</span></div><div class="counter"><span class="num">46</span><span class="sep">/</span>53 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Result 3</span></div>
+    <div class="counter"><span class="num">46</span><span class="sep">/</span>53 &nbsp; <span class="section-name">AgentEdge</span></div>
+    <div></div>
+  </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
-
-    <div style="flex:0 0 86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
-      <div style="display:flex; flex-direction:column; gap:4px;">
-        <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; margin:0; letter-spacing:-.02em; color:var(--ink);">Result 3 - Energy savings peak at &asymp; 18 nodes</h1>
-      </div>
-      <div style="margin-left:auto; font-family:var(--f-mono); font-size:12px; color:var(--c-agent); letter-spacing:.14em; text-transform:uppercase; border:1.5px solid var(--c-agent); padding:6px 12px; background:color-mix(in oklab,var(--c-agent) 6%,var(--bg));">scenario &middot; slide 45</div>
+    <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 3 &mdash; Power drops across every scale</h1>
     </div>
+    <div style="flex:1; display:grid; grid-template-columns:1.6fr 1fr; min-height:0;">
+      <!-- LEFT · 3-panel power progression -->
+      <div style="border-right:2px solid var(--ink); padding:28px 36px; display:flex; flex-direction:column; gap:14px; justify-content:center; background:var(--bg-alt);">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Total rack power vs API call &middot; Start &#9632; &rarr; End &#9650; &middot; lower is better</div>
 
-    <div style="flex:1; display:grid; grid-template-columns:1.4fr 1fr; gap:0; min-height:0;">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
 
-      <!-- Left: % improvement chart -->
-      <div style="padding:28px 44px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:16px; justify-content:center;">
-        <div class="mono-tag" style="color:var(--c-agent);">Average efficiency gain (%) vs baseline rack power &middot; <strong>shared scale across all scales</strong> &middot; 10 runs each</div>
+          <!-- Panel 1 · 8 nodes · ΔW = 89.0 W -->
+          <div style="border:1px solid var(--ink-4); background:var(--bg); padding:10px 8px 6px; display:flex; flex-direction:column; gap:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding:0 6px;">
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.08em;">S&#8328; &middot; 8 NODES</span>
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">33 calls</span>
+            </div>
+            <svg viewBox="0 0 260 230" style="width:100%; height:auto;" font-family="Inter, sans-serif">
+              <!-- axes -->
+              <line x1="50" y1="20" x2="50" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <line x1="50" y1="180" x2="240" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <!-- y labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="end">
+                <text x="46" y="34">460</text>
+                <text x="46" y="84">420</text>
+                <text x="46" y="134">380</text>
+                <text x="46" y="184">340</text>
+              </g>
+              <!-- x labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="middle">
+                <text x="50" y="196">0</text>
+                <text x="104" y="196">10</text>
+                <text x="159" y="196">20</text>
+                <text x="213" y="196">30</text>
+              </g>
+              <text x="145" y="220" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle">API Call</text>
+              <text x="14" y="100" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle" transform="rotate(-90 14 100)">Power [W]</text>
+              <!-- baseline + floor dashed lines -->
+              <line x1="50" y1="33" x2="240" y2="33" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <line x1="50" y1="152" x2="240" y2="152" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <!-- power curve -->
+              <polyline points="50,33 77,33 80,89 115,89 121,113 148,129 159,160 181,169 203,165 230,152"
+                fill="none" stroke="var(--c-agent)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- start square -->
+              <rect x="46" y="29" width="8" height="8" fill="#3ea159" stroke="#1d6b38" stroke-width="1"/>
+              <!-- end triangle -->
+              <polygon points="230,147 234,155 226,155" fill="#c24a3a" stroke="#7e2a1e" stroke-width="1"/>
+              <!-- ΔW annotation arrow -->
+              <line x1="252" y1="33" x2="252" y2="152" stroke="#2e9650" stroke-width="2"/>
+              <polygon points="252,28 248,36 256,36" fill="#2e9650"/>
+              <polygon points="252,157 248,149 256,149" fill="#2e9650"/>
+              <text x="160" y="58" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="#2e9650" text-anchor="middle">&Delta;W = 89.0 W</text>
+            </svg>
+          </div>
 
-        <svg viewBox="0 0 620 380" style="width:100%; height:auto;" font-family="Inter, sans-serif">
-          <defs>
-            <marker id="rt-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7a7874"/></marker>
-          </defs>
+          <!-- Panel 2 · 18 nodes · ΔW = 300.8 W · HIGHLIGHTED -->
+          <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:9px 7px 5px; display:flex; flex-direction:column; gap:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding:0 6px;">
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.08em;">S&#8321;&#8328; &middot; 18 NODES &#9733;</span>
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">60 calls</span>
+            </div>
+            <svg viewBox="0 0 260 230" style="width:100%; height:auto;" font-family="Inter, sans-serif">
+              <!-- axes -->
+              <line x1="50" y1="20" x2="50" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <line x1="50" y1="180" x2="240" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <!-- y labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="end">
+                <text x="46" y="34">720</text>
+                <text x="46" y="74">640</text>
+                <text x="46" y="114">560</text>
+                <text x="46" y="154">480</text>
+                <text x="46" y="184">400</text>
+              </g>
+              <!-- x labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="middle">
+                <text x="50" y="196">0</text>
+                <text x="110" y="196">20</text>
+                <text x="170" y="196">40</text>
+                <text x="230" y="196">60</text>
+              </g>
+              <text x="145" y="220" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle">API Call</text>
+              <text x="14" y="100" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle" transform="rotate(-90 14 100)">Power [W]</text>
+              <!-- baseline + floor dashed lines -->
+              <line x1="50" y1="25" x2="240" y2="25" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <line x1="50" y1="175" x2="240" y2="175" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <!-- power curve -->
+              <polyline points="50,25 65,25 68,85 80,145 86,155 98,155 104,170 116,172 140,175 170,172 200,177 230,175"
+                fill="none" stroke="var(--c-agent)" stroke-width="2.2" stroke-linejoin="round"/>
+              <!-- start square -->
+              <rect x="46" y="21" width="8" height="8" fill="#3ea159" stroke="#1d6b38" stroke-width="1"/>
+              <!-- end triangle -->
+              <polygon points="230,170 234,178 226,178" fill="#c24a3a" stroke="#7e2a1e" stroke-width="1"/>
+              <!-- ΔW annotation arrow -->
+              <line x1="252" y1="25" x2="252" y2="175" stroke="#2e9650" stroke-width="2"/>
+              <polygon points="252,20 248,28 256,28" fill="#2e9650"/>
+              <polygon points="252,180 248,172 256,172" fill="#2e9650"/>
+              <text x="160" y="58" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="#2e9650" text-anchor="middle">&Delta;W = 300.8 W</text>
+            </svg>
+          </div>
 
-          <!-- axes -->
-          <line x1="60" y1="20" x2="60" y2="300" stroke="#161616" stroke-width="2"/>
-          <line x1="60" y1="300" x2="600" y2="300" stroke="#161616" stroke-width="2"/>
-          <!-- right axis (response time) -->
-          <line x1="600" y1="20" x2="600" y2="300" stroke="#7a7874" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <!-- Panel 3 · 35 nodes · ΔW = 185.2 W -->
+          <div style="border:1px solid var(--ink-4); background:var(--bg); padding:10px 8px 6px; display:flex; flex-direction:column; gap:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding:0 6px;">
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.08em;">S&#8323;&#8325; &middot; 35 NODES</span>
+              <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3);">40 calls</span>
+            </div>
+            <svg viewBox="0 0 260 230" style="width:100%; height:auto;" font-family="Inter, sans-serif">
+              <!-- axes -->
+              <line x1="50" y1="20" x2="50" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <line x1="50" y1="180" x2="240" y2="180" stroke="#161616" stroke-width="1.5"/>
+              <!-- y labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="end">
+                <text x="46" y="34">1260</text>
+                <text x="46" y="76">1170</text>
+                <text x="46" y="118">1080</text>
+                <text x="46" y="160">990</text>
+                <text x="46" y="184">900</text>
+              </g>
+              <!-- x labels -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#7a7874" text-anchor="middle">
+                <text x="50" y="196">0</text>
+                <text x="110" y="196">10</text>
+                <text x="170" y="196">25</text>
+                <text x="230" y="196">40</text>
+              </g>
+              <text x="145" y="220" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle">API Call</text>
+              <text x="14" y="100" font-family="JetBrains Mono" font-size="11" fill="#7a7874" text-anchor="middle" transform="rotate(-90 14 100)">Power [W]</text>
+              <!-- baseline + floor dashed lines -->
+              <line x1="50" y1="25" x2="240" y2="25" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <line x1="50" y1="109" x2="240" y2="109" stroke="#b6b3ab" stroke-width="1" stroke-dasharray="5,4"/>
+              <!-- power curve -->
+              <polyline points="50,25 68,25 72,85 113,85 122,113 149,127 176,140 194,164 212,156 230,109"
+                fill="none" stroke="var(--c-agent)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- start square -->
+              <rect x="46" y="21" width="8" height="8" fill="#3ea159" stroke="#1d6b38" stroke-width="1"/>
+              <!-- end triangle -->
+              <polygon points="230,104 234,112 226,112" fill="#c24a3a" stroke="#7e2a1e" stroke-width="1"/>
+              <!-- ΔW annotation arrow -->
+              <line x1="252" y1="25" x2="252" y2="109" stroke="#2e9650" stroke-width="2"/>
+              <polygon points="252,20 248,28 256,28" fill="#2e9650"/>
+              <polygon points="252,114 248,106 256,106" fill="#2e9650"/>
+              <text x="160" y="58" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="#2e9650" text-anchor="middle">&Delta;W = 185.2 W</text>
+            </svg>
+          </div>
+        </div>
 
-          <!-- y gridlines + labels -->
-          <g stroke="#e6e1d8" stroke-width="1">
-            <line x1="60" y1="80" x2="600" y2="80"/>
-            <line x1="60" y1="140" x2="600" y2="140"/>
-            <line x1="60" y1="200" x2="600" y2="200"/>
-            <line x1="60" y1="260" x2="600" y2="260"/>
-          </g>
-          <g font-family="JetBrains Mono" font-size="13" fill="#7a7874" text-anchor="end">
-            <text x="48" y="304">0%</text>
-            <text x="48" y="264">15%</text>
-            <text x="48" y="204">30%</text>
-            <text x="48" y="144">45%</text>
-            <text x="48" y="84">60%</text>
-          </g>
-          <!-- right axis labels -->
-          <g font-family="JetBrains Mono" font-size="12" fill="#7a7874">
-            <text x="608" y="304">0s</text>
-            <text x="608" y="204">350s</text>
-            <text x="608" y="104">700s</text>
-          </g>
-          <text x="62" y="14" font-size="12" fill="#db6253" font-family="JetBrains Mono">% gain</text>
-          <text x="608" y="14" font-size="12" fill="#7a7874" font-family="JetBrains Mono">time</text>
-
-          <!-- Bar 1: 8 nodes · 20.6% · height=96 · y=204 -->
-          <rect x="110" y="204" width="100" height="96" fill="#db6253" stroke="#a83c30" stroke-width="2"/>
-          <text x="160" y="196" text-anchor="middle" font-size="26" font-weight="700" fill="#db6253">20.6%</text>
-          <text x="160" y="322" text-anchor="middle" font-size="17" font-weight="700" fill="#161616">8 nodes</text>
-          <text x="160" y="340" text-anchor="middle" font-size="12" fill="#7a7874" font-family="JetBrains Mono">6 services</text>
-
-          <!-- Bar 2: 18 nodes · 55.5% · height=259 · y=41 -->
-          <rect x="260" y="41" width="100" height="259" fill="#db6253" stroke="#a83c30" stroke-width="2"/>
-          <text x="310" y="32" text-anchor="middle" font-size="26" font-weight="700" fill="#db6253">55.5%</text>
-          <text x="310" y="322" text-anchor="middle" font-size="17" font-weight="700" fill="#161616">18 nodes</text>
-          <text x="310" y="340" text-anchor="middle" font-size="12" fill="#7a7874" font-family="JetBrains Mono">15 services</text>
-
-          <!-- Bar 3: 35 nodes · 9.5% · height=44 · y=256 -->
-          <rect x="410" y="256" width="100" height="44" fill="#db6253" fill-opacity="0.5" stroke="#a83c30" stroke-width="2"/>
-          <text x="460" y="248" text-anchor="middle" font-size="26" font-weight="700" fill="#db6253">9.5%</text>
-          <text x="460" y="322" text-anchor="middle" font-size="17" font-weight="700" fill="#161616">35 nodes</text>
-          <text x="460" y="340" text-anchor="middle" font-size="12" fill="#7a7874" font-family="JetBrains Mono">30 services</text>
-
-          <!-- Response time line (right axis: 0–700s scale → 224s≈238, 171s≈275, 688s≈45) -->
-          <polyline points="160,238 310,275 460,45" fill="none" stroke="#7a7874" stroke-width="2.5" stroke-dasharray="6,4"/>
-          <circle cx="160" cy="238" r="5" fill="#7a7874"/>
-          <circle cx="310" cy="275" r="5" fill="#7a7874"/>
-          <circle cx="460" cy="45" r="5" fill="#7a7874"/>
-          <text x="148" y="230" text-anchor="end" font-size="12" fill="#7a7874" font-family="JetBrains Mono">224s</text>
-          <text x="298" y="268" text-anchor="end" font-size="12" fill="#7a7874" font-family="JetBrains Mono">171s</text>
-          <text x="448" y="40" text-anchor="end" font-size="12" fill="#7a7874" font-family="JetBrains Mono">688s</text>
-        </svg>
+        <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">&darr; dashed lines mark start and settled rack power &middot; 10 runs each &middot; 100 % success</div>
       </div>
 
-      <!-- Right: key takeaways -->
-      <div style="padding:32px 44px; display:flex; flex-direction:column; gap:18px; justify-content:center;">
-        <div class="mono-tag" style="color:var(--c-agent);">Key findings</div>
-
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div style="padding:16px 18px; border:1px solid var(--ink); background:var(--bg); display:flex; flex-direction:column; gap:4px;">
-            <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">100% SUCCESS</div>
-            <div style="font-size:19px; color:var(--ink); line-height:1.3;">All 30 runs succeeded across every scale</div>
+      <!-- RIGHT · explanation -->
+      <div style="padding:32px 44px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg);">
+        <div style="padding:18px 20px; border:1px solid var(--ink-4); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700;">What was measured</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Total rack power after every API call the agent makes.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Same agent and budget at 8, 18, and 35 nodes.</div>
+            </div>
           </div>
-          <div style="padding:16px 18px; border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); display:flex; flex-direction:column; gap:4px;">
-            <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">PEAK AT 18 NODES &middot; 300.8&nbsp;W SAVED</div>
-            <div style="font-size:19px; color:var(--ink); line-height:1.3;">55.5% efficiency gain &middot; most consolidation opportunities &middot; 171s response time</div>
+        </div>
+        <div style="padding:18px 20px; border-left:4px solid var(--c-agent); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">What it means</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Power falls at every scale &middot; peak reclaim <strong style="color:var(--c-agent);">300.8&nbsp;W</strong> at 18 nodes.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">35-node curve flattens early &mdash; context window saturates, not the policy.</div>
+            </div>
           </div>
-          <div style="padding:16px 18px; border:1px solid var(--ink); background:var(--bg); display:flex; flex-direction:column; gap:4px;">
-            <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); font-weight:700; letter-spacing:.1em;">SATURATION AT 35 NODES</div>
-            <div style="font-size:19px; color:var(--ink); line-height:1.3;">9.5% gain &middot; context bloats at 35 nodes &middot; 688s response time</div>
-          </div>
-          <div style="padding:14px 18px; background:var(--c-agent); display:flex; flex-direction:column; gap:4px;">
-            <div style="font-family:var(--f-mono); font-size:14px; color:#fff; opacity:.85; letter-spacing:.1em;">CONTEXT-ENGINEERING CAVEAT</div>
-            <div style="font-size:17px; color:#fff; line-height:1.35;">The 9.5 % figure at 35 nodes is an <strong>LLM context-window artefact</strong>, not a fundamental limit; the full node state overflows the prompt. With summarisation or sharded context, the curve would extend.</div>
-          </div>
+        </div>
+        <div style="padding:18px 20px; border:1px dashed var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Why it matters</div>
+          <div style="font-family:var(--f-serif); font-size:20px; font-style:italic; color:var(--ink); line-height:1.5;">A single prompted agent reclaims hundreds of watts per rack without retraining or a new controller.</div>
         </div>
       </div>
     </div>
-      <div style="flex:0 0 78px; display:flex; align-items:center; padding:0 56px; background:var(--c-agent); color:white; gap:28px; border-top:2px solid var(--ink);">
-      <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.18em; opacity:.82; flex-shrink:0;">▶ FINDING</div>
+    <div style="flex:0 0 78px; display:flex; align-items:center; padding:0 56px; background:var(--c-agent); color:white; gap:28px; border-top:2px solid var(--ink);">
+      <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.18em; opacity:.82; flex-shrink:0;">&#9654; FINDING</div>
       <div style="width:2px; height:44px; background:rgba(255,255,255,.28); flex-shrink:0;"></div>
-      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; line-height:1.25;">Performs best at ~18 nodes · context bloats beyond that and degrades decisions</div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; line-height:1.25;">Savings peak at 18 nodes &middot; context bloat caps gains past that point</div>
     </div>
   </div>
-  <div class="chrome-bot"><div class="meta-left">20.6% · 55.5% · 9.5% efficiency gain · 100% success · saturation explained</div><div class="meta-right">§4 AgentEdge</div></div>
+  <div class="chrome-bot">
+    <div class="meta-left">Experiment 3 &middot; &Delta;W = 89.0 / 300.8 / 185.2 W &middot; 100 % success across 30 runs</div>
+    <div class="meta-right">&sect;4 AgentEdge</div>
+  </div>
 </section>

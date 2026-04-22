@@ -1,0 +1,103 @@
+<section class="slide" data-section="agent" data-label="43 Result twin ablation">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Result 2</span></div>
+    <div class="counter"><span class="num">43</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 2 - Sandbox validation reduces trial-and-error</h1>
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns:1.5fr 1fr; min-height:0;">
+      <!-- LEFT · metric bars -->
+      <div style="border-right:2px solid var(--ink); padding:36px 50px; display:flex; flex-direction:column; gap:22px; justify-content:center; background:var(--bg-alt);">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Twin ON (filled) vs Twin OFF (grey)</div>
+
+        <div style="display:flex; flex-direction:column; gap:26px;">
+          <!-- Success rate -->
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Success rate &middot; higher is better</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:30px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:78.3%; background:var(--c-agent);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-agent); font-weight:700; width:150px; text-align:right;">twin on 78.3 % &#9733;</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:24px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:53.3%; background:var(--ink-3);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); width:150px; text-align:right;">twin off 53.3 % &minus;25 pp</div>
+            </div>
+          </div>
+
+          <!-- API-call stability (variance) -->
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">API-call stability (&sigma;) &middot; lower is better</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:30px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:10%; background:var(--c-agent);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--c-agent); font-weight:700; width:150px; text-align:right;">&sigma; 1.1 &#9733;</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="flex:1; height:24px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:100%; background:var(--ink-3);"></div>
+              </div>
+              <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); width:150px; text-align:right;">&sigma; 109.4 &middot; 10&times; wider</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">proportional bar widths &middot; stars mark the better arm</div>
+      </div>
+
+      <!-- RIGHT · explanation -->
+      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg);">
+        <div style="padding:18px 20px; border:1px solid var(--ink-4); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700;">What was tested</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Same four agents, same tasks, same infra.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Only the simulation step is removed.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">On failure, the plan is refined in place.</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px; border-left:4px solid var(--c-agent); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">What it means</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">The twin catches bad plans before they touch live infra.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Without it, the agent drifts into unbounded retry loops on production.</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px; border:1px dashed var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Why it matters</div>
+          <div style="font-family:var(--f-serif); font-size:21px; font-style:italic; color:var(--ink); line-height:1.5;">The twin is structural: it lifts success and collapses retry variance, so every physical call to infrastructure counts.</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0 0 78px; display:flex; align-items:center; padding:0 56px; background:var(--c-agent); color:white; gap:28px; border-top:2px solid var(--ink);">
+      <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.18em; opacity:.82; flex-shrink:0;">&#9654; FINDING</div>
+      <div style="width:2px; height:44px; background:rgba(255,255,255,.28); flex-shrink:0;"></div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; line-height:1.25;">Sandbox validation sharply reduces costly trial-and-error on live infra</div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">Twin on 78.3 % &middot; off 53.3 % &rarr; 1.47&times; &middot; API variance 10&times; lower with twin</div>
+    <div class="meta-right">&sect;4 AgentEdge</div>
+  </div>
+</section>

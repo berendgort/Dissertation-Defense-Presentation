@@ -1,0 +1,116 @@
+<section class="slide" data-section="agent" data-label="40 Experiment 1 · baselines">
+  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Experiment 1</span></div><div class="counter"><span class="num">40</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+
+    <!-- Title strip -->
+    <div style="flex:0 0 96px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:24px;">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Does multi-agent actually beat single-agent?</h1>
+      <div style="margin-left:auto; font-family:var(--f-mono); font-size:15px; color:var(--c-agent); letter-spacing:.1em; text-transform:uppercase;">architecture &middot; independent variable</div>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns: 1.15fr 1fr; min-height:0;">
+
+      <!-- ============ LEFT · THE THREE ARMS ============ -->
+      <div style="padding:24px 36px; border-right:2px solid var(--ink); display:flex; flex-direction:column; gap:12px; min-height:0; background:var(--bg);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--c-agent); text-transform:uppercase;">Three arms &middot; same LLM, same tasks, same tools</span>
+          <span style="flex:1; height:1px; background:var(--ink-4);"></span>
+        </div>
+
+        <!-- AgentEdge -->
+        <div style="border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 6%,var(--bg)); display:flex; flex-direction:column;">
+          <div style="padding:8px 14px; background:var(--c-agent); color:#fff; display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.14em;">AGENTEDGE</span>
+            <span style="font-family:var(--f-mono); font-size:12px; opacity:.88; letter-spacing:.08em;">MULTI-AGENT &middot; 4 specialists + twin</span>
+          </div>
+          <div style="padding:12px 16px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:16px; color:var(--ink); line-height:1.4;">Planning &middot; Observability &middot; Execution &middot; Orchestration agents coordinated via <strong>ActSimCrit</strong> digital-twin validation.</div>
+            <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); letter-spacing:.04em;">plans are simulated before real execution &rarr; no blind retries</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:10px; margin:2px 0;">
+          <span style="flex:1; height:1px; background:var(--ink-4); border-top:1px dashed var(--ink-4);"></span>
+          <span style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.12em;">&#9660; SOTA SINGLE-AGENT BASELINES</span>
+          <span style="flex:1; height:1px; background:var(--ink-4); border-top:1px dashed var(--ink-4);"></span>
+        </div>
+
+        <!-- ReAct -->
+        <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+          <div style="padding:7px 14px; background:var(--bg-alt); border-bottom:1px solid var(--ink-4); display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.14em; color:var(--ink);">ReAct <span style="font-weight:400; color:var(--ink-3);">&middot; Yao et&nbsp;al. 2023</span></span>
+            <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); letter-spacing:.08em;">1 LLM &middot; every role</span>
+          </div>
+          <div style="padding:10px 16px; font-size:15px; color:var(--ink-2); line-height:1.4;">
+            Interleaved <strong>thought &rarr; action &rarr; observation</strong> loop. The same LLM reasons, calls tools, and reflects &mdash; no specialization, no plan validation.
+          </div>
+        </div>
+
+        <!-- LATS -->
+        <div style="border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+          <div style="padding:7px 14px; background:var(--bg-alt); border-bottom:1px solid var(--ink-4); display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.14em; color:var(--ink);">LATS <span style="font-weight:400; color:var(--ink-3);">&middot; Zhou et&nbsp;al. 2024</span></span>
+            <span style="font-family:var(--f-mono); font-size:12px; color:var(--ink-3); letter-spacing:.08em;">1 LLM &middot; MCTS</span>
+          </div>
+          <div style="padding:10px 16px; font-size:15px; color:var(--ink-2); line-height:1.4;">
+            Monte-Carlo tree search over reasoning steps; LLM acts as <strong>agent + value function + optimizer</strong>. Strongest single-agent baseline in the literature.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT · MEASUREMENT + WHY ============ -->
+      <div style="padding:24px 36px; display:flex; flex-direction:column; gap:12px; min-height:0; background:var(--bg-alt);">
+
+        <div>
+          <div class="mono-tag" style="color:var(--c-agent); margin-bottom:6px;">How we measure success</div>
+          <div style="font-size:16px; line-height:1.45; color:var(--ink); padding:12px 16px; border:1.5px solid var(--ink); background:var(--bg);">
+            Each scenario pre-defines <strong>all valid infrastructure end-states</strong>. A run is successful only if the final placement <em>exactly</em> matches one of them &mdash; no partial credit.
+          </div>
+        </div>
+
+        <!-- Protocol numbers -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+          <div style="padding:10px 12px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.1em; font-weight:700;">RUNS / ARM</div>
+            <div style="font-size:22px; font-weight:700; color:var(--ink); margin-top:2px; font-family:var(--f-mono);">60</div>
+            <div style="font-size:12px; color:var(--ink-3);">20 &times; S1&ndash;S3</div>
+          </div>
+          <div style="padding:10px 12px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.1em; font-weight:700;">METRIC</div>
+            <div style="font-size:22px; font-weight:700; color:var(--ink); margin-top:2px; font-family:var(--f-mono);">% success</div>
+            <div style="font-size:12px; color:var(--ink-3);">Wilson score CI</div>
+          </div>
+          <div style="padding:10px 12px; border:1px solid var(--ink); background:var(--bg); text-align:center;">
+            <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.1em; font-weight:700;">SEEDING</div>
+            <div style="font-size:22px; font-weight:700; color:var(--ink); margin-top:2px; font-family:var(--f-mono);">SHA-256</div>
+            <div style="font-size:12px; color:var(--ink-3);">reproducible</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div style="padding:12px 16px; border:1px solid var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:6px;">
+          <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:700;">Held constant across arms</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 16px; font-size:14px; color:var(--ink-2);">
+            <div>&middot; base LLM &mdash; <strong style="color:var(--ink);">qwen3-235B</strong></div>
+            <div>&middot; simulator &amp; infrastructure state</div>
+            <div>&middot; tool catalogue (12 endpoints)</div>
+            <div>&middot; scenarios S1&ndash;S3</div>
+          </div>
+          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.08em; margin-top:2px;">&rarr; only the architecture varies.</div>
+        </div>
+
+        <!-- Why it matters -->
+        <div style="flex:1; min-height:0; padding:14px 18px; border-left:4px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column; gap:8px; justify-content:center;">
+          <div style="font-family:var(--f-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-agent); font-weight:700;">Why this measurement</div>
+          <div style="font-family:var(--f-serif); font-size:19px; font-style:italic; color:var(--ink); line-height:1.45;">
+            If the same LLM, the same tools, and the same tasks yield different success rates, the gap cannot be explained by model capability &mdash;
+            <strong style="font-style:normal; color:var(--c-agent);">it must come from the architecture itself.</strong>
+          </div>
+          <div style="font-size:14px; color:var(--ink-3); line-height:1.4;">This is what isolates the contribution of multi-agent coordination over single-agent reasoning.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Experiment 1 &middot; AgentEdge vs ReAct vs LATS &middot; 60 runs per arm &middot; end-state matching</div><div class="meta-right">&sect;4 AgentEdge</div></div>
+</section>

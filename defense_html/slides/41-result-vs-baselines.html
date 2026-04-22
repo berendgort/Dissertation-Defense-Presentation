@@ -1,0 +1,103 @@
+<section class="slide" data-section="agent" data-label="41 Result vs baselines">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow"><span class="eyb-tag">Result 1</span></div>
+    <div class="counter"><span class="num">41</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 1 - Multi-agent beats every baseline</h1>
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns:1.5fr 1fr; min-height:0;">
+      <!-- LEFT · plots -->
+      <div style="border-right:2px solid var(--ink); padding:36px 50px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg-alt);">
+        <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Success rate &middot; % across 60 runs &middot; higher is better</div>
+        <!-- AgentEdge -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:18px; color:var(--c-agent); font-weight:700;">AgentEdge <span style="color:var(--ink-3); font-weight:400;">&middot; 4 agents + twin</span></span>
+            <span style="font-family:var(--f-mono); font-size:15px; color:var(--c-agent); font-weight:700;">78.3 %</span>
+          </div>
+          <div style="height:38px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:78.3%; background:var(--c-agent);"></div>
+          </div>
+        </div>
+        <!-- Gap annotation -->
+        <div style="display:flex; align-items:center; gap:10px; padding:0 4px;">
+          <div style="flex:1; height:1px; background:var(--ink-4); border-top:1px dashed var(--ink-4);"></div>
+          <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); white-space:nowrap;">&#9660; baselines</div>
+          <div style="flex:1; height:1px; background:var(--ink-4); border-top:1px dashed var(--ink-4);"></div>
+        </div>
+        <!-- LATS -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:17px; color:var(--ink-2);">LATS <span style="color:var(--ink-3); font-weight:400;">&middot; tree-search</span></span>
+            <span style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3);">65.0 % <span style="color:var(--c-sota-red);">AE 1.20&times;</span></span>
+          </div>
+          <div style="height:28px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:65%; background:var(--ink-3); opacity:0.7;"></div>
+          </div>
+        </div>
+        <!-- ReAct -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--f-mono); font-size:17px; color:var(--ink-2);">ReAct <span style="color:var(--ink-3); font-weight:400;">&middot; single-agent</span></span>
+            <span style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3);">28.3 % <span style="color:var(--c-sota-red);">AE 2.76&times;</span></span>
+          </div>
+          <div style="height:28px; background:var(--bg); border:1px solid var(--ink-4); position:relative;">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:28.3%; background:var(--ink-3); opacity:0.7;"></div>
+          </div>
+        </div>
+        <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">&rarr; higher success &middot; proportional bar widths</div>
+      </div>
+
+      <!-- RIGHT · explanation -->
+      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg);">
+        <div style="padding:18px 20px; border:1px solid var(--ink-4); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-agent); font-weight:700;">What was tested</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Same base LLM across all three arms.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Same tasks, same simulator, 60 runs.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-agent); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Only the orchestration architecture changes.</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px; border-left:4px solid var(--c-agent); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">What it means</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;"><strong>1.20&times;</strong> success vs LATS tree-search.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;"><strong>2.76&times;</strong> success vs ReAct single-agent.</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px; border:1px dashed var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Why it matters</div>
+          <div style="font-family:var(--f-serif); font-size:21px; font-style:italic; color:var(--ink); line-height:1.5;">The lift is architectural, not model-capability &mdash; the multi-agent structure itself drives the gain.</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0 0 78px; display:flex; align-items:center; padding:0 56px; background:var(--c-agent); color:white; gap:28px; border-top:2px solid var(--ink);">
+      <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; letter-spacing:.18em; opacity:.82; flex-shrink:0;">&#9654; FINDING</div>
+      <div style="width:2px; height:44px; background:rgba(255,255,255,.28); flex-shrink:0;"></div>
+      <div style="font-family:var(--f-display); font-size:28px; font-weight:600; line-height:1.25;">Multi-agent architecture beats every SOTA single-agent baseline</div>
+    </div>
+  </div>
+  <div class="chrome-bot">
+    <div class="meta-left">AgentEdge 78.3 &middot; LATS 65.0 (1.20&times;) &middot; ReAct 28.3 (2.76&times;)</div>
+    <div class="meta-right">&sect;4 AgentEdge</div>
+  </div>
+</section>

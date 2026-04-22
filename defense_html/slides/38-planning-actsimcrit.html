@@ -1,0 +1,199 @@
+<section class="slide" data-section="agent" data-label="38 Planning + ActSimCrit">
+  <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Design</span></div><div class="counter"><span class="num">38</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
+
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+
+    <div style="flex:0 0 94px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:28px;">
+      <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">Planning Agent &middot; the ActSimCrit loop</h1>
+      <div style="margin-left:auto; max-width:620px; text-align:right; font-family:var(--f-mono); font-size:14px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">plan &middot; simulate &middot; critique &middot; repeat until intent is met</div>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns:1.3fr 1fr; min-height:0;">
+
+      <!-- LEFT: hero loop figure -->
+      <div style="padding:18px 28px 14px 40px; background:color-mix(in oklab,var(--c-agent) 3%, var(--bg)); display:flex; flex-direction:column; gap:8px; border-right:2px solid var(--ink); min-height:0;">
+        <div class="mono-tag" style="color:var(--c-agent); margin:0;">five-phase loop &middot; digital twin gated</div>
+
+        <div style="flex:1; min-height:0; display:flex; align-items:stretch; justify-content:stretch;">
+          <svg viewBox="0 0 920 760" style="width:100%; height:100%;" font-family="Inter, sans-serif" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="p39-agent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-agent)"/></marker>
+              <marker id="p39-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b83838"/></marker>
+              <marker id="p39-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15803d"/></marker>
+            </defs>
+
+            <!-- Title -->
+            <text x="460" y="40" text-anchor="middle" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="var(--c-agent)" letter-spacing="3">ACTSIMCRIT PLANNING LOOP</text>
+            <line x1="300" y1="56" x2="620" y2="56" stroke="var(--c-agent)" stroke-width="1" opacity=".4"/>
+
+            <!-- Reject / not-yet feedback arc: inverted U from P5-top across to P3-top -->
+            <path d="M 825 220 C 825 92 460 92 460 220" fill="none" stroke="#b83838" stroke-width="2.4" stroke-dasharray="7,5" marker-end="url(#p39-red)"/>
+            <rect x="514" y="90" width="282" height="40" rx="5" fill="var(--bg)" stroke="#b83838" stroke-width="1.4"/>
+            <text x="655" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="#b83838">reject / not yet &rarr; next iteration</text>
+
+            <!-- Five phase boxes (y=220-380, 160 tall) -->
+
+            <!-- P1 -->
+            <g>
+              <rect x="20" y="220" width="160" height="160" rx="14" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.4"/>
+              <circle cx="44" cy="248" r="15" fill="var(--c-agent)"/>
+              <text x="44" y="253" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white">P1</text>
+              <text x="66" y="253" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Strategic Plan</text>
+              <text x="32" y="292" font-family="Inter" font-size="14" fill="var(--ink-2)">set end-goal state</text>
+              <text x="32" y="312" font-family="Inter" font-size="14" fill="var(--ink-2)">+ constraint hierarchy</text>
+              <text x="32" y="360" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)">typed goal + world model</text>
+            </g>
+
+            <!-- P2 -->
+            <g>
+              <rect x="200" y="220" width="160" height="160" rx="14" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.4"/>
+              <circle cx="224" cy="248" r="15" fill="var(--c-agent)"/>
+              <text x="224" y="253" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white">P2</text>
+              <text x="246" y="253" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">State Analysis</text>
+              <text x="212" y="292" font-family="Inter" font-size="14" fill="var(--ink-2)">flag bottlenecks,</text>
+              <text x="212" y="312" font-family="Inter" font-size="14" fill="var(--ink-2)">opportunities,</text>
+              <text x="212" y="332" font-family="Inter" font-size="14" fill="var(--ink-2)">violations</text>
+            </g>
+
+            <!-- P3 -->
+            <g>
+              <rect x="380" y="220" width="160" height="160" rx="14" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.4"/>
+              <circle cx="404" cy="248" r="15" fill="var(--c-agent)"/>
+              <text x="404" y="253" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white">P3</text>
+              <text x="426" y="253" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Action Select</text>
+              <text x="392" y="292" font-family="Inter" font-size="14" fill="var(--ink-2)">pick action batch;</text>
+              <text x="392" y="312" font-family="Inter" font-size="14" fill="var(--ink-2)">skip rejected</text>
+              <text x="392" y="332" font-family="Inter" font-size="14" fill="var(--ink-2)">combinations</text>
+            </g>
+
+            <!-- P4 (highlighted) -->
+            <g>
+              <rect x="560" y="220" width="170" height="160" rx="14" fill="color-mix(in oklab, var(--c-agent) 8%, var(--bg))" stroke="var(--c-agent)" stroke-width="2.4"/>
+              <circle cx="584" cy="248" r="15" fill="var(--c-agent)"/>
+              <text x="584" y="253" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white">P4</text>
+              <text x="606" y="253" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Sim + Critic</text>
+              <rect x="572" y="276" width="72" height="26" rx="3" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.3"/>
+              <text x="608" y="293" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="var(--c-agent)">digital twin</text>
+              <rect x="650" y="276" width="72" height="26" rx="3" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.3"/>
+              <text x="686" y="293" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="var(--ink)">critic LLM</text>
+              <text x="645" y="326" text-anchor="middle" font-family="Inter" font-size="12" font-style="italic" fill="var(--ink-3)">independent &middot; no shared memory</text>
+              <text x="645" y="360" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" fill="var(--c-agent)" font-weight="700">gate: sim + critic pass</text>
+            </g>
+
+            <!-- P5 -->
+            <g>
+              <rect x="750" y="220" width="150" height="160" rx="14" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.4"/>
+              <circle cx="774" cy="248" r="15" fill="var(--c-agent)"/>
+              <text x="774" y="253" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white">P5</text>
+              <text x="796" y="253" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Intent met?</text>
+              <text x="762" y="294" font-family="Inter" font-size="14" fill="#15803d" font-weight="600">yes &rarr; emit plan</text>
+              <text x="762" y="316" font-family="Inter" font-size="14" fill="var(--ink-2)">no &rarr; replan</text>
+              <text x="762" y="338" font-family="Inter" font-size="14" fill="#b83838">cap &rarr; escalate</text>
+            </g>
+
+            <!-- Forward arrows between phases -->
+            <line x1="180" y1="298" x2="198" y2="298" stroke="var(--c-agent)" stroke-width="2.8" marker-end="url(#p39-agent)"/>
+            <line x1="360" y1="298" x2="378" y2="298" stroke="var(--c-agent)" stroke-width="2.8" marker-end="url(#p39-agent)"/>
+            <line x1="540" y1="298" x2="558" y2="298" stroke="var(--c-agent)" stroke-width="2.8" marker-end="url(#p39-agent)"/>
+            <line x1="730" y1="298" x2="748" y2="298" stroke="#15803d" stroke-width="2.8" marker-end="url(#p39-green)"/>
+            <text x="739" y="286" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#15803d">accept</text>
+
+            <!-- Green exit from P5 bottom -->
+            <path d="M 825 380 C 825 480 470 480 470 540" fill="none" stroke="#15803d" stroke-width="3.2" marker-end="url(#p39-green)"/>
+            <text x="845" y="432" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#15803d">yes</text>
+
+            <!-- Red dashed exit from P5 bottom-right to deadlock -->
+            <path d="M 890 380 C 915 450 830 500 820 540" fill="none" stroke="#b83838" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#p39-red)"/>
+            <text x="898" y="470" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#b83838">after cap</text>
+
+            <!-- Validated plan banner -->
+            <rect x="220" y="544" width="480" height="86" rx="12" fill="#15803d" stroke="#14532d" stroke-width="2"/>
+            <text x="460" y="576" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="white" letter-spacing="2.4">VALIDATED PLAN</text>
+            <text x="460" y="606" text-anchor="middle" font-family="Inter" font-size="16" font-weight="600" fill="white">&rarr; Infrastructure Action Agent</text>
+
+            <!-- Deadlock chip -->
+            <rect x="722" y="544" width="180" height="86" rx="12" fill="var(--bg)" stroke="#b83838" stroke-width="2" stroke-dasharray="6,4"/>
+            <text x="812" y="576" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b83838" letter-spacing="2.4">DEADLOCK</text>
+            <text x="812" y="604" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-3)">propose alt-intent</text>
+
+            <!-- Small output legend at bottom -->
+            <text x="460" y="688" text-anchor="middle" font-family="Inter" font-size="14" font-style="italic" fill="var(--ink-3)">two terminal outcomes &middot; one validated, one escalated</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- RIGHT: 4 core mechanisms -->
+      <div style="padding:22px 48px 20px 32px; background:var(--bg-alt); display:flex; flex-direction:column; gap:12px; min-height:0; overflow:hidden;">
+        <div class="mono-tag" style="color:var(--c-agent); margin:0;">four mechanisms that make the loop work</div>
+
+        <!-- i action batching -->
+        <div style="border:1.5px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column; overflow:hidden;">
+          <div style="padding:7px 14px; background:var(--c-agent); display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:13px; color:var(--bg); font-weight:700; letter-spacing:.08em;">i &middot; ACTION BATCHING</span>
+            <span style="margin-left:auto; font-family:var(--f-mono); font-size:10.5px; color:rgba(255,255,255,.85);">one LLM call &rarr; k actions</span>
+          </div>
+          <div style="padding:10px 14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:14px; color:var(--ink); line-height:1.35;">Group logically connected steps into one call instead of replanning each action.</div>
+            <div style="display:flex; align-items:center; gap:6px; justify-content:center;">
+              <span style="padding:3px 9px; border:1px solid var(--c-agent); background:color-mix(in oklab, var(--c-agent) 14%, var(--bg)); font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent);">migrate</span>
+              <span style="color:var(--c-agent); font-family:var(--f-mono);">+</span>
+              <span style="padding:3px 9px; border:1px solid var(--c-agent); background:color-mix(in oklab, var(--c-agent) 14%, var(--bg)); font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent);">migrate</span>
+              <span style="color:var(--c-agent); font-family:var(--f-mono);">+</span>
+              <span style="padding:3px 9px; border:1px solid var(--c-agent); background:color-mix(in oklab, var(--c-agent) 14%, var(--bg)); font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent);">low-power</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ii 3-tier state -->
+        <div style="border:1.5px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column; overflow:hidden;">
+          <div style="padding:7px 14px; background:var(--c-agent); display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:13px; color:var(--bg); font-weight:700; letter-spacing:.08em;">ii &middot; THREE-TIER STATE</span>
+            <span style="margin-left:auto; font-family:var(--f-mono); font-size:10.5px; color:rgba(255,255,255,.85);">baseline &middot; accepted &middot; simulated</span>
+          </div>
+          <div style="padding:10px 14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:14px; color:var(--ink); line-height:1.35;">Atomic promotion &mdash; only validated batches update accepted; failed ones leave it untouched.</div>
+            <div style="display:flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:11px; font-weight:700;">
+              <span style="padding:3px 10px; background:var(--bg-alt); color:var(--ink-3); border:1px solid var(--ink-4);">baseline</span>
+              <span style="color:var(--ink-4); font-weight:400;">&rarr;</span>
+              <span style="padding:3px 10px; background:color-mix(in oklab, var(--c-agent) 10%, var(--bg)); color:var(--c-agent); border:1px solid var(--c-agent);">accepted</span>
+              <span style="color:var(--ink-4); font-weight:400;">&rarr;</span>
+              <span style="padding:3px 10px; background:color-mix(in oklab, var(--c-agent) 22%, var(--bg)); color:var(--c-agent); border:1px dashed var(--c-agent);">simulated</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- iii rejection-feedback -->
+        <div style="border:1.5px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column; overflow:hidden;">
+          <div style="padding:7px 14px; background:var(--c-agent); display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:13px; color:var(--bg); font-weight:700; letter-spacing:.08em;">iii &middot; REJECTION-FEEDBACK</span>
+            <span style="margin-left:auto; font-family:var(--f-mono); font-size:10.5px; color:rgba(255,255,255,.85);">structured reason &rarr; next try</span>
+          </div>
+          <div style="padding:10px 14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:14px; color:var(--ink); line-height:1.35;">Each failed batch records <em>why</em> it was rejected; the schema excludes it from the next selection.</div>
+            <div style="font-family:var(--f-mono); font-size:11px; color:var(--ink); background:var(--bg-alt); border:1px solid var(--ink-4); padding:6px 10px; line-height:1.5;">
+              <span style="color:#b83838; font-weight:700;">rejected:</span> node_5 over capacity (+0.4 core)<br>
+              <span style="color:var(--c-agent); font-weight:700;">next:</span> try node_7 instead
+            </div>
+          </div>
+        </div>
+
+        <!-- iv deadlock -->
+        <div style="border:1.5px solid var(--c-agent); background:var(--bg); display:flex; flex-direction:column; overflow:hidden;">
+          <div style="padding:7px 14px; background:var(--c-agent); display:flex; align-items:center; gap:10px;">
+            <span style="font-family:var(--f-mono); font-size:13px; color:var(--bg); font-weight:700; letter-spacing:.08em;">iv &middot; DEADLOCK DETECTION</span>
+            <span style="margin-left:auto; font-family:var(--f-mono); font-size:10.5px; color:rgba(255,255,255,.85);">iter &amp; reject thresholds</span>
+          </div>
+          <div style="padding:10px 14px;">
+            <div style="font-size:14px; color:var(--ink); line-height:1.35;">Infeasible intents terminate cleanly &mdash; propose an achievable alternative instead of retrying forever.</div>
+          </div>
+        </div>
+
+        <div style="padding:10px 2px 0; margin-top:auto; border-top:1px solid var(--ink-5); font-family:var(--f-serif); font-style:italic; font-size:15px; color:var(--ink); line-height:1.35;">
+          Output is a <strong style="font-style:normal; color:var(--c-agent);">validated plan</strong> &mdash; not a guess. The infra agent executes, it does not diagnose.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chrome-bot"><div class="meta-left">ActSimCrit &middot; plan &rarr; simulate &rarr; critique &rarr; accept &middot; validated plan out</div><div class="meta-right">&sect;4 AgentEdge</div></div>
+</section>
