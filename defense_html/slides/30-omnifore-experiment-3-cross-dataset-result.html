@@ -7,7 +7,7 @@
   </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
     <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
-      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 2 - Predicts new services without retraining</h1>
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 2 - Generalises without retraining</h1>
     </div>
     <div style="flex:1; display:grid; grid-template-columns:1.5fr 1fr; min-height:0;">
       <!-- LEFT · plots (moved per feedback) -->
@@ -61,28 +61,41 @@
         </div>
       </div>
 
-      <!-- RIGHT · conclusions (moved per feedback) -->
-      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:20px; justify-content:center; background:var(--bg);">
-        <div class="num-pair">
-          <div class="num-label">OmniFORE &middot; error (MAE) on Alibaba &middot; never seen in training</div>
-          <div class="num-hero" style="color:var(--c-omnifore);">7.27<span class="unit">&times;10&#8315;&sup3;</span></div>
+      <!-- RIGHT · explanation -->
+      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg);">
+        <div style="padding:18px 20px; border:1px solid var(--ink-4); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">What was tested</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-omnifore); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Train on the Google catalogue.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-omnifore); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Freeze the weights.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-omnifore); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Forecast an unseen Alibaba service.</div>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
-            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">vs ModernTCN</span>
-            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;30.41 %</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
-            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">vs AGCRN</span>
-            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;74.67 %</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
-            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">vs LSTNet</span>
-            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;84.70 %</span>
+        <div style="padding:18px 20px; border-left:4px solid var(--c-omnifore); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">What it means</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">The model is matching transferable workload patterns.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">It is not memorising provider-specific services or identities.</div>
+            </div>
           </div>
         </div>
-        <div style="font-family:var(--f-serif); font-size:19px; font-style:italic; color:var(--ink-2); line-height:1.45;">
-          The patterns it learned aren't tied to Google; they generalise.
+        <div style="padding:18px 20px; border:1px dashed var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Why it matters</div>
+          <div style="font-family:var(--f-serif); font-size:21px; font-style:italic; color:var(--ink); line-height:1.5;">A new service can be forecast with the existing model instead of triggering a new per-service training cycle.</div>
         </div>
       </div>
     </div>

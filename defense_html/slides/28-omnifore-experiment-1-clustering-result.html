@@ -7,7 +7,7 @@
   </div>
   <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
     <div style="flex:0 0 100px; display:flex; flex-direction:column; justify-content:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:4px;">
-      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 1 - Clustering wins by about <span style="color:var(--c-omnifore);">20 %</span> &middot; on every error metric</h1>
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0; color:var(--ink); line-height:1.1;">Result 1 - Clustering-based training helps</h1>
     </div>
     <div style="flex:1; display:grid; grid-template-columns:1.5fr 1fr; min-height:0;">
       <!-- LEFT · plots (moved per feedback) -->
@@ -67,24 +67,37 @@
         <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">&larr; lower error &middot; proportional bar widths</div>
       </div>
 
-      <!-- RIGHT · conclusions (moved per feedback) -->
-      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:20px; justify-content:center; background:var(--bg);">
-        <div class="num-pair">
-          <div class="num-label">Error (MAE) &middot; clustered vs random &middot; zero-shot test</div>
-          <div class="num-hero" style="color:var(--c-omnifore);">&minus;20.66<span class="unit">%</span></div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
-            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">Error spread (RMSE)</span>
-            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;24.63 %</span>
+      <!-- RIGHT · explanation -->
+      <div style="padding:36px 44px; display:flex; flex-direction:column; gap:16px; justify-content:center; background:var(--bg);">
+        <div style="padding:18px 20px; border:1px solid var(--ink-4); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--c-omnifore); font-weight:700;">What changed</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-omnifore); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Same model, same tuning, same zero-shot test.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--c-omnifore); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Only the training-trace selection changes.</div>
+            </div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border:1px solid var(--ink-4); background:var(--bg-alt);">
-            <span style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2);">SMAPE improvement</span>
-            <span style="font-family:var(--f-display); font-size:26px; color:var(--c-omnifore); font-weight:700;">&minus;32.71 %</span>
+        </div>
+        <div style="padding:18px 20px; border-left:4px solid var(--c-omnifore); background:var(--bg-alt); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">What it means</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Clustering forces the sample to cover bursty, steady, and periodic workload families.</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="width:8px; height:8px; border-radius:999px; background:var(--ink-3); margin-top:8px; flex-shrink:0;"></div>
+              <div style="font-size:17px; color:var(--ink); line-height:1.45;">Random picking over-samples the common patterns and misses the rare ones.</div>
+            </div>
           </div>
         </div>
-        <div style="font-family:var(--f-serif); font-size:19px; font-style:italic; color:var(--ink-2); line-height:1.45;">
-          Same model &middot; same tuning &middot; different training set. Clustering alone closes most of the gap.
+        <div style="padding:18px 20px; border:1px dashed var(--ink-4); background:var(--bg); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Why it matters</div>
+          <div style="font-family:var(--f-serif); font-size:21px; font-style:italic; color:var(--ink); line-height:1.5;">In this experiment, the improvement isolates the effect of the training-set selection step.</div>
         </div>
       </div>
     </div>

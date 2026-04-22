@@ -64,7 +64,7 @@ The literature now falls into three color-coded regimes. In red are the heavy, u
 
 The green target zone at the top-left is the point of the slide: small and accurate. AERO sits there at 599 parameters, and the experiments from here on are about showing it truly belongs in that empty quadrant.
 
-### Slide 12 · How AERO works in three steps
+### Slide 12 · Design - How AERO works in three steps
 
 AERO's mechanism is intentionally simple on this slide. Step one is to find the rhythm: the repeating pattern in the trace can change over time, so AERO re-checks it every window. Step two is to align first: once the rhythm is known, the repeated cycles are lined up so a small predictor can work on organized structure rather than raw disorder. Step three is to reuse cached layers: when the same pattern returns, the same block can be reused instead of recomputed from scratch.
 
@@ -76,7 +76,7 @@ This is now the proper scenario slide for the efficiency benchmark. The dataset 
 
 All models are trained on the same server: NVIDIA A100 40 GB, 30 CPU cores, 200 GiB RAM, 512 GiB SSD, Ubuntu 20.04.2, using Python and PyTorch. Hyperparameters are tuned with Bayesian optimization using twenty random trials and thirty refinement trials per model. The reported outputs are MAE, RMSE, latency, convergence, parameter count, and memory. In other words, this slide fixes the exact setup before I show the efficiency result.
 
-### Slide 14 · Result 1 - Only AERO is both small enough and accurate enough
+### Slide 14 · Result 1 - Small enough and accurate enough
 
 Three columns, one conclusion. In parameter count, AERO has 599 parameters, while the heavy baselines range from 228 thousand up to 2.9 million. SparseTSF is smaller at 35 parameters, but size alone is not the goal. In inference latency, AERO is at 0.38 milliseconds, well inside the 50-millisecond budget; even Pathformer stays at 0.52 milliseconds, but it does so with a far larger model. In MAE, AERO reaches 2.9 times ten to the minus four, essentially on par with ModernTCN and close to Pathformer.
 
@@ -88,11 +88,11 @@ Now I move from forecasting quality to control impact. The simulator is COSCO on
 
 Forecast inputs come from the BitBrains Random trace: 500 VM traces, 8,631 samples, and seven workload signals. The compared arms are AERO, Pathformer, SparseTSF, and a reactive controller that bypasses prediction. Same scheduler, same workload stream, same objective of minimizing energy plus response time; only the forecast quality changes.
 
-### Slide 16 · Result 2 - Simulation results under controlled edge-cloud environment
+### Slide 16 · Result 2 - Controlled simulation results
 
 The result slide uses four operational metrics. Energy is 1293 joules for the reactive baseline, 1140 for SparseTSF, and 1123 for both AERO and Pathformer. Response time falls from 10.02 seconds for reactive to 6.5 for SparseTSF, 3.29 for AERO, and 2.45 for Pathformer. SLA violations collapse from 22.21 percent reactive to 4.60 percent with SparseTSF, 0.21 percent with AERO, and 0.10 percent with Pathformer.
 
-Task migrations increase because predictive schedulers act before overloads appear: 2,026 for reactive, 5,309 for SparseTSF, 7,747 for AERO, and 8,480 for Pathformer. The honest interpretation is that AERO stays close to Pathformer while clearly outperforming SparseTSF and reactive orchestration.
+Task migrations increase because predictive schedulers act before overloads appear: 2,026 for reactive, 5,309 for SparseTSF, 7,747 for AERO, and 8,480 for Pathformer. The honest interpretation is that only AERO fits edge hardware while staying close to Pathformer, a model roughly 4,000x larger.
 
 ### Slide 17 · Scenario 3 - Live deployment
 
@@ -112,13 +112,13 @@ Contribution two is OmniFORE: one forecasting framework, all services. The banne
 
 The concrete promise I test next is zero-shot prediction on services the model never saw during training, up to cross-dataset transfer with frozen weights.
 
-### Slide 20 · Problem - one model for all services
+### Slide 20 · Problem - one model, many services
 
 This slide states the OmniFORE problem in operator terms. I want one model trained once on a service catalogue and then able to forecast any service in that catalogue, including services it has never seen. The visual contrast is between bursty and steady families, because the model has to cover both without separate retraining.
 
 Formally, the goal is one shared set of weights, no per-service fine-tuning, and average prediction error minimized across all services, seen and unseen. That is the only path by which the prediction layer actually scales operationally.
 
-### Slide 21 · System Model & Motivation - one model, many services
+### Slide 21 · System Model & Motivation
 
 Again this is the generic setting, not the method. On the left, one prediction layer observes many service traces at a compute site, which could be any tier, and returns per-service forecasts into the same downstream decision stack. On the right, the motivation is operational cost.
 
@@ -130,13 +130,13 @@ The prior work again falls into two red regimes around one green target. The fir
 
 The top-right quadrant, one model with unseen-service accuracy, is still empty. OmniFORE is designed to occupy that gap.
 
-### Slide 23 · How OmniFORE works in three phases
+### Slide 23 · Design - How OmniFORE works in three phases
 
 This slide packages the OmniFORE pipeline. Phase one, stages S1 through S4, designs the training set by encoding traces, clustering shapes, and sampling a balanced catalogue. Phase two, stages S5 and S6, rescales each service and then uses attention over a shared window so one model can learn across heterogeneous services. Phase three, stage S7, tunes hyperparameters on held-out services so the selected setting is rewarded for transfer rather than memorization.
 
 The message is that generalization comes from the whole pipeline: representative data, shared training, and transfer-focused tuning.
 
-### Slide 24 · Designing the training set
+### Slide 24 · Building the training set
 
 This slide zooms into phase one. S1 fingerprints each trace by compressing it into a shape descriptor. S2 clusters those fingerprints into bursty, steady, and periodic families. S3 tags every trace with its group label. S4 samples proportionally from those groups to build a balanced mix.
 
@@ -160,7 +160,7 @@ Scenario 1 isolates the impact of clustering in the training-set design. On the 
 
 ### Slide 28 · Result 1 - Clustering wins by about twenty percent on every error metric
 
-The numbers are consistent across error metrics. Mean absolute error improves by 20.66 percent, root-mean-square error by 24.63 percent, and symmetric mean absolute percentage error by 32.71 percent. And the silhouette score, which measures whether the clusters are structurally meaningful rather than arbitrary, is 131.8 percent higher with the OmniFORE grouping, which tells us the clusters have real structure to exploit and the model is not simply memorising. The finding is that clustering-based training yields real, attributable gains on every metric we care about. The next experiment pushes this further by asking whether the gain survives a dataset the model has literally never seen.
+The point of this slide is not one specific percentage. The point is that only the training-set selection changed. The left bars show that once the 100 traces are chosen through clustering, the error drops consistently across every metric. Because the model, tuning, and test set are held fixed, this experiment isolates the effect of the training-set selection step. Clustering gives the model a more representative catalogue of bursty, steady, and periodic behaviours. The next experiment asks whether that benefit survives a full cross-dataset transfer.
 
 ### Slide 29 · Scenario 2 - Cross-dataset transfer
 
@@ -168,7 +168,7 @@ The second experiment is the hardest test a forecaster can run: train on Google 
 
 ### Slide 30 · Result 2 - Predicts new services without retraining
 
-The hero number on the slide is a mean absolute error of 7.27 times ten to the minus three on the unseen Alibaba pod. Against the same task, ModernTCN reports 10.45 — OmniFORE is 30.41 percent better. AGCRN reports 28.70 — we are 74.67 percent better. LSTNet reports 47.51 — we are 84.70 percent better. The finding banner is that OmniFORE predicts any new service effectively, with no retraining, with frozen weights, on a dataset it has never seen. The patterns it learned are not tied to Google; they generalise. That is research question two answered: one framework generalises across heterogeneous services, and the cost of adding a new service is zero. With prediction now both deployable at the edge and generalisable across services, the last piece of the zero-touch loop is validated action, which is AgentEdge.
+This is the transfer result. We train on Google, freeze the weights, and evaluate on an Alibaba service the model has never seen. So the key point of the left chart is not just that OmniFORE is lowest; it is that the same frozen model still beats ModernTCN, AGCRN, and LSTNet in a new provider and workload setting. That means the model has learned portable workload patterns rather than memorising service-specific identities. Operationally, a new service does not require training a new forecaster; the existing model can be reused immediately. That is research question two answered: one framework generalises across heterogeneous services, and the cost of adding a new service is zero. With prediction now both deployable at the edge and generalisable across services, the last piece of the zero-touch loop is validated action, which is AgentEdge.
 
 ### Slide 31 · AgentEdge
 
@@ -178,7 +178,7 @@ Contribution three is AgentEdge: natural-language intent becomes validated auton
 
 The problem AgentEdge solves is visible on the diagram. The operator types *"reduce energy while keeping SLA"*, and on the far right of the diagram sit the concrete cluster actions — scale, migrate, switch to low-power. The middle of the diagram, today, is a question mark. There is no system that can take that sentence and produce a correct action sequence. The slide gives three reasons why: intent is ambiguous, because natural language underspecifies what to do; actions are irreversible, because draining a node or migrating a service cannot be undone cleanly; and state is distributed, because the information needed to decide well is spread across the cluster. An agent that wants to close this gap must handle all three at once.
 
-### Slide 33 · System Model & Motivation - operator to orchestration stack
+### Slide 33 · System Model & Motivation
 
 This slide is the generic stack, not the AgentEdge architecture yet. The left column shows the layers: operator intent at the top, a decision layer beneath it, then supporting signals, the service-orchestration interface, and finally the infrastructure itself. The large diagram on the right turns that stack into a loop. Intent comes down from the operator, the decision layer must combine meaning and cluster state, supporting forecasts and checks can be queried underneath, and only then does a validated action flow through Kubernetes into the infrastructure. So the point of this slide is to pin down the interfaces and the missing capability: something has to sit between natural-language intent and typed orchestration actions. The following slides introduce the actual design that fills that gap.
 
@@ -186,15 +186,15 @@ This slide is the generic stack, not the AgentEdge architecture yet. The left co
 
 Before the state of the art, a short aside on what I mean by *agent* in this thesis. Prior systems are described in prose; impossible to compare. PARES is the capability contract I use throughout: Perceive the cluster state, Act through typed tools, Reason explicitly over the goal, Evaluate candidate plans before committing, Sustain across multi-step interactions. Separate agents specialise; no single LLM carries every role. The framework is built on a general orchestration library, not a monolithic script. This is the grid I use to compare prior work on the next slide.
 
-### Slide 35 · State-of-the-art - every prior system misses load-bearing capabilities
+### Slide 35 · State of the Art - load-bearing gaps remain
 
 The state of the art is a capability matrix. Nine capabilities run across the top — things like natural-language intent translation, wireless-agent awareness, fault handling, chain-of-agent reasoning, multi-agent coordination, service orchestration, cross-layer span, pre-execution validation, and PARES. Every prior system I benchmarked is missing at least one load-bearing column. The three differentiators I want the committee to focus on are the three where no prior system delivers at all: spanning edge-plus-cloud, validating before acting, and filling the PARES capability contract. That PARES column has zero prior entries. One honest question that comes up here is *why ReAct and LATS as baselines, if none of them satisfies PARES?* No prior system does, across the full orchestration cycle. We therefore adapted ReAct, the reason-act loop, and LATS, tree-search over LLM rollouts, by retargeting them onto our tool surface: same tools, same base LLM, same scenarios, so comparison is fair. The bottom line on-slide is simple: only AgentEdge is full-row green.
 
-### Slide 36 · Each pain-point forces one decision
+### Slide 36 · One pain-point, one decision
 
 The rationale table has four rows, and each row is the minimal response to one specific pain-point. Ambiguous natural-language intent forces a dedicated Intent agent whose only job is to parse operator sentences into structured goals. A large, distributed state forces an Observability agent with tool-use and a bounded world model, so the system does not drown in raw telemetry. The fact that plans break in complex environments forces ActSimCrit — Plan, Simulate, Critique — which validates candidate plans before execution. The fact that actions are irreversible on live infrastructure forces a digital-twin sandbox where the simulation happens. The line the slide leaves with the committee is that each of these four is load-bearing: drop any one of them and the system fails predictably in a way that can be traced to the missing piece.
 
-### Slide 37 · Four specialised agents
+### Slide 37 · Design - Four specialised agents
 
 The architecture is a graph of graphs. Outer structure is sequential — start, Intent, Observability, Planning, Infra Action, end — and each of those four agents is itself a small subgraph with its own internal reasoning steps. On top of that, every agent satisfies the PARES capability contract: Perceive, Act, Reason, Evaluate, Sustain — the five capabilities that define what it means to be an agent in this framework rather than a prompt chain. The agentic-spectrum note on the slide places this design deliberately: it is specialised enough to be debuggable, but not so rigid that it reduces to a pipeline.
 
@@ -214,7 +214,7 @@ The simulator does two jobs at once. At runtime, it is the digital twin that the
 
 The first AgentEdge experiment is an architecture-versus-architecture comparison. Three scenarios are specified on-slide: S1 is a full-node reallocation task; S2 is a low-power conflict where multiple constraints compete; S3 is a compound-constraint task with a measured 0.52-core deficit that forces the agent to reason across services. Success is defined by predefined valid end-states, and we run thirty trials per scenario per system, reporting the percent success rate. The three arms are AgentEdge with four agents and the twin, ReAct — the reason-act loop — and LATS, which is tree-search over LLM rollouts. Critically, all three arms run on the same base LLM, `qwen3-235B-A22B` at temperature 0.2, so any difference between them is attributable to architecture, not to model capability.
 
-### Slide 42 · Result 1 - Multi-agent architecture beats every single-agent baseline
+### Slide 42 · Result 1 - Multi-agent beats every baseline
 
 The numbers are clean. AgentEdge succeeds on 78.3 percent of trials. LATS succeeds on 65.0 percent. ReAct succeeds on 28.3 percent. As multipliers, which are stickier than raw percentages, that is 1.20 times LATS and 2.76 times ReAct. The finding banner is direct: multi-agent architecture beats every SOTA single-agent baseline, on the same LLM, on the same tasks, in the same simulator. The next experiment takes the next obvious question — is this gain really coming from the digital twin, or from the four-agent structure alone?
 
@@ -234,7 +234,7 @@ The scalability experiment asks a practical question: does AgentEdge keep saving
 
 Three bars, three findings, and one shared scale across all scales. At eight nodes, AgentEdge saves 89 watts, a 20.6 percent efficiency gain. At twenty nodes, it saves 300.8 watts, a 55.5 percent gain — the peak, and the one I want the committee to remember. At thirty-five nodes, it saves 185.2 watts, a 9.5 percent gain. A reasonable follow-up is *why does twenty beat thirty-five?* The honest answer on-slide is that it is a context-window artefact, not a fundamental limit; the full node state overflows the prompt. With summarisation or sharding, the gain would continue to scale. The shared y-axis and ten runs per scale make these numbers directly comparable. Response time still grows with infrastructure size, which is exactly why real-time agent infrastructure appears again in future work. The key claim on this slide is not that scale is free; it is that validated autonomy remains useful and energy-relevant at production scale, and that the peak is explained rather than hidden.
 
-### Slide 47 · State-of-the-art operator stack
+### Slide 47 · One operator stack, nine anchors
 
 This is the payoff slide. The same four-layer stack we started with on slide three, now populated with the three contributions and their anchor numbers. Layer one, the operator, is now handled by AgentEdge — the operator sets intent and reviews exceptions only, instead of driving the stack by hand. Layer two, decision, is also AgentEdge — natural-language intent becomes validated orchestration action, with a 78.3 percent success rate over sixty runs and a 55.5 percent energy saving at eighteen nodes. Layer three, prediction, is shared between two contributions: AERO at the far edge with 599 parameters and 0.38-millisecond inference, and OmniFORE as the shared cross-service predictor with 30.41 percent lower cross-dataset error and zero-shot deployment to new services. Layer four and five, service orchestration and infrastructure, are the given environment — no dissertation contribution, but the one the other three now serve well. Operator impact folds in at this level: repeated manual intervention becomes exception review, actions become traceable via simulation-backed reasoning, and safety and optimisation sit together in one loop. Eight publications, colour-coded by contribution, the full list is on backup slide B7.
 
@@ -242,19 +242,19 @@ This is the payoff slide. The same four-layer stack we started with on slide thr
 
 The same stack appears one more time, but now layers three and four are dimmed and explicitly marked *solved*, while layer one and layer two stay lit. The message is that the open frontier is now at the agentic layers, not at the predictor. Three future challenges follow, each with its own slide: reliability and trust, real-time agent infrastructure, and distributed orchestration ecosystems. AgentEdge works, but three new challenges emerge once it leaves the lab and starts operating at production scale.
 
-### Slide 49 · Benchmarks do not exist yet
+### Slide 49 · Reliable benchmarks for agentic orchestration
 
 Let me start with the first trust problem: benchmarking. At the moment, we simply do not have benchmark suites for agentic orchestration, and without them developers cannot know whether a change helps or hurts. The reason this is hard is that these tasks rarely have one ground-truth label; several plans can be valid at once. On top of that, LLM non-determinism means a fix that improves one scenario can break another. And if we had good benchmark data, it would not only improve evaluation, it would also enable fine-tuning smaller, orchestration-specific models. So trust begins with evaluation engineering. Before these systems can be deployed confidently, the field needs shared test suites, and research should characterise *equivalence classes* of correct orchestration plans; expand LLM evaluation theory into orchestration; and build orchestration-trace datasets — plan, state, outcome — that enable small LoRA/SFT models that are cheaper and easier to audit.
 
-### Slide 50 · Latencies accumulate to tens of seconds
+### Slide 50 · Real-time agentic infrastructure
 
 The second barrier is real-time performance. Even simple orchestration tasks can take tens of seconds because the planner iterates, calls tools, revises, and reasons again, and token costs compound at scale. This is ultimately a context-engineering problem, not a hardware one. The three barriers on this slide: first, the state the agent sees when reasoning starts may already differ by the time it executes. Second, accuracy drops once the tool surface gets too large — in our experiments, beyond roughly thirty tools, and in some cases removing tools actually improved results. Third, latency points toward the same lesson AERO taught us at the prediction layer: smaller, fine-tuned models may be the only practical way to break the latency barrier. State summarisation, tool sharding, retrieval-over-state; specialised models per decision — scale, migrate, placement; and, further out, agent loops fused with the RAN and core on sub-millisecond radio loops, unifying signal-theory timing budgets with LLM inference budgets.
 
-### Slide 51 · Parallel instances conflict on shared infra
+### Slide 51 · Distributed agent ecosystems
 
 The third direction is system architecture at scale. Once orchestration is deployed across regions, providers, or administrative domains, the problem is no longer one agent in one cluster; it is many agent instances acting on shared infrastructure. The slide gives three open questions. First, the same prompt routed through a different model or provider can break because the output format shifts; we need an OpenAPI-equivalent for agent tool-calls, so that swapping provider X for provider Y preserves agent behaviour. Second, consensus or lock-lease schemes for *intended* actions, so conflicts are detected *before* actuation, not after. And third, scaling will come from parallelising across regions, not from adding more agents in sequence. Without these protocols, one agent may consolidate onto a node while another powers it down.
 
-### Slide 52 · Three layers · one systems thesis
+### Slide 52 · Three contributions, one systems thesis
 
 Three claims, each defended with three anchor numbers, nine anchors in total. Claim one, AERO — 599 parameters, eight-times-lower error under drift, and fifty-percent fewer migrations than SOTA: edge-real-time prediction is feasible with a sub-one-thousand-parameter model, with accuracy preserved. Claim two, OmniFORE — 30.41 percent lower MAE versus ModernTCN, a 20.66 percent MAE gain from clustering, and zero-shot deployment on an unseen cloud: a single attention-based model generalises across services, no per-service retraining. Claim three, AgentEdge — 1.47 times twin-on versus twin-off, ten-times-lower API-call variance, and 300.8 watts peak savings at eighteen nodes: validated autonomous orchestration — planning plus twin plus critic — is reliable and saves energy. The banner quote captures the thesis in one line: *orchestration turned from reactive supervision into a proactive, validated control stack; across three layers, with nine anchor numbers to defend it.* That is what I defend.
 
