@@ -1,61 +1,131 @@
 <section class="slide" data-section="synth" data-label="48 Future Reliability trust">
   <div class="chrome-top">
     <div class="section-bar"></div>
-    <div class="eyebrow"><span class="eyb-tag">Future Direction 1</span></div>
+    <div class="eyebrow"><span class="eyb-tag">Future Work 1</span><span class="eyb-sep">//</span><span>Reliability &amp; Trust</span></div>
     <div class="counter"><span class="num">48</span><span class="sep">/</span>52 &nbsp; <span class="section-name">Synthesis</span></div>
     <div></div>
   </div>
   <div class="body" style="padding:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:86px minmax(0,1fr); overflow:hidden;">
-    <div style="grid-column:1 / -1; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
-      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Reliable benchmarks for agentic orchestration</h1>
+
+    <!-- Title bar -->
+    <div style="grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Future Work 1 &middot; Reliability &amp; Trust</h1>
+      <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.12em; text-transform:uppercase;">two blockers &middot; two directions</div>
     </div>
 
-    <!-- Left: visualization + headline -->
-    <div style="display:flex; flex-direction:column; justify-content:center; padding:60px 64px; border-right:2px solid var(--ink); background:var(--bg); gap:24px;">      <div style="font-family:var(--f-display); font-size:54px; font-weight:700; line-height:1.05; letter-spacing:-.03em; color:var(--ink);">How do we <em style="font-style:normal; color:var(--c-agent);">benchmark</em> an agent whose task has no unique correct answer?</div>
-      <div style="height:2px; background:var(--c-agent); width:80px;"></div>
+    <!-- ============== LEFT CARD · BENCHMARKING ============== -->
+    <div style="display:flex; flex-direction:column; border-right:2px solid var(--ink); background:var(--bg); padding:42px 56px 32px; gap:20px;">
 
-      <svg viewBox="0 0 560 210" width="100%" style="max-width:720px;">
-        <rect x="20" y="80" width="140" height="50" rx="4" stroke="var(--ink)" stroke-width="2" fill="none"/>
-        <text x="90" y="100" font-family="JetBrains Mono" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">same</text>
-        <text x="90" y="118" font-family="JetBrains Mono" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">prompt</text>
-        <line x1="160" y1="105" x2="210" y2="40" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <line x1="160" y1="105" x2="210" y2="105" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <line x1="160" y1="105" x2="210" y2="170" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <rect x="210" y="15" width="140" height="50" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
-        <text x="280" y="38" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle">outcome A</text>
-        <text x="280" y="56" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">&ldquo;consolidate north-cluster&rdquo;</text>
-        <rect x="210" y="80" width="140" height="50" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
-        <text x="280" y="103" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle">outcome B</text>
-        <text x="280" y="121" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">&ldquo;shut node-07&rdquo;</text>
-        <rect x="210" y="145" width="140" height="50" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
-        <text x="280" y="168" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle">outcome C</text>
-        <text x="280" y="186" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">&ldquo;migrate svc-A&rdquo;</text>
-        <path d="M350 40 L400 40 L400 170 L350 170" stroke="var(--ink-3)" stroke-width="1.5" fill="none"/>
-        <line x1="400" y1="105" x2="450" y2="105" stroke="var(--ink-3)" stroke-width="1.5"/>
-        <text x="480" y="112" font-family="JetBrains Mono" font-size="38" fill="var(--c-agent)" text-anchor="middle" font-weight="700">?</text>
-        <text x="480" y="140" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">all valid</text>
-      </svg>
+      <div style="display:flex; align-items:baseline; gap:16px;">
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--c-agent); letter-spacing:.16em;">FW&middot;1.A</div>
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.16em; text-transform:uppercase;">Evaluation &amp; Benchmarking</div>
+      </div>
+
+      <div style="font-family:var(--f-display); font-size:36px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink);">One prompt. Many valid plans. <em style="font-style:normal; color:var(--c-agent);">No shared score.</em></div>
+
+      <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 620 260" width="100%" style="max-width:620px;">
+          <!-- prompt -->
+          <rect x="8" y="105" width="140" height="50" rx="4" stroke="var(--ink)" stroke-width="2" fill="var(--bg-alt)"/>
+          <text x="78" y="128" font-family="JetBrains Mono" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">same prompt</text>
+          <text x="78" y="146" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle">&ldquo;save energy on N-cluster&rdquo;</text>
+
+          <!-- fan out -->
+          <path d="M148,130 C190,130 190,40  232,40"  stroke="var(--ink-3)" stroke-width="1.4" fill="none" stroke-dasharray="4 3"/>
+          <path d="M148,130 L232,130" stroke="var(--ink-3)" stroke-width="1.4" fill="none" stroke-dasharray="4 3"/>
+          <path d="M148,130 C190,130 190,220 232,220" stroke="var(--ink-3)" stroke-width="1.4" fill="none" stroke-dasharray="4 3"/>
+
+          <!-- three valid plans -->
+          <rect x="232" y="15"  width="180" height="52" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
+          <text x="322" y="37"  font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" font-weight="700">plan A &middot; valid</text>
+          <text x="322" y="55"  font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">consolidate &rarr; node-03</text>
+
+          <rect x="232" y="105" width="180" height="52" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
+          <text x="322" y="127" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" font-weight="700">plan B &middot; valid</text>
+          <text x="322" y="145" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">shut node-07</text>
+
+          <rect x="232" y="195" width="180" height="52" rx="4" stroke="var(--c-agent)" stroke-width="1.5" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
+          <text x="322" y="217" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" font-weight="700">plan C &middot; valid</text>
+          <text x="322" y="235" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">migrate svc-A</text>
+
+          <!-- collect -->
+          <path d="M412,40 L462,40 L462,220 L412,220" stroke="var(--ink-3)" stroke-width="1.4" fill="none"/>
+          <line x1="462" y1="130" x2="498" y2="130" stroke="var(--ink-3)" stroke-width="1.4"/>
+
+          <!-- scoreboard with ? -->
+          <rect x="498" y="95" width="114" height="70" rx="4" stroke="var(--ink)" stroke-width="2" fill="var(--bg-alt)"/>
+          <text x="555" y="118" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".14em">BENCHMARK</text>
+          <text x="555" y="152" font-family="JetBrains Mono" font-size="34" fill="var(--c-agent)" text-anchor="middle" font-weight="700">?</text>
+
+          <!-- noise badge -->
+          <rect x="232" y="70" width="180" height="28" rx="3" fill="color-mix(in oklab,var(--ink) 6%,var(--bg))" stroke="var(--ink-4)" stroke-width="1"/>
+          <text x="322" y="89" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle" font-style="italic">+ LLM non-determinism across runs</text>
+        </svg>
+      </div>
+
+      <div style="border-top:1px solid var(--ink-5); padding-top:14px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase;">Direction</div>
+        <div style="font-size:19px; font-weight:600; color:var(--ink); line-height:1.3;">Orchestration-trace datasets &middot; <em style="font-style:normal; color:var(--c-agent);">equivalence-class</em> scoring &middot; confidence intervals across repeated runs.</div>
+      </div>
     </div>
 
-    <!-- Right: three research directions -->
-    <div style="display:flex; flex-direction:column; justify-content:center; padding:60px 60px; background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); gap:22px;">
-      <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.14em; font-weight:700; text-transform:uppercase;">Research directions</div>
+    <!-- ============== RIGHT CARD · EXPLAINABILITY & GUARDRAILS ============== -->
+    <div style="display:flex; flex-direction:column; background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:42px 56px 32px; gap:20px;">
 
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="padding:18px 20px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R1 &middot; MULTI-SOLUTION BENCHMARKS</div>
-          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:6px;">Define task-level <em>equivalence classes</em> of correct orchestration plans; expand LLM evaluation theory (BIG-Bench, HELM) into the systems domain where success is policy-valid, not string-equal.</div>
-        </div>
-        <div style="padding:18px 20px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R2 &middot; FORMAL-METHODS GUARDRAILS</div>
-          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:6px;">Fuse LLM planners with <em>verifiable policy checkers</em> (SMT / temporal logic over service graphs). The planner proposes; the checker certifies; the twin validates.</div>
-        </div>
-        <div style="padding:18px 20px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R3 &middot; DOMAIN-SPECIFIC FINE-TUNES</div>
-          <div style="font-size:20px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:6px;">Curate <em>orchestration-trace datasets</em> (plan, state, outcome); enable small LoRA/SFT models that are cheaper and <em>more explainable</em> than black-box frontier models.</div>
-        </div>
+      <div style="display:flex; align-items:baseline; gap:16px;">
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--c-agent); letter-spacing:.16em;">FW&middot;1.B</div>
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.16em; text-transform:uppercase;">Explainability &amp; Guardrails</div>
+      </div>
+
+      <div style="font-family:var(--f-display); font-size:36px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink);">The agent acts &mdash; <em style="font-style:normal; color:var(--c-agent);">operators don&rsquo;t see what it rejected</em>, and nothing formally checks it.</div>
+
+      <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 620 260" width="100%" style="max-width:620px;">
+          <!-- plan node -->
+          <rect x="8" y="108" width="130" height="44" rx="4" stroke="var(--ink)" stroke-width="2" fill="var(--bg)"/>
+          <text x="73" y="135" font-family="JetBrains Mono" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">LLM plan</text>
+
+          <!-- three branches: rejected (gray, dashed, X), rejected, chosen (green) -->
+          <!-- branch 1: rejected -->
+          <path d="M138,120 C180,120 180,40 226,40" stroke="var(--ink-3)" stroke-width="1.4" fill="none" stroke-dasharray="4 3"/>
+          <rect x="226" y="16" width="200" height="48" rx="4" stroke="var(--ink-3)" stroke-width="1.3" fill="color-mix(in oklab,var(--ink) 4%,var(--bg))" stroke-dasharray="4 3"/>
+          <text x="326" y="35" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink-3)" text-anchor="middle" font-weight="700">rejected</text>
+          <text x="326" y="52" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-3)" text-anchor="middle" font-style="italic">would violate SLA latency</text>
+          <line x1="438" y1="28" x2="454" y2="44" stroke="#b83838" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="454" y1="28" x2="438" y2="44" stroke="#b83838" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- branch 2: chosen -->
+          <path d="M138,130 L226,130" stroke="var(--c-agent)" stroke-width="2.2" fill="none"/>
+          <rect x="226" y="106" width="200" height="48" rx="4" stroke="var(--c-agent)" stroke-width="1.8" fill="color-mix(in oklab,var(--c-agent) 10%,var(--bg))"/>
+          <text x="326" y="125" font-family="JetBrains Mono" font-size="11.5" fill="var(--c-agent)" text-anchor="middle" font-weight="700">chosen</text>
+          <text x="326" y="142" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">migrate svc-A &rarr; node-03</text>
+
+          <!-- branch 3: rejected -->
+          <path d="M138,140 C180,140 180,220 226,220" stroke="var(--ink-3)" stroke-width="1.4" fill="none" stroke-dasharray="4 3"/>
+          <rect x="226" y="196" width="200" height="48" rx="4" stroke="var(--ink-3)" stroke-width="1.3" fill="color-mix(in oklab,var(--ink) 4%,var(--bg))" stroke-dasharray="4 3"/>
+          <text x="326" y="215" font-family="JetBrains Mono" font-size="11.5" fill="var(--ink-3)" text-anchor="middle" font-weight="700">rejected</text>
+          <text x="326" y="232" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-3)" text-anchor="middle" font-style="italic">infeasible resource request</text>
+          <line x1="438" y1="208" x2="454" y2="224" stroke="#b83838" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="454" y1="208" x2="438" y2="224" stroke="#b83838" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- guardrail box -->
+          <rect x="466" y="94" width="146" height="72" rx="4" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 3" fill="var(--bg-alt)"/>
+          <text x="539" y="114" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".14em">CONSTRAINT</text>
+          <text x="539" y="128" font-family="JetBrains Mono" font-size="10.5" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".14em">CHECKER</text>
+          <text x="539" y="153" font-family="JetBrains Mono" font-size="22" fill="var(--c-agent)" text-anchor="middle" font-weight="700">&plus;</text>
+          <!-- chosen arrow into checker -->
+          <line x1="426" y1="130" x2="466" y2="130" stroke="var(--c-agent)" stroke-width="2.2"/>
+
+          <!-- legend -->
+          <text x="8" y="258" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)">current: only the chosen path is shown &middot; no formal check on its output</text>
+        </svg>
+      </div>
+
+      <div style="border-top:1px solid var(--ink-5); padding-top:14px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase;">Direction</div>
+        <div style="font-size:19px; font-weight:600; color:var(--ink); line-height:1.3;">Reasoning-trace standards &middot; <em style="font-style:normal; color:var(--c-agent);">constraint-clamping</em> with natural-language feedback &middot; critic-of-critics verification.</div>
       </div>
     </div>
   </div>
-  <div class="chrome-bot"><div class="meta-left">Benchmarks &middot; formal checkers &middot; orchestration-specific models &middot; not "swap the LLM"</div><div class="meta-right">&sect;6 Future work</div></div>
+  <div class="chrome-bot"><div class="meta-left">Benchmarks &middot; guardrails &middot; trust before deployment &middot; not &ldquo;prompt harder&rdquo;</div><div class="meta-right">&sect;6 Future work</div></div>
 </section>

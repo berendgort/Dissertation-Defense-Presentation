@@ -1,71 +1,142 @@
 <section class="slide" data-section="synth" data-label="49 Future Real-time infra">
   <div class="chrome-top">
     <div class="section-bar"></div>
-    <div class="eyebrow"><span class="eyb-tag">Future Direction 2</span></div>
+    <div class="eyebrow"><span class="eyb-tag">Future Work 2</span><span class="eyb-sep">//</span><span>Real-time Infrastructure</span></div>
     <div class="counter"><span class="num">49</span><span class="sep">/</span>52 &nbsp; <span class="section-name">Synthesis</span></div>
     <div></div>
   </div>
   <div class="body" style="padding:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:86px minmax(0,1fr); overflow:hidden;">
-    <div style="grid-column:1 / -1; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
-      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Real-time agentic infrastructure</h1>
+
+    <!-- Title bar -->
+    <div style="grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
+      <h1 style="font-family:var(--f-display); font-size:44px; font-weight:700; letter-spacing:-.02em; margin:0;">Future Work 2 &middot; Real-time Infrastructure</h1>
+      <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.12em; text-transform:uppercase;">two blockers &middot; two directions</div>
     </div>
 
-    <!-- Left: visualization + headline -->
-    <div style="display:flex; flex-direction:column; justify-content:center; padding:60px 64px; border-right:2px solid var(--ink); background:var(--bg); gap:20px;">      <div style="font-family:var(--f-display); font-size:48px; font-weight:700; line-height:1.04; letter-spacing:-.03em; color:var(--ink);">The 35-node ceiling is a <em style="font-style:normal; color:var(--c-agent);">context-engineering</em> problem, not a hardware one.</div>
-      <div style="height:2px; background:var(--c-agent); width:80px;"></div>
+    <!-- ============== LEFT CARD · INFERENCE LATENCY ============== -->
+    <div style="display:flex; flex-direction:column; border-right:2px solid var(--ink); background:var(--bg); padding:42px 56px 32px; gap:20px;">
 
-      <svg viewBox="0 0 560 210" width="100%" style="max-width:720px;">
-        <!-- context window as a bar -->
-        <rect x="20" y="40" width="520" height="36" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/>
-        <text x="280" y="32" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" letter-spacing="0.1em">LLM CONTEXT WINDOW</text>
+      <div style="display:flex; align-items:baseline; gap:16px;">
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--c-agent); letter-spacing:.16em;">FW&middot;2.A</div>
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.16em; text-transform:uppercase;">Inference Efficiency</div>
+      </div>
 
-        <!-- tools section -->
-        <rect x="20" y="40" width="140" height="36" fill="color-mix(in oklab,var(--c-agent) 18%,var(--bg))"/>
-        <text x="90" y="64" font-family="JetBrains Mono" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">tools &middot; 20+</text>
-        <!-- state section -->
-        <rect x="160" y="40" width="300" height="36" fill="color-mix(in oklab,var(--c-agent) 32%,var(--bg))"/>
-        <text x="310" y="64" font-family="JetBrains Mono" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">node state &middot; grows with N</text>
-        <!-- overflow -->
-        <rect x="460" y="40" width="80" height="36" fill="#db6253" fill-opacity="0.85"/>
-        <text x="500" y="64" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">overflow</text>
+      <div style="font-family:var(--f-display); font-size:36px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink);">Every orchestration = a chain of LLM calls. <em style="font-style:normal; color:var(--c-agent);">Tens of seconds to act.</em></div>
 
-        <!-- anecdote caption -->
-        <text x="20" y="108" font-family="Inter" font-size="13" fill="var(--ink-2)" font-style="italic">Concrete: tunnels + NBI (20 tools) + K8s MCP &rArr; planner accuracy collapses.</text>
+      <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 620 240" width="100%" style="max-width:620px;">
+          <!-- timeline axis -->
+          <line x1="20" y1="170" x2="600" y2="170" stroke="var(--ink-3)" stroke-width="1.5"/>
+          <text x="20"  y="195" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)">t=0</text>
+          <text x="600" y="195" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="end">&gt;30 s</text>
 
-        <!-- time bars: observe → plan → actuate -->
-        <line x1="20" y1="175" x2="540" y2="175" stroke="var(--ink-3)" stroke-width="1.5"/>
-        <rect x="20" y="140" width="100" height="30" fill="color-mix(in oklab,var(--c-agent) 20%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.2"/>
-        <text x="70" y="160" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Observe</text>
-        <text x="70" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">5 s</text>
-        <rect x="125" y="125" width="260" height="45" fill="color-mix(in oklab,var(--c-agent) 30%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.5"/>
-        <text x="255" y="148" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Plan (LLM)</text>
-        <text x="255" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">8&ndash;30 s</text>
-        <rect x="390" y="140" width="100" height="30" fill="color-mix(in oklab,var(--c-agent) 20%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.2"/>
-        <text x="440" y="160" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-weight="700">Actuate</text>
-        <text x="440" y="192" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">3 s</text>
-        <text x="495" y="155" font-family="JetBrains Mono" font-size="12" fill="#db6253" font-weight="700">&gt; SLA</text>
-      </svg>
+          <!-- iteration blocks stacking along the timeline -->
+          <g font-family="JetBrains Mono" font-size="11">
+            <rect x="20"  y="60"  width="60"  height="90" fill="color-mix(in oklab,var(--c-agent) 18%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.3"/>
+            <text x="50"  y="108" fill="var(--ink)" text-anchor="middle" font-weight="700">obs</text>
+            <text x="50"  y="166" fill="var(--ink-3)" text-anchor="middle">5 s</text>
+
+            <rect x="82"  y="40"  width="110" height="110" fill="color-mix(in oklab,var(--c-agent) 28%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.5"/>
+            <text x="137" y="92"  fill="var(--ink)" text-anchor="middle" font-weight="700">plan 1</text>
+            <text x="137" y="110" fill="var(--ink-2)" text-anchor="middle" font-style="italic">LLM + tools</text>
+            <text x="137" y="166" fill="var(--ink-3)" text-anchor="middle">8 s</text>
+
+            <rect x="194" y="40"  width="100" height="110" fill="color-mix(in oklab,var(--c-agent) 28%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.5"/>
+            <text x="244" y="92"  fill="var(--ink)" text-anchor="middle" font-weight="700">plan 2</text>
+            <text x="244" y="110" fill="var(--ink-2)" text-anchor="middle" font-style="italic">revise</text>
+            <text x="244" y="166" fill="var(--ink-3)" text-anchor="middle">7 s</text>
+
+            <rect x="296" y="40"  width="100" height="110" fill="color-mix(in oklab,var(--c-agent) 28%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.5"/>
+            <text x="346" y="92"  fill="var(--ink)" text-anchor="middle" font-weight="700">critic</text>
+            <text x="346" y="110" fill="var(--ink-2)" text-anchor="middle" font-style="italic">verify</text>
+            <text x="346" y="166" fill="var(--ink-3)" text-anchor="middle">6 s</text>
+
+            <rect x="398" y="60"  width="80"  height="90" fill="color-mix(in oklab,var(--c-agent) 18%,var(--bg))" stroke="var(--c-agent)" stroke-width="1.3"/>
+            <text x="438" y="108" fill="var(--ink)" text-anchor="middle" font-weight="700">actuate</text>
+            <text x="438" y="166" fill="var(--ink-3)" text-anchor="middle">3 s</text>
+          </g>
+
+          <!-- SLA marker -->
+          <line x1="354" y1="24" x2="354" y2="175" stroke="#b83838" stroke-width="1.8" stroke-dasharray="5 4"/>
+          <text x="360" y="32" font-family="JetBrains Mono" font-size="11" fill="#b83838" font-weight="700">real-time SLA</text>
+
+          <!-- overflow bracket -->
+          <line x1="478" y1="58" x2="600" y2="58" stroke="#b83838" stroke-width="2"/>
+          <text x="539" y="52" font-family="JetBrains Mono" font-size="11" fill="#b83838" text-anchor="middle" font-weight="700">breaks SLA &middot; token cost compounds</text>
+
+          <!-- total -->
+          <text x="20"  y="228" font-family="JetBrains Mono" font-size="12" fill="var(--ink-2)" font-style="italic">sequential LLM invocations accumulate &middot; calls, not FLOPs, dominate orchestration latency.</text>
+        </svg>
+      </div>
+
+      <div style="border-top:1px solid var(--ink-5); padding-top:14px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase;">Direction</div>
+        <div style="font-size:19px; font-weight:600; color:var(--ink); line-height:1.3;">Call-reduction via multi-step prompting &middot; <em style="font-style:normal; color:var(--c-agent);">distilled orchestration-specific models</em> right-sized per decision &mdash; the AERO lesson, applied to the planner.</div>
+      </div>
     </div>
 
-    <!-- Right: three research directions -->
-    <div style="display:flex; flex-direction:column; justify-content:center; padding:55px 56px; background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); gap:20px;">
-      <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-agent); letter-spacing:.14em; font-weight:700; text-transform:uppercase;">Research directions</div>
+    <!-- ============== RIGHT CARD · TOOL DISCOVERY CEILING ============== -->
+    <div style="display:flex; flex-direction:column; background:color-mix(in oklab,var(--c-agent) 5%,var(--bg)); padding:42px 56px 32px; gap:20px;">
 
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R1 &middot; CONTEXT ENGINEERING FOR INFRA</div>
-          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Hierarchical state summarisation, tool sharding, retrieval-over-state; study when an orchestration problem is <em>context-bound</em> vs. <em>reasoning-bound</em>.</div>
-        </div>
-        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R2 &middot; LATENCY-AWARE LLM CO-DESIGN</div>
-          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Pair frontier planners with <em>distilled sub-agents</em> specialised per decision (scale / migrate / placement); the AERO lesson applied to agent graphs: right-size the model to the decision.</div>
-        </div>
-        <div style="padding:15px 18px; background:var(--bg); border-left:5px solid var(--c-agent);">
-          <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-agent); font-weight:700; letter-spacing:.1em;">R3 &middot; 6G INTEGRATION</div>
-          <div style="font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-top:5px;">Agents in the <em>RAN</em> and <em>core</em> with sub-ms radio loops, unifying signal-theory timing budgets with LLM inference budgets. Cross-layer contract between O-RAN, MEC, and agentic control.</div>
-        </div>
+      <div style="display:flex; align-items:baseline; gap:16px;">
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--c-agent); letter-spacing:.16em;">FW&middot;2.B</div>
+        <div style="font-family:var(--f-mono); font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.16em; text-transform:uppercase;">Tool Discovery &amp; Semantic Search</div>
+      </div>
+
+      <div style="font-family:var(--f-display); font-size:36px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink);">Beyond <em style="font-style:normal; color:var(--c-agent);">~30 tools</em>, the planner picks the wrong one.</div>
+
+      <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 620 240" width="100%" style="max-width:620px;">
+          <!-- axes -->
+          <line x1="70" y1="200" x2="600" y2="200" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="70" y1="30"  x2="70"  y2="200" stroke="var(--ink)" stroke-width="1.8"/>
+
+          <!-- y label -->
+          <text x="18" y="55"  font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" letter-spacing=".08em">tool-</text>
+          <text x="18" y="68"  font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" letter-spacing=".08em">pick</text>
+          <text x="18" y="81"  font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" letter-spacing=".08em">accuracy</text>
+          <text x="66" y="34"  font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="end">high</text>
+          <text x="66" y="204" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="end">low</text>
+
+          <!-- x label / ticks -->
+          <text x="335" y="228" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".08em">tools in catalog</text>
+          <line x1="190" y1="200" x2="190" y2="206" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="190" y="220" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">10</text>
+          <line x1="310" y1="200" x2="310" y2="206" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="310" y="220" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">20</text>
+          <line x1="430" y1="200" x2="430" y2="206" stroke="#b83838" stroke-width="2"/>
+          <text x="430" y="220" font-family="JetBrains Mono" font-size="11" fill="#b83838" text-anchor="middle" font-weight="700">30</text>
+          <line x1="550" y1="200" x2="550" y2="206" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="550" y="220" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle">40</text>
+
+          <!-- curve · flat plateau then cliff -->
+          <path d="M70,60 L190,60 L310,63 L380,70 L420,85 C430,105 440,135 470,165 L550,185 L600,190"
+                stroke="var(--c-agent)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- cliff region shading -->
+          <rect x="430" y="30" width="170" height="170" fill="#b83838" fill-opacity="0.06"/>
+
+          <!-- callout: empirical anchor -->
+          <line x1="430" y1="85"  x2="490" y2="55" stroke="var(--ink-3)" stroke-width="1"/>
+          <rect x="490" y="35" width="115" height="44" rx="3" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="547" y="52" font-family="JetBrains Mono" font-size="11" fill="var(--ink)" text-anchor="middle" font-weight="700">AgentEdge</text>
+          <text x="547" y="67" font-family="JetBrains Mono" font-size="10" fill="var(--ink-2)" text-anchor="middle">3 MCP &middot; &asymp;40 tools</text>
+
+          <!-- counterintuitive remark -->
+          <text x="70"  y="264" font-family="JetBrains Mono" font-size="0"></text>
+          <text x="430" y="165" font-family="JetBrains Mono" font-size="10" fill="var(--ink-2)" font-style="italic">removing an MCP</text>
+          <text x="430" y="178" font-family="JetBrains Mono" font-size="10" fill="var(--ink-2)" font-style="italic">often &uarr; success</text>
+
+          <!-- cliff marker -->
+          <circle cx="430" cy="85" r="4" fill="#b83838"/>
+        </svg>
+      </div>
+
+      <div style="border-top:1px solid var(--ink-5); padding-top:14px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase;">Direction</div>
+        <div style="font-size:19px; font-weight:600; color:var(--ink); line-height:1.3;">Semantic tool retrieval &middot; <em style="font-style:normal; color:var(--c-agent);">hierarchical catalogs</em> &middot; autonomous read-only tool discovery &mdash; show the agent a focused set, not the whole shelf.</div>
       </div>
     </div>
   </div>
-  <div class="chrome-bot"><div class="meta-left">Context engineering &middot; model right-sizing &middot; 6G integration &middot; not "use a faster LLM"</div><div class="meta-right">&sect;6 Future work</div></div>
+  <div class="chrome-bot"><div class="meta-left">Latency budget &middot; tool surface &middot; context engineering &middot; not &ldquo;a faster LLM&rdquo;</div><div class="meta-right">&sect;6 Future work</div></div>
 </section>
