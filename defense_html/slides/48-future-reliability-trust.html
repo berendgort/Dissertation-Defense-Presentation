@@ -107,74 +107,93 @@
         <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink); letter-spacing:.18em; text-transform:uppercase;">Security &amp; Containment</div>
       </div>
 
-      <div style="font-family:var(--f-display); font-size:42px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink); margin-bottom:24px;">Agents with root access. <em style="font-style:normal; color:var(--c-agent);">Three open questions.</em></div>
+      <div style="font-family:var(--f-display); font-size:42px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink); margin-bottom:24px;">Agents with root access. <em style="font-style:normal; color:var(--c-agent);">Two open questions.</em></div>
 
-      <!-- Figure: three question cards -->
+      <!-- Figure: two question cards -->
       <div style="flex:1; min-height:0; display:flex; justify-content:center; align-items:center; padding:10px 0 30px;">
         <svg viewBox="0 0 780 300" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="max-width:820px; max-height:100%;">
 
-          <!-- ============ Card 1: WHERE ============ -->
-          <rect x="10" y="10" width="240" height="280" rx="6" stroke="var(--ink)" stroke-width="2.2" fill="var(--bg)"/>
+          <!-- ============ Card 1: SPOT EARLY ============ -->
+          <rect x="10" y="10" width="370" height="280" rx="6" stroke="var(--ink)" stroke-width="2.2" fill="var(--bg)"/>
 
-          <!-- Icon: cloud vs on-prem server, with a directional choice -->
-          <g transform="translate(65, 40)">
-            <!-- Cloud (up) -->
-            <path d="M15,22 q-10,-16 8,-22 q10,-14 26,-4 q14,-12 26,2 q16,-4 18,12 q6,10 -6,18 Z" fill="color-mix(in oklab,var(--ink) 6%,var(--bg))" stroke="var(--ink-3)" stroke-width="1.5"/>
-            <text x="52" y="20" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle">cloud</text>
-            <!-- On-prem server (down) -->
-            <rect x="28" y="60" width="48" height="40" rx="2" stroke="var(--ink)" stroke-width="1.8" fill="var(--bg-alt)"/>
-            <line x1="34" y1="72" x2="70" y2="72" stroke="var(--ink-3)" stroke-width="1.2"/>
-            <line x1="34" y1="82" x2="70" y2="82" stroke="var(--ink-3)" stroke-width="1.2"/>
-            <line x1="34" y1="92" x2="70" y2="92" stroke="var(--ink-3)" stroke-width="1.2"/>
-            <text x="52" y="114" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle">on-prem</text>
-            <!-- Divider ? between them -->
-            <text x="95" y="58" font-family="JetBrains Mono" font-size="22" fill="var(--c-agent)" font-weight="700">?</text>
+          <!-- Icon: a plan with a destructive line flagged -->
+          <g transform="translate(130, 32)">
+            <!-- Plan document -->
+            <rect x="0" y="0" width="130" height="122" rx="4" stroke="var(--ink)" stroke-width="1.8" fill="var(--bg-alt)"/>
+            <text x="65" y="18" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".1em" font-weight="700">PLAN</text>
+            <line x1="10" y1="28" x2="120" y2="28" stroke="var(--ink-5)" stroke-width="0.8"/>
+            <!-- Safe steps -->
+            <line x1="14" y1="42" x2="116" y2="42" stroke="var(--ink-3)" stroke-width="1.1"/>
+            <line x1="14" y1="56" x2="100" y2="56" stroke="var(--ink-3)" stroke-width="1.1"/>
+            <!-- Destructive step: highlighted red -->
+            <rect x="8" y="64" width="114" height="20" fill="color-mix(in oklab,#b83838 14%,var(--bg))" stroke="#b83838" stroke-width="1.4"/>
+            <text x="14" y="78" font-family="JetBrains Mono" font-size="11" fill="#b83838" font-weight="700">&excl; delete pod</text>
+            <!-- Remaining safe steps -->
+            <line x1="14" y1="96" x2="108" y2="96" stroke="var(--ink-3)" stroke-width="1.1"/>
+            <line x1="14" y1="110" x2="90" y2="110" stroke="var(--ink-3)" stroke-width="1.1"/>
+            <!-- Flag callout -->
+            <g transform="translate(135, 62)">
+              <line x1="0" y1="8" x2="14" y2="8" stroke="#b83838" stroke-width="1.8"/>
+              <polygon points="14,0 34,8 14,16" fill="#b83838"/>
+              <line x1="34" y1="-2" x2="34" y2="18" stroke="#b83838" stroke-width="1.8"/>
+            </g>
           </g>
 
           <!-- Label block -->
-          <line x1="40" y1="190" x2="220" y2="190" stroke="var(--ink-5)" stroke-width="1"/>
-          <text x="130" y="220" font-family="JetBrains Mono" font-size="20" fill="var(--ink)" text-anchor="middle" font-weight="700" letter-spacing=".12em">WHERE?</text>
-          <text x="130" y="250" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)" text-anchor="middle">does the model run</text>
-          <text x="130" y="272" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">cluster data &middot; external LLMs</text>
+          <line x1="40" y1="192" x2="350" y2="192" stroke="var(--ink-5)" stroke-width="1"/>
+          <text x="195" y="222" font-family="JetBrains Mono" font-size="20" fill="var(--ink)" text-anchor="middle" font-weight="700" letter-spacing=".12em">SPOT EARLY?</text>
+          <text x="195" y="250" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)" text-anchor="middle">destructive steps in a plan</text>
+          <text x="195" y="272" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">flag before commit &middot; not after</text>
 
-          <!-- ============ Card 2: HOW BAD ============ -->
-          <rect x="270" y="10" width="240" height="280" rx="6" stroke="var(--ink)" stroke-width="2.2" fill="var(--bg)"/>
+          <!-- ============ Card 2: SANDBOX WHERE ============ -->
+          <rect x="400" y="10" width="370" height="280" rx="6" stroke="var(--ink)" stroke-width="2.2" fill="var(--bg)"/>
 
-          <!-- Icon: blast-radius concentric rings -->
-          <g transform="translate(390, 95)">
-            <circle r="62" fill="none" stroke="#b83838" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6"/>
-            <circle r="42" fill="none" stroke="#b83838" stroke-width="1.5" stroke-dasharray="3 4"/>
-            <circle r="22" fill="none" stroke="#b83838" stroke-width="1.8"/>
-            <circle r="9" fill="#b83838"/>
+          <!-- Icon: fenced physical sandbox with server racks -->
+          <g transform="translate(520, 32)">
+            <!-- Sandbox perimeter (dashed) -->
+            <rect x="0" y="0" width="130" height="122" rx="4" stroke="var(--ink-3)" stroke-width="1.8" stroke-dasharray="6 4" fill="color-mix(in oklab,var(--c-agent) 6%,var(--bg))"/>
+            <text x="65" y="18" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".1em" font-weight="700">SANDBOX</text>
+
+            <!-- Three mini racks -->
+            <g>
+              <rect x="16" y="32" width="28" height="62" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg-alt)"/>
+              <line x1="20" y1="40" x2="40" y2="40" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="48" x2="40" y2="48" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="56" x2="40" y2="56" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="64" x2="40" y2="64" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="72" x2="40" y2="72" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="80" x2="40" y2="80" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="20" y1="88" x2="40" y2="88" stroke="var(--ink-3)" stroke-width="0.8"/>
+            </g>
+            <g>
+              <rect x="51" y="32" width="28" height="62" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg-alt)"/>
+              <line x1="55" y1="40" x2="75" y2="40" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="48" x2="75" y2="48" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="56" x2="75" y2="56" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="64" x2="75" y2="64" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="72" x2="75" y2="72" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="80" x2="75" y2="80" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="55" y1="88" x2="75" y2="88" stroke="var(--ink-3)" stroke-width="0.8"/>
+            </g>
+            <g>
+              <rect x="86" y="32" width="28" height="62" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg-alt)"/>
+              <line x1="90" y1="40" x2="110" y2="40" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="48" x2="110" y2="48" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="56" x2="110" y2="56" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="64" x2="110" y2="64" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="72" x2="110" y2="72" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="80" x2="110" y2="80" stroke="var(--ink-3)" stroke-width="0.8"/>
+              <line x1="90" y1="88" x2="110" y2="88" stroke="var(--ink-3)" stroke-width="0.8"/>
+            </g>
+
+            <text x="65" y="112" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle" font-style="italic">real hardware</text>
           </g>
 
           <!-- Label block -->
-          <line x1="300" y1="190" x2="480" y2="190" stroke="var(--ink-5)" stroke-width="1"/>
-          <text x="390" y="220" font-family="JetBrains Mono" font-size="20" fill="var(--ink)" text-anchor="middle" font-weight="700" letter-spacing=".12em">HOW BAD?</text>
-          <text x="390" y="250" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)" text-anchor="middle">can the damage get</text>
-          <text x="390" y="272" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">blast radius &middot; rate limits</text>
-
-          <!-- ============ Card 3: WHO AGREES ============ -->
-          <rect x="530" y="10" width="240" height="280" rx="6" stroke="var(--ink)" stroke-width="2.2" fill="var(--bg)"/>
-
-          <!-- Icon: two agents with approval handshake -->
-          <g transform="translate(620, 55)">
-            <!-- Agent A -->
-            <circle cx="0" cy="40" r="22" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.8"/>
-            <text x="0" y="46" font-family="JetBrains Mono" font-size="16" fill="var(--ink)" text-anchor="middle" font-weight="700">A</text>
-            <!-- Agent B -->
-            <circle cx="60" cy="40" r="22" fill="var(--bg-alt)" stroke="var(--ink)" stroke-width="1.8"/>
-            <text x="60" y="46" font-family="JetBrains Mono" font-size="16" fill="var(--ink)" text-anchor="middle" font-weight="700">B</text>
-            <!-- Approval line with check -->
-            <line x1="24" y1="40" x2="36" y2="40" stroke="var(--c-agent)" stroke-width="2.4"/>
-            <path d="M22,25 L28,31 L40,17" stroke="var(--c-agent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-
-          <!-- Label block -->
-          <line x1="560" y1="190" x2="740" y2="190" stroke="var(--ink-5)" stroke-width="1"/>
-          <text x="650" y="220" font-family="JetBrains Mono" font-size="20" fill="var(--ink)" text-anchor="middle" font-weight="700" letter-spacing=".12em">WHO AGREES?</text>
-          <text x="650" y="250" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)" text-anchor="middle">before it commits</text>
-          <text x="650" y="272" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">consensus &middot; latency cost</text>
+          <line x1="430" y1="192" x2="740" y2="192" stroke="var(--ink-5)" stroke-width="1"/>
+          <text x="585" y="222" font-family="JetBrains Mono" font-size="20" fill="var(--ink)" text-anchor="middle" font-weight="700" letter-spacing=".12em">SANDBOX WHERE?</text>
+          <text x="585" y="250" font-family="JetBrains Mono" font-size="14" fill="var(--ink-3)" text-anchor="middle">a safe place to let it fail</text>
+          <text x="585" y="272" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">physical testbed &middot; not just simulation</text>
         </svg>
       </div>
 
@@ -182,9 +201,8 @@
       <div style="border-top:1px solid var(--ink-5); padding-top:22px; display:flex; flex-direction:column; gap:14px;">
         <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Research directions</div>
         <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:18px;">
-          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Benchmark on-prem orchestration models against cloud LLMs on identical traces.</span></li>
-          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Formalize blast-radius bounds and test containment primitives in simulation.</span></li>
-          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Measure how multi-agent consensus trades off success rate against latency.</span></li>
+          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Detect destructive actions and plans, and flag them before they commit.</span></li>
+          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Build physical sandboxes on real hardware, not just simulation.</span></li>
         </ul>
       </div>
     </div>
