@@ -1,144 +1,184 @@
 <section class="slide" data-section="agent" data-label="42 Scenario twin ablation">
   <div class="chrome-top"><div class="section-bar"></div><div class="eyebrow"><span class="eyb-tag">Scenario 2</span></div><div class="counter"><span class="num">42</span><span class="sep">/</span>52 &nbsp; <span class="section-name">AgentEdge</span></div><div></div></div>
-  <div class="body">
-    <div style="margin:-48px -80px 18px; min-height:86px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt);">
-      <h1 style="font-family:var(--f-display); font-size:46px; font-weight:700; letter-spacing:-.02em; margin:0;">Scenario 2 - Twin ablation</h1>
-    </div>
-    <div style="font-size:19px; color:var(--ink-2); margin-top:4px; line-height:1.4; max-width:1700px;">
-      Both arms share plan-then-critic. Only one has the twin-simulation step. We measure <strong>API-call count</strong> (retry cost) and <strong>success</strong> (reliability), so failure-shifting can't hide behind either metric alone.
+
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+
+    <div style="flex:0 0 94px; display:flex; align-items:center; padding:0 80px; border-bottom:2px solid var(--ink); background:var(--bg-alt); gap:28px;">
+      <h1 style="font-family:var(--f-display); font-size:42px; font-weight:700; letter-spacing:-.02em; margin:0; line-height:1.1;">Scenario 2 &middot; Twin ablation</h1>
+      <div style="margin-left:auto; max-width:720px; text-align:right; font-family:var(--f-mono); font-size:14px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">isolate pre-execution validation &middot; success &amp; API-call count</div>
     </div>
 
-    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:14px;">
+    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; min-height:0;">
 
-      <!-- Arm A: twin ON -->
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:14px; background:var(--c-agent); color:white; padding:5px 10px; letter-spacing:.12em; font-weight:700;">WITH SIMULATION</div>
-          <div style="font-size:24px; font-weight:700; color:var(--c-agent);">Full AgentEdge</div>
+      <!-- LEFT: WITH Sim + Critic -->
+      <div style="padding:18px 28px 14px 40px; background:color-mix(in oklab,var(--c-agent) 3%, var(--bg)); display:flex; flex-direction:column; gap:8px; border-right:2px solid var(--ink); min-height:0;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:13px; background:var(--c-agent); color:white; padding:4px 10px; letter-spacing:.12em; font-weight:700;">WITH SIM + CRITIC</div>
+          <div style="font-size:22px; font-weight:700; color:var(--c-agent);">Full AgentEdge</div>
+          <div style="margin-left:auto; font-family:var(--f-mono); font-size:11.5px; color:var(--c-agent); letter-spacing:.08em;">validate before touching infra</div>
         </div>
 
-        <div style="flex:1; border:2px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 5%, var(--bg)); padding:16px 20px; display:flex; flex-direction:column; gap:10px;">
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--c-agent); letter-spacing:.1em;">PLANNING LOOP · then EXECUTE</div>
-
-          <svg viewBox="0 0 480 175" style="width:100%;" font-family="Inter, sans-serif">
+        <div style="flex:1; min-height:0; display:flex; align-items:stretch; justify-content:stretch;">
+          <svg viewBox="0 0 920 640" style="width:100%; height:100%;" font-family="Inter, sans-serif" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <marker id="ta2-pink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#db6253"/></marker>
-              <marker id="ta2-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15803d"/></marker>
-              <marker id="ta2-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+              <marker id="p42a-agent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-agent)"/></marker>
+              <marker id="p42a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b83838"/></marker>
+              <marker id="p42a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15803d"/></marker>
             </defs>
 
-            <!-- loop box -->
-            <rect x="5" y="5" width="330" height="130" rx="10" fill="none" stroke="#db6253" stroke-width="2" stroke-dasharray="8,4"/>
-            <text x="165" y="152" text-anchor="middle" font-size="11" fill="#db6253" font-family="JetBrains Mono"></text>
+            <!-- Title -->
+            <text x="460" y="34" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="var(--c-agent)" letter-spacing="2.8">ACTSIMCRIT &middot; TWIN ON</text>
 
-            <!-- Plan -->
-            <rect x="20" y="40" width="70" height="50" rx="6" fill="#fff" stroke="#db6253" stroke-width="2"/>
-            <text x="55" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#db6253">Plan</text>
+            <!-- Reject/retry arc: P5 top -> Plan top -->
+            <path d="M 825 200 C 825 90 220 90 220 200" fill="none" stroke="#b83838" stroke-width="2.2" stroke-dasharray="7,5" marker-end="url(#p42a-red)"/>
+            <text x="522" y="102" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b83838" letter-spacing="2">reject &middot; retry (virtual)</text>
 
-            <!-- Sim -->
-            <rect x="115" y="40" width="70" height="50" rx="6" fill="#fff" stroke="#db6253" stroke-width="2"/>
-            <text x="150" y="65" text-anchor="middle" font-size="14" font-weight="700" fill="#db6253">Sim</text>
-            <text x="150" y="82" text-anchor="middle" font-size="10" fill="#3a3a38" font-family="JetBrains Mono">twin</text>
+            <!-- PLAN (combined P1+P2+P3) -->
+            <g>
+              <rect x="20" y="200" width="400" height="130" rx="12" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.2"/>
+              <rect x="20" y="200" width="400" height="28" fill="var(--c-agent)"/>
+              <text x="220" y="220" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="white" letter-spacing="2.4">PLAN &middot; P1 + P2 + P3</text>
+              <text x="220" y="258" text-anchor="middle" font-family="Inter" font-size="17" font-weight="700" fill="var(--ink)">Strategic plan &middot; State &middot; Action select</text>
+              <text x="220" y="288" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">end-goal state &middot; bottlenecks &middot; pick batch</text>
+              <text x="220" y="312" text-anchor="middle" font-family="Inter" font-size="13" font-style="italic" fill="var(--ink-3)">three LLM calls collapsed into one unit</text>
+            </g>
 
-            <!-- Crit -->
-            <rect x="210" y="40" width="70" height="50" rx="6" fill="#fff" stroke="#db6253" stroke-width="2"/>
-            <text x="245" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#db6253">Crit</text>
+            <!-- P4 Sim + Critic -->
+            <g>
+              <rect x="560" y="200" width="160" height="130" rx="12" fill="color-mix(in oklab, var(--c-agent) 8%, var(--bg))" stroke="var(--c-agent)" stroke-width="2.2"/>
+              <circle cx="584" cy="226" r="14" fill="var(--c-agent)"/>
+              <text x="584" y="231" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="white">P4</text>
+              <text x="606" y="231" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Sim + Critic</text>
+              <text x="640" y="280" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">simulate batch,</text>
+              <text x="640" y="302" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">independent critic</text>
+            </g>
 
-            <!-- arrows inside loop -->
-            <line x1="90" y1="65" x2="113" y2="65" stroke="#db6253" stroke-width="2" marker-end="url(#ta2-pink)"/>
-            <line x1="185" y1="65" x2="208" y2="65" stroke="#db6253" stroke-width="2" marker-end="url(#ta2-pink)"/>
+            <!-- P5 -->
+            <g>
+              <rect x="740" y="200" width="160" height="130" rx="12" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="2.2"/>
+              <circle cx="764" cy="226" r="14" fill="var(--c-agent)"/>
+              <text x="764" y="231" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="white">P5</text>
+              <text x="786" y="231" font-family="Inter" font-size="16" font-weight="700" fill="var(--ink)">Intent met?</text>
+              <text x="820" y="280" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">emit plan</text>
+              <text x="820" y="302" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">or escalate</text>
+            </g>
 
-            <!-- Refine loop -->
-            <path d="M245 90 Q245 115, 165 115 Q 85 115, 55 90" fill="none" stroke="#b91c1c" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#ta2-red)"/>
-            <text x="165" y="130" text-anchor="middle" font-size="11" fill="#b91c1c" font-family="JetBrains Mono">refine if fail</text>
+            <!-- Forward arrows -->
+            <line x1="420" y1="265" x2="558" y2="265" stroke="var(--c-agent)" stroke-width="2.6" marker-end="url(#p42a-agent)"/>
+            <line x1="720" y1="265" x2="738" y2="265" stroke="#15803d" stroke-width="2.6" marker-end="url(#p42a-green)"/>
 
-            <!-- pass → exit loop -->
-            <line x1="280" y1="65" x2="338" y2="65" stroke="#15803d" stroke-width="2" marker-end="url(#ta2-green)"/>
-            <text x="309" y="58" text-anchor="middle" font-size="10" fill="#15803d" font-family="JetBrains Mono">pass</text>
+            <!-- Digital Twin + Critic LLM stacks under P4 -->
+            <line x1="640" y1="330" x2="640" y2="344" stroke="var(--c-agent)" stroke-width="1.6" stroke-dasharray="3,3"/>
+            <rect x="560" y="344" width="160" height="42" rx="6" fill="var(--bg)" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="4,3"/>
+            <text x="640" y="363" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="var(--ink-2)" letter-spacing="1.2">DIGITAL TWIN</text>
+            <text x="640" y="378" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-3)">sandbox simulation &middot; no LLM</text>
+            <line x1="640" y1="386" x2="640" y2="398" stroke="var(--c-agent)" stroke-width="1.6" stroke-dasharray="3,3"/>
+            <rect x="560" y="398" width="160" height="42" rx="6" fill="var(--c-agent)" stroke="color-mix(in oklab,var(--c-agent) 70%, black)" stroke-width="1.6"/>
+            <text x="640" y="417" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="white" letter-spacing="1.2">CRITIC LLM</text>
+            <text x="640" y="432" text-anchor="middle" font-family="Inter" font-size="11" fill="rgba(255,255,255,.92)">independent LLM &middot; no memory</text>
 
-            <!-- Exec -->
-            <rect x="340" y="40" width="130" height="50" rx="6" fill="#15803d" stroke="#14532d" stroke-width="2"/>
-            <text x="405" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="white">Exec on infra</text>
-            <text x="405" y="80" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono">validated plan</text>
+            <!-- P5 yes -> validated plan -> exec -->
+            <path d="M 880 330 C 880 490 370 490 360 500" fill="none" stroke="#15803d" stroke-width="3" marker-end="url(#p42a-green)"/>
+            <text x="446" y="484" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="#15803d">yes</text>
 
+            <!-- Validated plan / Exec banner -->
+            <rect x="120" y="500" width="480" height="70" rx="10" fill="#15803d" stroke="#14532d" stroke-width="2"/>
+            <text x="360" y="526" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="white" letter-spacing="2.2">VALIDATED PLAN &rarr; EXEC</text>
+            <text x="360" y="550" text-anchor="middle" font-family="Inter" font-size="15" font-weight="600" fill="white">infra agent rarely retries</text>
 
+            <!-- Deadlock chip -->
+            <rect x="760" y="500" width="140" height="70" rx="10" fill="var(--bg)" stroke="#b83838" stroke-width="1.8" stroke-dasharray="5,3"/>
+            <text x="830" y="526" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="#b83838" letter-spacing="2">DEADLOCK</text>
+            <text x="830" y="550" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-3)">propose alt-intent</text>
           </svg>
-
-          <ul class="bul" style="font-size:18px; line-height:1.4; margin:0;">
-            <li>Plans are <em>validated</em> on the twin <em>before</em> touching infra</li>
-            <li>Crit + Refine are twin-backed: bounded, reliable</li>
-            <li>Exec agent rarely retries; plan is already validated</li>
-          </ul>
         </div>
+
+        <ul class="bul" style="font-size:15px; line-height:1.35; margin:0; padding-left:20px;">
+          <li>Plans validated on the twin <em>before</em> touching infra</li>
+          <li>Retries are <em>virtual</em> &mdash; bounded by iter &amp; reject caps</li>
+        </ul>
       </div>
 
-      <!-- Arm B: twin OFF -->
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; align-items:baseline; gap:14px;">
-          <div style="font-family:var(--f-mono); font-size:14px; background:var(--ink); color:var(--bg); padding:5px 10px; letter-spacing:.12em; font-weight:700;">WITHOUT SIMULATION</div>
-          <div style="font-size:24px; font-weight:700; color:var(--ink);">No simulation</div>
+      <!-- RIGHT: WITHOUT Sim + Critic -->
+      <div style="padding:18px 40px 14px 28px; background:var(--bg-alt); display:flex; flex-direction:column; gap:8px; min-height:0;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:var(--f-mono); font-size:13px; background:var(--ink); color:var(--bg); padding:4px 10px; letter-spacing:.12em; font-weight:700;">WITHOUT SIM + CRITIC</div>
+          <div style="font-size:22px; font-weight:700; color:var(--ink);">No pre-exec validation</div>
+          <div style="margin-left:auto; font-family:var(--f-mono); font-size:11.5px; color:#b83838; letter-spacing:.08em;">failures shift to real infra</div>
         </div>
 
-        <div style="flex:1; border:2px solid var(--ink); background:var(--bg-alt); padding:16px 20px; display:flex; flex-direction:column; gap:10px;">
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); letter-spacing:.1em;">PLANNING LOOP · then EXECUTE</div>
-
-          <svg viewBox="0 0 480 195" style="width:100%;" font-family="Inter, sans-serif">
+        <div style="flex:1; min-height:0; display:flex; align-items:stretch; justify-content:stretch;">
+          <svg viewBox="0 0 920 640" style="width:100%; height:100%;" font-family="Inter, sans-serif" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <marker id="tb2-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#161616"/></marker>
-              <marker id="tb2-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
-              <marker id="tb2-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15803d"/></marker>
+              <marker id="p42b-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)"/></marker>
+              <marker id="p42b-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b83838"/></marker>
             </defs>
 
-            <!-- loop box (no Sim, smaller) -->
-            <rect x="5" y="5" width="240" height="120" rx="10" fill="none" stroke="#7a7874" stroke-width="2" stroke-dasharray="8,4"/>
-            <text x="120" y="138" text-anchor="middle" font-size="11" fill="#7a7874" font-family="JetBrains Mono"></text>
+            <!-- Title -->
+            <text x="460" y="34" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="var(--ink)" letter-spacing="2.8">ACTSIMCRIT &middot; TWIN OFF</text>
 
-            <!-- Plan -->
-            <rect x="20" y="32" width="80" height="50" rx="6" fill="#fff" stroke="#7a7874" stroke-width="2"/>
-            <text x="60" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="#7a7874">Plan</text>
+            <!-- PLAN (combined P1+P2+P3) -->
+            <g>
+              <rect x="20" y="200" width="400" height="130" rx="12" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.2"/>
+              <rect x="20" y="200" width="400" height="28" fill="var(--ink)"/>
+              <text x="220" y="220" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="var(--bg)" letter-spacing="2.4">PLAN &middot; P1 + P2 + P3</text>
+              <text x="220" y="258" text-anchor="middle" font-family="Inter" font-size="17" font-weight="700" fill="var(--ink)">Strategic plan &middot; State &middot; Action select</text>
+              <text x="220" y="288" text-anchor="middle" font-family="Inter" font-size="14" fill="var(--ink-2)">end-goal state &middot; bottlenecks &middot; pick batch</text>
+              <text x="220" y="312" text-anchor="middle" font-family="Inter" font-size="13" font-style="italic" fill="var(--ink-3)">identical planning stage</text>
+            </g>
 
-            <!-- Crit (no Sim before it) -->
-            <rect x="140" y="32" width="80" height="50" rx="6" fill="#fff" stroke="#7a7874" stroke-width="2"/>
-            <text x="180" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="#7a7874">Crit</text>
+            <!-- Removed Sim+Critic block (ghost) -->
+            <g opacity="0.55">
+              <rect x="560" y="200" width="160" height="130" rx="12" fill="none" stroke="#b83838" stroke-width="2.2" stroke-dasharray="6,5"/>
+              <text x="640" y="252" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b83838" letter-spacing="1.6">REMOVED</text>
+              <text x="640" y="274" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="#b83838">Sim + Critic</text>
+              <text x="640" y="297" text-anchor="middle" font-family="Inter" font-size="12" fill="#b83838">no pre-execution</text>
+              <text x="640" y="314" text-anchor="middle" font-family="Inter" font-size="12" fill="#b83838">validation</text>
+              <!-- cross-out -->
+              <line x1="576" y1="214" x2="704" y2="316" stroke="#b83838" stroke-width="1.6" stroke-dasharray="4,4"/>
+            </g>
 
-            <!-- arrow -->
-            <line x1="100" y1="57" x2="138" y2="57" stroke="#7a7874" stroke-width="2" marker-end="url(#tb2-ink)"/>
+            <!-- PLAN -> EXEC (bypassing validation) -->
+            <path d="M 420 265 L 558 265" fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-dasharray="3,4"/>
+            <path d="M 720 265 L 738 265" fill="none" stroke="#b83838" stroke-width="2.6" marker-end="url(#p42b-red)"/>
+            <text x="640" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="var(--ink-2)" letter-spacing="1.4">bypass</text>
 
-            <!-- Refine loop -->
-            <path d="M180 82 Q180 105, 120 105 Q60 105, 60 82" fill="none" stroke="#b91c1c" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#tb2-red)"/>
-            <text x="120" y="120" text-anchor="middle" font-size="11" fill="#b91c1c" font-family="JetBrains Mono">refine if fail</text>
+            <!-- EXEC box (red, because unvalidated) -->
+            <g>
+              <rect x="740" y="200" width="160" height="130" rx="12" fill="#b83838" stroke="#7f1d1d" stroke-width="2.2"/>
+              <text x="820" y="240" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="white" letter-spacing="2">EXEC</text>
+              <text x="820" y="266" text-anchor="middle" font-family="Inter" font-size="15" font-weight="700" fill="white">on real infra</text>
+              <text x="820" y="294" text-anchor="middle" font-family="Inter" font-size="12" fill="rgba(255,255,255,.88)">unvalidated plan</text>
+              <text x="820" y="312" text-anchor="middle" font-family="Inter" font-size="12" fill="rgba(255,255,255,.88)">in-place refine</text>
+            </g>
 
-            <!-- pass → exit loop -->
-            <line x1="220" y1="57" x2="248" y2="57" stroke="#15803d" stroke-width="2" marker-end="url(#tb2-green)"/>
-            <text x="234" y="50" text-anchor="middle" font-size="10" fill="#15803d" font-family="JetBrains Mono">pass</text>
+            <!-- Physical retry arc: Exec -> Plan (big red) -->
+            <path d="M 820 330 C 820 470 300 470 220 400 C 180 360 180 330 220 330" fill="none" stroke="#b83838" stroke-width="2.6" stroke-dasharray="6,5" marker-end="url(#p42b-red)"/>
+            <text x="520" y="460" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b83838" letter-spacing="2">physical retry &middot; costly &middot; unbounded</text>
 
-            <!-- Exec -->
-            <rect x="250" y="32" width="130" height="50" rx="6" fill="#b91c1c" stroke="#7f1d1d" stroke-width="2"/>
-            <text x="315" y="54" text-anchor="middle" font-size="14" font-weight="700" fill="white">Exec on infra</text>
-            <text x="315" y="72" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono">unvalidated plan</text>
-
-            <!-- Exec retry loop (large, costly) -->
-            <path d="M315 82 Q315 165, 60 165 Q20 165, 20 82" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#tb2-red)"/>
-            <text x="190" y="183" text-anchor="middle" font-size="11" fill="#b91c1c" font-weight="700" font-family="JetBrains Mono">Exec agent retries (costly · real infra failures)</text>
+            <!-- Failure banner -->
+            <rect x="120" y="500" width="680" height="70" rx="10" fill="var(--bg)" stroke="#b83838" stroke-width="2" stroke-dasharray="6,4"/>
+            <text x="460" y="526" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b83838" letter-spacing="2.2">FAILURES HIT PRODUCTION INFRASTRUCTURE</text>
+            <text x="460" y="550" text-anchor="middle" font-family="Inter" font-size="15" font-style="italic" fill="var(--ink-2)">8&ndash;517 API calls per run &middot; unbounded retry loops</text>
           </svg>
-
-          <ul class="bul" style="font-size:18px; line-height:1.4; margin:0;">
-            <li>Plan accepted without validation; hits real infra</li>
-            <li>Exec agent retries are costly and unbounded</li>
-            <li>Failure cost shifts from <em>virtual</em> to <em>physical</em></li>
-          </ul>
         </div>
+
+        <ul class="bul" style="font-size:15px; line-height:1.35; margin:0; padding-left:20px;">
+          <li>Plan pushed to real infra without validation</li>
+          <li>Retries are <em>physical</em> &mdash; operationally unsafe &amp; unbounded</li>
+        </ul>
       </div>
     </div>
 
-    <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-      <div style="padding:10px 16px; border-left:3px solid var(--c-agent); background:var(--bg-alt); font-size:16px; line-height:1.35;">
-        <strong>Scoped definition of WITHOUT:</strong> on a Crit failure the plan is refined <em>in place</em> by the Exec agent; no round-trip back to Planning. The twin's contribution is isolated as <em>pre-execution validation</em>, not as the existence of a retry mechanism.
+    <div style="flex:0 0 auto; padding:10px 40px; background:var(--bg-alt); border-top:2px solid var(--ink); display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:center;">
+      <div style="padding:6px 14px; border-left:3px solid var(--c-agent); font-size:14px; line-height:1.35;">
+        <strong>Scoped WITHOUT:</strong> on a fail the plan is refined <em>in place</em> by the exec agent; no round-trip to planning. The twin's contribution is isolated as <em>pre-execution validation</em>.
       </div>
-      <div style="padding:10px 16px; border-left:3px solid var(--ink); background:var(--bg-alt); font-size:16px; line-height:1.35;">
-        <strong>Q&amp;A anticipation:</strong> the twin doesn't change <em>whether</em> a plan can succeed; it changes <em>how many physical retries</em> it takes. Both axes are reported so failure-shifting cannot hide in either metric alone.
+      <div style="padding:6px 14px; border-left:3px solid var(--ink); font-size:14px; line-height:1.35;">
+        <strong>Both axes reported:</strong> the twin doesn't change <em>whether</em> a plan can succeed, it changes <em>how many physical retries</em> it takes &mdash; failure-shifting can't hide in either metric alone.
       </div>
     </div>
   </div>
-  <div class="chrome-bot"><div class="meta-left">Twin on vs off · planning loop identical · execution agent retries differ</div><div class="meta-right">§4 AgentEdge</div></div>
+
+  <div class="chrome-bot"><div class="meta-left">Twin on vs off &middot; planning identical &middot; validation removed, not retry</div><div class="meta-right">&sect;4 AgentEdge</div></div>
 </section>

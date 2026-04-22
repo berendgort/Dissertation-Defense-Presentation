@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>goto 42</title>
+<script>
+// Defense.html uses localStorage key `deck-stage-index:` + pathname.
+// Set it to 41 (slide 42), then redirect.
+try {
+  const key = 'deck-stage:slide:/Defense.html';
+  localStorage.setItem(key, '41');
+} catch(e){}
+window.location.replace('/Defense.html');
+</script></head><body>redirecting…</body></html>

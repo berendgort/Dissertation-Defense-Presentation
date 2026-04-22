@@ -93,8 +93,8 @@
             </div>
             <div style="padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:4px;">
               <div style="display:flex; gap:4px; align-items:center;">
-                <svg width="150" height="22" viewBox="0 0 150 22"><rect x="2" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="18" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="34" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="50" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="66" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="82" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><text x="100" y="15" font-family="inherit" font-size="10" fill="var(--ink-3)">&hellip; up to 24</text></svg>
-                <span style="font-size:13px; color:var(--ink-3); margin-left:6px;">2&ndash;24 nodes</span>
+                <svg width="150" height="22" viewBox="0 0 150 22"><rect x="2" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="18" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="34" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="50" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="66" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><rect x="82" y="5" width="12" height="12" rx="1.5" fill="#fff" stroke="var(--c-agent)" stroke-width="1"/><text x="100" y="15" font-family="inherit" font-size="10" fill="var(--ink-3)">&hellip; typical</text></svg>
+                <span style="font-size:13px; color:var(--ink-3); margin-left:6px;">6&ndash;12 nodes</span>
               </div>
               <div style="font-size:13px; color:var(--ink); display:flex; gap:14px;">
                 <span><strong>4</strong> CPU</span>
@@ -151,17 +151,23 @@
                 <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S1</span>
                 <span style="font-size:14px; font-weight:700; color:var(--ink);">Full Node</span>
               </div>
-              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
-                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
-                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
-                  <rect x="6" y="6" width="68" height="42" rx="3" fill="var(--c-agent)" opacity="0.75"/>
-                  <text x="40" y="22" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
-                  <text x="40" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">100%</text>
-                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink-3)" stroke-dasharray="3 2" stroke-width="1.2"/>
-                  <text x="120" y="22" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink-3)">edge-1</text>
-                  <text x="120" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--ink-3)" font-weight="700">idle</text>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:8px; flex:1;">
+                <svg viewBox="0 0 160 60" style="width:100%; height:92px;" aria-hidden="true">
+                  <rect x="8" y="12" width="50" height="36" rx="5" fill="var(--c-agent)" opacity="0.78" stroke="var(--c-agent)" stroke-width="1.4"/>
+                  <text x="33" y="28" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
+                  <text x="33" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">full</text>
+                  <rect x="61" y="6" width="38" height="14" rx="7" fill="var(--bg)" stroke="var(--c-agent)" stroke-width="1.1"/>
+                  <text x="80" y="16" text-anchor="middle" font-family="var(--f-mono)" font-size="8.5" fill="var(--c-agent)" font-weight="700">+2c</text>
+                  <line x1="64" y1="30" x2="94" y2="30" stroke="var(--c-agent)" stroke-width="1.8"/>
+                  <path d="M94 30 L88 26 L88 34 Z" fill="var(--c-agent)"/>
+                  <rect x="102" y="12" width="50" height="36" rx="5" fill="#fff" stroke="var(--ink-3)" stroke-dasharray="3 2" stroke-width="1.2"/>
+                  <text x="127" y="28" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink-3)">edge-1</text>
+                  <text x="127" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--ink-3)" font-weight="700">idle</text>
                 </svg>
-                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;">Deploy a <strong>2-core</strong> service on a full node &rarr; must migrate first.</div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                  <span style="padding:2px 8px; border:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:10.5px; color:var(--ink-2);">+2c request</span>
+                  <span style="padding:2px 8px; border:1px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 10%,var(--bg)); font-family:var(--f-mono); font-size:10.5px; color:var(--c-agent); font-weight:700;">move first</span>
+                </div>
               </div>
             </div>
 
@@ -171,19 +177,23 @@
                 <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-agent); letter-spacing:.12em;">S2</span>
                 <span style="font-size:14px; font-weight:700; color:var(--ink);">Low-Power Conflict</span>
               </div>
-              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
-                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
-                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
-                  <rect x="6" y="6" width="68" height="18" rx="0" fill="var(--c-agent)" opacity="0.35"/>
-                  <text x="40" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-0 24%</text>
-                  <text x="40" y="40" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--c-agent)" font-weight="700">+API 1.4c</text>
-                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
-                  <rect x="86" y="6" width="68" height="9" rx="0" fill="var(--c-agent)" opacity="0.35"/>
-                  <text x="120" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-1 10%</text>
-                  <path d="M108 30 l6 -8 l-4 0 l6 -8 l-6 8 l4 0 l-6 8 z" fill="var(--c-agent)"/>
-                  <text x="135" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--c-agent)" font-weight="700">low-power</text>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:8px; flex:1;">
+                <svg viewBox="0 0 160 60" style="width:100%; height:92px;" aria-hidden="true">
+                  <rect x="8" y="12" width="50" height="36" rx="5" fill="#fff" stroke="var(--c-agent)" stroke-width="1.4"/>
+                  <rect x="8" y="12" width="50" height="10" rx="5" fill="var(--c-agent)" opacity="0.28"/>
+                  <text x="33" y="28" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-0</text>
+                  <text x="33" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="var(--c-agent)" font-weight="700">+API</text>
+                  <rect x="62" y="23" width="36" height="14" rx="7" fill="var(--bg)" stroke="var(--ink-4)" stroke-width="1"/>
+                  <text x="80" y="33" text-anchor="middle" font-family="var(--f-mono)" font-size="8.5" fill="var(--ink-3)" font-weight="700">move</text>
+                  <rect x="102" y="12" width="50" height="36" rx="5" fill="#fff" stroke="var(--ink)" stroke-width="1.4"/>
+                  <text x="127" y="27" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-1</text>
+                  <path d="M118 41 l6 -8 h-4 l6 -8 l-5 8 h4 l-6 8 z" fill="var(--c-agent)"/>
+                  <text x="136" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="8.5" fill="var(--c-agent)" font-weight="700">sleep</text>
                 </svg>
-                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;">Scale API <strong>+</strong> power down the host &rarr; migrate first, then transition.</div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                  <span style="padding:2px 8px; border:1px solid var(--ink-4); background:var(--bg-alt); font-family:var(--f-mono); font-size:10.5px; color:var(--ink-2);">+API</span>
+                  <span style="padding:2px 8px; border:1px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 10%,var(--bg)); font-family:var(--f-mono); font-size:10.5px; color:var(--c-agent); font-weight:700;">move, then sleep</span>
+                </div>
               </div>
             </div>
 
@@ -193,18 +203,23 @@
                 <span style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:#fff; letter-spacing:.12em;">S3</span>
                 <span style="font-size:14px; font-weight:700; color:#fff;">Compound Constraint</span>
               </div>
-              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:6px;">
-                <svg viewBox="0 0 160 54" style="width:100%; height:96px;">
-                  <rect x="6" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--c-agent)" stroke-width="1.5"/>
-                  <rect x="6" y="6" width="68" height="36" rx="0" fill="var(--c-agent)" opacity="0.55"/>
-                  <text x="40" y="20" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
-                  <text x="40" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">API 2.4c?</text>
-                  <rect x="86" y="6" width="68" height="42" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
-                  <rect x="86" y="6" width="68" height="9" rx="0" fill="var(--c-agent)" opacity="0.35"/>
-                  <path d="M108 30 l6 -8 l-4 0 l6 -8 l-6 8 l4 0 l-6 8 z" fill="var(--c-agent)"/>
-                  <text x="135" y="36" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--c-agent)" font-weight="700">low-power</text>
+              <div style="padding:10px 10px 8px; display:flex; flex-direction:column; gap:8px; flex:1;">
+                <svg viewBox="0 0 160 60" style="width:100%; height:92px;" aria-hidden="true">
+                  <rect x="8" y="12" width="50" height="36" rx="5" fill="var(--c-agent)" opacity="0.62" stroke="var(--c-agent)" stroke-width="1.4"/>
+                  <text x="33" y="28" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="#fff" font-weight="700">edge-0</text>
+                  <text x="33" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="10" fill="#fff" font-weight="700">+API</text>
+                  <circle cx="80" cy="30" r="14" fill="#fff7f7" stroke="#b83838" stroke-width="1.5"/>
+                  <text x="80" y="27" text-anchor="middle" font-family="var(--f-mono)" font-size="8.5" fill="#b83838" font-weight="700">-0.52</text>
+                  <text x="80" y="37" text-anchor="middle" font-family="var(--f-mono)" font-size="7.5" fill="#b83838" font-weight="700">core</text>
+                  <rect x="102" y="12" width="50" height="36" rx="5" fill="#fff" stroke="var(--ink)" stroke-width="1.4"/>
+                  <text x="127" y="27" text-anchor="middle" font-family="var(--f-mono)" font-size="9" fill="var(--ink)">edge-1</text>
+                  <path d="M118 41 l6 -8 h-4 l6 -8 l-5 8 h4 l-6 8 z" fill="var(--c-agent)"/>
+                  <text x="136" y="41" text-anchor="middle" font-family="var(--f-mono)" font-size="8.5" fill="var(--c-agent)" font-weight="700">sleep</text>
                 </svg>
-                <div style="font-size:12px; color:var(--ink-2); line-height:1.35;"><strong style="color:var(--c-agent);">&minus;0.52 core deficit</strong> &rarr; infeasible as stated, needs redistribution.</div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                  <span style="padding:2px 8px; border:1px solid #b83838; background:#fff7f7; font-family:var(--f-mono); font-size:10.5px; color:#b83838; font-weight:700;">-0.52 core</span>
+                  <span style="padding:2px 8px; border:1px solid var(--c-agent); background:color-mix(in oklab,var(--c-agent) 10%,var(--bg)); font-family:var(--f-mono); font-size:10.5px; color:var(--c-agent); font-weight:700;">redistribute</span>
+                </div>
               </div>
             </div>
 
