@@ -67,7 +67,7 @@
           <!-- World models -->
           <rect x="290" y="150" width="190" height="58" rx="4" stroke="var(--ink)" stroke-width="1.8" fill="var(--bg)"/>
           <text x="385" y="173" font-family="JetBrains Mono" font-size="14" fill="var(--ink)" text-anchor="middle" font-weight="700">world models</text>
-          <text x="385" y="193" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">V-JEPA 2 style [Assran et al.&apos;25]</text>
+          <text x="385" y="193" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" font-style="italic">V-JEPA 2 style [1]</text>
 
           <!-- Competitions -->
           <rect x="290" y="222" width="190" height="42" rx="4" stroke="var(--ink)" stroke-width="1.8" fill="var(--bg)"/>
@@ -94,8 +94,11 @@
         <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:18px;">
           <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Publish open benchmarks built from real operator action traces.</span></li>
           <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Run public competitions so progress compounds, not fragments.</span></li>
-          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Train orchestration world models on these traces (V-JEPA 2 style <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink-3);">[Assran et al.&apos;25]</span>).</span></li>
+          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Train orchestration world models on these traces (V-JEPA 2 style <span style="font-family:var(--f-mono); font-size:16px; color:var(--ink-3);">[1]</span>).</span></li>
         </ul>
+        <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--ink-5);">
+          <div class="ref-entry"><div class="ref-num">[1]</div><div class="ref-body"><strong>Assran et al.</strong> V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning. <em>arXiv '25</em>.</div></div>
+        </div>
       </div>
     </div>
 
@@ -107,27 +110,137 @@
         <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink); letter-spacing:.18em; text-transform:uppercase;">Security &amp; Containment</div>
       </div>
 
-      <div style="font-family:var(--f-display); font-size:42px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink); margin-bottom:28px;">Agents with root access raise <em style="font-style:normal; color:var(--c-agent);">two questions.</em></div>
+      <div style="font-family:var(--f-display); font-size:42px; font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink); margin-bottom:24px;">Agents with root access raise <em style="font-style:normal; color:var(--c-agent);">two questions.</em></div>
 
-      <!-- Two clean question cards -->
-      <div style="flex:1; min-height:0; display:flex; flex-direction:column; gap:20px; padding:4px 0 10px;">
+      <!-- Two small figures side-by-side -->
+      <div style="flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:10px 0 30px;">
 
-        <div style="flex:1; min-height:0; border:2px solid var(--ink); background:var(--bg); padding:22px 26px; display:flex; flex-direction:column; gap:10px; justify-content:center;">
-          <div style="display:flex; align-items:baseline; gap:14px;">
-            <div style="font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-agent); letter-spacing:.14em;">Q1</div>
-            <div style="font-family:var(--f-display); font-size:30px; font-weight:700; color:var(--ink); line-height:1.15;">How do we catch a destructive action <em style="font-style:normal; color:var(--c-agent);">before</em> it commits?</div>
+        <!-- Q1 figure: pre-commit gate -->
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12px; font-weight:700; color:var(--c-agent); letter-spacing:.14em; margin-bottom:6px;">Q1 &middot; PRE-COMMIT GATE</div>
+          <div style="flex:1; min-height:0; display:flex; justify-content:center; align-items:center;">
+            <svg viewBox="0 0 360 300" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <marker id="d48b1-arr" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
+                  <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-2)"/>
+                </marker>
+                <marker id="d48b1-arr-stop" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
+                  <path d="M0,0 L0,7 L9,3.5 z" fill="var(--c-agent)"/>
+                </marker>
+              </defs>
+
+              <!-- Plan label -->
+              <text x="60" y="24" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".14em" font-weight="700">PLAN</text>
+
+              <!-- Plan steps column -->
+              <rect x="10" y="40" width="100" height="36" rx="3" stroke="var(--ink-3)" stroke-width="1.6" fill="var(--bg)"/>
+              <text x="60" y="62" font-family="JetBrains Mono" font-size="12" fill="var(--ink-2)" text-anchor="middle">step 1</text>
+
+              <line x1="60" y1="76" x2="60" y2="92" stroke="var(--ink-3)" stroke-width="1.4"/>
+
+              <rect x="10" y="92" width="100" height="36" rx="3" stroke="var(--ink-3)" stroke-width="1.6" fill="var(--bg)"/>
+              <text x="60" y="114" font-family="JetBrains Mono" font-size="12" fill="var(--ink-2)" text-anchor="middle">step 2</text>
+
+              <line x1="60" y1="128" x2="60" y2="144" stroke="var(--ink-3)" stroke-width="1.4"/>
+
+              <!-- Risky step -->
+              <rect x="10" y="144" width="100" height="36" rx="3" stroke="var(--c-agent)" stroke-width="2.2" fill="color-mix(in oklab,var(--c-agent) 12%,var(--bg))"/>
+              <text x="60" y="166" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" font-weight="700">step 3 &#9888;</text>
+
+              <line x1="60" y1="180" x2="60" y2="196" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="4 3"/>
+
+              <rect x="10" y="196" width="100" height="36" rx="3" stroke="var(--ink-5)" stroke-width="1.4" fill="var(--bg)" stroke-dasharray="4 3"/>
+              <text x="60" y="218" font-family="JetBrains Mono" font-size="12" fill="var(--ink-4)" text-anchor="middle">step 4</text>
+
+              <!-- Arrow from risky step to gate -->
+              <line x1="112" y1="162" x2="178" y2="162" stroke="var(--c-agent)" stroke-width="2.2" marker-end="url(#d48b1-arr-stop)"/>
+
+              <!-- Gate / check -->
+              <rect x="180" y="120" width="160" height="84" rx="4" stroke="var(--c-agent)" stroke-width="2.2" fill="color-mix(in oklab,var(--c-agent) 8%,var(--bg))"/>
+              <text x="260" y="146" font-family="JetBrains Mono" font-size="13" fill="var(--c-agent)" text-anchor="middle" font-weight="700" letter-spacing=".12em">SAFETY CHECK</text>
+              <text x="260" y="168" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle" font-style="italic">static + learned</text>
+              <text x="260" y="188" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle" font-style="italic">risk predictor</text>
+
+              <!-- Two outcomes -->
+              <line x1="260" y1="204" x2="230" y2="240" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#d48b1-arr)"/>
+              <line x1="260" y1="204" x2="300" y2="240" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#d48b1-arr)"/>
+
+              <rect x="178" y="240" width="108" height="40" rx="3" stroke="var(--ink)" stroke-width="1.6" fill="var(--bg)"/>
+              <text x="232" y="258" font-family="JetBrains Mono" font-size="11" fill="var(--ink)" text-anchor="middle" font-weight="700">BLOCK</text>
+              <text x="232" y="272" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle" font-style="italic">escalate</text>
+
+              <rect x="292" y="240" width="58" height="40" rx="3" stroke="var(--ink-4)" stroke-width="1.4" fill="var(--bg)" stroke-dasharray="3 3"/>
+              <text x="321" y="258" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle">ALLOW</text>
+            </svg>
           </div>
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); padding-left:38px;">flag risky steps inside the plan &middot; not after the fact</div>
         </div>
 
-        <div style="flex:1; min-height:0; border:2px solid var(--ink); background:var(--bg); padding:22px 26px; display:flex; flex-direction:column; gap:10px; justify-content:center;">
-          <div style="display:flex; align-items:baseline; gap:14px;">
-            <div style="font-family:var(--f-mono); font-size:15px; font-weight:700; color:var(--c-agent); letter-spacing:.14em;">Q2</div>
-            <div style="font-family:var(--f-display); font-size:30px; font-weight:700; color:var(--ink); line-height:1.15;">Where do we let it <em style="font-style:normal; color:var(--c-agent);">safely fail</em>?</div>
+        <!-- Q2 figure: physics-accurate sandbox / digital twin -->
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="font-family:var(--f-mono); font-size:12px; font-weight:700; color:var(--c-agent); letter-spacing:.14em; margin-bottom:6px;">Q2 &middot; PHYSICS-ACCURATE TWIN</div>
+          <div style="flex:1; min-height:0; display:flex; justify-content:center; align-items:center;">
+            <svg viewBox="0 0 360 300" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <marker id="d48b2-arr" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
+                  <path d="M0,0 L0,7 L9,3.5 z" fill="var(--c-agent)"/>
+                </marker>
+              </defs>
+
+              <!-- Sandbox label -->
+              <text x="110" y="24" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" letter-spacing=".14em" font-weight="700">TWIN</text>
+
+              <!-- Sandbox rack -->
+              <rect x="20" y="40" width="180" height="210" rx="4" stroke="var(--c-agent)" stroke-width="2.2" fill="color-mix(in oklab,var(--c-agent) 8%,var(--bg))"/>
+              <text x="110" y="64" font-family="JetBrains Mono" font-size="11" fill="var(--c-agent)" text-anchor="middle" font-style="italic">physics-accurate</text>
+
+              <!-- Rack units -->
+              <rect x="36" y="78" width="148" height="28" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg)"/>
+              <circle cx="48" cy="92" r="3" fill="var(--c-sota-green)"/>
+              <text x="110" y="96" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">node-01</text>
+
+              <rect x="36" y="112" width="148" height="28" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg)"/>
+              <circle cx="48" cy="126" r="3" fill="var(--c-sota-green)"/>
+              <text x="110" y="130" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">node-02</text>
+
+              <rect x="36" y="146" width="148" height="28" rx="2" stroke="var(--ink)" stroke-width="1.4" fill="var(--bg)"/>
+              <circle cx="48" cy="160" r="3" fill="var(--c-sota-green)"/>
+              <text x="110" y="164" font-family="JetBrains Mono" font-size="11" fill="var(--ink-2)" text-anchor="middle">node-03</text>
+
+              <!-- Agent box -->
+              <rect x="36" y="188" width="148" height="46" rx="3" stroke="var(--c-agent)" stroke-width="1.8" fill="var(--bg)"/>
+              <text x="110" y="208" font-family="JetBrains Mono" font-size="12" fill="var(--c-agent)" text-anchor="middle" font-weight="700">AGENT</text>
+              <text x="110" y="224" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle" font-style="italic">may break things</text>
+
+              <!-- Isolation barrier -->
+              <line x1="220" y1="40" x2="220" y2="250" stroke="var(--ink-2)" stroke-width="2" stroke-dasharray="6 5"/>
+              <text x="220" y="270" font-family="JetBrains Mono" font-size="10" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".1em">AIR GAP</text>
+
+              <!-- Production side -->
+              <text x="290" y="24" font-family="JetBrains Mono" font-size="12" fill="var(--ink-3)" text-anchor="middle" letter-spacing=".14em" font-weight="700">PROD</text>
+
+              <rect x="240" y="40" width="100" height="210" rx="4" stroke="var(--ink-3)" stroke-width="1.8" fill="var(--bg)"/>
+              <text x="290" y="64" font-family="JetBrains Mono" font-size="11" fill="var(--ink-3)" text-anchor="middle" font-style="italic">protected</text>
+
+              <rect x="252" y="80" width="76" height="22" rx="2" stroke="var(--ink-4)" stroke-width="1.2" fill="var(--bg)"/>
+              <rect x="252" y="108" width="76" height="22" rx="2" stroke="var(--ink-4)" stroke-width="1.2" fill="var(--bg)"/>
+              <rect x="252" y="136" width="76" height="22" rx="2" stroke="var(--ink-4)" stroke-width="1.2" fill="var(--bg)"/>
+              <rect x="252" y="164" width="76" height="22" rx="2" stroke="var(--ink-4)" stroke-width="1.2" fill="var(--bg)"/>
+              <rect x="252" y="192" width="76" height="22" rx="2" stroke="var(--ink-4)" stroke-width="1.2" fill="var(--bg)"/>
+
+              <text x="290" y="232" font-family="JetBrains Mono" font-size="10" fill="var(--ink-4)" text-anchor="middle">&middot; &middot; &middot;</text>
+            </svg>
           </div>
-          <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); padding-left:38px;">physical sandbox on real hardware &middot; not just a simulator</div>
         </div>
 
+      </div>
+
+      <!-- Directions block -->
+      <div style="border-top:1px solid var(--ink-5); padding-top:22px; display:flex; flex-direction:column; gap:14px;">
+        <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Research directions</div>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:18px;">
+          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Build pre-commit safety checks that flag risky steps <em style="font-style:normal; color:var(--c-agent);">inside the plan.</em></span></li>
+          <li style="display:flex; align-items:flex-start; gap:16px;"><span style="font-family:var(--f-mono); color:var(--c-agent); font-weight:700; font-size:26px; line-height:1.2; flex-shrink:0;">&rsaquo;</span><span style="display:flex; flex-direction:column; gap:4px;"><span style="font-size:24px; font-weight:600; color:var(--ink); line-height:1.3;">Build a <em style="font-style:normal; color:var(--c-agent);">physics-accurate twin</em> of production as the safe-to-fail sandbox.</span><span style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); line-height:1.35;">with high fidelity, AgentEdge would reach <span style="color:var(--c-agent); font-weight:700;">close to 100%</span> &middot; the remaining gap <em>is</em> the twin-fidelity gap.</span></span></li>
+        </ul>
       </div>
 
     </div>

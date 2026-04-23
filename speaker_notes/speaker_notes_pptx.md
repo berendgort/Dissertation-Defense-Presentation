@@ -505,15 +505,15 @@ Twin lifts success and collapses variance.
 
 Time ~70s · T+42:30
 
-Does AgentEdge keep saving energy as infra grows?
+Does AgentEdge keep saving energy as infra grows? Slide is visual on purpose.
 
-- Same task, 3 sizes. Start: services spread across nodes, some nodes idle (still draw power).
-- Goal: consolidate services · power down idle nodes.
+- Start pattern at every scale: 1 service per node (~25% load) + a few nodes fully idle. All still draw power.
+- Light box + red band = node at ~25% · dashed empty box = fully idle.
 - Scale A · Small: 8 nodes · 6 svc · 2 idle.
 - Scale B · Medium: 18 · 15 · 3 · 2-rack consolidation.
-- Scale C · Large: 35 · 30 · 6 · cross-rack coordination stress.
-- Red = service-bearing · dashed white = idle candidates.
-- Success: ΔW > 0 at every scale.
+- Scale C · Large: 35 · 30 · 5 · cross-rack coordination stress.
+- Obvious fix: consolidate onto fewer nodes · power the rest down.
+- Question: does the agent still do this cleanly at every scale?
 
 ### Slide 45 · Result 3: power drops across every scale
 
