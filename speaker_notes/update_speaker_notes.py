@@ -5,6 +5,7 @@ import re
 
 ROOT = Path("/home/berend-gort/Code/LaTeX/Dissertation-Defense-Presentation")
 MD_PATH = ROOT / "speaker_notes" / "speaker_notes_full.md"
+PPTX_MD_PATH = ROOT / "speaker_notes" / "speaker_notes_pptx.md"
 TEMPLATE_PATH = ROOT / "defense_html" / "_template.html"
 SLIDES_DIR = ROOT / "defense_html" / "slides"
 
@@ -41,6 +42,10 @@ def sync_embedded_notes(notes: list[str]) -> None:
     TEMPLATE_PATH.write_text(html_new)
 
 
+def sync_pptx_notes(markdown: str) -> None:
+    PPTX_MD_PATH.write_text(markdown)
+
+
 def main() -> None:
     markdown = MD_PATH.read_text()
     notes = parse_markdown_sections(markdown)
@@ -52,8 +57,10 @@ def main() -> None:
         )
 
     sync_embedded_notes(notes)
+    sync_pptx_notes(markdown)
     print(
-        "Updated defense_html/_template.html from speaker_notes/speaker_notes_full.md "
+        "Updated defense_html/_template.html and speaker_notes/speaker_notes_pptx.md "
+        "from speaker_notes/speaker_notes_full.md "
         f"with {len(notes)} slide notes"
     )
 

@@ -10,7 +10,7 @@ Workflow:
 6. let `pandoc` create the `.pptx`
 7. patch the resulting slide XML so every image is full-bleed
 
-Expected notes format in `speaker_notes/speaker_notes_pptx.md`:
+Expected notes format in `speaker_notes/speaker_notes_full.md`:
 - `### Slide 01 · Title`
 - `### Backup B1 · Short label`
 - freeform Markdown/plaintext below each heading
@@ -40,7 +40,7 @@ from xml.etree import ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 DEFENSE_HTML_DIR = ROOT / "defense_html"
 OUTPUT_HTML = DEFENSE_HTML_DIR / "Defense.html"
-DEFAULT_NOTES_PATH = ROOT / "speaker_notes" / "speaker_notes_pptx.md"
+DEFAULT_NOTES_PATH = ROOT / "speaker_notes" / "speaker_notes_full.md"
 DEFAULT_OUTPUT_PATH = ROOT / "Defense_screenshots.pptx"
 DEFAULT_VIEWPORT_WIDTH = 1920
 DEFAULT_VIEWPORT_HEIGHT = 1080
