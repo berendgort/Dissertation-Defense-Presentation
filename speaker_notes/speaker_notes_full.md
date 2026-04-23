@@ -4,7 +4,7 @@ Good morning. I am Berend Jelmer Dirk Gort, and today I defend my doctoral thesi
 
 It was developed with Nearby Computing as the industrial partner, which matters because the contributions you will see today were exercised against real infrastructure rather than only offline benchmarks.
 
-### Slide 02 · From framing to validated autonomy
+### Slide 02 · Defense outline
 
 The defense follows a five-part path. I start with framing, then move through the three contributions in order: AERO, OmniFORE, and AgentEdge, and I close with a synthesis. The color code is consistent throughout the deck: blue for AERO, orange for OmniFORE, and pink for AgentEdge.
 
@@ -14,7 +14,7 @@ The point of this slide is simply to fix the map before the evidence starts: fra
 
 This slide defines the contract we want at the top of the stack: the network operations team, meaning the humans who run the infrastructure today, should set intent, and the loop should do the rest with human review only on exceptions. The reason that contract is still a problem, marked here as Problem 4, is that the layers underneath do not yet support it.
 
-At layer two there is no intelligent path from natural-language intent to orchestration action, so the operations team still ends up bridging the gap manually. At layer three the prediction layer fails in two different ways: at the far edge there are no accurate per-node forecasts, and in larger compute sites a new model must be refit for every service. The far-edge box makes the motivation explicit: prediction matters because actions must be chosen before SLA and energy drift become irreversible. Layer four is the given environment: heterogeneous far-edge nodes, regional clusters, and the cloud. Four layers, four open problems, one stack that still does not close the loop.
+At layer two there is no intelligent path from natural-language intent to orchestration action, so the operations team still ends up bridging the gap manually. At layer three the prediction layer fails in two different ways: at the far edge there are no accurate per-node forecasts, and in larger compute sites a new model must be refit for every service. Layer four is the given environment: heterogeneous far-edge nodes, regional clusters, and the cloud. Four layers, four open problems, one stack that still does not close the loop.
 
 ### Slide 04 · Zero-touch: operator sets intent, not actions
 
@@ -56,7 +56,7 @@ The quantified goal is fewer than one thousand parameters. That is the constrain
 
 This slide is deliberately generic: it is the system model for the predictor box, not AERO itself yet. On the left, the local loop is observe, predict, and schedule inside one control cycle. The predictor could sit per node or as a sidecar; the system constraint is only that the forecast reaches the scheduler before the slot closes.
 
-On the right, the toy example explains why timing is the load-bearing issue. Workstation A backs up while B is still free, and the dispatch decision is due in roughly three seconds: a representative edge control cycle, tight enough to miss a remote round-trip. If the forecast is local, the scheduler reroutes in time. If the loop first goes off-node, the reply returns after the useful moment. So the claim here is not about AERO's mechanism; it is about placement and timing: prediction is only operationally useful if it arrives before the slot closes.
+On the right, the toy example is a simple factory-routing moment. A part reaches the routing gate, Station A is still busy, Station B is free, and the controller has about fifty milliseconds to choose. If the forecast is local, the scheduler sends the part to B in time. If the loop first goes off-node, the reply comes back after the part has already passed the gate. So the claim here is not about AERO's mechanism; it is about placement and timing: prediction is only operationally useful if it arrives before the slot closes.
 
 ### Slide 11 · State-of-the-art: Accurate or deployable, not both
 

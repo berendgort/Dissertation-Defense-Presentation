@@ -26,7 +26,7 @@ Good morning.
 - Supervisor: Dr. Angelos Antonopoulos (Nearby Computing). Co-supervisor: Dra. Anna Umbert (UPC).
 - Industrial partner: Nearby Computing: evaluated against real infrastructure.
 
-### Slide 02 · From framing to validated autonomy
+### Slide 02 · Defense outline
 
 Time ~20s · T+0:50
 
