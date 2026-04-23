@@ -63,10 +63,11 @@ Time ~40s · T+3:20
 
 The deployability gap.
 
-- SOTA baseline: 2.4M-parameter transformer: accurate, undeployable.
-- Lightweight alts ~50K params: deployable, but accuracy collapses under drift.
+- Microcontroller-class budget: ~256 KB SRAM; fp32 ⇒ ~65K params upper bound, much less in practice (activations, gradients, buffers) [Lin et al., NeurIPS '22].
+- SOTA baseline: 2.4M params ≈ 10 MB fp32 → ~40× over budget: accurate, undeployable.
+- Lightweight alts ~50K params ≈ 200 KB fp32 → fills the budget: deployable, but accuracy collapses under drift.
 - RQ1: can workload prediction be practical and accurate at edge scale?
-- Target: <1,000 parameters with competitive accuracy.
+- Target: <1,000 params ≈ 4 KB fp32 — fits with headroom; the point is not minimum size, but fitting the device with room left for the rest of the system.
 
 ### Slide 06 · One model for many services
 
@@ -115,10 +116,11 @@ Time ~60s · T+7:00
 
 Timing, not mechanism.
 
-- Loop: observe → predict → schedule, one control cycle.
-- Predictor can sit per-node or as a sidecar.
-- Toy: A backs up, B is free, dispatch due in 3 s.
-- Local forecast: reroute in time. Off-node: reply arrives after the useful moment.
+- Each edge node is microcontroller-class; whole control loop stays on-node.
+- Loop: observability → predictor → local scheduler → infrastructure → observability.
+- Deployment can be a single node, a node with an MCU nearby, or several micronodes.
+- Toy: A still busy, B still free; dispatch due in ~50 ms.
+- Local forecast: reroute in time. Off-node round-trip: reply arrives after deadline.
 - Prediction is only useful if it arrives before the slot closes.
 
 ### Slide 11 · State-of-the-art: accurate or deployable, not both

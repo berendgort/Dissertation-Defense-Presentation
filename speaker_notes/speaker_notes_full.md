@@ -24,9 +24,9 @@ The right-hand figure explains why prediction is load-bearing. The black line is
 
 ### Slide 05 · Forecasting must run where the service runs
 
-The first sub-problem is a deployability problem at the far edge. Today's SOTA baseline is a 2.4-million-parameter transformer: accurate, but too large for small edge hardware. Lightweight alternatives around fifty-thousand parameters fit the device budget, but their accuracy collapses under drift.
+The first sub-problem is a deployability problem at the far edge. Microcontroller-class edge hardware typically gives us about 256 kilobytes of SRAM to work with. At full precision that is an upper bound of only around sixty-five thousand parameters for weights alone, and much less in practice because activations, gradients, and runtime buffers also have to fit. Today's SOTA baseline is a 2.4-million-parameter transformer: at fp32 that is roughly ten megabytes, about forty times over the budget — accurate, but undeployable. Lightweight alternatives around fifty thousand parameters already sit near two hundred kilobytes, so they fill the budget with no headroom, and their accuracy collapses under drift.
 
-That leaves the deployability gap (small and accurate at the same time) unfilled. Research question one follows directly, framed as an open research question rather than a yes/no: how can workload prediction be made both deployable and accurate at edge scale? I fix the quantitative target up-front: below one thousand parameters with competitive accuracy.
+That leaves the deployability gap (small and accurate at the same time) unfilled. Research question one follows directly, framed as an open research question rather than a yes/no: how can workload prediction be made both deployable and accurate at edge scale? The quantitative target I fix up-front is below one thousand parameters with competitive accuracy. At fp32 that is about four kilobytes, which sits comfortably inside the 256-kilobyte budget and leaves room for the rest of the system. The goal is not to shrink for its own sake, but to fit with headroom.
 
 ### Slide 06 · One model for many services
 
@@ -54,7 +54,7 @@ The quantified goal is fewer than one thousand parameters. That is the constrain
 
 ### Slide 10 · System Model & Motivation
 
-This slide is deliberately generic: it is the system model for the predictor box, not AERO itself yet. On the left, the local loop is observe, predict, and schedule inside one control cycle. The predictor could sit per node or as a sidecar; the system constraint is only that the forecast reaches the scheduler before the slot closes.
+This slide is deliberately generic: it is the system model for the predictor box, not AERO itself yet. On the left, each edge node is a microcontroller-class device running a tight on-node control loop — observability, predictor, and local scheduler. The loop closes through the infrastructure layer below it, meaning the services and workloads actually running on the node: the scheduler applies actions onto that infrastructure, and observability reads the new state back. In a real deployment this can be a single node, a node with a microcontroller right next to it, or several micronodes — but the constraint stays the same: the forecast must reach the scheduler before the slot closes.
 
 On the right, the toy example is a simple factory-routing moment. A part reaches the routing gate, Station A is still busy, Station B is free, and the controller has about fifty milliseconds to choose. If the forecast is local, the scheduler sends the part to B in time. If the loop first goes off-node, the reply comes back after the part has already passed the gate. So the claim here is not about AERO's mechanism; it is about placement and timing: prediction is only operationally useful if it arrives before the slot closes.
 
@@ -104,7 +104,7 @@ On the held-out test split the two models look almost indistinguishable; the liv
 
 The live deployment numbers are clean. A quick word on metrics first, because the deck uses several. MAE is mean absolute error, the typical miss per point. RMSE is root-mean-square error, which penalises large misses more strongly; I show both here so the committee can see not just the average error but also the spread of errors. SMAPE, which appears later in the OmniFORE section, is the scale-free version used to compare across services of different magnitudes. On the unseen workload, AERO reaches a mean absolute error of 0.051, while SparseTSF reaches 0.411, about eight times higher. RMSE tells the same story: 0.079 for AERO and 0.430 for SparseTSF. Inference is 2.65 milliseconds for AERO and 1.12 milliseconds for SparseTSF, so both remain comfortably within the 50-millisecond scheduler budget.
 
-The point is that latency is not the differentiator; drift robustness is. That is why the operator-impact footer matters: roughly fifteen percent lower response time and twelve percent lower energy once the model stays accurate in the live environment.
+The point is that latency is not the differentiator; drift robustness is. That is why the operator-impact footer matters: roughly fifteen percent lower response time and twelve percent lower energy once the model stays accurate in the live environment. This closes AERO: all three AERO experiments answer RQ1. From here I switch to contribution two, OmniFORE.
 
 ### Slide 19 · OmniFORE
 
@@ -122,7 +122,7 @@ Formally, the goal is one shared set of weights, no per-service fine-tuning, and
 
 Again this is the generic setting, not the method. On the left, one prediction layer observes many service traces at a compute site, which could be any tier, and returns per-service forecasts into the same downstream decision stack. On the right, the motivation is operational cost.
 
-Today each site tends to carry its own forecasting model copy. As the number of sites grows, retraining, memory, and monitoring repeat everywhere. The target is one shared model that can serve many sites and many services, instead of duplicating the machine-learning workload at every location.
+Today site 1, site 2, all the way to site N tend to carry their own model 1, model 2, through model N. As the number of sites grows, retraining, memory, and monitoring repeat everywhere. The target is one shared model that can serve many sites and many services, instead of duplicating the machine-learning workload at every location.
 
 ### Slide 22 · State-of-the-art: no prior method lives in the top-right
 
@@ -180,7 +180,7 @@ Contribution three is AgentEdge, and the banner deliberately reduces it to one l
 
 ### Slide 32 · Problem & Motivation
 
-This slide must make one point absolutely explicit: the decision layer is not a convenience, it is the missing step that turns a human goal into something the platform can actually execute. If an operator says *"reduce energy while keeping SLA"*, Kubernetes cannot do anything with that sentence. Someone still has to decide which service may move, which node must stay pinned, where spare capacity exists, what action is safe, and what has to be monitored afterward. In the example on the slide, that human translation becomes something like: keep the latency-critical service pinned, shift batch load to a freer node, then allow low-power mode where it is safe. Existing optimizers usually start only after those choices have already been made and written down as formal inputs. That is why this layer is necessary: without it, the control loop still depends on a human in the middle. The figure then visualizes that exact translation step before the next slide formalizes it as the system model.
+This slide must make one point absolutely explicit: the decision layer is not a convenience, it is the missing step that turns a human goal into something the platform can actually execute. If an operator says *"reduce energy while keeping SLA"*, Kubernetes cannot do anything with that sentence. Someone still has to decide which service may move, which node must stay pinned, where spare capacity exists, and how to generate the corresponding orchestration procedure rather than merely pick one predefined action. In the example on the slide, that human translation becomes something like: keep the latency-critical service pinned, shift batch load to a freer node, then allow low-power mode where it is safe. Existing optimizers usually start only after those choices have already been made and written down as formal inputs. That is why this layer is necessary: without it, the control loop still depends on a human in the middle. The last step is also not passive observation, but monitoring whether the deployed behavior still complies with the original intent and remediating when it drifts. The figure then visualizes that exact translation step before the next slide formalizes it as the system model.
 
 ### Slide 33 · System Model
 
@@ -192,11 +192,13 @@ Before the state of the art, I first need a precise definition of what I mean by
 
 The reference band below the cards makes an important methodological point: PARES was not copied from one single framework. It was synthesised in Chapter 2 from six representative agentic-framework papers, and that is what justifies using it as the comparison contract on the next slide.
 
-### Slide 35 · State-of-the-art: 6G literature still lacks a full agent
+### Slide 35 · State-of-the-art: no prior 6G work is a full agent under PARES
 
-This table makes one specific gap immediately visible: zero out of six 6G papers ship the full PARES loop. Every 6G row drops at least one of Perceive, Act, Reason, Evaluate, or Sustain. That is the operational gap AgentEdge fills.
+This slide has a three-part message. First: none of the six 6G papers is a full agent under the PARES capability definition from the highly cited ML-agent literature. Every 6G row is missing at least one of Perceive, Act, Reason, Evaluate, or Sustain.
 
-The left side is the capability matrix with deployment, the five PARES letters, and multi-agent coordination. The numbered Ref. column maps to the compact citations on the lower right, and the top-right card now states the gap in two concrete numbers. First: zero of six ship full PARES. Second: four of six skip pre-execution validation entirely, and the two that do validate still leave PARES incomplete. That is why the Chapter 5 baselines had to come from ML rather than from the 6G rows. ReAct and LATS are the only complete agentic frameworks we could retarget to the same tools, base LLM, and scenarios for a fair comparison. The conclusion the slide is meant to land is simple: no 6G row is a full agent under the PARES definition, ReAct and LATS are PARES-complete but task-misaligned, and only AgentEdge is full-row green.
+Second: four of the six also skip pre-execution validation. They send plans straight to the network. The two that do validate still remain incomplete on PARES, so validation alone does not close the gap.
+
+Third: that is why the baselines come from ML rather than from the 6G rows. ReAct and LATS are full agents in the literature sense, but they are generalist frameworks and were not built or tested for edge-cloud orchestration. So the landing point is: the 6G works are domain-relevant but not full agents, the ML baselines are full agents but domain-misaligned, and AgentEdge is the only approach on this slide that covers both.
 
 ### Slide 36 · Graph of graphs and microservice deployment
 
@@ -236,7 +238,7 @@ The scalability experiment asks a practical question: does AgentEdge keep saving
 
 ### Slide 45 · Result 3: Power drops across every scale
 
-Three panels, one story. The y-axis on each panel is total rack power in watts, and the x-axis is the number of API calls the agent has made. Every green square marks the starting power, every red triangle marks the settled power, and the green arrow in the middle of each panel is the delta-watts: how much power the agent reclaimed. At eight nodes, power drops from about four-hundred-and-sixty watts to roughly three-hundred-and-seventy watts; delta-W equals eighty-nine watts. At eighteen nodes, power drops from about seven-hundred-and-ten watts to four-hundred-and-ten watts; delta-W equals three-hundred-point-eight watts, the peak, and the one I want the committee to remember. At thirty-five nodes, power drops from roughly twelve-hundred-and-fifty watts to just over one-thousand watts; delta-W equals one-hundred-and-eighty-five-point-two watts. A reasonable follow-up is *why does eighteen beat thirty-five?* The thirty-five-node curve flattens early because the full node state overflows the LLM prompt; it is a context-window artefact, not a fundamental limit. With summarisation or sharded context, the curve would keep descending. All thirty runs succeeded across every scale. The key claim on this slide is that validated autonomy remains energy-relevant at production scale, and that the saturation at the largest scale is explained rather than hidden.
+Three panels, one story. The y-axis on each panel is total rack power in watts, and the x-axis is the number of API calls the agent has made. Every green square marks the starting power, every red triangle marks the settled power, and the green arrow in the middle of each panel is the delta-watts: how much power the agent reclaimed. At eight nodes, power drops from about four-hundred-and-sixty watts to roughly three-hundred-and-seventy watts; delta-W equals eighty-nine watts. At eighteen nodes, power drops from about seven-hundred-and-ten watts to four-hundred-and-ten watts; delta-W equals three-hundred-point-eight watts, the peak, and the one I want the committee to remember. At thirty-five nodes, power drops from roughly twelve-hundred-and-fifty watts to just over one-thousand watts; delta-W equals one-hundred-and-eighty-five-point-two watts. A reasonable follow-up is *why does eighteen beat thirty-five?* The thirty-five-node curve flattens early because the full node state overflows the LLM prompt; it is a context-window artefact, not a fundamental limit. With summarisation or sharded context, the curve would keep descending. All thirty runs succeeded across every scale. This closes AgentEdge: the three experiments answer RQ3 by showing that AgentEdge beats baselines, plans safely, and still saves power at scale.
 
 ### Slide 46 · Slide 03 reprise + publication mapping
 
