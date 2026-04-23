@@ -1,2 +1,137 @@
-<section class="slide" data-section="framing" data-label="05 Sub-problem 1"> <div class="chrome-top"> <div class="section-bar"></div> <div class="eyebrow"><span class="eyb-tag">Problem 1</span><span class="eyb-sep">//</span><span>Prediction at the edge</span></div> <div class="counter"><span class="num">05</span><span class="sep">/</span>52 &nbsp; <span class="section-name">Framing</span></div> <div></div> </div> <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;"> <div style="flex:0 0 230px; display:flex; flex-direction:column; border-bottom:2px solid var(--ink); background:var(--bg);"> <!-- L1 Operator --> <div style="flex:0 0 54px; display:grid; grid-template-columns:130px 6px 1fr auto; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); opacity:.45;"> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4);"> <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L1 · Human operator</div> </div> <div style="background:var(--ink-4);"></div> <div style="padding:0 20px; display:flex; align-items:center; gap:18px;"> <div style="font-size:17px; font-weight:600; color:var(--ink-3);">Sets intent, then manually analyzes the stack</div> <div style="font-family:var(--f-serif); font-style:italic; font-size:15px; color:var(--ink-3);">"reduce energy while keeping SLA"</div> </div> <div style="display:flex; align-items:center; padding:0 16px;"></div> </div> <!-- L2 Decision --> <div style="flex:0 0 54px; display:grid; grid-template-columns:130px 6px 1fr auto; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); opacity:.45;"> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4);"> <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L2 · Decision</div> </div> <div style="background:var(--ink-4);"></div> <div style="padding:0 20px; display:flex; align-items:center;"> <div style="font-size:17px; font-weight:600; color:var(--ink-3);">No intelligent path from intent to action</div> </div> <div style="display:flex; align-items:center; padding:0 16px;"></div> </div> <!-- L3 Prediction (2 columns: edge | regional) --> <div style="flex:0 0 64px; display:grid; grid-template-columns:130px 6px 1fr; border-bottom:1px solid var(--ink-4);"> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4); background:var(--bg);"> <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink);">L3 · Prediction</div> </div> <div style="background:var(--c-aero);"></div> <div style="display:grid; grid-template-columns:1fr 1px 1fr;"> <div style="padding:0 20px; display:grid; grid-template-columns:4px 1fr auto; background:color-mix(in oklab, var(--c-aero) 8%, var(--bg)); opacity:1;"> <div style="background:var(--c-aero); margin:8px 12px 8px 0;"></div> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 4px;"> <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.14em; text-transform:uppercase;">Far edge</div> <div style="font-size:16px; font-weight:600; color:var(--ink); line-height:1.2;">No accurate per-node forecasts</div> </div> <div style="display:flex; align-items:center; padding:0 8px;"><div style="border:1.5px solid var(--c-aero); padding:4px 10px; font-family:var(--f-mono); font-size:13px; font-weight:600; color:var(--c-aero); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;">Problem 1</div></div> </div> <div style="background:var(--ink-4);"></div> <div style="padding:0 20px; display:grid; grid-template-columns:4px 1fr auto; background:var(--bg-alt); opacity:.45;"> <div style="background:var(--ink-4); margin:8px 12px 8px 0;"></div> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 4px;"> <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4); letter-spacing:.14em; text-transform:uppercase;">Regional cluster</div> <div style="font-size:16px; font-weight:600; color:var(--ink-3); line-height:1.2;">A new model must be refit per service</div> </div> <div style="display:flex; align-items:center; padding:0 8px;"></div> </div> </div> </div> <!-- L4 Infrastructure --> <div style="flex:0 0 52px; display:grid; grid-template-columns:130px 6px 1fr; background:var(--bg-alt); opacity:.5;"> <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4); background:var(--bg);"> <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L4 · Infra</div> </div> <div style="background:var(--ink-4);"></div> <div style="display:grid; grid-template-columns:1fr 1px 1fr; align-items:center;"> <div style="padding:0 20px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">Far edge · many tiny nodes</div> <div style="background:var(--ink-4); height:100%;"></div> <div style="padding:0 20px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">Regional clusters + cloud</div> </div> </div> </div> <div style="flex:1; padding:28px 80px 28px; display:flex; flex-direction:column; min-height:0; overflow:hidden;"> <div style="font-family:var(--f-mono); font-size:20px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px;">Sub-problem 1</div> <h1 class="h-title" style="font-size:54px; margin-bottom:32px;">Forecasting must run where the service runs</h1> <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:64px; min-height:0;"> <!-- LEFT: deployability gap visual --> <div style="display:flex; flex-direction:column; gap:24px; justify-content:center;"> <!-- Gap visualization --> <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;"> <div style="border:2px solid var(--ink); padding:32px 28px;"> <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px;">Today's SOTA baseline</div> <div style="font-family:var(--f-mono); font-size:76px; font-weight:700; color:var(--ink); line-height:1;">2.4M</div> <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); margin-top:10px;">params · SOTA transformer</div> <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3);">accurate but undeployable</div> <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-sota-red); margin-top:12px; letter-spacing:.03em;">&asymp;&nbsp;10&nbsp;MB fp32 · 40&times; over device budget</div> </div> <div style="border:2px solid var(--ink-4); padding:32px 28px; background:var(--bg-alt);"> <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px;">Lightweight alts</div> <div style="font-family:var(--f-mono); font-size:76px; font-weight:700; color:var(--ink-3); line-height:1;">~50K</div> <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3); margin-top:10px;">params · lightweight TS models</div> <div style="font-family:var(--f-mono); font-size:20px; color:var(--ink-3);">deployable but accuracy collapses</div> <div style="font-family:var(--f-mono); font-size:14px; color:var(--ink-3); margin-top:12px; letter-spacing:.03em;">&asymp;&nbsp;200&nbsp;KB fp32 · fills the budget, no headroom</div> </div> </div> <!-- Device budget card --> <div style="border:2px dashed var(--c-aero); background:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); padding:20px 24px;"> <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:10px;"> <div style="font-family:var(--f-mono); font-size:15px; color:var(--c-aero); letter-spacing:.14em; text-transform:uppercase;">Typical device budget</div> <div style="font-family:var(--f-mono); font-size:12px; font-weight:700; color:var(--c-aero); letter-spacing:.04em;">[1]</div> </div> <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;"> <div style="font-family:var(--f-mono); font-size:52px; font-weight:700; color:var(--ink); line-height:1;">256&nbsp;KB</div> <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2); line-height:1.45;">microcontroller SRAM &mdash; fp32 &rArr; <strong>~65K params</strong> upper bound for weights alone; must also fit activations, gradients &amp; runtime buffers</div> </div> </div> </div> <!-- RIGHT: problem + RQ --> <div style="display:flex; flex-direction:column; gap:28px; justify-content:center;"> <div> <div style="font-size:32px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:16px;">The deployability gap</div> <ul style="font-family:var(--f-mono); font-size:22px; color:var(--ink-2); line-height:1.7; padding-left:1.2em; margin:0; list-style:disc;"> <li>Accurate models → too large for edge</li> <li>Lightweight models → collapse under drift</li> <li>The gap is real &amp; unaddressed</li> </ul> </div> <div style="border-top:2px solid var(--ink); padding-top:24px;"> <div style="font-family:var(--f-mono); font-size:18px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px;">Research question 1</div> <div style="font-size:28px; font-style:italic; color:var(--ink); line-height:1.4;">How can workload prediction be made both deployable and accurate at edge scale?</div> </div> <div style="border-top:1px solid var(--ink-4); padding-top:20px; display:flex; flex-direction:column; gap:10px;"> <div style="display:flex; gap:16px; align-items:baseline; flex-wrap:wrap;"> <div style="font-family:var(--f-mono); font-size:22px; color:var(--ink-2);">Target: </div> <div style="font-family:var(--f-mono); font-size:36px; font-weight:700; color:var(--c-aero);">&lt;1,000 params</div> <div style="font-family:var(--f-mono); font-size:22px; color:var(--ink-3);">with competitive accuracy</div> </div> <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.45;">&asymp;&nbsp;4&nbsp;KB fp32 &mdash; sits comfortably inside the 256&nbsp;KB SRAM budget, leaving room for activations, gradients &amp; runtime buffers</div> </div> <div style="display:grid; grid-template-columns:22px 1fr; gap:8px; align-items:start; padding-top:4px; border-top:1px solid var(--ink-4);"> <div style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-aero); padding-top:2px;">[1]</div> <div style="font-size:12px; line-height:1.35; color:var(--ink);"><strong>Lin et&nbsp;al.</strong> On-Device Training Under 256KB Memory. <em style="font-style:italic; color:var(--ink-2);">NeurIPS&nbsp;'22.</em></div> </div> </div> </div> </div> </div> <div class="chrome-bot"><div class="meta-left">Problem 1 · prediction deployability at the edge</div><div class="meta-right">§1 Framing</div></div>
+<section class="slide" data-section="framing" data-label="05 Sub-problem 1">
+  <div class="chrome-top">
+    <div class="section-bar"></div>
+    <div class="eyebrow">
+      <span class="eyb-tag">Problem 1</span><span class="eyb-sep">//</span><span>Prediction at the edge</span>
+    </div>
+    <div class="counter"><span class="num">05</span><span class="sep">/</span>52 &nbsp; <span class="section-name">Framing</span></div>
+    <div></div>
+  </div>
+  <div class="body" style="padding:0; display:flex; flex-direction:column; overflow:hidden;">
+    <div style="flex:0 0 230px; display:flex; flex-direction:column; border-bottom:2px solid var(--ink); background:var(--bg);">
+      <!-- L1 Operator -->
+      <div style="flex:0 0 54px; display:grid; grid-template-columns:130px 6px 1fr auto; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); opacity:.45;">
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4);">
+          <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L1 · Human operator</div>
+        </div>
+        <div style="background:var(--ink-4);"></div>
+        <div style="padding:0 20px; display:flex; align-items:center; gap:18px;">
+          <div style="font-size:17px; font-weight:600; color:var(--ink-3);">Sets intent, then manually analyzes the stack</div>
+          <div style="font-family:var(--f-serif); font-style:italic; font-size:15px; color:var(--ink-3);">"reduce energy while keeping SLA"</div>
+        </div>
+        <div style="display:flex; align-items:center; padding:0 16px;"></div>
+      </div>
+      <!-- L2 Decision -->
+      <div style="flex:0 0 54px; display:grid; grid-template-columns:130px 6px 1fr auto; border-bottom:1px solid var(--ink-4); background:var(--bg-alt); opacity:.45;">
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4);">
+          <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L2 · Decision</div>
+        </div>
+        <div style="background:var(--ink-4);"></div>
+        <div style="padding:0 20px; display:flex; align-items:center;">
+          <div style="font-size:17px; font-weight:600; color:var(--ink-3);">No intelligent path from intent to action</div>
+        </div>
+        <div style="display:flex; align-items:center; padding:0 16px;"></div>
+      </div>
+      <!-- L3 Prediction (2 columns: edge | regional) -->
+      <div style="flex:0 0 64px; display:grid; grid-template-columns:130px 6px 1fr; border-bottom:1px solid var(--ink-4);">
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink);">L3 · Prediction</div>
+        </div>
+        <div style="background:var(--c-aero);"></div>
+        <div style="display:grid; grid-template-columns:1fr 1px 1fr;">
+          <div style="padding:0 20px; display:grid; grid-template-columns:4px 1fr auto; background:color-mix(in oklab, var(--c-aero) 8%, var(--bg)); opacity:1;">
+            <div style="background:var(--c-aero); margin:8px 12px 8px 0;"></div>
+            <div style="display:flex; flex-direction:column; justify-content:center; padding:0 4px;">
+              <div style="font-family:var(--f-mono); font-size:12px; color:var(--c-aero); letter-spacing:.14em; text-transform:uppercase;">Far edge</div>
+              <div style="font-size:16px; font-weight:600; color:var(--ink); line-height:1.2;">No accurate per-node forecasts</div>
+            </div>
+            <div style="display:flex; align-items:center; padding:0 8px;">
+              <div style="border:1.5px solid var(--c-aero); padding:4px 10px; font-family:var(--f-mono); font-size:13px; font-weight:600; color:var(--c-aero); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;">Problem 1</div>
+            </div>
+          </div>
+          <div style="background:var(--ink-4);"></div>
+          <div style="padding:0 20px; display:grid; grid-template-columns:4px 1fr auto; background:var(--bg-alt); opacity:.45;">
+            <div style="background:var(--ink-4); margin:8px 12px 8px 0;"></div>
+            <div style="display:flex; flex-direction:column; justify-content:center; padding:0 4px;">
+              <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4); letter-spacing:.14em; text-transform:uppercase;">Regional cluster</div>
+              <div style="font-size:16px; font-weight:600; color:var(--ink-3); line-height:1.2;">A new model must be refit per service</div>
+            </div>
+            <div style="display:flex; align-items:center; padding:0 8px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- L4 Infrastructure -->
+      <div style="flex:0 0 52px; display:grid; grid-template-columns:130px 6px 1fr; background:var(--bg-alt); opacity:.5;">
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px; border-right:1px solid var(--ink-4); background:var(--bg);">
+          <div style="font-family:var(--f-mono); font-size:14px; font-weight:700; color:var(--ink-3);">L4 · Infra</div>
+        </div>
+        <div style="background:var(--ink-4);"></div>
+        <div style="display:grid; grid-template-columns:1fr 1px 1fr; align-items:center;">
+          <div style="padding:0 20px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">Far edge · many tiny nodes</div>
+          <div style="background:var(--ink-4); height:100%;"></div>
+          <div style="padding:0 20px; font-family:var(--f-mono); font-size:13px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">Regional clusters + cloud</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1; padding:28px 80px 28px; display:flex; flex-direction:column; min-height:0; overflow:hidden;">
+      <div style="font-family:var(--f-mono); font-size:20px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px;">Sub-problem 1</div>
+      <h1 class="h-title" style="font-size:54px; margin-bottom:32px;">Forecasting must run where the service runs</h1>
+      <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:64px; min-height:0;">
+        <!-- LEFT: deployability gap visual -->
+        <div style="display:flex; flex-direction:column; gap:24px; justify-content:center;">
+          <!-- Device budget card -->
+          <div style="border:2px dashed var(--c-aero); background:color-mix(in oklab, var(--c-aero) 6%, var(--bg)); padding:20px 24px;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:10px;">
+              <div style="font-family:var(--f-mono); font-size:15px; color:var(--c-aero); letter-spacing:.14em; text-transform:uppercase;">Typical device budget</div>
+              <div style="font-family:var(--f-mono); font-size:12px; font-weight:700; color:var(--c-aero); letter-spacing:.04em;">[1]</div>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;">
+              <div style="font-family:var(--f-mono); font-size:52px; font-weight:700; color:var(--ink); line-height:1;">256&nbsp;KB</div>
+              <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-2); line-height:1.45;">microcontroller SRAM &mdash; fp32 &rArr; <strong>~65K params</strong> upper bound</div>
+            </div>
+          </div>
+          <!-- Gap visualization -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div style="border:2px solid var(--ink); padding:32px 28px;">
+              <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px;">Today's SOTA baseline</div>
+              <div style="font-family:var(--f-mono); font-size:76px; font-weight:700; color:var(--ink); line-height:1;">2.4M</div>
+              <div style="font-family:var(--f-mono); font-size:14px; color:var(--c-sota-red); margin-top:12px; letter-spacing:.03em;">&asymp;&nbsp;10&nbsp;MB fp32 · 40&times; over device budget</div>
+            </div>
+            <div style="border:2px solid var(--ink-4); padding:32px 28px; background:var(--bg-alt);">
+              <div style="font-family:var(--f-mono); font-size:18px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px;">Lightweight alts</div>
+              <div style="font-family:var(--f-mono); font-size:76px; font-weight:700; color:var(--ink-3); line-height:1;">~50K</div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT: problem + RQ -->
+        <div style="display:flex; flex-direction:column; gap:28px; justify-content:center;">
+          <div>
+            <div style="font-size:32px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:16px;">The deployability gap</div>
+            <ul style="font-family:var(--f-mono); font-size:22px; color:var(--ink-2); line-height:1.7; padding-left:1.2em; margin:0; list-style:disc;">
+              <li>Accurate models → too large for edge</li>
+              <li>Lightweight models → collapse under drift</li>
+              <li>The gap is real &amp; unaddressed</li>
+            </ul>
+          </div>
+          <div style="border-top:2px solid var(--ink); padding-top:24px;">
+            <div style="font-family:var(--f-mono); font-size:18px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px;">Research question 1</div>
+            <div style="font-size:28px; font-style:italic; color:var(--ink); line-height:1.4;">How can workload prediction be made both deployable and accurate at edge scale?</div>
+          </div>
+          <div style="border-top:1px solid var(--ink-4); padding-top:20px; display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:16px; align-items:baseline; flex-wrap:wrap;">
+              <div style="font-family:var(--f-mono); font-size:22px; color:var(--ink-2);">Target: </div>
+              <div style="font-family:var(--f-mono); font-size:36px; font-weight:700; color:var(--c-aero);">&lt;1,000 params</div>
+              <div style="font-family:var(--f-mono); font-size:22px; color:var(--ink-3);">with competitive accuracy</div>
+            </div>
+            <div style="font-family:var(--f-mono); font-size:15px; color:var(--ink-3); line-height:1.45;">&asymp;&nbsp;4&nbsp;KB fp32 &mdash; sits comfortably inside the 256&nbsp;KB SRAM budget</div>
+          </div>
+          <div style="display:grid; grid-template-columns:22px 1fr; gap:8px; align-items:start; padding-top:4px; border-top:1px solid var(--ink-4);">
+            <div style="font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-aero); padding-top:2px;">[1]</div>
+            <div style="font-size:12px; line-height:1.35; color:var(--ink);"><strong>Lin et&nbsp;al.</strong> On-Device Training Under 256KB Memory. <em style="font-style:italic; color:var(--ink-2);">NeurIPS&nbsp;'22.</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bot"><div class="meta-left">Problem 1 · prediction deployability at the edge</div><div class="meta-right">§1 Framing</div></div>
 </section>

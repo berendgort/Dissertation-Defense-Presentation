@@ -11,7 +11,7 @@
     </div>
     <div style="flex:1; display:grid; grid-template-columns:1.6fr 1fr; min-height:0;">
       <!-- LEFT · 3-panel power progression -->
-      <div style="border-right:2px solid var(--ink); padding:28px 36px; display:flex; flex-direction:column; gap:14px; justify-content:center; background:var(--bg-alt);">
+      <div style="border-right:2px solid var(--ink); padding:28px 36px; display:flex; flex-direction:column; gap:14px; justify-content:flex-start; background:var(--bg-alt);">
         <div style="font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);">Total rack power vs API call &middot; Start &#9632; &rarr; End &#9650; &middot; lower is better</div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
@@ -132,6 +132,19 @@
         </div>
 
         <div style="font-family:var(--f-mono); font-size:12px; color:var(--ink-4);">&darr; dashed lines mark start and settled rack power &middot; 10 runs each &middot; 100 % success</div>
+
+        <div style="margin-top:auto; align-self:flex-start; width:100%; max-width:560px; border:1.5px solid var(--ink); background:var(--bg); display:flex; flex-direction:column;">
+          <div style="padding:7px 12px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:8px;">
+            <div class="mono-tag" style="color:var(--c-agent); margin:0;">Reference</div>
+            <div style="margin-left:auto; font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3);">operator-scale context</div>
+          </div>
+          <div style="padding:6px 10px 8px;">
+            <div style="display:grid; grid-template-columns:24px 1fr; gap:5px; align-items:start;">
+              <div style="font-family:var(--f-mono); font-size:10px; font-weight:700; color:var(--c-agent);">[1]</div>
+              <div style="font-size:10px; line-height:1.12; color:var(--ink);"><strong>Syamkumar, Barford, Durairajan.</strong> Deployment Characteristics of &quot;The Edge&quot; in Mobile Edge Computing. <em>MECOMM '18</em>.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- RIGHT · explanation -->
