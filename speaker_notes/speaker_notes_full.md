@@ -52,6 +52,8 @@ Contribution one is AERO, the edge-deployable workload predictor. The banner sta
 
 The quantified goal is fewer than one thousand parameters. That is the constraint that the rest of the AERO section has to defend.
 
+Presenter cue: short pause here; quick sip of water before contribution one.
+
 ### Slide 10 · System Model & Motivation
 
 This slide is deliberately generic: it is the system model for the predictor box, not AERO itself yet. On the left, each edge node is a microcontroller-class device running a tight on-node control loop — observability, predictor, and local scheduler. The loop closes through the infrastructure layer below it, meaning the services and workloads actually running on the node: the scheduler applies actions onto that infrastructure, and observability reads the new state back. In a real deployment this can be a single node, a node with a microcontroller right next to it, or several micronodes — but the constraint stays the same: the forecast must reach the scheduler before the slot closes.
@@ -111,6 +113,8 @@ The point is that latency is not the differentiator; drift robustness is. That i
 Contribution two is OmniFORE, and the banner now reads in the same shape as AERO and AgentEdge: one-line claim, one-number goal. The claim: one frozen model forecasts across services, no retraining. The quantified goal is deliberately blunt &mdash; zero per-service retrains. That is what I will defend in the next ten slides.
 
 The concrete promise I test is zero-shot prediction on services the model never saw during training, up to cross-dataset transfer with frozen weights.
+
+Presenter cue: reset the pace here; quick sip of water before contribution two.
 
 ### Slide 20 · Problem: one model, many services
 
@@ -177,6 +181,8 @@ That is why this result matters operationally. The model is learning portable wo
 ### Slide 31 · AgentEdge
 
 Contribution three is AgentEdge, and the banner deliberately reduces it to one line the committee can hold onto: an LLM agent that checks its own plan before acting on the network. The subtitle says the same thing in the operator's vocabulary: turning plain-language intent into safe autonomous action. The quantified goal stays at above seventy-five percent success. The keywords I want on the record from this slide forward are multi-agent, tool-use, multi-step reasoning, and digital-twin validation. Those are the technical anchors for everything in the rest of this section.
+
+Presenter cue: brief pause and water sip here; this starts the longest section.
 
 ### Slide 32 · Problem & Motivation
 
@@ -249,6 +255,8 @@ Same stack as the previous slide. The left column is unchanged on purpose: L1 an
 Three short cards explain why. The first, *prediction is heavily researched*: lightweight nets and attention mechanisms rest on decades of time-series work. It is a mature field with established methodology. The second, *orchestration is a younger field*: which predictor to invoke for each situation, when a forecast warrants action, how to balance objectives that no single model optimizes: those are all still open questions. The third, *predictors become tools the agent selects*: AERO and OmniFORE are tools an agent picks, the same way a human operator picks between monitoring dashboards. Once you frame them as tools, the research question moves one level up, to the entity that chooses between them.
 
 That is the transition. From here, the next three slides open up the specific blockers on L1 and L2.
+
+Presenter cue: another quick sip here if needed before future work and the closing stretch.
 
 ### Slide 48 · Future Work 1 · Reliability & Trust
 

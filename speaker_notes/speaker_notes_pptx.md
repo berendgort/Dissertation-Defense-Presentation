@@ -109,6 +109,7 @@ Contribution 1 · edge-deployable workload prediction.
 
 - Claim: adaptive periodicity lets a tiny model produce operationally useful forecasts at the edge.
 - Quantified goal: <1,000 parameters.
+- Presenter cue: short pause here; quick sip of water before contribution 1.
 
 ### Slide 10 · System Model & Motivation
 
@@ -222,6 +223,7 @@ Contribution 2 · one forecasting framework, all services.
 - Claim (weaker): models can predict any trace.
 - Goal (operational): one model to process all workload traces.
 - Next: zero-shot on unseen services, up to frozen-weight cross-dataset transfer.
+- Presenter cue: reset the pace here; quick sip of water before contribution 2.
 
 ### Slide 20 · Problem: one model, many services
 
@@ -345,6 +347,7 @@ Contribution 3 · intent → validated autonomous action.
 
 - Claim: multi-agent LLM + validation beats single-agent and tree-search baselines · success >75%.
 - Anchors: multi-agent · tool-use · multi-step reasoning · digital-twin validation.
+- Presenter cue: brief pause and water sip here; this starts the longest section.
 
 ### Slide 32 · Problem & Motivation
 
@@ -557,6 +560,7 @@ Prediction is solved; the agentic layer is the frontier.
 - FW2 · Real-time Infra: tens of seconds per plan · accuracy cliff beyond ~30 tools.
 - FW3 · Distributed Ecosystems: parallel agents collide · tool-calls change shape per provider.
 - 3 slides, 6 blockers, each paired with a direction.
+- Presenter cue: another quick sip here if needed before future work and the closing stretch.
 
 ### Slide 48 · FW1 · Reliability & Trust
 
