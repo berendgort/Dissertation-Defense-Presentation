@@ -12,13 +12,12 @@
       <div style="margin-left:auto; font-family:var(--f-mono); font-size:17px; color:var(--ink-3); letter-spacing:.1em; text-transform:uppercase;">simulator &middot; trace &middot; baselines &middot; objective</div>
     </div>
 
-    <div style="flex:1; display:flex; flex-direction:column; gap:14px; padding:24px 42px 18px; overflow:hidden;">
-      <div style="flex:1; display:flex; align-items:stretch; justify-content:center; min-height:0;">
-        <div style="width:min(1540px,100%); height:100%; display:grid; grid-template-columns:320px minmax(0, 1fr) 320px; gap:24px; align-items:stretch; min-height:0;">
+    <div style="flex:1; display:flex; align-items:stretch; justify-content:center; padding:28px 42px 34px; overflow:hidden;">
+      <div style="width:min(1540px,100%); height:100%; display:grid; grid-template-columns:320px minmax(0, 1fr) 320px; gap:24px; align-items:stretch; min-height:0;">
         <div style="display:flex; flex-direction:column; gap:16px; min-height:0;">
           <div style="flex:1; padding:22px 22px; border:2px solid var(--ink); border-radius:24px; background:var(--bg); display:flex; flex-direction:column; gap:12px; min-height:0;">
             <div style="font-family:var(--f-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);">Simulation environment</div>
-            <div style="font-family:var(--f-display); font-size:24px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">COSCO <span style="font-family:var(--f-mono); font-size:14px; color:var(--c-aero); vertical-align:middle;">[1]</span></div>
+            <div style="font-family:var(--f-display); font-size:24px; font-weight:700; letter-spacing:-.01em; line-height:1.15;">COSCO on AzureFog</div>
             <div style="display:flex; flex-direction:column; gap:8px;">
               <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:5px;">
                 <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">NODES</div>
@@ -45,7 +44,7 @@
             <div style="display:flex; flex-direction:column; gap:8px;">
               <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:5px;">
                 <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">HORIZON</div>
-                <div style="font-size:17px; color:var(--ink);">2,000 control cycles</div>
+                <div style="font-size:17px; color:var(--ink);">2,000 cycles at 300 ms</div>
               </div>
               <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:5px;">
                 <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">LOAD</div>
@@ -142,23 +141,15 @@
                 <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">MODELS</div>
                 <div style="font-size:17px; color:var(--ink);">AERO &middot; Pathformer &middot; SparseTSF</div>
               </div>
-              <div style="display:flex; align-items:baseline; gap:10px;">
+              <div style="display:flex; align-items:baseline; gap:10px; border-bottom:1px dashed var(--ink-4); padding-bottom:5px;">
                 <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">BASELINE</div>
                 <div style="font-size:17px; color:var(--ink);">Reactive controller without forecast</div>
               </div>
+              <div style="display:flex; align-items:baseline; gap:10px;">
+                <div class="mono" style="font-size:13px; letter-spacing:.1em; color:var(--ink-3); min-width:92px;">DETAIL</div>
+                <div style="font-size:17px; color:var(--ink);">Only memory slightly favors SparseTSF</div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="flex:0 0 auto; width:min(1540px,100%); margin:0 auto; border:1.5px solid var(--ink); background:var(--bg-alt); display:flex; flex-direction:column;">
-        <div style="padding:7px 12px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:8px;">
-          <div class="mono-tag" style="color:var(--c-aero); margin:0;">References</div>
-        </div>
-        <div style="padding:6px 10px 8px;">
-          <div style="display:grid; grid-template-columns:24px 1fr; gap:5px; align-items:start;">
-            <div style="font-family:var(--f-mono); font-size:10px; font-weight:700; color:var(--c-aero);">[1]</div>
-            <div style="font-size:10px; line-height:1.08; color:var(--ink);"><strong>Tuli et al.</strong> COSCO: Container Orchestration Using Co-Simulation and Gradient Based Optimization for Fog Computing Environments. <em style="font-style:italic; color:var(--ink-2);">IEEE TPDS '22</em>.</div>
           </div>
         </div>
       </div>
