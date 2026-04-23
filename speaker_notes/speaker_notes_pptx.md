@@ -119,7 +119,7 @@ Timing, not mechanism.
 - Each edge node is microcontroller-class; whole control loop stays on-node.
 - Loop: observability → predictor → local scheduler → infrastructure → observability.
 - Deployment can be a single node, a node with an MCU nearby, or several micronodes.
-- Toy: A still busy, B still free; dispatch due in ~50 ms.
+- Toy: WS-A queue spike, WS-B still free; dispatch due in ~50 ms.
 - Local forecast: reroute in time. Off-node round-trip: reply arrives after deadline.
 - Prediction is only useful if it arrives before the slot closes.
 
@@ -502,7 +502,7 @@ Time ~60s · T+41:20
 Twin lifts success and collapses variance.
 
 - Success: 78.3% (on) vs 53.3% (off) · 1.47×.
-- API-calls: 10.9 ± 1.1 (on) vs range 8-517 with σ 109.4 (off) · ~10× variance.
+- API-call stability: σ 1.1 (on) vs σ 109.4 (off) · ~10× variance.
 - Without simulation: unproductive retry loops that are operationally unsafe: every retry touches prod.
 - Twin is structural, not cosmetic.
 
@@ -515,8 +515,8 @@ Does AgentEdge keep saving energy as infra grows? Slide is visual on purpose.
 - Start pattern at every scale: 1 service per node (~25% load) + a few nodes fully idle. All still draw power.
 - Light box + red band = node at ~25% · dashed empty box = fully idle.
 - Scale A · Small: 8 nodes · 6 svc · 2 idle.
-- Scale B · Medium: 18 · 15 · 3 · 2-rack consolidation.
-- Scale C · Large: 35 · 30 · 5 · cross-rack coordination stress.
+- Scale B · Medium: 18 · 15 · 3.
+- Scale C · Large: 35 · 30 · 5.
 - Obvious fix: consolidate onto fewer nodes · power the rest down.
 - Question: does the agent still do this cleanly at every scale?
 
@@ -579,7 +579,7 @@ Two empirically grounded blockers.
 - Inference efficiency: observe → plan → revise → critique → actuate: seconds per call.
   - SLA line crosses the critic step; token cost compounds at scale.
   - Direction: call reduction via multi-step prompting · distilled orchestration-specific models (AERO lesson applied to the planner).
-- Tool discovery: accuracy flat ~20 tools, cliffs beyond ~30. AgentEdge (3 MCPs, ~40 tools) sits on the cliff.
+- Tool discovery: accuracy holds up to ~30 tools, cliffs beyond. AgentEdge (3 MCPs, ~40 tools) sits on the cliff.
   - Dissertation finding: removing an MCP sometimes *improved* success.
   - Direction: semantic tool retrieval · hierarchical catalogs · autonomous read-only discovery.
 
@@ -589,7 +589,7 @@ Time ~70s · T+48:50
 
 From one instance to fleets.
 
-- Multi-agent coordination: parallel regions → contradicting actions on shared infra (A consolidates node-07 · B powers it down).
+- Multi-agent coordination: parallel agents → contradicting actions on shared infra (A consolidates node-07 · B powers it down).
   - Direction: intent-level consensus · lock-lease on intended actions · share plans, not raw state.
 - Model-agnostic design: swap LLM → tool-calls change shape (camelCase JSON vs XML-ish): "glue code" tax.
   - Direction: canonical intent schema for tool-calls (OpenAPI-equivalent for agents) · model-agnostic evaluation.
