@@ -1,0 +1,34 @@
+URL: https://doi.org/10.1109/UCC63386.2024.00052
+DOI: 10.1109/UCC63386.2024.00052
+REFERENCE PAGE: https://researchr.org/publication/KartsakliSRPVBGKKTMAKQ24
+
+TITLE: Advanced Edge Computing Architecture for AI-Driven Automation and Slicing in Beyond 5G
+
+AUTHORS: E. Kartsakli, O. Sallent, J. Pujol Roig, J. Perez-Romero, I. Vila, N. Bartzoudis, U. Gulen, S. Kosu, O. Y. Kolawole, X. Tao, S. K. Mohalik, A. Antonopoulos, C. Kalalas, E. Quinones
+
+CONFERENCE: IEEE/ACM International Conference on Utility and Cloud Computing (UCC)
+YEAR: 2024
+
+WHY THIS PAPER MATTERS:
+- This is one of the closest architectural matches to your dissertation scope
+- It frames edge, AI, slicing, and trustworthiness as one integrated compute-and-network problem
+- Very likely to influence how Jordi evaluates whether your three-part thesis stack is architecturally coherent
+
+CONTEXT:
+Presents an advanced edge-computing architecture for AI-driven automation and slicing in B5G, built around a distributed edge-to-cloud continuum.
+
+KEY TAKEAWAYS:
+- The architecture is organized around Edge4AI, AI4Edge, and trustworthiness concerns
+- Network slicing is extended beyond communication to joint provisioning of communication and compute resources
+- AI lifecycle management is part of the architecture, not an afterthought
+- The work reinforces that orchestration should connect models, infrastructure, and operational guarantees
+
+WHAT IT SUGGESTS HE MAY ASK:
+- Does your thesis truly integrate communication and compute orchestration, or only one side?
+- Where do training, inference, and control live across the continuum?
+- How do you justify the architectural split between forecasting, transfer, and action validation?
+- What makes your stack trustworthy enough for operator-facing automation?
+
+RELEVANCE TO YOUR DEFENSE:
+- Excellent preparation for explaining why AERO, OmniFORE, and AgentEdge belong together as one architecture
+- Be ready to argue that the decomposition is functional, not arbitrary

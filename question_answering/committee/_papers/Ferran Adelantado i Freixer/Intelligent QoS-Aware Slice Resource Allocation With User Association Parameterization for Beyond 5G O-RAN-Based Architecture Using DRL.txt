@@ -1,0 +1,35 @@
+URL: https://doi.org/10.1109/TVT.2024.3483288
+DOI: 10.1109/TVT.2024.3483288
+UOC RECORD: https://recerca.uoc.edu/documentos/673a637c10dcc339fb2b46d9
+ARXIV: https://arxiv.org/abs/2311.01594
+
+TITLE: Intelligent QoS-Aware Slice Resource Allocation With User Association Parameterization for Beyond 5G O-RAN-Based Architecture Using DRL
+
+AUTHORS: S. Mhatre, F. Adelantado, K. Ramantas, C. Verikoukis
+
+JOURNAL: IEEE Transactions on Vehicular Technology
+YEAR: 2025
+
+WHY THIS PAPER MATTERS:
+- Very recent journal paper in one of Ferran's strongest current lines of work
+- Strong overlap with O-RAN, slice management, QoS, and DRL-driven orchestration
+- Good signal for the kinds of evaluation and control questions he may ask during the defense
+
+CONTEXT:
+DRL-based QoS-aware slice resource allocation for beyond-5G O-RAN architectures, with user-association parameterization built into the decision process.
+
+KEY TAKEAWAYS:
+- Focuses on intelligent intra-slice resource allocation under QoS constraints
+- Uses DRL agents to optimize service-specific behavior in an O-RAN setting
+- Treats user association as part of the resource-allocation problem, not as a fixed external assumption
+- Reported search-result highlights suggest throughput gains for eMBB and latency reductions for URLLC relative to baselines
+
+WHAT IT SUGGESTS HE MAY ASK:
+- Why did you choose your reward function and QoS metrics?
+- Which control variables are learned, and which are kept fixed by design?
+- How do you compare against simpler heuristics or static schedulers?
+- What breaks first when traffic mix, load, or user mobility changes?
+
+RELEVANCE TO YOUR DEFENSE:
+- Directly useful if your dissertation includes adaptive orchestration, scheduling, or SLA-aware decision-making
+- Expect interest in baseline choice, fairness, and how your controller balances competing service classes

@@ -1,0 +1,33 @@
+URL: https://arxiv.org/abs/2112.07938
+ARXIV: 2112.07938
+
+TITLE: Analysis and Evaluation of Synchronous and Asynchronous FLchain
+
+AUTHORS: F. Wilhelmi, L. Giupponi, P. Dini
+
+JOURNAL: Computer Networks
+YEAR: 2022
+
+WHY THIS PAPER MATTERS:
+- Not a pure wireless paper, but very relevant to decentralized learning and timing trade-offs
+- Useful if your defense discussion touches distributed intelligence, online learning, or coordination latency
+- Shows Lorenza's broader interest in practical learning-system behavior under heterogeneous conditions
+
+CONTEXT:
+Compares synchronous and asynchronous blockchain-enabled federated learning for heterogeneous large-scale settings.
+
+KEY TAKEAWAYS:
+- Synchronous aggregation can provide higher accuracy
+- Asynchronous aggregation can provide lower latency and better fit heterogeneous clients
+- The paper explicitly studies trade-offs involving network size, link capacity, and timing requirements
+- Useful as a reminder that "better intelligence" is often constrained by coordination cost and delay
+
+WHAT IT SUGGESTS SHE MAY ASK:
+- Is your method accuracy-optimal or latency-aware, and why?
+- Could a more asynchronous or decentralized control design work better?
+- How sensitive are your results to coordination overhead or stale information?
+- Where is the trade-off between responsiveness and quality in your system?
+
+RELEVANCE TO YOUR DEFENSE:
+- Particularly helpful if she asks whether your orchestration loop is too centralized or too slow for real environments
+- Prepare to explain why your control cadence and validation steps are worth their overhead

@@ -1,0 +1,34 @@
+URL: https://doi.org/10.1109/TCE.2025.3553407
+DOI: 10.1109/TCE.2025.3553407
+UOC RECORD: https://recerca.uoc.edu/documentos/68b33d642f359d6e8f724592
+
+TITLE: Transfer Learning Applied to Deep Reinforcement Learning for 6G Resource Management in Intra- and Inter-Slice RAN-Edge Domains
+
+AUTHORS: S. Mhatre, F. Adelantado, K. Ramantas, C. Verikoukis
+
+JOURNAL: IEEE Transactions on Consumer Electronics
+YEAR: 2025
+
+WHY THIS PAPER MATTERS:
+- Very recent journal paper extending Ferran's DRL-for-slicing work
+- Important because it moves from "can DRL work?" toward "can it adapt faster across related scenarios?"
+- Especially relevant if your defense may touch generalization, transfer, or policy reuse
+
+CONTEXT:
+Applies transfer learning to DRL for 6G resource management across both intra-slice and inter-slice RAN-edge domains.
+
+KEY TAKEAWAYS:
+- The central theme is faster adaptation and better sample efficiency in slice-resource control
+- Transfer learning is used to reuse knowledge across related network states, tasks, or slices instead of learning from scratch every time
+- The paper sits naturally on top of Ferran's 2024 AIaaS / O-RAN slicing work and points to a more practical deployment path for DRL controllers
+- This is the kind of work that shifts the discussion from raw optimization quality to adaptation speed and operational usability
+
+WHAT IT SUGGESTS HE MAY ASK:
+- How well would your method transfer across scenarios, workloads, or topologies?
+- Do you need to retrain from scratch when conditions change?
+- What is the risk of negative transfer or degraded behavior after reuse?
+- How do you validate robustness under distribution shift?
+
+RELEVANCE TO YOUR DEFENSE:
+- Very useful if your dissertation uses learned policies, adaptive planning, or cross-scenario reuse
+- Be ready to discuss whether your method is scenario-specific or actually portable

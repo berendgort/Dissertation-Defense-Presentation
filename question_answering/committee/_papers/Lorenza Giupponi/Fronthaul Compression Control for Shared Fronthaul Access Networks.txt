@@ -1,0 +1,33 @@
+URL: https://arxiv.org/abs/2205.08329
+ARXIV: 2205.08329
+
+TITLE: Fronthaul Compression Control for Shared Fronthaul Access Networks
+
+AUTHORS: S. Lagen, X. Gelabert, A. Hansson, M. Requena, L. Giupponi
+
+JOURNAL: IEEE Communications Magazine
+YEAR: 2022
+
+WHY THIS PAPER MATTERS:
+- A strong systems paper on RAN virtualization under fronthaul bottlenecks
+- Very relevant to any thesis that assumes flexible placement or orchestration across disaggregated infrastructure
+- Shows Lorenza's interest in full-system evaluation, not only abstract algorithms
+
+CONTEXT:
+Analyzes compression-control strategies for virtualized RAN deployments where multiple cells share a common fronthaul link.
+
+KEY TAKEAWAYS:
+- Shared fronthaul becomes a key bottleneck in disaggregated and virtualized RANs
+- The paper studies SRS handling, compression strategies, and fronthaul-aware scheduling
+- Results reported in public summaries show large throughput gains over baseline strategies under strong fronthaul constraints
+- Uses a 5G NR system-level simulator in ns-3, reinforcing her simulation-driven research style
+
+WHAT IT SUGGESTS SHE MAY ASK:
+- Do your orchestration decisions assume unlimited or simplified fronthaul capacity?
+- If control or placement changes increase fronthaul pressure, what happens?
+- Are your gains still valid under shared-link congestion?
+- How do you justify neglecting transport-layer or fronthaul constraints, if you do?
+
+RELEVANCE TO YOUR DEFENSE:
+- Particularly important if your architecture redistributes compute or decisions across edge and cloud
+- Prepare to explain where communication bottlenecks enter your model and where they remain future work

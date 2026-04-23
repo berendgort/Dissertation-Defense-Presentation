@@ -1,0 +1,32 @@
+URL: https://researchr.org/publication/PerezRomeroTSBKKVSG24
+
+TITLE: On the Deployment of an AI-driven Power Control Mechanism for D-MIMO in Beyond 5G Scenarios
+
+AUTHORS: J. Perez-Romero, O. F. Tuna, O. Sallent, N. Bartzoudis, E. Kartsakli, C. Kalalas, I. Vila, J. Serra, X. Gelabert
+
+CONFERENCE: IEEE Conference on Standards for Communications and Networking (CSCN)
+YEAR: 2024
+
+WHY THIS PAPER MATTERS:
+- A recent paper that links AI lifecycle placement with a concrete radio-control use case
+- Useful because it shows Jordi thinking not only about the algorithm, but also about where AI functionality should live
+- Strong preparation for questions about deployment architecture and operational overhead
+
+CONTEXT:
+Studies how to deploy an AI-driven power-control mechanism for D-MIMO in B5G scenarios across an edge-to-cloud compute continuum.
+
+KEY TAKEAWAYS:
+- AI deployment is shaped by delay constraints, computational complexity, and data availability
+- D-MIMO is used as a concrete case where real-time control and distributed infrastructure interact
+- The paper highlights lifecycle-management questions for AI/ML models, not only the control objective itself
+- Standardization implications matter when deciding where model functions are hosted
+
+WHAT IT SUGGESTS HE MAY ASK:
+- Where should your forecasting, adaptation, and validation functions run in practice?
+- What are the compute-delay-data trade-offs in your architecture?
+- Which parts of your stack must be near real time and which can be offline?
+- Is your proposal realistic for deployment without excessive overhead?
+
+RELEVANCE TO YOUR DEFENSE:
+- Very useful if he asks where AERO, OmniFORE, and AgentEdge would actually live in an operational stack
+- Be ready to explain placement choices and control timescales with precision

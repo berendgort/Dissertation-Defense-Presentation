@@ -1,0 +1,33 @@
+URL: https://hdl.handle.net/10609/149443
+UOC RECORD: https://recerca.uoc.edu/documentos/655f4e43dfaaaa2236076949
+
+TITLE: Low-Power Satellite Access Time Estimation for Internet of Things Services over Non-Terrestrial Networks
+
+AUTHORS: G. Boquet, B. Martinez, F. Adelantado, J. Pages, J. A. Ruiz-De-Azua, X. Vilajosana
+
+JOURNAL: IEEE Internet of Things Journal
+YEAR: 2024
+
+WHY THIS PAPER MATTERS:
+- Represents Ferran's NTN / satellite-IoT line, which broadens his profile beyond terrestrial slicing
+- Recent journal publication in a strong IoT venue
+- Useful if you want to anticipate questions about connectivity assumptions at the network edge
+
+CONTEXT:
+Studies access-time estimation for low-power IoT services over non-terrestrial networks, i.e. satellite-enabled connectivity for constrained devices.
+
+KEY TAKEAWAYS:
+- Focuses on one of the practical bottlenecks in NTN-enabled IoT: how long low-power devices need to gain access
+- Connects IoT service realism with satellite coverage, access procedures, and large-scale deployment constraints
+- Highlights that non-terrestrial support is not just a coverage story; access timing and protocol behavior matter
+- Useful reminder that edge and orchestration claims often depend on assumptions about the underlying access network
+
+WHAT IT SUGGESTS HE MAY ASK:
+- How sensitive is your system to link-level or access-network constraints?
+- Would your approach still hold under intermittent or delayed connectivity?
+- Which network assumptions are hidden in your evaluation pipeline?
+- If the environment is sparse, remote, or satellite-assisted, what changes?
+
+RELEVANCE TO YOUR DEFENSE:
+- Helpful if your dissertation reaches into IoT, remote edge, wide-area deployment, or heterogeneous connectivity
+- Even if NTN is not central, this paper signals that Ferran may think across layers and question networking assumptions

@@ -1,0 +1,33 @@
+URL: https://arxiv.org/abs/2107.02005
+ARXIV: 2107.02005
+
+TITLE: Blockchain-enabled Network Sharing for O-RAN in 5G and Beyond
+
+AUTHORS: L. Giupponi, F. Wilhelmi
+
+JOURNAL: IEEE Network
+YEAR: 2022
+
+WHY THIS PAPER MATTERS:
+- One of Lorenza's clearest papers at the intersection of O-RAN, trust, and multi-stakeholder resource sharing
+- Very useful for anticipating questions about governance and orchestration beyond a single operator domain
+- Strongly aligned with open, programmable network control rather than isolated radio optimization
+
+CONTEXT:
+Proposes a blockchain-enabled O-RAN architecture to automate RAN sharing procedures through auction-based or marketplace-based mechanisms.
+
+KEY TAKEAWAYS:
+- Treats trust, ownership traceability, and automated resource exchange as first-class design problems
+- Uses blockchain and smart contracts to enable dynamic exchange of RAN resources and VNFs
+- Frames O-RAN openness as an opportunity, but also as a coordination and trust challenge
+- Includes simulation-based evidence and an openly released platform
+
+WHAT IT SUGGESTS SHE MAY ASK:
+- How would your orchestration approach behave in a multi-stakeholder setting?
+- What assumptions do you make about trust, ownership, and policy enforcement?
+- Can your framework support auditable or traceable decisions?
+- Is your design only valid inside one operator's closed environment?
+
+RELEVANCE TO YOUR DEFENSE:
+- Helpful if committee discussion moves from technical optimization toward deployment governance
+- Good preparation for questions about whether your orchestration stack is realistic beyond a lab or single-domain setup

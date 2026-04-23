@@ -29,10 +29,10 @@ DEFAULT_NOTES_MD = SCRIPT_DIR / "speaker_notes_full.md"
 DEFAULT_EDGE_VOICE = "en-US-AndrewMultilingualNeural"
 DEFAULT_EDGE_RATE = "-4%"
 
-# OpenAI TTS defaults (preferred engine for notes mode).
+# OpenAI TTS defaults for defense notes mode.
 DEFAULT_TTS_ENGINE = "openai"
 DEFAULT_OPENAI_MODEL = "gpt-4o-mini-tts"
-DEFAULT_OPENAI_VOICE = "verse"      # PLEASE USE VERSE FOR THE DEFENSE
+DEFAULT_OPENAI_VOICE = "verse"      # Defense audio is intentionally fixed to verse.
 DEFAULT_OPENAI_INSTRUCTIONS = (
     "You are delivering a doctoral thesis defense at Universitat Politècnica de "
     "Catalunya. Speak in a calm, confident, academic tone — warm but authoritative, "
@@ -113,17 +113,18 @@ def parse_args() -> argparse.Namespace:
         choices=["openai", "edge"],
         default=DEFAULT_TTS_ENGINE,
         help=(
-            "TTS engine for notes mode. 'openai' uses the OpenAI /v1/audio/speech "
-            f"endpoint (default). 'edge' uses edge-tts (free, lower quality)."
+            "TTS engine for notes mode. The defense workflow is locked to the "
+            f"OpenAI voice '{DEFAULT_OPENAI_VOICE}', so notes mode requires "
+            "'openai'. 'edge' is kept only for backwards compatibility and is "
+            "rejected at runtime."
         ),
     )
     parser.add_argument(
         "--openai-voice",
         default=DEFAULT_OPENAI_VOICE,
         help=(
-            "OpenAI TTS voice. Male/neutral options good for a defense: "
-            "onyx, echo, ash, ballad, sage, verse. "
-            f"Default: {DEFAULT_OPENAI_VOICE}."
+            "OpenAI TTS voice for notes mode. The defense workflow always uses "
+            f"'{DEFAULT_OPENAI_VOICE}', so other values are ignored."
         ),
     )
     parser.add_argument(
@@ -743,30 +744,33 @@ def run_notes_mode(args: argparse.Namespace) -> None:
         include_slide_titles=not args.no_slide_titles,
     )
 
-    default_max = DEFAULT_OPENAI_MAX_CHARS if args.engine == "openai" else 2500
+    if args.engine != "openai":
+        raise SystemExit(
+            f"Notes mode is locked to the OpenAI voice '{DEFAULT_OPENAI_VOICE}'. "
+            "Rerun without --engine edge."
+        )
+
+    if args.openai_voice != DEFAULT_OPENAI_VOICE:
+        print(
+            f"[notes] Ignoring --openai-voice={args.openai_voice!r}; "
+            f"using {DEFAULT_OPENAI_VOICE!r} for defense audio.",
+            flush=True,
+        )
+
+    default_max = DEFAULT_OPENAI_MAX_CHARS
     max_chars = args.max_chars_per_chunk if args.max_chars_per_chunk is not None else default_max
     max_chars = max(250, max_chars)
 
     chunks = split_text_for_tts(spoken_text, max_chars)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    if args.engine == "openai":
-        synthesize_with_openai(
-            chunks,
-            output_path,
-            voice=args.openai_voice,
-            model=args.openai_model,
-            instructions=args.openai_instructions,
-        )
-    else:
-        asyncio.run(
-            synthesize_with_edge(
-                chunks,
-                output_path,
-                voice=args.voice,
-                rate=args.rate,
-            )
-        )
+    synthesize_with_openai(
+        chunks,
+        output_path,
+        voice=DEFAULT_OPENAI_VOICE,
+        model=args.openai_model,
+        instructions=args.openai_instructions,
+    )
 
     print(f"  -> {output_path}", flush=True)
 

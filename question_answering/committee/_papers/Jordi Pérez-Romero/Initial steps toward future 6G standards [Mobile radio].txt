@@ -1,0 +1,32 @@
+URL: https://upcommons.upc.edu/entities/publication/9de65e3c-c7a3-476b-9075-947fe626de6f
+
+TITLE: Initial steps toward future 6G standards [Mobile radio]
+
+AUTHORS: J. Perez-Romero
+
+JOURNAL: IEEE Vehicular Technology Magazine
+YEAR: 2025
+
+WHY THIS PAPER MATTERS:
+- A very recent, high-level standards-oriented paper from Jordi himself
+- Useful because it shows how he frames the path from current research to future 6G standardization
+- Strong preparation material for questions about practical relevance and long-term deployment trajectory
+
+CONTEXT:
+Summarizes the first steps toward future 6G standards, including drivers, recent initiatives, and the path toward 3GPP standardization.
+
+KEY TAKEAWAYS:
+- 6G is framed around ubiquitous connectivity, ultra-low latency, AI-native autonomy, XR, metaverse, and digital twins
+- Research topics only matter if they can ultimately converge toward standards and deployment
+- The paper connects today's B5G/6G research to the longer standards timeline ending in early 2030s deployment
+- Good reminder that technical novelty alone is not enough; the work should map to a plausible ecosystem path
+
+WHAT IT SUGGESTS HE MAY ASK:
+- How does your thesis connect to what 6G systems are likely to standardize?
+- Which part of your contribution is near-term practical versus longer-term visionary?
+- What assumptions in your work depend on future standards support?
+- Why is your thesis relevant beyond a research prototype?
+
+RELEVANCE TO YOUR DEFENSE:
+- Very useful for standards, roadmap, and impact questions
+- Be ready to distinguish clearly between what is deployable in B5G/O-RAN now and what is 6G-facing future work

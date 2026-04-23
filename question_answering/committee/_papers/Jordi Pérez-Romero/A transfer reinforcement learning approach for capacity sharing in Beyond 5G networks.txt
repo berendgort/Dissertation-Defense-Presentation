@@ -1,0 +1,32 @@
+URL: https://upcommons.upc.edu/handle/2117/423666
+
+TITLE: A transfer reinforcement learning approach for capacity sharing in Beyond 5G networks
+
+AUTHORS: I. Vila, J. Perez-Romero, O. Sallent
+
+JOURNAL: Future Internet
+YEAR: 2024
+
+WHY THIS PAPER MATTERS:
+- One of Jordi's most relevant recent papers for your thesis themes: RL, O-RAN, adaptation, and slicing
+- Strongly aligned with your concerns about generalization and retraining burden
+- Gives a concrete basis for anticipating questions about portability across changing network scenarios
+
+CONTEXT:
+Proposes a transfer learning approach for RL-based capacity sharing in multi-cell B5G network slicing scenarios, with O-RAN-aware implementation assumptions.
+
+KEY TAKEAWAYS:
+- Standard RL-based capacity sharing can become impractical when the network changes and retraining is slow
+- Transfer learning is used to reuse learned policy weights after structural changes such as adding cells
+- The paper emphasizes edge availability for training and inference, tying AI lifecycle choices to infrastructure
+- Practicality and adaptation speed matter, not just final policy quality
+
+WHAT IT SUGGESTS HE MAY ASK:
+- How much retraining does your method require after topology or workload changes?
+- Does your approach generalize, or does it only re-optimize one scenario well?
+- Why is your adaptation mechanism practical enough for deployment?
+- Which parts of your policy are transferable and which are scenario-specific?
+
+RELEVANCE TO YOUR DEFENSE:
+- Very useful for defending OmniFORE and AgentEdge against generalization and maintenance questions
+- Be ready to discuss portability, warm-starting, and how your stack reduces retraining burden
