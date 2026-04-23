@@ -443,12 +443,17 @@ Evaluation harness + the scenarios.
 - Tier 3 cloud: 0-1 node · 64 CPU · 256 GB · 180-450 W.
 - Tier 2 near edge: 0-10 nodes · 16 CPU · 32 GB · 40-120 W · 25-60 ms link.
 - Tier 1 far edge: 6-12 nodes · 4 CPU · 8 GB · 10-35 W · 10-25 ms link.
-- Low-power: ~60% saving · timing jitter 15-25% · 12 Flask endpoints · same sim = digital twin.
-- Group A · constraint resolution:
-  - S1 Full Node: free space first.
-  - S2 Sleep Conflict: move, then sleep.
-  - S3 Won't Fit: redistribute load.
-- Group B · energy scalability:
+- Simulator parameters table (shared across tiers):
+  - Services: web 0.25c · db 0.5c · api 0.25c.
+  - Timing: deploy 15-45 s · migrate 8-30 s · scale 5-54 s.
+  - Stochastic: timing ±15-25% · failure 0.1-2% · latency ±1-2 ms.
+  - Power: **low-power -60%** (pink) · sampled 5 s · util 60/30/10.
+- Same simulator = digital twin inside ActSimCrit.
+- Group A · constraint resolution (two nodes, italic prompt under each card):
+  - S1 Full Node — *"deploy a new service on edge-0"* → free space first.
+  - S2 Sleep Conflict — *"sleep edge-1 + scale APIService to 1.4c"* → move, then sleep.
+  - S3 Won't Fit — *"sleep edge-1 + scale APIService to 2.4c"* → redistribute load (oversized svc, red ✗ blocks consolidation arrow).
+- Group B · energy scalability (same prompt on all three: *"reduce energy whilst keeping SLA"*):
   - S4 small (8 nodes, 6 svc, 2 idle).
   - S5 medium (18, 15, 3).
   - S6 large (35, 30, 6).

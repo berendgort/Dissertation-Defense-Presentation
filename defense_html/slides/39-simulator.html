@@ -109,19 +109,32 @@
 
         </div>
 
-        <!-- Testbed footer chips -->
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:2px;">
-          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
-            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">LOW-POWER</div>
-            <div style="font-size:17px; color:var(--c-agent); font-weight:700; font-family:var(--f-mono);">&minus;60 % W</div>
+        <!-- Simulator parameters table (simplified from dissertation Table 5.x) -->
+        <div style="border:1px solid var(--ink-4); background:var(--bg-alt); margin-top:2px;">
+          <div style="padding:6px 12px; background:color-mix(in oklab, var(--c-agent) 10%, var(--bg-alt)); border-bottom:1px solid var(--ink-4); display:flex; align-items:baseline; justify-content:space-between;">
+            <div style="font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:700;">Simulator parameters</div>
+            <div style="font-family:var(--f-mono); font-size:9.5px; color:var(--ink-4); letter-spacing:.08em;">shared across tiers</div>
           </div>
-          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
-            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">STOCH. TIMING</div>
-            <div style="font-size:17px; color:var(--ink); font-weight:700; font-family:var(--f-mono);">&plusmn;15&ndash;25 %</div>
-          </div>
-          <div style="padding:8px 10px; border:1px solid var(--ink-4); background:var(--bg-alt); text-align:center;">
-            <div style="font-size:10px; color:var(--ink-3); letter-spacing:.1em; font-family:var(--f-mono);">FLASK APIs</div>
-            <div style="font-size:17px; color:var(--ink); font-weight:700; font-family:var(--f-mono);">12 endpoints</div>
+          <div style="display:grid; grid-template-columns:92px 1fr; font-family:var(--f-mono); font-size:11.5px;">
+            <div style="padding:6px 10px; background:color-mix(in oklab, var(--ink-4) 18%, var(--bg-alt)); border-right:1px solid var(--ink-4); border-bottom:1px solid var(--ink-5); color:var(--ink-3); text-transform:uppercase; letter-spacing:.1em; font-size:10px; font-weight:700;">Services</div>
+            <div style="padding:6px 12px; border-bottom:1px solid var(--ink-5); color:var(--ink);">
+              <span style="color:var(--ink-3);">web</span> 0.25 c &middot; <span style="color:var(--ink-3);">db</span> 0.5 c &middot; <span style="color:var(--ink-3);">api</span> 0.25 c
+            </div>
+
+            <div style="padding:6px 10px; background:color-mix(in oklab, var(--ink-4) 18%, var(--bg-alt)); border-right:1px solid var(--ink-4); border-bottom:1px solid var(--ink-5); color:var(--ink-3); text-transform:uppercase; letter-spacing:.1em; font-size:10px; font-weight:700;">Timing</div>
+            <div style="padding:6px 12px; border-bottom:1px solid var(--ink-5); color:var(--ink);">
+              <span style="color:var(--ink-3);">deploy</span> 15&ndash;45 s &middot; <span style="color:var(--ink-3);">migrate</span> 8&ndash;30 s &middot; <span style="color:var(--ink-3);">scale</span> 5&ndash;54 s
+            </div>
+
+            <div style="padding:6px 10px; background:color-mix(in oklab, var(--ink-4) 18%, var(--bg-alt)); border-right:1px solid var(--ink-4); border-bottom:1px solid var(--ink-5); color:var(--ink-3); text-transform:uppercase; letter-spacing:.1em; font-size:10px; font-weight:700;">Stochastic</div>
+            <div style="padding:6px 12px; border-bottom:1px solid var(--ink-5); color:var(--ink);">
+              <span style="color:var(--ink-3);">timing</span> &plusmn;15&ndash;25% &middot; <span style="color:var(--ink-3);">failure</span> 0.1&ndash;2% &middot; <span style="color:var(--ink-3);">latency</span> &plusmn;1&ndash;2 ms
+            </div>
+
+            <div style="padding:6px 10px; background:color-mix(in oklab, var(--ink-4) 18%, var(--bg-alt)); border-right:1px solid var(--ink-4); color:var(--ink-3); text-transform:uppercase; letter-spacing:.1em; font-size:10px; font-weight:700;">Power</div>
+            <div style="padding:6px 12px; color:var(--ink);">
+              <span style="color:var(--c-agent); font-weight:700;">low-power &minus;60%</span> &middot; <span style="color:var(--ink-3);">sampled</span> 5 s &middot; <span style="color:var(--ink-3);">util</span> 60/30/10
+            </div>
           </div>
         </div>
       </div>
