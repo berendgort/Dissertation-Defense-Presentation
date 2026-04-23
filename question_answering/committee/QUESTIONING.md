@@ -254,7 +254,7 @@ Use these as structured answer starters, not as scripts to memorize word-for-wor
 
 57. **Question:** How do you justify the publication-to-chapter mapping?
 **Likely asker:** Any  
-**Answer:** Each technical chapter is grounded in one main publication line but expanded into a monograph narrative. `AERO` is primarily tied to the lightweight forecasting work, `OmniFORE` to the generalization work, and `AgentEdge` to the agentic orchestration work. The mapping shows coherence rather than fragmentation.
+**Answer:** Each technical chapter is grounded in one main publication line but expanded into a monograph narrative. In the presentation numbering, `AERO` maps to `[J1]` and `[C1]`, `OmniFORE` maps to `[J2]`, `[J3]`, and `[C2]`, and `AgentEdge` maps to `[J4]` and `[C3]`. That ordering follows the defense logic from deployable forecasting, to cross-service generalization, to validated orchestration action, so the mapping shows one coherent stack rather than fragmented papers.
 
 58. **Question:** Why did you not keep separate related-work sections inside the technical chapters?
 **Likely asker:** Any  

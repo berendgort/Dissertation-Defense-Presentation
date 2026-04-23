@@ -543,12 +543,12 @@ Time ~40s · T+44:40: end of AgentEdge (target 44:40) ✓
 
 Callback to the framing stack, now labelled by contribution.
 
-- L1+L2 → AgentEdge · L3 → AERO + OmniFORE · L4 → related book chapter.
-- AgentEdge → [J1], [C1].
-- AERO → [J4], [C3].
-- OmniFORE → [J3], [J5], [C2].
+- L1+L2 → AgentEdge as one grouped band · L3 → AERO + OmniFORE · L4 → related book chapter.
+- AERO → [J1], [C1].
+- OmniFORE → [J2], [J3], [C2].
+- AgentEdge → [J4], [C3] · SECON accepted.
 - [B1] = infrastructure-level related output.
-- Full bibliographic list on backup B7.
+- Full bibliographic list on backup B16.
 
 ### Slide 47 · Future Work · Agentic Frontier
 

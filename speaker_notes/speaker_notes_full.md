@@ -80,9 +80,9 @@ All models are trained on the same server: NVIDIA A100 40 GB, 30 CPU cores, 200 
 
 ### Slide 14 · Result 1: Small enough and accurate enough
 
-Three columns, one conclusion. In parameter count, AERO has 599 parameters, while the heavy baselines range from 228 thousand up to 2.9 million. SparseTSF is smaller at 35 parameters, but size alone is not the goal. In inference latency, AERO is at 0.38 milliseconds, well inside the 50-millisecond budget: that threshold tracks the 5G URLLC real-time target reported by Schulz et al. in 2017, which is also the edge control-cycle constraint we use throughout. Pathformer stays at 0.52 milliseconds, but it does so with a far larger model. In MAE, AERO reaches 2.9 times ten to the minus four, essentially on par with ModernTCN and close to Pathformer.
+Three columns, one conclusion. The red labels here only identify the heavyweight baselines; the comparison itself is in the values. Each column is ordered top to bottom by performance: smallest, fastest, and lowest error. In parameter count, AERO has 599 parameters, while the heavy baselines range from 228 thousand up to 2.9 million. SparseTSF is smaller at 35 parameters, but size alone is not the goal. In inference latency, AERO is at 0.38 milliseconds, well inside the 50-millisecond budget: that threshold tracks the 5G URLLC real-time target reported by Schulz et al. in 2017, which is also the edge control-cycle constraint we use throughout. Pathformer stays at 0.52 milliseconds, but it does so with a far larger model. In MAE, AERO reaches 2.9 times ten to the minus four, essentially on par with ModernTCN and close to Pathformer.
 
-So the title is the takeaway: only AERO is simultaneously small enough to deploy and accurate enough to matter.
+So the finding is the takeaway: only AERO and SparseTSF seem deployable and accurate.
 
 ### Slide 15 · Scenario 2: Orchestration outcomes
 
@@ -92,9 +92,9 @@ Forecast inputs come from the BitBrains Random trace: 500 VM traces, 8,631 sampl
 
 ### Slide 16 · Result 2: Controlled simulation results
 
-The result slide uses four operational metrics. Energy is 1293 joules for the reactive baseline, 1140 for SparseTSF, and 1123 for both AERO and Pathformer. Response time falls from 10.02 seconds for reactive to 6.5 for SparseTSF, 3.29 for AERO, and 2.45 for Pathformer. SLA violations collapse from 22.21 percent reactive to 4.60 percent with SparseTSF, 0.21 percent with AERO, and 0.10 percent with Pathformer.
+The result slide uses four operational metrics. As on the previous result slide, the red label only marks the heavyweight Pathformer baseline; the values carry the comparison, and the rows follow the metric direction. Energy is 1293 joules for the reactive baseline, 1140 for SparseTSF, and 1123 for both AERO and Pathformer. Response time falls from 10.02 seconds for reactive to 6.5 for SparseTSF, 3.29 for AERO, and 2.45 for Pathformer. SLA violations are 22.21 percent for reactive, 4.60 percent with SparseTSF, 0.21 percent with AERO, and 0.10 percent with Pathformer.
 
-Task migrations increase because predictive schedulers act before overloads appear: 2,026 for reactive, 5,309 for SparseTSF, 7,747 for AERO, and 8,480 for Pathformer. The honest interpretation is important here: SparseTSF also fits edge hardware, so AERO is not the only model that fits. The stronger and accurate claim is that AERO is the only *lightweight* model that still stays accurate, landing within reach of a transformer roughly 4,000 times larger.
+Task migrations are 2,026 for reactive, 5,309 for SparseTSF, 7,747 for AERO, and 8,480 for Pathformer. The compact takeaway is that SparseTSF fits edge hardware but fails once we judge it by orchestration outcomes, while AERO stays close to a transformer roughly 4,000 times larger.
 
 ### Slide 17 · Scenario 3: Live deployment
 
@@ -104,7 +104,7 @@ On the held-out test split the two models look almost indistinguishable; the liv
 
 ### Slide 18 · Result 3: Live deployment results under real-world drift
 
-The live deployment numbers are clean. A quick word on metrics first, because the deck uses several. MAE is mean absolute error, the typical miss per point. RMSE is root-mean-square error, which penalises large misses more strongly; I show both here so the committee can see not just the average error but also the spread of errors. SMAPE, which appears later in the OmniFORE section, is the scale-free version used to compare across services of different magnitudes. On the unseen workload, AERO reaches a mean absolute error of 0.051, while SparseTSF reaches 0.411, about eight times higher. RMSE tells the same story: 0.079 for AERO and 0.430 for SparseTSF. Inference is 2.65 milliseconds for AERO and 1.12 milliseconds for SparseTSF, so both remain comfortably within the 50-millisecond scheduler budget.
+The live deployment numbers are clean. As on the earlier result slides, the rows follow the metric direction and the deployable-model colors stay consistent. A quick word on metrics first, because the deck uses several. MAE is mean absolute error, the typical miss per point. RMSE is root-mean-square error, which penalises large misses more strongly; I show both here so the committee can see not just the average error but also the spread of errors. SMAPE, which appears later in the OmniFORE section, is the scale-free version used to compare across services of different magnitudes. On the unseen workload, AERO reaches a mean absolute error of 0.051, while SparseTSF reaches 0.411, about eight times higher. RMSE tells the same story: 0.079 for AERO and 0.430 for SparseTSF. Inference is 2.65 milliseconds for AERO and 1.12 milliseconds for SparseTSF, so both remain comfortably within the 50-millisecond scheduler budget.
 
 The point is that latency is not the differentiator; drift robustness is. That is why the operator-impact footer matters: roughly fifteen percent lower response time and twelve percent lower energy once the model stays accurate in the live environment. This closes AERO: all three AERO experiments answer RQ1. From here I switch to contribution two, OmniFORE.
 
@@ -244,13 +244,13 @@ Three panels, one story. The y-axis on each panel is total rack power in watts, 
 
 ### Slide 46 · Slide 03 reprise + publication mapping
 
-This slide is a callback to slide three. The left side is a headline-only version of the same four-layer stack, but now labelled by contribution instead of problem: AgentEdge sits at layers one and two, AERO and OmniFORE split layer three, and the related book chapter sits with layer four. The right side maps the stack onto the thesis publication list: AgentEdge maps to [J1] and [C1], AERO maps to [J4] and [C3], OmniFORE maps to [J3], [J5], and [C2], and [B1] is the related book-chapter output at infrastructure level.
+This slide is a callback to slide three. The left side is still the same four-layer stack, but L1 and L2 are now visually grouped as one AgentEdge band so the agentic layer reads as one research thread rather than two separate problems. The right side maps the stack onto the thesis publication list, but the numbering now follows the presentation order: AERO is [J1] and [C1], OmniFORE is [J2], [J3], and [C2], AgentEdge is [J4] and [C3], and [B1] remains the related book-chapter output at infrastructure level. The SECON paper is marked accepted.
 
-I keep this one very short in delivery. The point is simply that the publication record lines up with the stack itself. The full bibliographic list remains on backup slide B7.
+I keep this one very short in delivery. The point is simply that the publication record lines up with the stack while the numbering still follows the story of the defense. The full bibliographic list remains on backup slide B16.
 
 ### Slide 47 · Future Work · The Agentic Intelligence Layer
 
-Same stack as the previous slide. The left column is unchanged on purpose: L1 and L2 are the agentic layers, L3 is the prediction layer finished by AERO and OmniFORE, L4 is the hardware we run on. What changed is the right-hand side. The publications are gone, and in their place is a single clear indicator: future work lives on L1 and L2. That is the agentic intelligence layer, and that is where this chapter of research continues.
+Same grouped stack as the previous slide. The left column is unchanged on purpose: L1 and L2 are shown as one AgentEdge band, L3 is the prediction layer finished by AERO and OmniFORE, L4 is the hardware we run on. What changed is the right-hand side. The publications are gone, and in their place is a single clear indicator: future work lives on L1 and L2. That is the agentic intelligence layer, and that is where this chapter of research continues.
 
 Three short cards explain why. The first, *prediction is heavily researched*: lightweight nets and attention mechanisms rest on decades of time-series work. It is a mature field with established methodology. The second, *orchestration is a younger field*: which predictor to invoke for each situation, when a forecast warrants action, how to balance objectives that no single model optimizes: those are all still open questions. The third, *predictors become tools the agent selects*: AERO and OmniFORE are tools an agent picks, the same way a human operator picks between monitoring dashboards. Once you frame them as tools, the research question moves one level up, to the entity that chooses between them.
 
@@ -288,7 +288,7 @@ Three claims, each defended with three anchor numbers that were already shown on
 
 ### Slide 52 · Questions
 
-Leave this slide open during Q&A. The visual hierarchy now carries the delivery: a very large Q&A dominates the left, the invitation quote sits clearly as a secondary accent underneath it, and acknowledgments (supervisors, tribunal, colleagues) are compressed into a compact strip at the bottom so they are present but no longer competing with the title. The deck reference on the right is small and utilitarian: section ranges only, in the contribution colors, because at this point the committee does not need to be taught the deck again. Below that, a short line reminds us that backup slides B1–B13 are available on request.
+Leave this slide open during Q&A. The visual hierarchy now carries the delivery: a very large Q&A dominates the left, the invitation quote sits clearly as a secondary accent underneath it, and acknowledgments (supervisors, a shortened tribunal list, colleagues) are compressed into a compact strip at the bottom so they are present but no longer competing with the title. The deck reference on the right is small and utilitarian: section ranges only, in the contribution colors, because at this point the committee does not need to be taught the deck again. Below that, a short line reminds us that backup slides B1–B13 are available on request.
 
 BACKUP INDEX: 17 slides · B0 through B16
 
