@@ -288,7 +288,23 @@ Three claims, each defended with three anchor numbers that were already shown on
 
 ### Slide 52 · Questions
 
-Leave this slide open during Q&A. The visual hierarchy now carries the delivery: a very large Q&A dominates the left, the invitation quote sits clearly as a secondary accent underneath it, and acknowledgments (supervisors, a shortened tribunal list, colleagues) are compressed into a compact strip at the bottom so they are present but no longer competing with the title. The deck reference on the right is small and utilitarian: section ranges only, in the contribution colors, because at this point the committee does not need to be taught the deck again. Below that, a short line reminds us that backup slides B1–B13 are available on request.
+BRACE.
+Breathe: pause, one breath.
+Restate: "If I understand correctly, you are asking whether..."
+Answer first: "The short answer is..."
+Cite one anchor: one result, one comparison, one reason, or one number.
+Edge and end: state the boundary, then land the contribution.
+
+20-second default:
+"The short answer is..."
+"The main reason is..."
+"The strongest evidence is..."
+"The boundary is..."
+"So the contribution is..."
+
+Rules: answer the actual question, keep it under 30 seconds unless they ask for more, use at most one memorable number, never bluff, stop after the main point.
+
+Leave this slide open during Q&A and use the backup index on the right if needed.
 
 BACKUP INDEX: 17 slides · B0 through B16
 
