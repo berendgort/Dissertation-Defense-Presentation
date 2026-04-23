@@ -306,31 +306,33 @@ Rules: answer the actual question, keep it under 30 seconds unless they ask for 
 
 Leave this slide open during Q&A and use the backup index on the right if needed.
 
-BACKUP INDEX: 17 slides · B0 through B16
-
-· Methodology & rigor (framing color) ·
-B1 · Statistical rigor: sample sizes, variance, Wilson CIs
-B2 · Baseline fairness: shared BO budget, adapted ReAct/LATS
-B3 · Trace & dataset selection: why MS_11349, why a 20 % subsample
-B4 · Simulator & twin fidelity: COSCO independence, twin ≠ executor
-B5 · LLM reproducibility: pinned model, seeds, hosted-provider drift
+BACKUP INDEX: 19 slides · B0 through B18
 
 · AgentEdge deep dives (pink) ·
-B6 · PARES capability contract: the five-letter definition
-B7 · Why 78.3 %, not 100 %: three residual failure modes
-B8 · Scaling 8 / 20 / 35 nodes: context bloat, 150 ms budget origin
-B9 · Success metric: exact match, scenario design, valid-set bias
-B10 · Plan–execute staleness: execution-gate re-query, ILP speed-up
+B1 · Planning runtime & state drift: strategic cadence, per-call recovery, ILP halves runtime
+B2 · Model-scaling tailwind: Qwen3-235B → ~30 B models, ~7× fewer params, higher AA intelligence
+B8 · PARES capability contract: the five-letter definition
+B9 · Why 78.3 %, not 100 %: three residual failure modes
+B10 · Scaling 8 / 20 / 35 nodes: context bloat, 150 ms budget origin
+B11 · Success metric: exact match, scenario design, valid-set bias
+B12 · Plan–execute staleness: live-state-scoped schema, per-call recovery
+
+· Methodology & rigor (framing color) ·
+B3 · Statistical rigor: sample sizes, variance, Wilson CIs
+B4 · Baseline fairness: shared BO budget, adapted ReAct/LATS
+B5 · Trace & dataset selection: why MS_11349, why a 20 % subsample
+B6 · Simulator & twin fidelity: COSCO independence, twin ≠ executor
+B7 · LLM reproducibility: pinned model, seeds, hosted-provider drift
 
 · AERO & OmniFORE deep dives ·
-B11 · AERO vs Pathformer: the CPU/RAM chart explained (floor artifact)
-B12 · Informer / Pathformer / AERO: three models, three roles
-B13 · AERO beyond workload traces: other 6G signals, periodicity
-B14 · OmniFORE deployment & leakage: tier-agnostic, zero-shot defense
+B13 · AERO vs Pathformer: the CPU/RAM chart explained (floor artifact)
+B14 · Informer / Pathformer / AERO: three models, three roles
+B15 · AERO beyond workload traces: other 6G signals, periodicity
+B16 · OmniFORE deployment & leakage: tier-agnostic, zero-shot defense
 
 · Context & scope ·
-B15 · 6G service mix: payload-agnostic, Nearby scope, J4 → OmniFORE
-B16 · Full publications: 9 outputs, bibliographic data by contribution
+B17 · 6G service mix: payload-agnostic, Nearby scope, J4 → OmniFORE
+B18 · Full publications: 9 outputs, bibliographic data by contribution
 
 B0 is the on-slide navigable index if the committee wants to see it.
 
@@ -340,66 +342,80 @@ Opening line: thank you, I welcome your questions. The slide itself shows the co
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B1 · Statistical rigor
+### Backup B1 · Planning runtime and state drift
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B2 · Baseline fairness
+### Backup B2 · Model scaling is a tailwind
+
+Recenter immediately: we shipped on Qwen3-235B, a Q1 2025 model. Agent runtime scales, roughly linearly for dense models and linearly with active experts for MoE, with parameter count. So the question of runtime is, to first order, a question of which model we run on.
+
+Show the chart. Artificial Analysis Intelligence Index version 4.0 aggregates ten evaluations, among them Terminal-Bench Hard, GPQA Diamond, tau-squared Bench Telecom, SciCode. Qwen3-235B, which we used, scores 30 on that index. Gemma 4 31B scores 39. DeepSeek V3.2 scores 42. GLM-5.1 scores 51. The smallest of those, Gemma 4 31B, is roughly seven times smaller than what we ran on and already scores higher on the index.
+
+That is the defense. The same weakness, planning runtime, shrinks by roughly a factor of seven just by swapping the model, at equal or better plan quality, with no change to the AgentEdge contract. Pipeline is LLM-agnostic by construction: Intent, Observability, Planning with ActSimCrit, Infrastructure Action. Drop in Gemma 4 31B, or any comparable 30-billion-class model, and the 45.9-second mean response time we measured moves down proportionally, and the 700-second tail with it.
+
+This compounds with every engineering lever from B1 point three: ILP action selector, hierarchical planning, structured context, cached sub-plans, speculative decoding. The architectural claim is stable. The engine under it gets faster and smarter every quarter, and we have not yet taken that free speed-up.
+
+### Backup B3 · Statistical rigor
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B3 · Dataset and trace selection
+### Backup B4 · Baseline fairness
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B4 · Simulator and digital-twin fidelity
+### Backup B5 · Dataset and trace selection
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B5 · LLM reproducibility
+### Backup B6 · Simulator and digital-twin fidelity
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B6 · PARES capability contract
+### Backup B7 · LLM reproducibility
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B7 · Why 78.3 %, not 100 %
+### Backup B8 · PARES capability contract
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B8 · Scaling 8 / 20 / 35 and the 150 ms budget
+### Backup B9 · Why 78.3 %, not 100 %
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B9 · Success metric and scenario design
+### Backup B10 · Scaling 8 / 20 / 35 and the 150 ms budget
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B10 · Plan–execute state staleness
+### Backup B11 · Success metric and scenario design
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B11 · AERO vs Pathformer (CPU / RAM chart)
+### Backup B12 · Plan–execute state staleness
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B12 · Informer / Pathformer / AERO roles
+### Backup B13 · AERO vs Pathformer (CPU / RAM chart)
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B13 · AERO beyond workload traces
+### Backup B14 · Informer / Pathformer / AERO roles
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B14 · OmniFORE deployment and leakage
+### Backup B15 · AERO beyond workload traces
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B15 · 6G service mix and industrial scope
+### Backup B16 · OmniFORE deployment and leakage
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.
 
-### Backup B16 · Full publications
+### Backup B17 · 6G service mix and industrial scope
+
+Backup slide: self-contained. No spoken script; the slide carries the full answer.
+
+### Backup B18 · Full publications
 
 Backup slide: self-contained. No spoken script; the slide carries the full answer.

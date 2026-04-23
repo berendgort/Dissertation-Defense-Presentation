@@ -1,6 +1,6 @@
-# Speaker Notes · Backup Slides B1–B15
+# Speaker Notes · Backup Slides B1–B17
 
-These are the 15 backup slides. Each slide maps to one of the most likely committee
+These are the 16 backup slides that drill into the most-likely committee attacks (B1–B16); B17 is the full publications list. Each slide maps to one of the most likely committee
 attacks against the dissertation. This file is the private script: it does NOT show
 on the projected slides.
 
@@ -21,33 +21,81 @@ Target length: 30 s. Stretch to 60 s only for important technical questions.
 
 ---
 
-## Top 15 Weak Points — Why These 15 Slides Exist
+## Top 16 Weak Points — Why These 16 Slides Exist
 
-These are the fifteen places where the dissertation is most likely to be pressed.
-They are the reason B1–B15 exist in exactly this order.
+These are the sixteen places where the dissertation is most likely to be pressed.
+They are the reason B1–B16 exist in exactly this order.
 
-1. **B1 — Statistical rigor.** Are the gaps real or split noise?
-2. **B2 — Baseline fairness.** Did baselines get a fair chance?
-3. **B3 — Trace and dataset selection.** Why this pod, these cells, this subsample?
-4. **B4 — Simulator and twin fidelity.** Are we leaning on a friendly simulator?
-5. **B5 — LLM reproducibility.** How does anyone reproduce `78.3%` next year?
-6. **B6 — PARES / what counts as an agent.** Is `AgentEdge` really agentic?
-7. **B7 — Why `78.3%` and not `100%`.** If the twin is a filter, why does anything fail?
-8. **B8 — Scaling and context window.** Why do savings peak at `20` nodes?
-9. **B9 — Success metric.** Is exact end-state matching too strict or too convenient?
-10. **B10 — State staleness.** What happens between plan and execute?
-11. **B11 — AERO vs Pathformer CPU/RAM chart.** Was Pathformer judged on fair bars?
-12. **B12 — Informer / Pathformer / AERO roles.** Why didn't you also benchmark Informer?
-13. **B13 — AERO beyond workload traces.** Does `AERO` generalize outside CPU/RAM?
-14. **B14 — OmniFORE deployment and leakage.** Is the zero-shot protocol fair and deployable?
-15. **B15 — 6G scope.** Is this really a 6G thesis or only cloud orchestration?
+1. **B1 — Planning runtime and state drift.** If planning takes tens of seconds (up to 700 s observed), isn't the plan stale by the time it executes?
+2. **B2 — Statistical rigor.** Are the gaps real or split noise?
+3. **B3 — Baseline fairness.** Did baselines get a fair chance?
+4. **B4 — Trace and dataset selection.** Why this pod, these cells, this subsample?
+5. **B5 — Simulator and twin fidelity.** Are we leaning on a friendly simulator?
+6. **B6 — LLM reproducibility.** How does anyone reproduce `78.3%` next year?
+7. **B7 — PARES / what counts as an agent.** Is `AgentEdge` really agentic?
+8. **B8 — Why `78.3%` and not `100%`.** If the twin is a filter, why does anything fail?
+9. **B9 — Scaling and context window.** Why do savings peak at `20` nodes?
+10. **B10 — Success metric.** Is exact end-state matching too strict or too convenient?
+11. **B11 — Plan–execute state staleness.** What happens between plan and execute?
+12. **B12 — AERO vs Pathformer CPU/RAM chart.** Was Pathformer judged on fair bars?
+13. **B13 — Informer / Pathformer / AERO roles.** Why didn't you also benchmark Informer?
+14. **B14 — AERO beyond workload traces.** Does `AERO` generalize outside CPU/RAM?
+15. **B15 — OmniFORE deployment and leakage.** Is the zero-shot protocol fair and deployable?
+16. **B16 — 6G scope.** Is this really a 6G thesis or only cloud orchestration?
 
 Each slide follows the same shape: `question → 3 anchored answer points → pivot`.
 Every pivot point in the notes below ends on the thesis contribution, not on a technicality.
 
 ---
 
-## B1 · Statistical Rigor
+## B1 · Planning Runtime and Live-State Drift
+
+> _"Planning can take tens of seconds — up to `700 s` in our runs. Isn't the plan stale by the time it executes?"_
+
+### 30-second answer — `BRACE`
+
+- **(B)** Pause. Do not rush to defend. This is the hardest honest question in the dissertation.
+- **(R)** "The question is whether a multi-second planning window makes the produced plan obsolete against live infrastructure."
+- **(A)** "Yes, long planning opens a drift window. That window is bounded by scope, contained at execution, and actively engineered down — the architectural claim does not depend on sub-second planning."
+- **(C)** One anchor: a drop-in ILP action-selector cuts the hardest-scenario runtime from `107 s` to `48 s` (`−55%`) and LLM tokens by `~86%`, with identical or better final power. The AgentEdge architecture stays unchanged; only the planner back-end swaps.
+- **(E/End)** "What I do not claim is a `150 ms` planner today. That target is explicit future work on slide `49`. What I do claim is that the drift window never produces unsafe actions (`100%` containment across `630` runs) and that runtime is an engineering lever, not an architectural blocker."
+
+### Three-layer defense
+
+**Layer 1 · Strategic scope, not reactive control.** AgentEdge is positioned at the orchestration layer: consolidation, SLA protection, energy reclamation, slice rebalancing. These decisions already operate on minute-to-hour cadences today in production operator teams. Drift inside a tens-of-seconds planning window is a second-order effect on that horizon. Reactive sub-second control (packet scheduling, queue management, radio resource blocks) is not in scope and is explicitly left to the layer below.
+
+**Layer 2 · Drift is reconciled at execution, per failed API call.** The Infra Action Agent runs the validated plan as a sequential API-call script. When a call fails — typically because live state has drifted from what the plan expected — the agent transitions from **script executor** to **single-agent problem solver**: it autonomously diagnoses the failure against the current infrastructure state and issues corrective actions in-line, without bouncing the whole plan back to `ActSimCrit`. The action surface available to it is already filtered by a live-state-scoped validation schema, so the recovery itself cannot emit an infeasible call. Three-tier state isolation (baseline / accepted / simulated) keeps planning state clean during the preceding plan phase so the handoff to execution starts from a consistent baseline. Across `630` runs, unsafe-action containment is `100%`. Drift costs a few extra calls per scenario; it never touches safety.
+
+**Layer 3 · Runtime is engineering, not architecture.** The ILP figure on the slide shows the smallest-possible intervention — a drop-in action-selector — already cuts runtime in half. This is one entry in a well-known stack:
+
+1. Specialised small orchestration models (the same lesson `AERO` proved at the forecasting layer).
+2. Algorithmic planners (ILP, MIP, CP-SAT) as structured sub-solvers inside `Plan`.
+3. Hierarchical planning: coarse intent decomposition at the top, cheap bounded planners at the leaves.
+4. Structured / compressed context so the planner does not re-read the full system state per call.
+5. Cached sub-plans and speculative decoding on the LLM calls that remain.
+6. Partial-order replanning: only the affected sub-plan is re-derived when live state drifts.
+
+None of these change the AgentEdge contract (`Intent → Observe → Plan → Act` with `ActSimCrit` validation). They all attack the latency term independently, which is why the path to the `150 ms` target in slide `49` is incremental and credible.
+
+### Anchor number
+
+`107 s → 48 s` (`−55%`) planner runtime with a drop-in ILP action-selector, `~86%` fewer LLM tokens, `0` unsafe actions across `630` runs.
+
+### Follow-up traps
+
+- _"`700 s` is catastrophic for orchestration."_ → For reactive millisecond control, yes. For strategic orchestration, operator teams today already act on minute-to-hour cadences. The `700 s` figure is the tail, not the mean, and it is what motivates the future-work direction, not a claim about today's production readiness.
+- _"If the plan is stale, the Infra Action agent still fires old intents."_ → No. The API call itself fails at the infrastructure, not silently succeeds on bad state. At that point the Infra Action Agent switches out of script-executor mode and into single-agent problem-solver mode: it reads the live state, diagnoses the divergence, and issues the corrective action locally within that call step. A full re-plan is escalated only when local recovery cannot reconcile the drift, so most staleness is absorbed at execution cost, not planning cost.
+- _"ILP halving runtime only solves a slice of the problem."_ → Correct, and that is the point. ILP is one lever. The slide deliberately states this is *one of many* solutions, not *the* solution. The stack in Layer 3 above is cumulative: each lever multiplies with the others.
+- _"Why didn't you put ILP in the thesis as a primary contribution?"_ → ILP is a planner-backend choice, not an architectural result. Elevating it would conflate the architectural claim (`ActSimCrit` validates the plan before it commits) with the back-end choice (LLM reasoning vs. ILP vs. hybrid). Keeping them separate is what lets both the architecture and the accelerator be defended cleanly.
+- _"What about adversarial drift that specifically targets the planning window?"_ → Out of threat model. AgentEdge sits inside a protected operator perimeter; the adversarial-drift case is a physical-layer or authorisation-layer problem, not an orchestration-layer one. Slide `48` future-work covers the pre-commit safety gate for that class.
+
+### Pivot out
+
+"Strategic scope bounds the risk, the execution gate contains it, and the accelerator stack shrinks it. The drift window is disclosed, bounded, and engineered down — the architectural claim holds. That is why the new `B1` is the first thing this Q&A appendix defends: not because the weakness is unique to this work, but because the honest answer to it is what separates a validated control loop from a demo."
+
+---
+
+## B2 · Statistical Rigor
 
 > _"How do I know these gaps aren't just split noise?"_
 
@@ -74,7 +122,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B2 · Baseline Fairness
+## B3 · Baseline Fairness
 
 > _"Did the baselines really get a fair chance?"_
 
@@ -100,7 +148,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B3 · Trace and Dataset Selection
+## B4 · Trace and Dataset Selection
 
 > _"Why this one pod, why a `20%` subsample, why Google cells `A`–`F`?"_
 
@@ -129,7 +177,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B4 · Simulator and Digital-Twin Fidelity
+## B5 · Simulator and Digital-Twin Fidelity
 
 > _"Are the results leaning on a friendly simulator?"_
 
@@ -158,7 +206,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B5 · LLM Reproducibility
+## B6 · LLM Reproducibility
 
 > _"How does anyone reproduce `78.3%` next year when the model changes?"_
 
@@ -187,7 +235,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B6 · `PARES` — What Counts as an Agent
+## B7 · `PARES` — What Counts as an Agent
 
 > _"What exactly counts as an agent in this thesis?"_
 
@@ -213,7 +261,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B7 · Why `78.3%` and not `100%`
+## B8 · Why `78.3%` and not `100%`
 
 > _"If the critic validates on a twin, why does anything fail?"_
 
@@ -242,7 +290,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B8 · Scaling Behavior and the Context Window
+## B9 · Scaling Behavior and the Context Window
 
 > _"Why does energy saving peak at `20` nodes and drop at `35`?"_
 
@@ -271,7 +319,7 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B9 · Success Metric Validity
+## B10 · Success Metric Validity
 
 > _"Isn't exact end-state matching biased toward plans you anticipated?"_
 
@@ -300,18 +348,18 @@ Every pivot point in the notes below ends on the thesis contribution, not on a t
 
 ---
 
-## B10 · State Staleness Between Plan and Execute
+## B11 · State Staleness Between Plan and Execute
 
 > _"What if infrastructure state changes while the agent is still planning?"_
 
 ### 30-second answer — `BRACE`
 
 - **(R)** "The question is how the system handles the gap between observation and action."
-- **(A)** "Staleness is handled at three layers: execution gate, three-tier state isolation, and `ActSimCrit` re-planning."
+- **(A)** "Staleness is handled at three layers: a live-state-scoped validation schema at execution, three-tier state isolation during planning, and per-call autonomous recovery by the Infra Action Agent."
 - **(C)** Anchors:
-  1. Execution gate — the Infra Action agent re-queries live state before each committed call. Nothing goes out on stale observations.
-  2. Three-tier state isolation — baseline, accepted, and simulated states are kept distinct, so the twin can never overwrite the live view.
-  3. Failure routes to `Planning`, not local retry — when a call fails, `ActSimCrit` re-plans on a fresh observation, not on the old reasoning chain.
+  1. Live-state-scoped schema — the Infra Action Agent's action set is filtered by the current infrastructure state at execution time, so it cannot select an operation that is already infeasible.
+  2. Three-tier state isolation during planning — baseline, accepted, and simulated states are kept distinct, so the twin can never overwrite the live view and rejected batches never corrupt accepted state.
+  3. Per-call recovery at execution — if an API call fails mid-plan, the Infra Action Agent transitions from script executor to single-agent problem solver, diagnoses the live state, and issues corrective actions in that same call. A full `ActSimCrit` re-plan is escalated only when local recovery cannot reconcile the drift.
 - **(E)** "Planner latency still matters. An ILP planner drops from `107 s` to `48 s` under the thesis setup, but `150 ms` is the production target. That gap is explicitly future work, not a solved claim."
 
 ### Anchor number
@@ -320,7 +368,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ### Follow-up traps
 
-- _"What if the live state is wrong?"_ → Then the action fails at the execution gate and routes back to planning, not to production damage. The separation between planning and execution is explicitly a safety mechanism.
+- _"What if the live state is wrong?"_ → The API call itself fails at the infrastructure, not silently succeeds on bad state. At that point the Infra Action Agent switches into single-agent problem-solver mode, reads the current state, diagnoses the divergence, and issues the corrective operation inside that same call. A full re-plan is escalated only when the agent cannot reconcile the drift locally; damage to production is structurally prevented, not hoped for.
 - _"You still can't prevent a race condition."_ → Correct. Distributed multi-agent coordination is one of the open directions on slide `50`. This thesis demonstrates the single-instance pattern; distributed conflict resolution is the next research step.
 
 ### Pivot out
@@ -329,7 +377,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ---
 
-## B11 · `AERO` vs Pathformer — The CPU/RAM Chart
+## B12 · `AERO` vs Pathformer — The CPU/RAM Chart
 
 > _"Why does `Pathformer` look lighter in the CPU/RAM chart?"_
 
@@ -358,7 +406,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ---
 
-## B12 · Informer vs Pathformer vs `AERO`
+## B13 · Informer vs Pathformer vs `AERO`
 
 > _"Why didn't you benchmark `AERO` directly against `Informer`?"_
 
@@ -387,7 +435,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ---
 
-## B13 · `AERO` Beyond Workload Traces
+## B14 · `AERO` Beyond Workload Traces
 
 > _"Can `AERO` be used for signals other than CPU/memory?"_
 
@@ -416,7 +464,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ---
 
-## B14 · `OmniFORE` Deployment Tier and Leakage
+## B15 · `OmniFORE` Deployment Tier and Leakage
 
 > _"Where does `OmniFORE` actually run, and is the zero-shot protocol clean?"_
 
@@ -445,7 +493,7 @@ Three-tier state isolation; ILP planning `107 s → 48 s` in this setup; `~100x`
 
 ---
 
-## B15 · 6G Scope
+## B16 · 6G Scope
 
 > _"Which 6G services does this really cover, and is this a 6G thesis or just a cloud thesis?"_
 
